@@ -25,7 +25,14 @@ const DropDownListComponent = ({
   }
 
   const [show, setShow] = useState(false);
-  const [modified, setModified] = useState(data);
+  const { text } = fields;
+  const modified = sorting
+  ? [...data].sort((a, b) => {
+      const textA = typeof text === "function" ? text(a) : a[text];
+      const textB = typeof text === "function" ? text(b) : b[text];
+      return textA.localeCompare(textB);
+    })
+  : data;
   const [selectedItems, setSelectedItems] = useState(
     defaultValue
       ? Array.isArray(defaultValue)
@@ -42,15 +49,7 @@ const DropDownListComponent = ({
   );
   const [query, setQuery] = useState("");
   const dropRef = useRef();
-  const { text } = fields;
   const searchRef = useRef(null);
-
-  // console.log("data");
-  // console.log(modified)
-  // console.log(Array.isArray(defaultValue))
-  // console.log("defaultValue:", defaultValue);
-  // console.log("selectedItems:", selectedItems);
-  // console.log("item:", item);
 
   //* This is for showing the component and set an empty string to search input.
   const handleShow = () => {
@@ -85,23 +84,10 @@ const DropDownListComponent = ({
 
   //* This is for callback function giving the data outside the component.
   //* or giving the data to parent component.
-  useEffect(() => {
-    onItemSelected && onItemSelected(isMulti ? selectedItems : item);
-    // console.log("onItemSelected");
-  }, [item, selectedItems, isMulti]);
-
-  //* This is for sorting the data ,selectedItem and setItem.
-  useEffect(() => {
-    const sortedData = sorting
-      ? [...modified].sort((a, b) => {
-          const textA = typeof text === "function" ? text(a) : a[text];
-          const textB = typeof text === "function" ? text(b) : b[text];
-          return textA.localeCompare(textB);
-        })
-      : modified;
-    // console.log("sortedData");
-    setModified(sortedData);
-  }, [sorting]);
+  // useEffect(() => {
+  //   onItemSelected && onItemSelected(isMulti ? selectedItems : item);
+  //   // console.log("onItemSelected");
+  // }, [item, selectedItems, isMulti]);
 
   //* This is for closing the component when user click outside the box.
   useEffect(() => {

@@ -79,7 +79,7 @@ const DropDown = () => {
           data={data}
           fields={fields}
           isMulti={true}
-          defaultValue={defaultSelectedItems}
+          // defaultValue={defaultSelectedItems}
           // templetItem={itemTemplate}
           // templeteValue={valueTemplate}
           // templetItemNodata={itemNoDataTemplete}
