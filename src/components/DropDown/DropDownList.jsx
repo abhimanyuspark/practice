@@ -84,10 +84,10 @@ const DropDownListComponent = ({
 
   //* This is for callback function giving the data outside the component.
   //* or giving the data to parent component.
-  // useEffect(() => {
-  //   onItemSelected && onItemSelected(isMulti ? selectedItems : item);
-  //   // console.log("onItemSelected");
-  // }, [item, selectedItems, isMulti]);
+  useEffect(() => {
+    onItemSelected && onItemSelected(isMulti ? selectedItems : item);
+    // console.log("onItemSelected");
+  }, [item, selectedItems, isMulti]);
 
   //* This is for closing the component when user click outside the box.
   useEffect(() => {
