@@ -1,11 +1,9 @@
 .drop-box {
   /* width: 400px; */
   position: relative;
-  z-index: 2;
 }
 .drop-box > .drop-container {
   position: relative;
-  z-index: 9;
   background-color: white;
 }
 
@@ -60,6 +58,7 @@
   flex-direction: column;
   list-style: none;
   scroll-behavior: smooth;
+  transition: opacity 0.5s ease, transform 0.5s ease;
   /* transition: 1s linear; */
 }
 /* .drop-box .block{
@@ -70,6 +69,17 @@
     opacity: 0;
     transform: translateY(-10px) translateZ(0px);
 } */
+
+.drop-box .show{
+  opacity: 1;
+  z-index: 9;
+  transform: translateY(50px);
+}
+.drop-box .hidden {
+  opacity: 0;
+  z-index: -9;
+  transform: translateY(0px);
+}
 
 .drop-box .drop-list ul {
   /* max-height: 300px; */

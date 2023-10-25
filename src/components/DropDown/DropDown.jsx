@@ -80,8 +80,8 @@ const DropDown = () => {
           fields={fields}
           isMulti={true}
           defaultValue={defaultSelectedItems}
-          // templetItem={itemTemplate}
-          // templeteValue={valueTemplate}
+          templetItem={itemTemplate}
+          templeteValue={valueTemplate}
           // templetItemNodata={itemNoDataTemplete}
           sorting={true}
           search={true}

@@ -4,7 +4,7 @@ import React, { useState } from "react";
 // import { Columns } from "../../components/table/column";
 // import { makeData } from "../../data/makeData";
 import DropDown from "../../components/DropDown/DropDown";
-// import Country from "../../components/DropDown/Country"
+import Country from "../../components/DropDown/Country"
 // import Accordians from '../../components/accordians/accordians'
 
 const Home = () => {
@@ -21,6 +21,7 @@ const Home = () => {
   return (
     <div>
       <div style={{display:"flex",justifyContent:"center"}}><DropDown /></div>
+      <div style={{display:"flex",justifyContent:"center"}}><Country /></div>
       {/* <div className="flex" style={{ justifyContent: "center" }}>
         <input
           value={globalFilter}

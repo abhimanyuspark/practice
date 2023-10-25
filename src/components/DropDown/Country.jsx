@@ -43,24 +43,26 @@ const Country = () => {
 
   const fields = { text: (i) => i.name.common };
 
+  const defaultValue = country[2]
+
   return (
     <div>
       {loading ? (
         // Render a loading indicator while data is being fetched
         <div>Loading...</div>
       ) : (
-        // <DropDownListComponent
-        //   data={country}
-        //   fields={fields}
-        //   templetItem={item}
-        //   templeteValue={value}
-        //   maxWidth={"300px"}
-        //   sorting={true}
-        //   search={true}
-        //   // isMulti={true}
-        //   enableNoDataRow={true}
-        // />
-        ""
+        <DropDownListComponent
+          data={country}
+          fields={fields}
+          templetItem={item}
+          templeteValue={value}
+          maxWidth={"300px"}
+          sorting={true}
+          search={true}
+          // defaultValue={defaultValue}
+          // isMulti={true}
+          enableNoDataRow={true}
+        />
       )}
     </div>
   );
