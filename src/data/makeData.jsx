@@ -12,20 +12,18 @@ const newPerson = () => {
   return {
     id: faker.string.uuid(),
     name: faker.person.fullName(),
-    firstName: faker.person.firstName(),
-    lastName: faker.person.lastName(),
+    date: faker.date.between({from: "2021-01-01", to:"2023-12-01"}),
     profile: faker.image.avatar(),
     age: faker.number.int({ min: 25, max: 50 }),
     visits: faker.number.int(1000),
     progress: faker.number.int({ min: 40, max: 90 }),
     status: faker.helpers.arrayElement([
-      "relationship",
-      "complicated",
-      "single",
+      "pending",
+      "inprocess",
+      "complete",
     ]),
-    jobType: faker.person.jobType(),
-    dis: {
-      job: faker.person.jobTitle()
+    discription: {
+      jobTitle: faker.person.jobTitle()
     }
   };
 };

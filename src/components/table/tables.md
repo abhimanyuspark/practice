@@ -1,7 +1,7 @@
 function Filter({ column, table }) {
-    const firstValue = table
-        .getPreFilteredRowModel()
-        .flatRows[0]?.getValue(column.id);
+const firstValue = table
+.getPreFilteredRowModel()
+.flatRows[0]?.getValue(column.id);
 
     return typeof firstValue === "number" ? (
       <div className="flex space-x-2">
@@ -70,3 +70,21 @@ function Filter({ column, table }) {
           Log table.getSelectedRowModel().flatRows
         </button>
       </div>
+
+
+
+                   <th key={header.id} colSpan={header.colSpan}>
+                     {header.isPlaceholder ? null : (
+                       <>
+                         {flexRender(
+                           header.column.columnDef.header,
+                           header.getContext()
+                         )}
+                         {/* {header.column.getCanFilter() ? (
+                           <div>
+                             <Filter column={header.column} table={table} />
+                           </div>
+                         ) : null} */}
+                       </>
+                     )}
+                   </th>

@@ -81,21 +81,6 @@ function Table({ Columns, data }) {
                       </div>
                     )}
                   </th>
-                  // <th key={header.id} colSpan={header.colSpan}>
-                  //   {header.isPlaceholder ? null : (
-                  //     <>
-                  //       {flexRender(
-                  //         header.column.columnDef.header,
-                  //         header.getContext()
-                  //       )}
-                  //       {/* {header.column.getCanFilter() ? (
-                  //         <div>
-                  //           <Filter column={header.column} table={table} />
-                  //         </div>
-                  //       ) : null} */}
-                  //     </>
-                  //   )}
-                  // </th>
                 );
               })}
             </tr>

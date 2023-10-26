@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import DropDownListComponent from "./DropDownList";
 
-const Country = ({ onItemSelected }) => {
+const CountryIdd = ({ onItemSelected, defaultValue }) => {
   const [country, setCountry] = useState([]);
   const [loading, setLoading] = useState(true); // Add loading state
 
@@ -24,26 +24,41 @@ const Country = ({ onItemSelected }) => {
   }, []);
 
   const item = (d) => {
+    const root = d.idd.root ? String(d.idd.root) : "+0";
+    const suffixes = d.idd.suffixes ? String(d.idd.suffixes) : "";
+    const combined = root + suffixes.slice(0, 2);
     return (
       <div className="flex gap-1">
         <img src={d.flags.svg} className="avatar" alt="images" />
-        <span>{d.name.common}</span>
+        <span>{combined}</span>
       </div>
     );
   };
 
   const value = (d) => {
+    const root = d.idd.root ? String(d.idd.root) : "+0";
+    const suffixes = d.idd.suffixes ? String(d.idd.suffixes) : "";
+    const combined = root + suffixes.slice(0, 2);
     return (
       <div className="flex gap-1" style={{ padding: "0px 10px" }}>
         <img src={d.flags.svg} className="avatar" alt="images" />
-        <span>{d.name.common}</span>
+        <span>{combined}</span>
       </div>
     );
   };
 
-  const fields = { text: (i) => i.name.common };
+  const fields = {
+    text: (i) => {
+      const root = i.idd.root ? String(i.idd.root) : "+0";
+      const suffixes = i.idd.suffixes ? String(i.idd.suffixes) : "";
+      const combined = root + suffixes.slice(0, 2);
+      return combined;
+    },
+    sortText: (n) => n.name.common,
+  };
 
-  // const defaultValue = country[2];
+  // console.log(defaultValue)
+//   const defaultValu = country[2];
 
   return (
     <div>
@@ -56,10 +71,10 @@ const Country = ({ onItemSelected }) => {
           fields={fields}
           templetItem={item}
           templeteValue={value}
-          maxWidth={"300px"}
+          maxWidth={"150px"}
           sorting={true}
           search={true}
-          // defaultValue={defaultValue}
+          defaultValue={defaultValue}
           // isMulti={true}
           onItemSelected={onItemSelected}
           enableNoDataRow={true}
@@ -69,4 +84,4 @@ const Country = ({ onItemSelected }) => {
   );
 };
 
-export default Country;
+export default CountryIdd;

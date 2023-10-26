@@ -24,45 +24,45 @@ const DropDownListComponent = ({
   isMulti = false,
   defaultValue,
 }) => {
-  //* This is for most important when user did not send the fields it will show nothing.
-  if (!fields || (!fields.text && typeof fields.text !== "function")) {
+  if (!fields || (!fields.text && typeof fields.text !== "function" || !data)) {
     return null;
   }
 
   const [show, setShow] = useState(false);
-  const { text } = fields;
-  const modified = sorting
-    ? [...data].sort((a, b) => {
-        const textA = typeof text === "function" ? text(a) : a[text];
-        const textB = typeof text === "function" ? text(b) : b[text];
-        return textA.localeCompare(textB);
-      })
-    : data;
-  const [selectedItems, setSelectedItems] = useState(
-    defaultValue
-      ? Array.isArray(defaultValue)
-        ? defaultValue
-        : [defaultValue]
-      : [modified[0]]
-  );
-  const [item, setItem] = useState(
-    defaultValue
-      ? Array.isArray(defaultValue)
-        ? "accepts an object"
-        : defaultValue
-      : modified[0]
-  );
+  const { text, sortText } = fields;
+  const modified = useMemo(() => {
+    return sorting
+      ? [...data].sort((a, b) => {
+          const textA = sortText
+            ? typeof sortText === "function"
+              ? sortText(a)
+              : a[sortText]
+            : typeof text === "function"
+            ? text(a)
+            : a[text];
+          const textB = sortText
+            ? typeof sortText === "function"
+              ? sortText(b)
+              : b[sortText]
+            : typeof text === "function"
+            ? text(b)
+            : b[text];
+          return textA.localeCompare(textB);
+        })
+      : data;
+  }, [sorting]);
+
+  const [selectedItems, setSelectedItems] = useState([modified[0]]);
+  const [item, setItem] = useState(modified[0]);
   const [query, setQuery] = useState("");
   const dropRef = useRef();
   const searchRef = useRef(null);
 
-  //* This is for showing the component and set an empty string to search input.
   const handleShow = useCallback(() => {
     setShow(!show);
     setQuery("");
   }, [show]);
 
-  //* This is for chaniging the item.
   const handleChange = (d) => {
     if (isMulti) {
       const isSelected = selectedItems.includes(d);
@@ -75,13 +75,11 @@ const DropDownListComponent = ({
     }
   };
 
-  //* This is for sending an empty string in item.
   const handleNoData = () => {
     setShow(false);
     setItem("");
   };
 
-  //* This is for search the data through the modified array.
   const filterData = useMemo(() => {
     return modified.filter((d) => {
       const textValue = typeof text === "function" ? text(d) : d[text];
@@ -89,7 +87,6 @@ const DropDownListComponent = ({
     });
   }, [modified, text, query]);
 
-  //* This is for callback function giving the data outside the component.
   const onItemSelectedCallback = useCallback(
     (select) => {
       if (onItemSelected) {
@@ -98,12 +95,12 @@ const DropDownListComponent = ({
     },
     [onItemSelected]
   );
+
   useEffect(() => {
     const selectedItem = isMulti ? selectedItems : item;
     onItemSelectedCallback(selectedItem);
   }, [item, selectedItems, isMulti]);
 
-  //* This is for closing the component when user click outside the box.
   useEffect(() => {
     let handler = (e) => {
       if (!dropRef.current.contains(e.target)) {
@@ -117,27 +114,36 @@ const DropDownListComponent = ({
     };
   }, []);
 
-  //* This is for focus on search bar automatic when componet is show.
   useEffect(() => {
     if (show && searchRef.current) {
       searchRef.current.focus();
     }
-    // console.log("Show");
   }, [show]);
 
-  //* Start =>  function when isMulti is true then select and deselect the data.
   const handleSelectAll = () => {
     setSelectedItems([...filterData]);
   };
+
   const handleDeselectAll = () => {
     setSelectedItems([]);
   };
-  //* end
 
-  //* Here is cheacking fields "text" is a function or an a string.
   const it = useMemo(() => {
     return item ? (typeof text === "function" ? text(item) : item[text]) : "";
   }, [item, text]);
+
+  useEffect(() => {
+    if (defaultValue) {
+      setSelectedItems(
+        Array.isArray(defaultValue) ? defaultValue : [defaultValue]
+      );
+      setItem(Array.isArray(defaultValue) ? "Accepts an object" : defaultValue);
+    }
+     else {
+      setSelectedItems([modified[0]]);
+      setItem(modified[0]);
+    }
+  }, [defaultValue]);
 
   return (
     <div
@@ -145,12 +151,12 @@ const DropDownListComponent = ({
       className="drop-box"
       style={maxWidth ? { width: maxWidth } : { width: "400px" }}
     >
-      {isMulti ? ( //? when isMulti is true.
+      {isMulti ? (
         <div className="drop-container">
           <div onClick={handleShow} className="templeteValue">
             <div className="multi-box">
-              {selectedItems.length > 0 ? (
-                selectedItems.map((d, i) => {
+              {selectedItems?.length > 0 ? (
+                selectedItems?.map((d, i) => {
                   const textValue =
                     typeof text === "function" ? text(d) : d[text];
                   return (
@@ -172,9 +178,8 @@ const DropDownListComponent = ({
           </div>
         </div>
       ) : (
-        //? when multi is false.
         <div className="drop-container">
-          {templeteValue ? ( //? when tampleteValue is true.
+          {templeteValue ? (
             <div onClick={handleShow} className="templeteValue">
               {item === "" ? (
                 <div style={{ padding: "5px" }}>{"--"}</div>
@@ -184,7 +189,7 @@ const DropDownListComponent = ({
             </div>
           ) : (
             <>
-              {templetValueNodata ? ( //? when there is no data and you can customize it.
+              {templetValueNodata ? (
                 <div
                   className="templeteValue"
                   onClick={handleShow}
@@ -193,7 +198,6 @@ const DropDownListComponent = ({
                   {templetValueNodata()}
                 </div>
               ) : (
-                //? This is a default one when there is no templeteValue is provide.
                 <div className="input">
                   <input
                     id="select"
@@ -211,7 +215,7 @@ const DropDownListComponent = ({
         </div>
       )}
       <div className={`${show ? "show" : "hidden"} drop-list`}>
-        {search && ( //? This is for search through the data.
+        {search && (
           <div className="drop-search">
             <input
               ref={searchRef}
@@ -225,7 +229,7 @@ const DropDownListComponent = ({
             />
           </div>
         )}
-        {isMulti && ( //? This is for select and deselect butttons.
+        {isMulti && (
           <div className="multi-button">
             <div className="selected-button" onClick={handleSelectAll}>
               Select All
@@ -238,28 +242,21 @@ const DropDownListComponent = ({
         <ul
           style={maxHeight ? { maxHeight: maxHeight } : { maxHeight: "300px" }}
         >
-          {!isMulti &&
-            enableNoDataRow && ( //? When you want to show no data li.
-              <li
-                className={item === "" ? "active" : ""}
-                onClick={() => {
-                  handleNoData();
-                }}
-              >
-                {templetItemNodata ? templetItemNodata() : "--"}
-              </li>
-            )}
-          {filterData.length > 0 ? ( //* There is the list showing through the data.
+          {!isMulti && enableNoDataRow && (
+            <li
+              className={item === "" ? "active" : ""}
+              onClick={() => {
+                handleNoData();
+              }}
+            >
+              {templetItemNodata ? templetItemNodata() : "--"}
+            </li>
+          )}
+          {filterData.length > 0 ? (
             filterData.map((d, i) => {
-              // ? Here is cheacking fields "text" is a function or an a string.
               const textValue = typeof text === "function" ? text(d) : d[text];
               return (
                 <li
-                  // className={`${
-                  //   isMulti
-                  //     ? `${selectedItems.includes(d) ? "active" : ""}`
-                  //     : `${d && textValue === it ? "active" : ""}`
-                  // }`}
                   className={`${
                     isMulti
                       ? `muti-li`
@@ -278,13 +275,11 @@ const DropDownListComponent = ({
               );
             })
           ) : (
-            // ? When no record or data from an modified array.
             <li className={templetNoRecord ? "" : "no-record"}>
               {templetNoRecord ? templetNoRecord() : "No record found"}
             </li>
           )}
         </ul>
-        {/* //? Footer for drop box. */}
         <div className="drop-footer"></div>
       </div>
     </div>

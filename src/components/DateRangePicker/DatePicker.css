@@ -1,0 +1,69 @@
+.ant-picker-active-bar{
+    display: none !important;
+}
+.custom_class.ant-picker{
+    width: 190px !important;
+    padding-left: 0px !important;
+}
+.date_class.ant-picker{
+    width: 800px !important;
+    padding: 6px 10px !important;
+}
+.ant-picker-input{
+    width: 100% !important;
+}
+.ant-picker .ant-picker-input >input{
+    width: 60px !important;
+    /* color: white; */
+}
+
+.ant-picker-range-separator{
+    color: #c0bdbd !important;
+    padding: 0px 8px 0px 0px !important;
+}
+.ant-picker-presets ul{
+    padding: 7px 0px 0px 0px !important;
+    height: 100%;
+    width: 9rem !important;
+}
+.ant-picker-presets ul li{
+    height: 1.8rem !important;
+    margin: 0px !important;
+    border: none !important;
+    border-radius: 0px !important;
+    font-size: 12px !important;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    padding-left: 20px !important;
+}
+.custom_class .anticon-close-circle{
+    position: absolute !important;
+    margin-top: -7px !important;
+}
+.date_class .anticon-close-circle{
+    position: absolute !important;
+    margin-left: -13px !important;
+    margin-top: -7px !important;
+}
+.ant-picker-date-panel{
+    width: 238px !important;
+    font-size: 12px !important;
+}
+.ant-picker-dropdown .ant-picker-date-panel .ant-picker-body{
+    padding: 8px 8px !important;
+}
+.ant-picker-dropdown .ant-picker-date-panel .ant-picker-content {
+    width: 220px !important;
+}
+.ant-picker-dropdown .ant-picker-cell{
+    padding: 4px 0px !important;
+}
+.ant-picker-dropdown .ant-picker-content th{
+    height: fit-content !important;
+    width: 30px !important;
+}
+/* .ant-picker-dropdown .ant-picker-panel-container{
+    background: black;
+    color: white;
+} */

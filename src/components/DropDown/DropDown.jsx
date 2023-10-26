@@ -1,103 +1,68 @@
 import React, { useState } from "react";
 // import './templates.css';
-// import * as data from "./source.json";
-import DropDownListComponent from "./DropDownList";
-import { makeData } from "../../data/makeData";
+import Country from "./Country";
+import Employee from "./Employee";
+import CountryIdd from "./CountryIdd";
 
 const DropDown = () => {
-  //Todo const temp = "empList";
-  // define the JSON of data
-  //Todo const employeesData = data[temp];
-
-  const [data] = useState(makeData(20));
-
-  // maps the appropriate column to fields property
-  // const fields = { text: (i)=> i.dis.job };
-  const fields = { text: "name" };
-
   const [person, setPerson] = useState({
     name: "Abhimanyu",
     profile: "Image",
     employee: "",
+    country: "",
+    countryNumber:""
   });
+  // console.log(person)
 
-  //set the value to item template
-  const itemTemplate = (data) => {
-    return (
-      <div className="flex gap-1">
-        <img className="avatar" src={data.profile} alt="employee" />
-        <div className="ename"> {data.name} </div>
-      </div>
-    );
-  };
-
-  // const itemNoDataTemplete = ()=>{
-  //   return(
-  //     <div style={{padding: "6px"}}>
-  //       No data
-  //     </div>
-  //   )
-  // }
-
-  const valueTemplate = (data) => {
-    return (
-      <div className="flex gap-1">
-        <img className="avatar" src={data.profile} alt="employee" />
-        <div className="name"> {data.name} </div>
-      </div>
-    );
-  };
-
-  // const valueNoData = () => {
-  //   return <div>No record selected</div>;
-  // };
-
-  // const noData = () => {
-  //   return <span>No data</span>;
-  // };
-
-  const handelSelected = (d) => {
-    // console.log(d)
-    setPerson((prevPerson) => ({
-      ...prevPerson,
-      employee: d,
-    }));
-  };
-
+  const [loading, setLoading] = useState(false);
+  const timeout = 3000;
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(person);
+    setLoading(true);
+    console.log("loading in process");
+    setTimeout(() => {
+      console.log(person);
+      console.log("Console after 2 sec, loading is complete");
+      setLoading(false);
+    }, timeout);
   };
-
-  // const defaultSelectedItems = [data[2],data[3]];
-  const defaultSelectedItems = data[2];
 
   return (
     <form onSubmit={handleSubmit}>
-      <div>
-        <DropDownListComponent
-          data={data}
-          fields={fields}
-          isMulti={true}
-          defaultValue={defaultSelectedItems}
-          templetItem={itemTemplate}
-          templeteValue={valueTemplate}
-          // templetItemNodata={itemNoDataTemplete}
-          sorting={true}
-          search={true}
-          onItemSelected={handelSelected}
-          maxWidth={"300px"}
-          maxHeight={"200px"}
-          // enableNoDataRow={true}
-          // templetNoRecord={noData}
-          // templetValueNodata={valueNoData}
+      <div className="flex gap-1">
+        <Employee
+          onItemSelected={(e) => {
+            setPerson((prevPerson) => ({
+              ...prevPerson,
+              employee: e,
+            }));
+          }}
         />
-        <button>submit</button>
+        <Country
+          onItemSelected={(c) => {
+            setPerson((prevPerson) => ({
+              ...prevPerson,
+              country: c,
+            }));
+          }}
+        />
+        <CountryIdd
+          defaultValue={person.country}
+          onItemSelected={(c) => {
+            setPerson((prevPerson) => ({
+              ...prevPerson,
+              countryNumber: c,
+            }));
+          }}
+        />
       </div>
+      <button
+        style={loading ? { cursor: "not-allowed" } : { cursor: "pointer" }}
+      >
+        {loading ? "Loading..." : "submit"}
+      </button>
     </form>
   );
 };
 
-
-
-export default DropDown
+export default DropDown;
