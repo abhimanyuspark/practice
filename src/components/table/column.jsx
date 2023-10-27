@@ -1,4 +1,20 @@
+import DropDownMenu from "../Custom/DropDownMenu/DropDownMenu";
 import IndeterminateCheckbox from "./checkbox";
+
+const menu = [
+  {
+    name: "View",
+    icon: <span className="material-symbols-outlined">visibility</span>,
+  },
+  {
+    name: "Edit",
+    icon: <span className="material-symbols-outlined">edit_square</span>,
+  },
+  {
+    name: "Delete",
+    icon: <span className="material-symbols-outlined">delete</span>,
+  },
+];
 
 export const Columns = [
   {
@@ -33,7 +49,7 @@ export const Columns = [
   },
   {
     accessorKey: "name",
-    header:()=> "Name",
+    header: () => "Name",
     cell: (info) => info.getValue(),
     // footer: (props) => props.column.id,
   },
@@ -41,7 +57,7 @@ export const Columns = [
     accessorKey: "date",
     header: () => <span>Date</span>,
     cell: (info) => info.getValue().toLocaleDateString(),
-    sortDescFirst :false,
+    sortDescFirst: false,
     // footer: (props) => props.column.id,
   },
   {
@@ -71,16 +87,35 @@ export const Columns = [
     accessorKey: "id",
     enableSorting: false,
     header: () => "Actions",
-    cell: (info) => (
-      <select
-        onChange={() => {
-          console.log(info.getValue());
-        }}
-      >
-        <option value="View">View</option>
-        <option value="Edit">Edit</option>
-        <option value="Delete">Delete</option>
-      </select>
-    ),
+    cell: (info) => {
+      const handelEdit = (id) => {
+        console.log("Edit:", id);
+      };
+      const handelView = (id) => {
+        console.log("View:", id);
+      };
+      const handelDelete = (id) => {
+        console.log("Delete:", id);
+      };
+
+      const handelli = (d, id) => {
+        switch (d) {
+          case "Edit":
+            handelEdit(id);
+            break;
+          case "View":
+            handelView(id);
+            break;
+          case "Delete":
+            handelDelete(id);
+            break;
+          default:
+            break;
+        }
+      };
+      return (
+        <DropDownMenu data={menu} onSubmitLi={handelli} id={info.getValue()} />
+      );
+    },
   },
 ];

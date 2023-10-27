@@ -1,40 +1,53 @@
-import React, { useState } from "react";
-import { Menu, MenuUl } from "./MenuStyle";
+import React, { useEffect, useRef, useState } from "react";
+import { DropMenu, Menu, MenuLi, MenuUl } from "./MenuStyle";
 
 const DropDownMenu = ({ data, onSubmitLi, id }) => {
   const [show, setShow] = useState(false);
+  const dropRef = useRef(null);
   const handelShow = () => {
     setShow(!show);
   };
   const handelLi = (d) => {
     onSubmitLi(d, id);
+    handelShow();
   };
+  useEffect(() => {
+    let handler = (e) => {
+      if (!dropRef.current.contains(e.target)) {
+        setShow(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => {
+      document.removeEventListener("mousedown", handler);
+    };
+  }, []);
 
   return (
-    <div>
+    <DropMenu ref={dropRef}>
       <Menu
         onClick={() => {
           handelShow();
         }}
       >
-        Menu
+        <span className="material-symbols-outlined">menu</span>
       </Menu>
       <MenuUl $display={show}>
         {data?.map((d, i) => {
           return (
-            <li
+            <MenuLi
               key={i}
               onClick={() => {
                 handelLi(d.name);
               }}
             >
-              <span>{d?.name}</span>
               <span>{d?.icon}</span>
-            </li>
+              <span>{d?.name}</span>
+            </MenuLi>
           );
         })}
       </MenuUl>
-    </div>
+    </DropMenu>
   );
 };
 

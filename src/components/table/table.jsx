@@ -88,8 +88,9 @@ function Table({ Columns, data }) {
         </thead>
         <tbody>
           {table.getRowModel().rows.map((row) => {
+            const isSelected = row.getIsSelected(row.id);
             return (
-              <tr key={row.id}>
+              <tr key={row.id} className={isSelected ? "selected-row" : ""}>
                 {row.getVisibleCells().map((cell) => {
                   return (
                     <td key={cell.id}>

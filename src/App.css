@@ -1,89 +1,96 @@
-*{
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 
-.p-2{
+.p-2 {
   padding: 20px;
 }
 
-table{
+table {
   padding: 10px;
   height: 100%;
   width: 100%;
+  border-collapse: collapse;
+}
+table tbody tr {
+  border: none;
+}
+table tbody tr.selected-row {
+  background-color: gainsboro;
 }
 
-table thead{
+table thead {
   height: 50px;
 }
-table tfoot{
+table tfoot {
   height: 60px;
 }
 
-table thead tr th{
-  padding: 5px;
+table thead tr th {
+  /* padding: 5px; */
   cursor: pointer;
-  text-align: left;
+  /* text-align: left; */
 }
-table thead tr th:last-child{
+table thead tr th:last-child {
   padding: 5px;
-  text-align: right;
+  /* text-align: right; */
 }
 
-table tbody tr td{
+table tbody tr td {
   padding: 5px;
-  text-align: left;
+  /* text-align: left; */
 }
-table tbody tr td:last-child{
+table tbody tr td:last-child {
   padding: 5px;
-  text-align: right;
+  /* text-align: right; */
 }
 
 /* for profile image start  */
-.avatar{
+.avatar {
   width: 30px;
   height: 30px;
   border-radius: 50%;
   vertical-align: middle;
-  
-  aspect-ratio: 1/3; 
+
+  aspect-ratio: 1/3;
   transition: 0.3s ease-in;
 }
-.avatar:hover{
+.avatar:hover {
   transform: scale(4);
 }
 /* for profile image end  */
 
-.flex{
+.flex {
   display: flex;
   align-items: center;
 }
 
-.s-b{
+.s-b {
   justify-content: space-between;
 }
 
-.gap-1{
+.gap-1 {
   gap: 1rem;
 }
-.b{
+.b {
   font-weight: 900;
 }
-.container{
+.container {
   display: flex;
   flex-direction: column;
   padding: 20px;
   gap: 1rem;
 }
-.box{
+.box {
   border: 1px solid black;
   padding: 20px;
   border-radius: 0.3rem;
   width: 400px;
 }
 
-.button{
+.button {
   width: 4rem;
   height: 2rem;
   background-color: blue;
@@ -93,21 +100,21 @@ table tbody tr td:last-child{
   font-weight: 900;
   cursor: pointer;
 }
-.button:disabled{
+.button:disabled {
   background-color: white;
   color: blue;
   border: 1px solid blue;
   cursor: default;
-} 
-.button:hover:not(:disabled){
+}
+.button:hover:not(:disabled) {
   background-color: white;
   color: blue;
   border: 1px solid blue;
 }
-.ac-l:active:not(:disabled){
-  transform: translateX(-5PX);
+.ac-l:active:not(:disabled) {
+  transform: translateX(-5px);
 }
-.ac-r:active:not(:disabled){
+.ac-r:active:not(:disabled) {
   transform: translateX(5px);
 }
 
@@ -121,8 +128,3 @@ table tbody tr td:last-child{
 .sort.active {
   color: #ff5722; /* Change this to the color you want */
 }
-
-
-
-
-
