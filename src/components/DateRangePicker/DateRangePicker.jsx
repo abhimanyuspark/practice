@@ -1,7 +1,7 @@
 import React from "react";
 // import "./DatePicker.css";
 import dayjs from "dayjs";
-import { DatePicker, Space } from "antd";
+import { DatePicker } from "antd";
 const { RangePicker } = DatePicker;
 
 const DateRangePicker = ({ onChange, value }) => {
@@ -28,9 +28,9 @@ const DateRangePicker = ({ onChange, value }) => {
     if (dates) {
       //   console.log('From: ', dates[0], ', to: ', dates[1]);
       //   console.log('From: ', dateStrings[0], ', to: ', dateStrings[1]);
+      //   console.log("From:" , From , "To:", To)
       let From = new Date(dateStrings[0]);
       let To = new Date(dateStrings[1]);
-      //   console.log("From:" , From , "To:", To)
       onChange(From, To, dates, dateStrings);
     } else {
       console.log("Clear");
@@ -38,7 +38,7 @@ const DateRangePicker = ({ onChange, value }) => {
   };
 
   return (
-    <div>
+    <>
       <RangePicker
         value={value}
         presets={rangePresets}
@@ -48,7 +48,7 @@ const DateRangePicker = ({ onChange, value }) => {
         suffixIcon={false}
         className="custom_class"
       />
-    </div>
+    </>
   );
 };
 

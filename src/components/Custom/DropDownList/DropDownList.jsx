@@ -6,6 +6,8 @@ import React, {
   useCallback,
 } from "react";
 import "./dropdown.css";
+import DropListItem from "./DropListItem";
+import SelectItem from "./selectItem";
 
 const DropDownListComponent = ({
   data,
@@ -24,7 +26,7 @@ const DropDownListComponent = ({
   isMulti = false,
   defaultValue,
 }) => {
-  if (!fields || (!fields.text && typeof fields.text !== "function" || !data)) {
+  if (!fields || (!fields.text && typeof fields.text !== "function") || !data) {
     return null;
   }
 
@@ -138,8 +140,10 @@ const DropDownListComponent = ({
         Array.isArray(defaultValue) ? defaultValue : [defaultValue]
       );
       setItem(Array.isArray(defaultValue) ? "Accepts an object" : defaultValue);
-    }
-     else {
+    } else if (defaultValue === "") {
+      setSelectedItems([]);
+      setItem("");
+    } else {
       setSelectedItems([modified[0]]);
       setItem(modified[0]);
     }
@@ -155,25 +159,11 @@ const DropDownListComponent = ({
         <div className="drop-container">
           <div onClick={handleShow} className="templeteValue">
             <div className="multi-box">
-              {selectedItems?.length > 0 ? (
-                selectedItems?.map((d, i) => {
-                  const textValue =
-                    typeof text === "function" ? text(d) : d[text];
-                  return (
-                    <span className="span" key={i}>
-                      {templeteValue ? (
-                        <span>{templeteValue(d)}</span>
-                      ) : (
-                        <span className="drop-span">{textValue}</span>
-                      )}
-                    </span>
-                  );
-                })
-              ) : (
-                <span className="multi-drop-placeholder">
-                  Select an item...
-                </span>
-              )}
+              <SelectItem
+                selectedItems={selectedItems}
+                text={text}
+                templeteValue={templeteValue}
+              />
             </div>
           </div>
         </div>
@@ -240,7 +230,8 @@ const DropDownListComponent = ({
           </div>
         )}
         <ul
-          style={maxHeight ? { maxHeight: maxHeight } : { maxHeight: "300px" }}
+          className={`${show ? "show" : "hidden"}`}
+          style={maxHeight ? {"--h": maxHeight} : {"--h": "300px"}}
         >
           {!isMulti && enableNoDataRow && (
             <li
@@ -252,33 +243,16 @@ const DropDownListComponent = ({
               {templetItemNodata ? templetItemNodata() : "--"}
             </li>
           )}
-          {filterData.length > 0 ? (
-            filterData.map((d, i) => {
-              const textValue = typeof text === "function" ? text(d) : d[text];
-              return (
-                <li
-                  className={`${
-                    isMulti
-                      ? `muti-li`
-                      : `${d && textValue === it ? "active" : ""}`
-                  }`}
-                  key={i}
-                  onClick={() => {
-                    handleChange(d);
-                  }}
-                >
-                  <span>{templetItem ? templetItem(d) : textValue}</span>
-                  {isMulti && (
-                    <span>{selectedItems.includes(d) ? "✔" : ""}</span>
-                  )}
-                </li>
-              );
-            })
-          ) : (
-            <li className={templetNoRecord ? "" : "no-record"}>
-              {templetNoRecord ? templetNoRecord() : "No record found"}
-            </li>
-          )}
+          <DropListItem
+            it={it}
+            text={text}
+            isMulti={isMulti}
+            filterData={filterData}
+            templetItem={templetItem}
+            selectedItems={selectedItems}
+            templetNoRecord={templetNoRecord}
+            handleChange={handleChange}
+          />
         </ul>
         <div className="drop-footer"></div>
       </div>

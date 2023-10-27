@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import DropDownListComponent from "./DropDownList";
+import DropDownListComponent from "../Custom/DropDownList/DropDownList";
 import { makeData } from "../../data/makeData";
 // import * as data from "./source.json";
 
@@ -69,8 +69,8 @@ const Employee = ({ onItemSelected }) => {
         fields={fields}
         isMulti={true}
         // defaultValue={defaultSelectedItems}
-        templetItem={itemTemplate}
-        templeteValue={valueTemplate}
+        // templetItem={itemTemplate}
+        // templeteValue={valueTemplate}
         // templetItemNodata={itemNoDataTemplete}
         sorting={true}
         search={true}

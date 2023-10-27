@@ -4,7 +4,7 @@ import Country from "./Country";
 import Employee from "./Employee";
 import CountryIdd from "./CountryIdd";
 
-const DropDown = () => {
+const Form = () => {
   const [person, setPerson] = useState({
     name: "Abhimanyu",
     profile: "Image",
@@ -65,4 +65,4 @@ const DropDown = () => {
   );
 };
 
-export default DropDown;
+export default Form;

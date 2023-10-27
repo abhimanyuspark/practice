@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import DropDownListComponent from "./DropDownList";
+import DropDownListComponent from "../Custom/DropDownList/DropDownList";
 
 const CountryIdd = ({ onItemSelected, defaultValue }) => {
   const [country, setCountry] = useState([]);
