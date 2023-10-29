@@ -10,7 +10,7 @@ const Form = () => {
     profile: "Image",
     employee: "",
     country: "",
-    countryNumber:""
+    countryNumber: "",
   });
   // console.log(person)
 
@@ -31,6 +31,7 @@ const Form = () => {
     <form onSubmit={handleSubmit}>
       <div className="flex gap-1">
         <Employee
+          // defaultValue={person.employee}
           onItemSelected={(e) => {
             setPerson((prevPerson) => ({
               ...prevPerson,
@@ -47,7 +48,7 @@ const Form = () => {
           }}
         />
         <CountryIdd
-          defaultValue={person.country}
+          value={person.country}
           onItemSelected={(c) => {
             setPerson((prevPerson) => ({
               ...prevPerson,

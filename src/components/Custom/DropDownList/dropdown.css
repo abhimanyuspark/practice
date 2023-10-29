@@ -56,23 +56,23 @@
   flex-direction: column;
   list-style: none;
   scroll-behavior: smooth;
-  transition: 0.3s ease;
+  transition: 0.2s ease;
 }
-.drop-box .show{
+.drop-box .show {
   opacity: 1;
   z-index: 9;
 }
 .drop-box .hidden {
   opacity: 0;
-  z-index: -9;
+  /* z-index: -9; */
   pointer-events: none;
 }
 
 .drop-box .drop-list ul {
-  transition: 0.3s ease;
+  transition: 0.2s ease;
   overflow: auto;
 }
-.drop-box .drop-list ul.show{
+.drop-box .drop-list ul.show {
   max-height: var(--h);
 }
 .drop-box .drop-list ul.hidden {
@@ -88,7 +88,7 @@
   cursor: pointer;
   transition: 0.1s ease;
 }
-.muti-li{
+.muti-li {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -159,28 +159,28 @@
   display: none; /* WebKit */
 }
 
-.multi-button{
-    display: flex;
-    align-items: center;
-    flex-direction: row;
+.multi-button {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
 }
-.multi-button .selected-button{
-    background-color: rgb(175, 175, 175);
-    color: white;
-    width: 100%;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 15px;
-    font-family: sans-serif;
-    cursor: pointer;
+.multi-button .selected-button {
+  background-color: rgb(175, 175, 175);
+  color: white;
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-family: sans-serif;
+  cursor: pointer;
 }
-.multi-button .selected-button:hover{
-    background-color: gainsboro;
-    color: black;
+.multi-button .selected-button:hover {
+  background-color: gainsboro;
+  color: black;
 }
-.multi-drop-placeholder{
+.multi-drop-placeholder {
   display: flex;
   align-items: center;
   padding: 0px 5px;

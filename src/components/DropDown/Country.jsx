@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import DropDownListComponent from "../Custom/DropDownList/DropDownList";
 
-const Country = ({ onItemSelected }) => {
+const Country = ({ onItemSelected, value }) => {
   const [country, setCountry] = useState([]);
   const [loading, setLoading] = useState(true); // Add loading state
 
@@ -23,7 +23,7 @@ const Country = ({ onItemSelected }) => {
     fetchCountry();
   }, []);
 
-  const item = (d) => {
+  const templetItem = (d) => {
     return (
       <div className="flex gap-1">
         <img src={d.flags.svg} className="avatar" alt="images" />
@@ -32,7 +32,7 @@ const Country = ({ onItemSelected }) => {
     );
   };
 
-  const value = (d) => {
+  const templeteValue = (d) => {
     return (
       <div className="flex gap-1" style={{ padding: "0px 10px" }}>
         <img src={d.flags.svg} className="avatar" alt="images" />
@@ -54,12 +54,12 @@ const Country = ({ onItemSelected }) => {
         <DropDownListComponent
           data={country}
           fields={fields}
-          templetItem={item}
-          templeteValue={value}
+          templetItem={templetItem}
+          templeteValue={templeteValue}
           maxWidth={"300px"}
           sorting={true}
           search={true}
-          // defaultValue={defaultValue}
+          value={value}
           // isMulti={true}
           onItemSelected={onItemSelected}
           enableNoDataRow={true}

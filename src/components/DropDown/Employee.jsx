@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import DropDownListComponent from "../Custom/DropDownList/DropDownList";
 import { makeData } from "../../data/makeData";
 // import * as data from "./source.json";
 
-const Employee = ({ onItemSelected }) => {
-  const [data] = useState(makeData(20));
+const Employee = ({ onItemSelected, defaultValue }) => {
+  const data = makeData(20);
 
   // const fields = { text: "name" };
-  const fields = {text : (d)=> d.name}
+  const fields = { text: (d) => d.name };
 
   //Todo const temp = "empList";
   // define the JSON of data
@@ -21,7 +21,10 @@ const Employee = ({ onItemSelected }) => {
     return (
       <div className="flex gap-1">
         <img className="avatar" src={data.profile} alt="employee" />
-        <div className="ename"><p>{data.name}</p><p>{data.discription.jobTitle}</p></div>
+        <div className="ename">
+          <p>{data.name}</p>
+          <p>{data.discription.jobTitle}</p>
+        </div>
       </div>
     );
   };
@@ -38,7 +41,9 @@ const Employee = ({ onItemSelected }) => {
     return (
       <div className="flex gap-1">
         <img className="avatar" src={data.profile} alt="employee" />
-        <div className="ename"><p>{data.name}</p></div>
+        <div className="ename">
+          <p>{data.name}</p>
+        </div>
       </div>
     );
   };
@@ -59,7 +64,7 @@ const Employee = ({ onItemSelected }) => {
     }));
   };
 
-  // const defaultSelectedItems = [data[2],data[3]];
+  const defaultSelectedItems = [data[2], data[3]];
   // const defaultSelectedItems = data[2];
 
   return (
@@ -68,9 +73,10 @@ const Employee = ({ onItemSelected }) => {
         data={data}
         fields={fields}
         isMulti={true}
-        // defaultValue={defaultSelectedItems}
-        // templetItem={itemTemplate}
-        // templeteValue={valueTemplate}
+        // defaultValue={defaultValue}
+        defaultValue={defaultSelectedItems}
+        templetItem={itemTemplate}
+        templeteValue={valueTemplate}
         // templetItemNodata={itemNoDataTemplete}
         sorting={true}
         search={true}

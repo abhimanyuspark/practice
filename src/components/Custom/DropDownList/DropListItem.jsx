@@ -12,8 +12,8 @@ const DropListItem = ({
 }) => {
   return (
     <>
-      {filterData.length > 0 ? (
-        filterData.map((d, i) => {
+      {filterData?.length > 0 ? (
+        filterData?.map((d, i) => {
           const textValue = typeof text === "function" ? text(d) : d[text];
           return (
             <li
@@ -26,7 +26,7 @@ const DropListItem = ({
               }}
             >
               <span>{templetItem ? templetItem(d) : textValue}</span>
-              {isMulti && <span>{selectedItems.includes(d) ? "✔" : ""}</span>}
+              {isMulti && <span>{selectedItems?.includes(d) ? "✔" : ""}</span>}
             </li>
           );
         })

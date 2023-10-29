@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import DropDownListComponent from "../Custom/DropDownList/DropDownList";
 
-const CountryIdd = ({ onItemSelected, defaultValue }) => {
+const CountryIdd = ({ onItemSelected, value }) => {
   const [country, setCountry] = useState([]);
   const [loading, setLoading] = useState(true); // Add loading state
 
@@ -23,7 +23,7 @@ const CountryIdd = ({ onItemSelected, defaultValue }) => {
     fetchCountry();
   }, []);
 
-  const item = (d) => {
+  const templetItem = (d) => {
     const root = d.idd.root ? String(d.idd.root) : "+0";
     const suffixes = d.idd.suffixes ? String(d.idd.suffixes) : "";
     const combined = root + suffixes.slice(0, 2);
@@ -35,7 +35,7 @@ const CountryIdd = ({ onItemSelected, defaultValue }) => {
     );
   };
 
-  const value = (d) => {
+  const templeteValue = (d) => {
     const root = d.idd.root ? String(d.idd.root) : "+0";
     const suffixes = d.idd.suffixes ? String(d.idd.suffixes) : "";
     const combined = root + suffixes.slice(0, 2);
@@ -58,7 +58,7 @@ const CountryIdd = ({ onItemSelected, defaultValue }) => {
   };
 
   // console.log(defaultValue)
-//   const defaultValu = country[2];
+  //   const defaultValu = country[2];
 
   return (
     <div>
@@ -69,12 +69,12 @@ const CountryIdd = ({ onItemSelected, defaultValue }) => {
         <DropDownListComponent
           data={country}
           fields={fields}
-          templetItem={item}
-          templeteValue={value}
+          templetItem={templetItem}
+          templeteValue={templeteValue}
           maxWidth={"150px"}
           sorting={true}
           search={true}
-          defaultValue={defaultValue}
+          value={value}
           // isMulti={true}
           onItemSelected={onItemSelected}
           enableNoDataRow={true}

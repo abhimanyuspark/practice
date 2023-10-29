@@ -25,6 +25,7 @@ const DropDownListComponent = ({
   maxHeight,
   isMulti = false,
   defaultValue,
+  value,
 }) => {
   if (!fields || (!fields.text && typeof fields.text !== "function") || !data) {
     return null;
@@ -54,8 +55,13 @@ const DropDownListComponent = ({
       : data;
   }, [sorting]);
 
-  const [selectedItems, setSelectedItems] = useState([modified[0]]);
-  const [item, setItem] = useState(modified[0]);
+  const [selectedItems, setSelectedItems] = useState(
+    isMulti ? defaultValue || [] : [defaultValue || modified[0]]
+  );
+  const [item, setItem] = useState(
+    isMulti ? null : defaultValue || modified[0]
+  );
+
   const [query, setQuery] = useState("");
   const dropRef = useRef();
   const searchRef = useRef(null);
@@ -66,15 +72,21 @@ const DropDownListComponent = ({
   }, [show]);
 
   const handleChange = (d) => {
+    let updatedSelectedItems;
+
     if (isMulti) {
       const isSelected = selectedItems.includes(d);
-      setSelectedItems((prevItems) =>
-        isSelected ? prevItems.filter((item) => item !== d) : [...prevItems, d]
-      );
+      updatedSelectedItems = isSelected
+        ? selectedItems.filter((item) => item !== d)
+        : [...selectedItems, d];
+      setSelectedItems(updatedSelectedItems);
     } else {
       handleShow();
       setItem(d);
+      updatedSelectedItems = d;
     }
+
+    onItemSelected(updatedSelectedItems);
   };
 
   const handleNoData = () => {
@@ -82,26 +94,29 @@ const DropDownListComponent = ({
     setItem("");
   };
 
+  useEffect(() => {
+    const isSelected = isMulti ? selectedItems : item;
+    onItemSelected(isSelected);
+  }, [isMulti]);
+
+  useEffect(() => {
+    if (value !== undefined) {
+      setSelectedItems(isMulti ? value : [value]);
+      setItem(value);
+      onItemSelected(value);
+    } else if (value === "") {
+      setSelectedItems([]);
+      setItem("");
+      onItemSelected("");
+    }
+  }, [value, isMulti]);
+
   const filterData = useMemo(() => {
     return modified.filter((d) => {
       const textValue = typeof text === "function" ? text(d) : d[text];
       return textValue && textValue.toLowerCase().includes(query.toLowerCase());
     });
   }, [modified, text, query]);
-
-  const onItemSelectedCallback = useCallback(
-    (select) => {
-      if (onItemSelected) {
-        onItemSelected(select);
-      }
-    },
-    [onItemSelected]
-  );
-
-  useEffect(() => {
-    const selectedItem = isMulti ? selectedItems : item;
-    onItemSelectedCallback(selectedItem);
-  }, [item, selectedItems, isMulti]);
 
   useEffect(() => {
     let handler = (e) => {
@@ -133,21 +148,6 @@ const DropDownListComponent = ({
   const it = useMemo(() => {
     return item ? (typeof text === "function" ? text(item) : item[text]) : "";
   }, [item, text]);
-
-  useEffect(() => {
-    if (defaultValue) {
-      setSelectedItems(
-        Array.isArray(defaultValue) ? defaultValue : [defaultValue]
-      );
-      setItem(Array.isArray(defaultValue) ? "Accepts an object" : defaultValue);
-    } else if (defaultValue === "") {
-      setSelectedItems([]);
-      setItem("");
-    } else {
-      setSelectedItems([modified[0]]);
-      setItem(modified[0]);
-    }
-  }, [defaultValue]);
 
   return (
     <div
@@ -231,7 +231,7 @@ const DropDownListComponent = ({
         )}
         <ul
           className={`${show ? "show" : "hidden"}`}
-          style={maxHeight ? {"--h": maxHeight} : {"--h": "300px"}}
+          style={maxHeight ? { "--h": maxHeight } : { "--h": "300px" }}
         >
           {!isMulti && enableNoDataRow && (
             <li

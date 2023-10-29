@@ -3,7 +3,9 @@
   margin: 0;
   box-sizing: border-box;
 }
-
+.p {
+  padding: 10px;
+}
 .p-2 {
   padding: 20px;
 }
