@@ -8,9 +8,9 @@ const Form = () => {
   const [person, setPerson] = useState({
     name: "Abhimanyu",
     profile: "Image",
-    employee: "",
-    country: "",
-    countryNumber: "",
+    employee: [],
+    country: {},
+    countryNumber: {},
   });
   // console.log(person)
 
@@ -31,6 +31,7 @@ const Form = () => {
     <form onSubmit={handleSubmit}>
       <div className="flex gap-1">
         <Employee
+          value={person.employee}
           // defaultValue={person.employee}
           onItemSelected={(e) => {
             setPerson((prevPerson) => ({
@@ -40,6 +41,7 @@ const Form = () => {
           }}
         />
         <Country
+          value={person.country}
           onItemSelected={(c) => {
             setPerson((prevPerson) => ({
               ...prevPerson,

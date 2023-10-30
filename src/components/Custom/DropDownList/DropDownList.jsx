@@ -32,6 +32,7 @@ const DropDownListComponent = ({
   }
 
   const [show, setShow] = useState(false);
+  const [reset, setReset] = useState(false);
   const { text, sortText } = fields;
   const modified = useMemo(() => {
     return sorting
@@ -92,19 +93,37 @@ const DropDownListComponent = ({
   const handleNoData = () => {
     setShow(false);
     setItem("");
+    setReset(true);
   };
 
   useEffect(() => {
     const isSelected = isMulti ? selectedItems : item;
-    onItemSelected(isSelected);
-  }, [isMulti]);
+    if (reset) {
+      if (typeof value === "object") {
+        onItemSelected({});
+      } else {
+        onItemSelected("");
+      }
+      setReset(false);
+    } else {
+      onItemSelected(isSelected);
+    }
+  }, [isMulti, reset]);
 
   useEffect(() => {
-    if (value !== undefined) {
-      setSelectedItems(isMulti ? value : [value]);
+    if (Array.isArray(value)) {
+      setSelectedItems(isMulti ? value : [...value]);
+      setItem(value.length > 0 ? value : null);
+      onItemSelected(value);
+    } else if (typeof value === "object" && Object.keys(value).length === 0) {
+      setSelectedItems([]);
+      setItem(""); // Set the item as the empty object
+      onItemSelected(value); // Send the empty object as the selected item
+    } else if (value !== undefined) {
+      setSelectedItems(isMulti ? [value] : [value]);
       setItem(value);
       onItemSelected(value);
-    } else if (value === "") {
+    } else {
       setSelectedItems([]);
       setItem("");
       onItemSelected("");
@@ -139,10 +158,12 @@ const DropDownListComponent = ({
 
   const handleSelectAll = () => {
     setSelectedItems([...filterData]);
+    onItemSelected([...filterData]);
   };
 
   const handleDeselectAll = () => {
     setSelectedItems([]);
+    onItemSelected([]);
   };
 
   const it = useMemo(() => {
@@ -171,7 +192,8 @@ const DropDownListComponent = ({
         <div className="drop-container">
           {templeteValue ? (
             <div onClick={handleShow} className="templeteValue">
-              {item === "" ? (
+              {item === "" ||
+              (typeof item === "object" && Object.keys(item).length === 0) ? (
                 <div style={{ padding: "5px" }}>{"--"}</div>
               ) : (
                 templeteValue(item)

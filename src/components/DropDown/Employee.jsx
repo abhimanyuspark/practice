@@ -3,7 +3,7 @@ import DropDownListComponent from "../Custom/DropDownList/DropDownList";
 import { makeData } from "../../data/makeData";
 // import * as data from "./source.json";
 
-const Employee = ({ onItemSelected, defaultValue }) => {
+const Employee = ({ onItemSelected, value }) => {
   const data = makeData(20);
 
   // const fields = { text: "name" };
@@ -74,7 +74,8 @@ const Employee = ({ onItemSelected, defaultValue }) => {
         fields={fields}
         isMulti={true}
         // defaultValue={defaultValue}
-        defaultValue={defaultSelectedItems}
+        // defaultValue={defaultSelectedItems}
+        value={value}
         templetItem={itemTemplate}
         templeteValue={valueTemplate}
         // templetItemNodata={itemNoDataTemplete}
