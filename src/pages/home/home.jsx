@@ -1,69 +1,79 @@
 import React, { useState } from "react";
-// import Table from "../../components/table/table";
-// import { Columns } from "../../components/table/column";
-// import { makeData } from "../../data/makeData";
+import Table from "../../components/table/table";
+import { Columns } from "../../components/table/column";
+import { makeData } from "../../data/makeData";
 import Form from "../../components/DropDown/Form";
-// import DateRangePicker from "../../components/DateRangePicker/DateRangePicker";
-// import { Input } from "antd";
-// import UploadImages from "../../components/Upload/UploadImages";
-// import CustomSelect from "../../components/antd/Select/Select";
-// import ReactSelect from "../../components/React-Select/ReactSelect";
-// import ReactMultiSelect from "../../components/React-Select/ReactMultiSelect";
-// const { Search } = Input;
+import DateRangePicker from "../../components/DateRangePicker/DateRangePicker";
+import { Input, Space } from "antd";
+import UploadImages from "../../components/Upload/UploadImages";
+import Buttons from "../../style/buttons/buttons";
+const { Search } = Input;
 
 const Home = () => {
-  // const [data] = useState(() => makeData(100));
-  // const [globalFilter, setGlobalFilter] = useState("");
-  // const [date, setDate] = useState({
-  //   start: "",
-  //   end: "",
-  // });
-  // const [select, setSelect] = useState([]);
-  // const [clear, setClear] = useState(false);
+  const [data] = useState(() => makeData(100));
+  const [globalFilter, setGlobalFilter] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [date, setDate] = useState({
+    start: "",
+    end: "",
+  });
+  const [select, setSelect] = useState([]);
+  const [clear, setClear] = useState(false);
 
-  // const handleDateChange = (From, To, dates) => {
-  //   setSelect(dates);
-  //   setDate((p) => ({ ...p, start: From, end: To }));
-  //   setClear(true);
-  // };
+  const handleDateChange = (From, To, dates) => {
+    setSelect(dates);
+    setDate((p) => ({ ...p, start: From, end: To }));
+    setClear(true);
+  };
 
-  // const handleInputChange = (e) => {
-  //   const value = e.target.value;
-  //   setGlobalFilter(value);
-  //   // console.log(value);
-  //   setClear(true);
-  // };
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+    setGlobalFilter(value);
+    // console.log(value);
+    setClear(true);
+  };
 
-  // const handleClear = () => {
-  //   setGlobalFilter("");
-  //   setDate((p) => ({ ...p, start: "", end: "" }));
-  //   setSelect([]);
-  //   setClear(false);
-  // };
+  const handleClear = () => {
+    setGlobalFilter("");
+    setDate((p) => ({ ...p, start: "", end: "" }));
+    setSelect([]);
+    setClear(false);
+  };
 
-  // const filterByName = data.filter((item) => {
-  //   return item.name.toLowerCase().includes(globalFilter.toLowerCase());
-  // });
+  const filterByName = data.filter((item) => {
+    return item.name.toLowerCase().includes(globalFilter.toLowerCase());
+  });
 
-  // const filterByDate = filterByName.filter((item) => {
-  //   if (date.start && date.end) {
-  //     const d = new Date(item.date);
-  //     return d >= date.start && d <= date.end;
-  //   }
-  //   return true;
-  // });
+  const filterByDate = filterByName.filter((item) => {
+    if (date.start && date.end) {
+      const d = new Date(item.date);
+      return d >= date.start && d <= date.end;
+    }
+    return true;
+  });
+
+  const click = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 10000);
+  };
 
   return (
     <div>
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      {/* <div style={{ display: "flex", justifyContent: "center" }}>
         <Form />
-      </div>
-      {/* <div>
-        <ReactSelect options={data} />
-        <ReactMultiSelect options={data} />
       </div> */}
-      {/* <CustomSelect /> */}
-      {/* <UploadImages />
+      <div className="flex">
+        <Buttons
+          text="Submit"
+          // dir={true}
+          onClick={click}
+          loading={loading}
+          icon={<span className="material-symbols-outlined">check</span>}
+        />
+      </div>
+      <UploadImages />
       <div className="flex" style={{ justifyContent: "center" }}>
         <Space>
           <Search
@@ -78,7 +88,7 @@ const Home = () => {
           {clear ? <button onClick={handleClear}>Clear</button> : ""}
         </Space>
       </div>
-      <Table Columns={Columns} data={filterByDate} /> */}
+      <Table Columns={Columns} data={filterByDate} />
     </div>
   );
 };

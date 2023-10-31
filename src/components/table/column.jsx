@@ -89,13 +89,16 @@ export const Columns = [
     header: () => "Actions",
     cell: (info) => {
       const handelEdit = (id) => {
-        console.log("Edit:", id);
+        // console.log("Edit:", id);
+        alert(`Edit: ${id}`);
       };
       const handelView = (id) => {
-        console.log("View:", id);
+        // console.log("View:", id);
+        alert(`View: ${id}`);
       };
       const handelDelete = (id) => {
-        console.log("Delete:", id);
+        // console.log("Delete:", id);
+        alert(`Delete: ${id}`);
       };
 
       const handelli = (d, id) => {

@@ -30,7 +30,7 @@ const DropDownMenu = ({ data, onSubmitLi, id }) => {
           handelShow();
         }}
       >
-        <span className="material-symbols-outlined">menu</span>
+        <span className="material-symbols-outlined">more_vert</span>
       </Menu>
       <MenuUl $display={show}>
         {data?.map((d, i) => {

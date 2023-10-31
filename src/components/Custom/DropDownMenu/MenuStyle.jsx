@@ -8,9 +8,8 @@ export const DropMenu = styled.div`
 export const Menu = styled.div`
   border: 1px solid black;
   border-radius: 0.2rem;
-  width: 30px;
-  height: 25px;
   display: flex;
+  padding: 2px 0px;
   align-items: center;
   justify-content: center;
   cursor: pointer;

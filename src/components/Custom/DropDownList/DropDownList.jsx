@@ -118,7 +118,7 @@ const DropDownListComponent = ({
     } else if (typeof value === "object" && Object.keys(value).length === 0) {
       setSelectedItems([]);
       setItem(""); // Set the item as the empty object
-      onItemSelected(value); // Send the empty object as the selected item
+      onItemSelected(""); // Send the empty object as the selected item
     } else if (value !== undefined) {
       setSelectedItems(isMulti ? [value] : [value]);
       setItem(value);

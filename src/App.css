@@ -15,12 +15,13 @@ table {
   height: 100%;
   width: 100%;
   border-collapse: collapse;
+  color: white;
 }
 table tbody tr {
   border: none;
 }
 table tbody tr.selected-row {
-  background-color: gainsboro;
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 table thead {
