@@ -6,7 +6,7 @@ export const DropMenu = styled.div`
 `;
 
 export const Menu = styled.div`
-  border: 1px solid black;
+  border: 1px solid white;
   border-radius: 0.2rem;
   display: flex;
   padding: 2px 0px;
@@ -46,12 +46,13 @@ export const MenuLi = styled.li`
   text-align: left;
   display: flex;
   align-items: center;
+  color: black;
   gap: 0.5rem;
   & .material-symbols-outlined {
     font-size: 20px;
   }
   cursor: pointer;
   &:hover {
-    background-color: gainsboro;
+    background-color: rgba(0, 0, 0, 0.2);
   }
 `;

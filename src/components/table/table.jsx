@@ -36,7 +36,7 @@ function Table({ Columns, data }) {
   });
 
   return (
-    <div className="p-2">
+    <div className="p-2 table-container">
       <table>
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (

@@ -5,9 +5,9 @@ import { makeData } from "../../data/makeData";
 import Form from "../../components/DropDown/Form";
 import DateRangePicker from "../../components/DateRangePicker/DateRangePicker";
 import { Input, Space } from "antd";
-import UploadImages from "../../components/Upload/UploadImages";
-import Buttons from "../../style/buttons/buttons";
 const { Search } = Input;
+import FileUploadComponent from "../../components/Upload/FileUploadComponent";
+import Buttons from "../../style/buttons/buttons";
 
 const Home = () => {
   const [data] = useState(() => makeData(100));
@@ -52,8 +52,14 @@ const Home = () => {
     return true;
   });
 
+  const copyToClipboard = () => {
+    const textToCopy = "This is the text to copy to clipboard";
+    navigator.clipboard.writeText(textToCopy);
+  };
+
   const click = () => {
     setLoading(true);
+    copyToClipboard();
     setTimeout(() => {
       setLoading(false);
     }, 10000);
@@ -73,7 +79,7 @@ const Home = () => {
           icon={<span className="material-symbols-outlined">check</span>}
         />
       </div>
-      <UploadImages />
+      <FileUploadComponent />
       <div className="flex" style={{ justifyContent: "center" }}>
         <Space>
           <Search

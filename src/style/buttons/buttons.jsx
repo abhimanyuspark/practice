@@ -55,6 +55,14 @@ const Button = styled.button`
   display: flex;
   align-items: center;
   gap: 0.3rem;
+  ${({ $cursor }) =>
+    $cursor
+      ? css`
+          cursor: progress;
+        `
+      : css`
+          cursor: pointer;
+        `}
   ${({ $direction }) =>
     $direction
       ? css`
@@ -65,9 +73,7 @@ const Button = styled.button`
     font-family: sans-serif;
     font-size: 15px;
   }
-  &:active {
-    transform: scale3d(1);
-  }
+  transition: 1s ease;
   &:hover {
     background-color: black;
   }
@@ -85,7 +91,7 @@ const Loader = ({ margin }) => {
 
 const Buttons = ({ dir, text, icon, loading, onClick }) => {
   return (
-    <Button $direction={dir} onClick={onClick}>
+    <Button $direction={dir} onClick={onClick} $cursor={loading}>
       <span className="text">{text ? text : "Button"}</span>
       {loading ? <Loader margin={dir} /> : icon && icon}
     </Button>

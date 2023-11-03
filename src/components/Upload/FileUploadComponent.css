@@ -1,0 +1,72 @@
+/* src/FileUploadComponent.css */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.btn {
+  border: 2px solid gray;
+  color: gray;
+  background-color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.upload-btn-wrapper input[type="file"] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
+.preview-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.preview-item {
+  margin: 10px;
+}
+
+.preview-item img {
+  max-width: 150px;
+  max-height: 150px;
+}
+
+.delete-btn {
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 4px 8px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.uploaded-files-container {
+  margin-top: 20px;
+}
+
+.uploaded-file-item {
+  margin: 10px;
+}
+
+.uploaded-file-item img {
+  max-width: 150px;
+  max-height: 150px;
+}

@@ -75,6 +75,20 @@ export const Columns = [
   {
     accessorKey: "status",
     header: "Status",
+    cell: (info) => {
+      const value = info.getValue();
+      const style = {
+        color:
+          value === "Pending"
+            ? "orange"
+            : value === "Inprocess"
+            ? "#159afb"
+            : value === "Complete"
+            ? "#0cf90c"
+            : "white",
+      };
+      return <span style={style}>{value}</span>;
+    },
     // footer: (props) => props.column.id,
   },
   {
