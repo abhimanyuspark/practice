@@ -78,17 +78,24 @@ export const Columns = [
     cell: (info) => {
       const value = info.getValue();
       const style = {
-        color:
-          value === "Pending"
-            ? "orange"
-            : value === "Inprocess"
-            ? "#159afb"
-            : value === "Complete"
-            ? "#0cf90c"
-            : "white",
+        color: value.color,
       };
-      return <span style={style}>{value}</span>;
+      return (
+        <span style={style} key={value.id}>
+          {value.name}
+        </span>
+      );
     },
+    sortingFn: (row1, row2, column) => {
+      // console.log(
+      //   row1.getValue(column).name,
+      //   row2.getValue(column).name,
+      //   column
+      // );
+      return row1.getValue(column).name > row2.getValue(column).name ? -1 : 1;
+    },
+    sortDescFirst: false,
+    invertSorting: true,
     // footer: (props) => props.column.id,
   },
   {
