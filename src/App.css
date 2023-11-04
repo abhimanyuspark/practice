@@ -89,9 +89,10 @@ table tbody tr td:last-child {
   gap: 1rem;
 }
 .box {
-  border: 1px solid black;
+  border: 1px solid gainsboro;
   padding: 20px;
   border-radius: 0.3rem;
+  color: white;
   width: 400px;
 }
 

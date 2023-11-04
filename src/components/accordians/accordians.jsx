@@ -1,8 +1,10 @@
-import React, { useState } from "react";
-import { makedata } from "../../data/makeData";
+import React, { useState, useMemo } from "react";
+import { makeData } from "../../data/makeData";
 
 const Accordians = () => {
-  const [data] = useState(makedata(5));
+  const data = useMemo(() => {
+    return makeData(5);
+  }, []);
   const [index, setIndex] = useState();
 
   const handletoggle = (i) => (index !== i ? setIndex(i) : setIndex(null));
@@ -12,6 +14,7 @@ const Accordians = () => {
       {data.map((d, i) => {
         return (
           <div
+            key={i}
             className="box"
             onClick={() => {
               handletoggle(i);
@@ -21,7 +24,7 @@ const Accordians = () => {
               <span>{d.name}</span>
               <span className="b">{index === i ? "-" : "+"}</span>
             </div>
-            <div>{index === i ? d.jobType : null}</div>
+            <div>{index === i ? d.discription.jobTitle : null}</div>
           </div>
         );
       })}

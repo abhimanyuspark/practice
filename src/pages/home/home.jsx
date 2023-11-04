@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import Table from "../../components/table/table";
 import { Columns } from "../../components/table/column";
 import { makeData } from "../../data/makeData";
@@ -7,7 +7,7 @@ import { Input, Space } from "antd";
 const { Search } = Input;
 
 const Home = () => {
-  const [data] = useState(() => makeData(100));
+  const data = useMemo(() => makeData(100), []);
   const [globalFilter, setGlobalFilter] = useState("");
   const [date, setDate] = useState({
     start: "",
