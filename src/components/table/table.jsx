@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useReducer } from "react";
 import IndeterminateCheckbox from "./checkbox";
+import T from "./table.module.css";
 
 import {
   flexRender,
@@ -9,6 +10,7 @@ import {
   getPaginationRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import SortingIcons from "./SortingIcons";
 
 function Table({ Columns, data }) {
   // const rerender = useReducer(() => ({}), {})[1];
@@ -37,47 +39,25 @@ function Table({ Columns, data }) {
 
   return (
     <div className="p-2 table-container">
-      <table>
-        <thead>
+      <table className={T.table}>
+        <thead className={T.thead}>
           {table.getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id}>
+            <tr className={T.tr} key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
                 return (
-                  <th key={header.id} colSpan={header.colSpan}>
+                  <th className={T.th} key={header.id} colSpan={header.colSpan}>
                     {header.isPlaceholder ? null : (
                       <div
+                        className={T.different}
                         {...{
                           onClick: header.column.getToggleSortingHandler(),
                         }}
                       >
-                        <span>
-                          {flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
-                        </span>
-                        {header.column.getCanSort() && (
-                          <>
-                            <span
-                              className={`sort material-symbols-outlined ${
-                                header.column.getIsSorted() === "asc"
-                                  ? "active"
-                                  : ""
-                              }`}
-                            >
-                              north
-                            </span>
-                            <span
-                              className={`sort material-symbols-outlined ${
-                                header.column.getIsSorted() === "desc"
-                                  ? "active"
-                                  : ""
-                              }`}
-                            >
-                              south
-                            </span>
-                          </>
+                        {flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
                         )}
+                        <SortingIcons header={header} />
                       </div>
                     )}
                   </th>
@@ -86,14 +66,17 @@ function Table({ Columns, data }) {
             </tr>
           ))}
         </thead>
-        <tbody>
+        <tbody className={T.tbody}>
           {table.getRowModel().rows.map((row) => {
             const isSelected = row.getIsSelected(row.id);
             return (
-              <tr key={row.id} className={isSelected ? "selected-row" : ""}>
+              <tr
+                key={row.id}
+                className={`${isSelected ? `${T.selectedrow}` : ""} ${T.tr}`}
+              >
                 {row.getVisibleCells().map((cell) => {
                   return (
-                    <td key={cell.id}>
+                    <td className={T.td} key={cell.id}>
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext()
@@ -105,7 +88,7 @@ function Table({ Columns, data }) {
             );
           })}
         </tbody>
-        <tfoot>
+        <tfoot className={T.tfoot}>
           <tr>
             <td className="p-1">
               <IndeterminateCheckbox

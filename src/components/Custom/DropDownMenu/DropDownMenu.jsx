@@ -8,7 +8,8 @@ const DropDownMenu = ({ data, onSubmitLi, id }) => {
     setShow(!show);
   };
   const handelLi = (d) => {
-    onSubmitLi(d, id);
+    const ID = id ? id : 1;
+    onSubmitLi(d, ID);
     handelShow();
   };
   useEffect(() => {

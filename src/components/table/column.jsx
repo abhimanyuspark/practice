@@ -1,5 +1,6 @@
 import DropDownMenu from "../Custom/DropDownMenu/DropDownMenu";
 import IndeterminateCheckbox from "./checkbox";
+import { Edit, View, Delete } from "./Function";
 
 const menu = [
   {
@@ -40,6 +41,21 @@ export const Columns = [
     ),
   },
   {
+    accessorKey: "index",
+    header: "Id",
+    cell: (info) => {
+      const index = info.row.index;
+      // console.log(index);
+      return <span>{index + 1}</span>;
+    },
+    enableSorting: true,
+    sortingFn: (row1, row2) => {
+      return row1.index > row2.index ? -1 : 1;
+    },
+    sortDescFirst: false,
+    invertSorting: true,
+  },
+  {
     accessorKey: "profile",
     enableSorting: false,
     header: () => "Profile",
@@ -51,26 +67,22 @@ export const Columns = [
     accessorKey: "name",
     header: () => "Name",
     cell: (info) => info.getValue(),
-    // footer: (props) => props.column.id,
   },
   {
     accessorKey: "date",
     header: () => <span>Date</span>,
     cell: (info) => info.getValue().toLocaleDateString(),
     sortDescFirst: false,
-    // footer: (props) => props.column.id,
   },
   {
     accessorKey: "age",
     header: () => "Age",
     sortDescFirst: false,
-    // footer: (props) => props.column.id,
   },
   {
     accessorKey: "visits",
     sortDescFirst: false,
     header: () => <span>Visits</span>,
-    // footer: (props) => props.column.id,
   },
   {
     accessorKey: "status",
@@ -96,42 +108,27 @@ export const Columns = [
     },
     sortDescFirst: false,
     invertSorting: true,
-    // footer: (props) => props.column.id,
   },
   {
     accessorKey: "progress",
     header: "Profile Progress",
     sortDescFirst: false,
-    // footer: (props) => props.column.id,
   },
   {
     accessorKey: "id",
     enableSorting: false,
     header: () => "Actions",
     cell: (info) => {
-      const handelEdit = (id) => {
-        // console.log("Edit:", id);
-        alert(`Edit: ${id}`);
-      };
-      const handelView = (id) => {
-        // console.log("View:", id);
-        alert(`View: ${id}`);
-      };
-      const handelDelete = (id) => {
-        // console.log("Delete:", id);
-        alert(`Delete: ${id}`);
-      };
-
       const handelli = (d, id) => {
         switch (d) {
           case "Edit":
-            handelEdit(id);
+            Edit(id);
             break;
           case "View":
-            handelView(id);
+            View(id);
             break;
           case "Delete":
-            handelDelete(id);
+            Delete(id);
             break;
           default:
             break;

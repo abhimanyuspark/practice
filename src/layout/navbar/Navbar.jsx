@@ -1,16 +1,15 @@
 import React from "react";
-import { NavbarWrapper } from "../../style/Export/Export";
-import { Link } from "react-router-dom";
+import { FlexDiv, NavbarWrapper, RNavLink } from "../../style/Export/Export";
 
 const Navbar = () => {
   return (
     <NavbarWrapper>
-      <div>
-        <Link to="/">Home</Link>
-        <Link to="/allbuttons">Buttons</Link>
-        <Link to="/accordians">Accordians</Link>
-        <Link></Link>
-      </div>
+      <FlexDiv>
+        <RNavLink to="/">Home</RNavLink>
+        <RNavLink to="/allbuttons">Buttons</RNavLink>
+        <RNavLink to="/accordians">Accordians</RNavLink>
+        <RNavLink to="/select">Select</RNavLink>
+      </FlexDiv>
     </NavbarWrapper>
   );
 };

@@ -29,7 +29,7 @@ const CountryIdd = ({ onItemSelected, value }) => {
     const combined = root + suffixes.slice(0, 2);
     return (
       <div className="flex gap-1">
-        <img src={d.flags.svg} className="avatar" alt="images" />
+        <img loading="lazy" src={d.flags.svg} className="avatar" alt="images" />
         <span>{combined}</span>
       </div>
     );
@@ -41,7 +41,7 @@ const CountryIdd = ({ onItemSelected, value }) => {
     const combined = root + suffixes.slice(0, 2);
     return (
       <div className="flex gap-1" style={{ padding: "0px 10px" }}>
-        <img src={d.flags.svg} className="avatar" alt="images" />
+        <img loading="lazy" src={d.flags.svg} className="avatar" alt="images" />
         <span>{combined}</span>
       </div>
     );

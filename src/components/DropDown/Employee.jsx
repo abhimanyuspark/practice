@@ -20,7 +20,12 @@ const Employee = ({ onItemSelected, value }) => {
   const itemTemplate = (data) => {
     return (
       <div className="flex gap-1">
-        <img className="avatar" src={data.profile} alt="employee" />
+        <img
+          loading="lazy"
+          className="avatar"
+          src={data.profile}
+          alt="employee"
+        />
         <div className="ename">
           <p>{data.name}</p>
           <p>{data.discription.jobTitle}</p>
@@ -40,7 +45,12 @@ const Employee = ({ onItemSelected, value }) => {
   const valueTemplate = (data) => {
     return (
       <div className="flex gap-1">
-        <img className="avatar" src={data.profile} alt="employee" />
+        <img
+          loading="lazy"
+          className="avatar"
+          src={data.profile}
+          alt="employee"
+        />
         <div className="ename">
           <p>{data.name}</p>
         </div>
@@ -55,14 +65,6 @@ const Employee = ({ onItemSelected, value }) => {
   // const noData = () => {
   //   return <span>No data</span>;
   // };
-
-  const handelSelected = (d) => {
-    // console.log(d)
-    setPerson((prevPerson) => ({
-      ...prevPerson,
-      employee: d,
-    }));
-  };
 
   const defaultSelectedItems = [data[2], data[3]];
   // const defaultSelectedItems = data[2];

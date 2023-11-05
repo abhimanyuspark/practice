@@ -7,6 +7,7 @@ import Accordians from "./components/accordians/accordians";
 // import video from "./assets/air_bubbles.mp4";
 import Navbar from "./layout/navbar/Navbar";
 import SideBar from "./layout/sidebar/Sidebar";
+import Form from "./components/DropDown/Form";
 import { AppWrapper, DashboardWrapper } from "./style/Export/Export";
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/allbuttons" element={<AllButtons />} />
             <Route path="/accordians" element={<Accordians />} />
+            <Route path="/select" element={<Form />} />
             <Route path="*" element={<h1>Error 404 not found</h1>} />
           </Routes>
         </DashboardWrapper>

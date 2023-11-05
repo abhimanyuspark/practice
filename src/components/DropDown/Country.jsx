@@ -26,7 +26,7 @@ const Country = ({ onItemSelected, value }) => {
   const templetItem = (d) => {
     return (
       <div className="flex gap-1">
-        <img src={d.flags.svg} className="avatar" alt="images" />
+        <img loading="lazy" src={d.flags.svg} className="avatar" alt="images" />
         <span>{d.name.common}</span>
       </div>
     );
@@ -35,7 +35,7 @@ const Country = ({ onItemSelected, value }) => {
   const templeteValue = (d) => {
     return (
       <div className="flex gap-1" style={{ padding: "0px 10px" }}>
-        <img src={d.flags.svg} className="avatar" alt="images" />
+        <img loading="lazy" src={d.flags.svg} className="avatar" alt="images" />
         <span>{d.name.common}</span>
       </div>
     );
