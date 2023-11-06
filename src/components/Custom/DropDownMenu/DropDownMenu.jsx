@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { DropMenu, Menu, MenuLi, MenuUl } from "./MenuStyle";
+import ClickOutside from "../../../utilities/ClickOutside";
 
 const DropDownMenu = ({ data, onSubmitLi, id }) => {
   const [show, setShow] = useState(false);
@@ -8,21 +9,14 @@ const DropDownMenu = ({ data, onSubmitLi, id }) => {
     setShow(!show);
   };
   const handelLi = (d) => {
-    const ID = id ? id : 1;
+    const ID = id ? id : "pass id here";
     onSubmitLi(d, ID);
     handelShow();
   };
-  useEffect(() => {
-    let handler = (e) => {
-      if (!dropRef.current.contains(e.target)) {
-        setShow(false);
-      }
-    };
-    document.addEventListener("mousedown", handler);
-    return () => {
-      document.removeEventListener("mousedown", handler);
-    };
-  }, []);
+  const outSides = () => {
+    setShow(false);
+  };
+  ClickOutside(outSides, dropRef);
 
   return (
     <DropMenu ref={dropRef}>

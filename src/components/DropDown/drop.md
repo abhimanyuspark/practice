@@ -9,7 +9,7 @@ useEffect(() => {
         return textA.localeCompare(textB);
       })
     : modified;
-  console.log("sortedData");
+  // console.log("sortedData");
   setModified(sortedData);
 
   const defaultItem = sortedData[0]; // Get the first item after sorting

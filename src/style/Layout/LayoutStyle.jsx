@@ -14,12 +14,19 @@ export const SidebarWrapper = styled.div`
   grid-area: sidebar;
   background-color: #555;
   color: #fff;
-  padding: 1rem;
+  /* padding: 1rem; */
+  transition: all 0.5s ease;
+  width: 100%; /* Add an initial width */
+  z-index: 9;
+  &:hover {
+    width: 240px;
+  }
 `;
 
 export const AppWrapper = styled.div`
   display: grid;
-  grid-template-columns: 240px 1fr;
+  transition: all 0.5s ease;
+  grid-template-columns: ${({ $width }) => ($width ? "80px 1fr" : "240px 1fr")};
   grid-template-rows: 60px 1fr;
   grid-template-areas:
     "sidebar navbar"

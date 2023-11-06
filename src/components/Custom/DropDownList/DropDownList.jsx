@@ -8,6 +8,7 @@ import React, {
 import "./dropdown.css";
 import DropListItem from "./DropListItem";
 import SelectItem from "./selectItem";
+import ClickOutside from "../../../utilities/ClickOutside";
 
 const DropDownListComponent = ({
   data,
@@ -99,11 +100,7 @@ const DropDownListComponent = ({
   useEffect(() => {
     const isSelected = isMulti ? selectedItems : item;
     if (reset) {
-      if (typeof value === "object") {
-        onItemSelected({});
-      } else {
-        onItemSelected("");
-      }
+      onItemSelected("");
       setReset(false);
     } else {
       onItemSelected(isSelected);
@@ -137,18 +134,11 @@ const DropDownListComponent = ({
     });
   }, [modified, text, query]);
 
-  useEffect(() => {
-    let handler = (e) => {
-      if (!dropRef.current.contains(e.target)) {
-        setShow(false);
-        setQuery("");
-      }
-    };
-    document.addEventListener("mousedown", handler);
-    return () => {
-      document.removeEventListener("mousedown", handler);
-    };
-  }, []);
+  const outSide = () => {
+    setShow(false);
+    setQuery("");
+  };
+  ClickOutside(outSide, dropRef);
 
   useEffect(() => {
     if (show && searchRef.current) {

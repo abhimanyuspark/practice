@@ -34,7 +34,7 @@ function Table({ Columns, data }) {
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
-    debugTable: true,
+    // debugTable: true,
   });
 
   return (
