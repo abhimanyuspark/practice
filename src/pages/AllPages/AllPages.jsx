@@ -1,6 +1,6 @@
 import React from "react";
-import { AppWrapper, DashboardWrapper } from "../../style/Export/Export";
 import { Route, Routes } from "react-router-dom";
+import { AppWrapper, DashboardWrapper } from "../../style/Export/Export";
 import Navbar from "../../layout/navbar/Navbar";
 import Sidebar from "../../layout/sidebar/Sidebar";
 import Home from "../home/home";
@@ -22,6 +22,7 @@ const AllPages = () => {
           <Route path="/allbuttons" element={<AllButtons />} />
           <Route path="/accordians" element={<Accordians />} />
           <Route path="/select" element={<Form />} />
+          <Route path="/setting" element={<h1>Setting</h1>} />
           <Route path="*" element={<h1>Error 404 not found</h1>} />
         </Routes>
       </DashboardWrapper>
