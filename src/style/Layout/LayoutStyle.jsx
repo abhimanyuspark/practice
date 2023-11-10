@@ -4,7 +4,7 @@ import image from "../../assets/liquid-cheese-blue.svg";
 export const AppWrapper = styled.div`
   display: grid;
   transition: all 0.5s ease;
-  grid-template-columns: ${({ $width }) => ($width ? "60px 1fr" : "240px 1fr")};
+  grid-template-columns: ${({ $width }) => ($width ? "240px 1fr" : "60px 1fr")};
   grid-template-rows: 60px 1fr;
   grid-template-areas:
     "sidebar navbar"

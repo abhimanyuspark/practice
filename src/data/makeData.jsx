@@ -20,7 +20,7 @@ const newPerson = () => {
     status: faker.helpers.arrayElement([
       { name: "Pending", color: "orange", id: faker.string.uuid() },
       { name: "Inprocess", color: "#159afb", id: faker.string.uuid() },
-      { name: "Comlete", color: "#0cf90c", id: faker.string.uuid() },
+      { name: "Complete", color: "#0cf90c", id: faker.string.uuid() },
     ]),
     discription: {
       jobTitle: faker.person.jobTitle(),

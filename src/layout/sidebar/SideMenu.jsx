@@ -3,7 +3,7 @@ import { SideBarMenuData as data } from "./SideBarMenuData";
 import { SideChildItem } from "../../style/Export/Export";
 import { NavLink, useLocation } from "react-router-dom";
 
-const SideMenu = () => {
+const SideMenu = ({ sideBar }) => {
   const [activeChildIndex, setActiveChildIndex] = useState(null);
   const location = useLocation();
   const [path, setPath] = useState(location.pathname);
@@ -16,6 +16,12 @@ const SideMenu = () => {
     const currentSubMenu = data[i].subMenu;
     return currentSubMenu && currentSubMenu.some((item) => item.link === path);
   };
+
+  useEffect(() => {
+    if (sideBar === false) {
+      setActiveChildIndex(null);
+    }
+  }, [sideBar]);
 
   useEffect(() => {
     const l = location.pathname;
