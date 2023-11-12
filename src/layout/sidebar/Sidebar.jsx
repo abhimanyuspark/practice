@@ -30,14 +30,41 @@ const Sidebar = () => {
 
   return (
     <SidebarWrapper $expanded={expanded}>
-      <SideHeader></SideHeader>
+      <Header sideBar={sideBar} />
       <SideChild onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
         <SideMenu sideBar={sideBar} />
       </SideChild>
-      <SideFooter>
-        <button onClick={handleToogle}>toogle</button>
-      </SideFooter>
+      <Footer sideBar={sideBar} toogle={handleToogle} />
     </SidebarWrapper>
+  );
+};
+
+const Header = ({ sideBar }) => {
+  return (
+    <SideHeader>
+      <div className={`header ${!sideBar ? "hs" : ""}`}>
+        <h4 className={`${!sideBar ? "practice" : ""}`}>Practice</h4>
+        <span className={`${!sideBar ? "p" : ""}`}>P</span>
+      </div>
+    </SideHeader>
+  );
+};
+
+const Footer = ({ sideBar, toogle }) => {
+  return (
+    <SideFooter>
+      <div className={`footer ${!sideBar ? "fs" : ""}`}>
+        <span
+          className={`material-symbols-outlined ${!sideBar && "rotate"}`}
+          onClick={toogle}
+        >
+          arrow_back_ios
+        </span>
+        <span className={`spanv ${!sideBar ? "hidden" : ""}`}>
+          Version 0.0.1
+        </span>
+      </div>
+    </SideFooter>
   );
 };
 

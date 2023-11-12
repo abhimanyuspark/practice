@@ -3,12 +3,12 @@ import image from "../../assets/liquid-cheese-blue.svg";
 
 export const AppWrapper = styled.div`
   display: grid;
-  transition: all 0.5s ease;
   grid-template-columns: ${({ $width }) => ($width ? "240px 1fr" : "60px 1fr")};
   grid-template-rows: 60px 1fr;
   grid-template-areas:
     "sidebar navbar"
     "sidebar dashboard";
+  transition: all 0.3s ease-in-out;
   height: 100vh;
 `;
 
@@ -32,26 +32,56 @@ export const NavbarWrapper = styled.nav`
 `;
 
 export const SidebarWrapper = styled.aside`
+  --_color: grey;
+  --_border: #535353;
   grid-area: sidebar;
   background-color: #333;
-  transition: all 0.5s ease;
+  transition: all 0.3s ease-in-out;
   z-index: 9;
+  border-right: 1px solid var(--_border);
   width: ${({ $expanded }) => ($expanded ? "240px" : "100%")};
 `;
 
 export const SideHeader = styled.div`
   height: 60px;
-  background-color: grey;
+  border-bottom: 1px solid var(--_border);
+  color: var(--_color);
+  display: flex;
+  align-items: center;
+  padding: 0px 10px;
+  & .header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    & .hs {
+      justify-content: center;
+    }
+    & h4 {
+      transition: all 1s ease-in-out;
+      opacity: 1;
+      &.practice {
+        opacity: 0;
+        display: none;
+      }
+    }
+    & span {
+      padding: 4px 10px;
+      background-color: grey;
+      border-radius: 0.3rem;
+      color: white;
+    }
+  }
 `;
 
 export const SideChild = styled.ul`
-  height: calc(100vh - 120px);
+  height: calc(100vh - 110px);
   overflow-y: scroll;
   overflow-x: hidden;
   list-style-type: none;
-  color: grey;
+  color: var(--_color);
   &::-webkit-scrollbar {
-    width: 10px;
+    width: 8px;
   }
   /* Track */
   &::-webkit-scrollbar-track {
@@ -60,7 +90,7 @@ export const SideChild = styled.ul`
   }
   /* Handle */
   &::-webkit-scrollbar-thumb {
-    background: rgb(1, 1, 122);
+    background: grey;
     border-radius: 10px;
     border: 1px solid grey;
   }
@@ -72,12 +102,12 @@ export const SideChild = styled.ul`
 `;
 
 export const SideChildItem = styled.li`
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid var(--_border);
   cursor: pointer;
   user-select: none;
   & .child > div,
   & .child > a {
-    color: grey;
+    color: var(--_color);
   }
   & .active > div,
   & .active > a {
@@ -109,7 +139,7 @@ export const SideChildItem = styled.li`
     padding: 12px 15px;
     display: block;
     text-decoration: none;
-    color: grey;
+    color: var(--_color);
     &:hover,
     &.active {
       color: white;
@@ -136,13 +166,56 @@ export const SideChildItem = styled.li`
   }
   & .subMenuBar,
   & .subMenuLink {
-    padding: 6px 0px 6px 50px;
+    padding: 6px 0px 6px 55px;
     font-size: 14px;
     /* width: max-content; */
   }
 `;
 
 export const SideFooter = styled.div`
-  height: 60px;
-  background-color: grey;
+  height: 50px;
+  border-top: 1px solid var(--_border);
+  display: flex;
+  align-items: center;
+  & span {
+    cursor: pointer;
+  }
+  & .footer {
+    width: 100%;
+    padding: 0px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--_color);
+    & span:first-child {
+      font-size: 16px;
+      transition: all 0.5s ease;
+      width: 10px;
+      &:hover {
+        color: white;
+      }
+      &.rotate {
+        transform: rotate(180deg);
+      }
+    }
+    & .spanv {
+      font-size: 12px;
+      padding: 2px 5px;
+      border-radius: 0.3rem;
+      transition: all 1s ease-in-out;
+      opacity: 1;
+      &:hover {
+        background-color: grey;
+        color: white;
+      }
+      &.hidden {
+        opacity: 0;
+        z-index: -9;
+        display: none;
+      }
+    }
+  }
+  & .fs {
+    justify-content: center;
+  }
 `;
