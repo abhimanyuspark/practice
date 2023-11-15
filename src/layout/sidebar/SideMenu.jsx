@@ -7,6 +7,7 @@ const SideMenu = ({ sideBar }) => {
   const [activeChildIndex, setActiveChildIndex] = useState(null);
   const location = useLocation();
   const [path, setPath] = useState(location.pathname);
+  // console.log(data.at(-1).id + 1);
 
   const handleIndex = (i) => {
     setActiveChildIndex((prevIndex) => (prevIndex === i ? null : i));

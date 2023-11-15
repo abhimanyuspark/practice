@@ -18,7 +18,7 @@
 ```
 
 > [!NOTE]
-> I created this Filter component outside.
+> I created the Filter component outside.
 
 **This is for filter the data in tanstack React table in react.js.**
 

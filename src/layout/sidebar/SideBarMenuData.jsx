@@ -1,7 +1,9 @@
+import { Dashboard, List, Setting } from "../../style/Icons/Icons";
+
 export const SideBarMenuData = [
   {
     id: 1,
-    icon: <span className="material-symbols-outlined">dashboard</span>,
+    icon: Dashboard,
     value: "Dashboard",
     subMenu: [
       {
@@ -23,13 +25,13 @@ export const SideBarMenuData = [
   },
   {
     id: 2,
-    icon: <span className="material-symbols-outlined">lists</span>,
+    icon: List,
     value: "Accordians",
     link: "/accordians",
   },
   {
     id: 3,
-    icon: <span className="material-symbols-outlined">settings</span>,
+    icon: Setting,
     value: "App setting",
     subMenu: [
       {
