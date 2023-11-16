@@ -125,7 +125,7 @@ export const SideChildItem = styled.li`
     }
     & .arrow {
       font-size: 22px;
-      transition: all 0.3s ease;
+      transition: all 0.1s ease;
       &.open {
         transform: rotate(90deg);
       }

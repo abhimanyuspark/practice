@@ -1,4 +1,4 @@
-import { Dashboard, List, Setting } from "../../style/Icons/Icons";
+import { Dashboard, List, Setting, Login } from "../../style/Icons/Icons";
 
 export const SideBarMenuData = [
   {
@@ -31,6 +31,12 @@ export const SideBarMenuData = [
   },
   {
     id: 3,
+    icon: Login,
+    value: "Login",
+    link: "/login",
+  },
+  {
+    id: 4,
     icon: Setting,
     value: "App setting",
     subMenu: [
