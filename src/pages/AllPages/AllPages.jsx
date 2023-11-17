@@ -9,6 +9,7 @@ import AllButtons from "../AllButtons/AllButtons";
 import Accordians from "../../components/accordians/accordians";
 import Form from "../../components/DropDown/Form";
 import { useSelector } from "react-redux";
+import CustomSelect from "../CustomSelect/CustomSelect";
 
 const AllPages = () => {
   const { sideBar } = useSelector((state) => state.sidebar);
@@ -22,8 +23,9 @@ const AllPages = () => {
           <Route path="/" element={<Home />} />
           <Route path="/allbuttons" element={<AllButtons />} />
           <Route path="/accordians" element={<Accordians />} />
+          <Route path="/select" element={<CustomSelect />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/select" element={<Form />} />
+          <Route path="/DropDown" element={<Form />} />
           <Route path="/setting" element={<h1>Setting</h1>} />
           <Route path="*" element={<h1>Error 404 not found</h1>} />
         </Routes>
