@@ -15,6 +15,7 @@ function Select({
   divider = true,
   enableNoDataList = true,
   fields,
+  width,
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState("");
@@ -22,7 +23,7 @@ function Select({
   const parentRef = useRef(null);
 
   const CustomFields = (option) =>
-    fields?.labelfun ? fields.labelfun(option) : option.label;
+    fields ? fields.labelFn(option) : option.label;
 
   const clearOptions = () => {
     onChange(multiple ? [] : undefined);
@@ -44,7 +45,11 @@ function Select({
   };
 
   const isOptionSelected = (option) =>
-    multiple ? value.includes(option) : option === value;
+    multiple
+      ? value.includes(option)
+      : value === undefined
+      ? option === value
+      : CustomFields(option) === CustomFields(value);
 
   const filterOptions = options.filter((o) =>
     CustomFields(o).toLowerCase().includes(query.toLowerCase())
@@ -63,11 +68,18 @@ function Select({
   ClickOutside(outsideClickHandler, parentRef);
 
   return (
-    <div ref={parentRef} className={styles["main-container"]}>
+    <div
+      ref={parentRef}
+      className={styles["main-container"]}
+      style={width ? { width: width } : { width: "100%" }}
+    >
       <div
         tabIndex={0}
         className={styles.container}
-        onClick={() => setIsOpen((prev) => !prev)}
+        onClick={() => {
+          setIsOpen((prev) => !prev);
+          setQuery("");
+        }}
       >
         <span className={styles.value}>
           {multiple

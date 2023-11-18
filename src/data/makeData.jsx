@@ -18,7 +18,7 @@ const newPerson = () => {
     visits: faker.number.int(1000),
     progress: faker.number.int({ min: 40, max: 90 }),
     status: faker.helpers.arrayElement([
-      { name: "Pending", color: "orange", id: faker.string.uuid() },
+      { name: "Pending", color: "yellow", id: faker.string.uuid() },
       { name: "Inprocess", color: "#159afb", id: faker.string.uuid() },
       { name: "Complete", color: "#0cf90c", id: faker.string.uuid() },
     ]),

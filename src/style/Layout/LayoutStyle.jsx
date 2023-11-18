@@ -13,13 +13,15 @@ export const AppWrapper = styled.div`
 `;
 
 export const DashboardWrapper = styled.main`
+  position: relative;
   grid-area: dashboard;
   padding: 1rem;
+  background-color: #222222;
   overflow: auto; /* Add overflow property for scrolling */
   height: calc(100vh - 60px); /* Set a fixed height, minus navbar height */
-  background: url(${image});
-  background-size: cover;
-  background-repeat: no-repeat;
+  /* background: url(${image}); */
+  /* background-size: cover; */
+  /* background-repeat: no-repeat; */
 `;
 
 export const NavbarWrapper = styled.nav`

@@ -1,6 +1,8 @@
 import DropDownMenu from "../Custom/DropDownMenu/DropDownMenu";
+import Select from "../Custom/Select/SelectDropDown";
 import IndeterminateCheckbox from "./checkbox";
 import { Edit, View, Delete } from "./Function";
+import { useState } from "react";
 
 const menu = [
   {
@@ -15,6 +17,12 @@ const menu = [
     name: "Delete",
     icon: <span className="material-symbols-outlined">delete</span>,
   },
+];
+
+const options = [
+  { id: 1, name: "Pending", color: "yellow" },
+  { id: 2, name: "Inprocess", color: "#159afb" },
+  { id: 3, name: "Complete", color: "#0cf90c" },
 ];
 
 export const Columns = [
@@ -89,12 +97,47 @@ export const Columns = [
     header: "Status",
     cell: (info) => {
       const value = info.getValue();
+      const [val, setVal] = useState(value);
       const style = {
-        color: value.color,
+        color: "black",
+      };
+      const optionTemplete = (o) => {
+        return (
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "0.5rem",
+            }}
+          >
+            <span
+              style={{
+                display: "inline-block",
+                width: "12px",
+                height: "12px",
+                borderRadius: "50%",
+                background: o.color,
+              }}
+            ></span>
+            <span>{o.name}</span>
+          </div>
+        );
       };
       return (
         <span style={style} key={value.id}>
-          {value.name}
+          <Select
+            optionTemplate={optionTemplete}
+            singleTemplate={optionTemplete}
+            width="9em"
+            options={options}
+            value={val}
+            clearButton={false}
+            divider={false}
+            enableSearch={false}
+            enableNoDataList={false}
+            fields={{ labelFn: (l) => l.name }}
+            onChange={(o) => setVal(o)}
+          />
         </span>
       );
     },
