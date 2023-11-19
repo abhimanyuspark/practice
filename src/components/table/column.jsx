@@ -128,13 +128,10 @@ export const Columns = [
           <Select
             optionTemplate={optionTemplete}
             singleTemplate={optionTemplete}
-            width="9em"
+            selectWidth="9em"
+            // optionsWidth="11em"
             options={options}
             value={val}
-            clearButton={false}
-            divider={false}
-            enableSearch={false}
-            enableNoDataList={false}
             fields={{ labelFn: (l) => l.name }}
             onChange={(o) => setVal(o)}
           />

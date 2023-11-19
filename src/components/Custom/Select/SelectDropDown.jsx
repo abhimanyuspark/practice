@@ -7,23 +7,38 @@ function Select({
   value,
   onChange,
   options,
+  fields = { labelFn: (l) => l.label },
   singleTemplate,
   optionTemplate,
   multiTemplate,
-  enableSearch = true,
-  clearButton = true,
-  divider = true,
-  enableNoDataList = true,
-  fields,
-  width,
+  enableSearch = false,
+  clearButton = false,
+  divider = false,
+  enableNoDataList = false,
+  border = true,
+  selectStyle,
+  selectWidth,
+  optionsWidth,
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState("");
   const searchRef = useRef(null);
   const parentRef = useRef(null);
 
+  useEffect(() => {
+    if (isOpen) {
+      searchRef?.current?.focus();
+    }
+  }, [isOpen]);
+
+  const outsideClickHandler = () => {
+    setIsOpen(false);
+    setQuery("");
+  };
+  ClickOutside(outsideClickHandler, parentRef);
+
   const CustomFields = (option) =>
-    fields ? fields.labelFn(option) : option.label;
+    fields ? fields.labelFn(option) : option?.label;
 
   const clearOptions = () => {
     onChange(multiple ? [] : undefined);
@@ -33,7 +48,7 @@ function Select({
     if (multiple) {
       onChange(
         value.includes(option)
-          ? value.filter((o) => o !== option)
+          ? value.filter((o) => CustomFields(o) !== CustomFields(option))
           : [...value, option]
       );
     } else {
@@ -55,27 +70,16 @@ function Select({
     CustomFields(o).toLowerCase().includes(query.toLowerCase())
   );
 
-  useEffect(() => {
-    if (isOpen && searchRef.current) {
-      searchRef.current.focus();
-    }
-  }, [isOpen]);
-
-  const outsideClickHandler = () => {
-    setIsOpen(false);
-    setQuery("");
-  };
-  ClickOutside(outsideClickHandler, parentRef);
-
   return (
     <div
       ref={parentRef}
       className={styles["main-container"]}
-      style={width ? { width: width } : { width: "100%" }}
+      style={selectWidth ? { width: selectWidth } : { width: "100%" }}
     >
       <div
         tabIndex={0}
-        className={styles.container}
+        className={`${border ? "" : styles.border} ${styles.container}`}
+        style={selectStyle}
         onClick={() => {
           setIsOpen((prev) => !prev);
           setQuery("");
@@ -119,7 +123,10 @@ function Select({
         <div className={styles.caret}></div>
       </div>
 
-      <div className={`${styles.options} ${isOpen ? styles.show : ""}`}>
+      <div
+        style={optionsWidth ? { width: optionsWidth } : { width: "100%" }}
+        className={`${styles.options} ${isOpen ? styles.show : ""}`}
+      >
         {enableSearch && (
           <div className={styles["search-bar-container"]}>
             <input

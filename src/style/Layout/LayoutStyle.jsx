@@ -16,7 +16,7 @@ export const DashboardWrapper = styled.main`
   position: relative;
   grid-area: dashboard;
   padding: 1rem;
-  background-color: #222222;
+  background-color: #f0ebeb;
   overflow: auto; /* Add overflow property for scrolling */
   height: calc(100vh - 60px); /* Set a fixed height, minus navbar height */
   /* background: url(${image}); */

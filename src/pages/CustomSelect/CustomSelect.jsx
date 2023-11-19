@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Select from "../../components/Custom/Select/SelectDropDown";
 import { makeData } from "../../data/makeData";
+import { Space } from "antd";
 
 const options = [
   { label: "First", value: 1, color: "red" },
@@ -36,9 +37,15 @@ const CustomSelect = () => {
     borderRadius: "50%",
   };
 
+  const styles = {
+    display: "flex",
+    alignItems: "center",
+    gap: "0.5rem",
+  };
+
   const optionTemplate = (o) => {
     return (
-      <div>
+      <div style={styles}>
         <img style={style} src={o.profile} alt="p" />
         <span>{o.name}</span>
       </div>
@@ -49,7 +56,7 @@ const CustomSelect = () => {
     return (
       <>
         {v ? (
-          <div>
+          <div style={styles}>
             <img style={style} src={v.profile} alt="p" />
             <span>{v.name}</span>
           </div>
@@ -64,7 +71,7 @@ const CustomSelect = () => {
     return (
       <>
         {v && (
-          <div>
+          <div style={styles}>
             <span
               className="span-circle"
               style={{ backgroundColor: v.color }}
@@ -88,40 +95,51 @@ const CustomSelect = () => {
   return (
     <form onSubmit={onsubmit}>
       <Select
+        value={array}
+        options={options}
         multiple
         multiTemplate={multiTemplate}
-        // optionTemplate={optionTemplate}
-        options={options}
-        value={array}
+        optionTemplate={multiTemplate}
         onChange={(o) => setArray(o)}
+        selectWidth="20em"
+        optionsWidth="25em"
       />
       <br />
-      <Select
-        options={data}
-        singleTemplate={selectTemplate}
-        optionTemplate={optionTemplate}
-        value={object}
-        onChange={(o) => setObject(o)}
-        fields={{ labelFn: (l) => l.name }}
-      />
+      <Space>
+        <Select
+          value={object}
+          options={data}
+          singleTemplate={selectTemplate}
+          optionTemplate={optionTemplate}
+          onChange={(o) => setObject(o)}
+          fields={{ labelFn: (l) => l.name }}
+          selectWidth="20em"
+          optionsWidth="25em"
+        />
+
+        <Select
+          value={object2}
+          options={options}
+          onChange={(o) => {
+            setObject2(o);
+            setObject3(o);
+          }}
+          selectWidth="10em"
+        />
+
+        <Select
+          value={object3}
+          options={options}
+          onChange={(o) => {
+            setObject3(o);
+            // setObject2(o);
+          }}
+          selectWidth="10em"
+
+          // selectStyle={{ backgroundColor: "red" }}
+        />
+      </Space>
       <br />
-      <Select
-        options={options}
-        value={object2}
-        onChange={(o) => {
-          setObject2(o);
-          setObject3(o);
-        }}
-      />
-      <br />
-      <Select
-        options={options}
-        value={object3}
-        onChange={(o) => {
-          setObject3(o);
-          // setObject2(o);
-        }}
-      />
       <br />
       <button type="submit">Submit</button>
     </form>
