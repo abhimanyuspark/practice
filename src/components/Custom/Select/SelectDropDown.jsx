@@ -132,6 +132,7 @@ function Select({
             <input
               className={styles["search-bar"]}
               type="text"
+              name="search"
               ref={searchRef}
               value={query}
               onChange={(e) => setQuery(e.target.value)}

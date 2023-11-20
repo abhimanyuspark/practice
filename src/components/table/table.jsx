@@ -1,6 +1,7 @@
-import React, { useState, useMemo, useReducer } from "react";
+import React, { useState, useMemo } from "react";
 import IndeterminateCheckbox from "./checkbox";
 import T from "./table.module.css";
+import SortingIcons from "./SortingIcons";
 
 import {
   flexRender,
@@ -10,13 +11,16 @@ import {
   getPaginationRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import SortingIcons from "./SortingIcons";
 
-function Table({ Columns, data }) {
-  // const rerender = useReducer(() => ({}), {})[1];
+function Table({
+  Columns,
+  data,
+  setGlobalFilter,
+  globalFilter,
+  loading = false,
+}) {
   const [rowSelection, setRowSelection] = useState({});
   const columns = useMemo(() => Columns, []);
-  // const refreshData = () => setData(() => makeData(100));
   const [sorting, setSorting] = useState([]);
 
   const table = useReactTable({
@@ -25,10 +29,11 @@ function Table({ Columns, data }) {
     state: {
       rowSelection,
       sorting,
+      globalFilter,
     },
     onSortingChange: setSorting,
-    enableRowSelection: true, //enable row selection for all rows
-    // enableRowSelection: row => row.original.age > 18, // or enable row selection conditionally per row
+    onGlobalFilterChange: setGlobalFilter,
+    enableRowSelection: true,
     onRowSelectionChange: setRowSelection,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
@@ -36,6 +41,18 @@ function Table({ Columns, data }) {
     getPaginationRowModel: getPaginationRowModel(),
     // debugTable: true,
   });
+
+  const Loading = () => {
+    return (
+      <div className={T["table-loading"]}>
+        <div>loading...</div>
+      </div>
+    );
+  };
+
+  const columnSpan = useMemo(() => {
+    return table.getHeaderGroups().map((d) => d.headers.length);
+  }, []);
 
   return (
     <div className="p-2 table-container">
@@ -67,26 +84,41 @@ function Table({ Columns, data }) {
           ))}
         </thead>
         <tbody className={T.tbody}>
-          {table.getRowModel().rows.map((row) => {
-            const isSelected = row.getIsSelected(row.id);
-            return (
-              <tr
-                key={row.id}
-                className={`${isSelected ? `${T.selectedrow}` : ""} ${T.tr}`}
-              >
-                {row.getVisibleCells().map((cell) => {
-                  return (
-                    <td className={T.td} key={cell.id}>
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext()
-                      )}
-                    </td>
-                  );
-                })}
-              </tr>
-            );
-          })}
+          {loading ? (
+            <tr>
+              <td colSpan={columnSpan}>{Loading()}</td>
+            </tr>
+          ) : table.getRowModel().rows.length > 0 ? (
+            table.getRowModel().rows.map((row) => {
+              const isSelected = row.getIsSelected(row.id);
+              return (
+                <tr
+                  key={row.id}
+                  className={`${isSelected ? `${T.selectedrow}` : ""} ${T.tr}`}
+                >
+                  {row.getVisibleCells().map((cell) => {
+                    return (
+                      <td className={T.td} key={cell.id}>
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext()
+                        )}
+                      </td>
+                    );
+                  })}
+                </tr>
+              );
+            })
+          ) : (
+            <tr className={T["no-data"]}>
+              <td colSpan={columnSpan}>
+                No data Found
+                {/* <div>
+                  <div>No data found</div>
+                </div> */}
+              </td>
+            </tr>
+          )}
         </tbody>
         <tfoot className={T.tfoot}>
           <tr>

@@ -79,7 +79,7 @@ export const Columns = [
   {
     accessorKey: "date",
     header: () => <span>Date</span>,
-    cell: (info) => info.getValue().toLocaleDateString(),
+    cell: (info) => info.getValue(),
     sortDescFirst: false,
   },
   {
@@ -95,6 +95,7 @@ export const Columns = [
   {
     accessorKey: "status",
     header: "Status",
+    // setFilterValue: (info) => info.name,
     cell: (info) => {
       const value = info.getValue();
       const [val, setVal] = useState(value);

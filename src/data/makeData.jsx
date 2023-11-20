@@ -22,9 +22,7 @@ const newPerson = () => {
       { name: "Inprocess", color: "#159afb", id: faker.string.uuid() },
       { name: "Complete", color: "#0cf90c", id: faker.string.uuid() },
     ]),
-    discription: {
-      jobTitle: faker.person.jobTitle(),
-    },
+    followUp: faker.helpers.arrayElement([{ type: "Yes" }, { type: "No" }]),
   };
 };
 

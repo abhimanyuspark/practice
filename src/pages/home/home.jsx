@@ -1,13 +1,15 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Table from "../../components/table/table";
 import { Columns } from "../../components/table/column";
-import { makeData } from "../../data/makeData";
+// import { makeData } from "../../data/makeData";
 import DateRangePicker from "../../components/DateRangePicker/DateRangePicker";
-import { Input, Space } from "antd";
+import { Input, Space, Button } from "antd";
 const { Search } = Input;
+import { useDispatch, useSelector } from "react-redux";
+import { getUserApi } from "../../Redux/ReduxApi/ReduxApi";
+import FilterAnimation from "../../style/animations/FilterAnimation";
 
 const Home = () => {
-  const data = useMemo(() => makeData(100), []);
   const [globalFilter, setGlobalFilter] = useState("");
   const [date, setDate] = useState({
     start: "",
@@ -15,17 +17,29 @@ const Home = () => {
     select: [],
   });
   const [clear, setClear] = useState(false);
+  const [filterVisible, setFilterVisible] = useState(false);
+
+  const { user, loading } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   const handleDateChange = (From, To, dates) => {
-    setDate((p) => ({ ...p, start: From, end: To, select: dates }));
-    setClear(true);
+    if (From === "" && To === "") {
+      setClear(false);
+    } else {
+      setDate((p) => ({ ...p, start: From, end: To, select: dates }));
+      setClear(true);
+    }
   };
 
   const handleInputChange = (e) => {
     const value = e.target.value;
+    // if (value === "") {
+    //   setClear(false);
+    //   setGlobalFilter("");
+    // } else {
     setGlobalFilter(value);
-    // console.log(value);
     setClear(true);
+    // }
   };
 
   const handleClear = () => {
@@ -34,11 +48,7 @@ const Home = () => {
     setClear(false);
   };
 
-  const filterByName = data.filter((item) => {
-    return item.name.toLowerCase().includes(globalFilter.toLowerCase());
-  });
-
-  const filterByDate = filterByName.filter((item) => {
+  const filterByDate = user.filter((item) => {
     if (date.start && date.end) {
       const d = new Date(item.date);
       return d >= date.start && d <= date.end;
@@ -46,9 +56,14 @@ const Home = () => {
     return true;
   });
 
+  useEffect(() => {
+    dispatch(getUserApi());
+  }, [dispatch]);
+
   return (
     <div>
-      <div className="flex" style={{ justifyContent: "center" }}>
+      <div>
+        {/* <p>{JSON.stringify(data)}</p> */}
         <Space>
           <Search
             placeholder="Search name here..."
@@ -59,10 +74,33 @@ const Home = () => {
             }}
           />
           <DateRangePicker value={date.select} onChange={handleDateChange} />
-          {clear ? <button onClick={handleClear}>Clear</button> : ""}
+          {clear ? <Button onClick={handleClear}>Clear</Button> : ""}
+          {filterVisible ? (
+            <button style={{ pointerEvents: "none" }}>Toggle Filter</button>
+          ) : (
+            <button
+              onClick={() => {
+                setFilterVisible(true);
+              }}
+            >
+              Toggle Filter
+            </button>
+          )}
+
+          <FilterAnimation
+            visible={filterVisible}
+            setVisible={setFilterVisible}
+          />
         </Space>
       </div>
-      <Table Columns={Columns} data={filterByDate} />
+
+      <Table
+        loading={loading}
+        Columns={Columns}
+        data={filterByDate}
+        globalFilter={globalFilter}
+        setGlobalFilter={setGlobalFilter}
+      />
     </div>
   );
 };

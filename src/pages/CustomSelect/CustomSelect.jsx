@@ -103,6 +103,7 @@ const CustomSelect = () => {
         onChange={(o) => setArray(o)}
         selectWidth="20em"
         optionsWidth="25em"
+        enableSearch
       />
       <br />
       <Space>
@@ -115,8 +116,9 @@ const CustomSelect = () => {
           fields={{ labelFn: (l) => l.name }}
           selectWidth="20em"
           optionsWidth="25em"
+          enableSearch
+          enableNoDataList
         />
-
         <Select
           value={object2}
           options={options}
@@ -125,8 +127,8 @@ const CustomSelect = () => {
             setObject3(o);
           }}
           selectWidth="10em"
+          enableSearch
         />
-
         <Select
           value={object3}
           options={options}
@@ -135,8 +137,6 @@ const CustomSelect = () => {
             // setObject2(o);
           }}
           selectWidth="10em"
-
-          // selectStyle={{ backgroundColor: "red" }}
         />
       </Space>
       <br />

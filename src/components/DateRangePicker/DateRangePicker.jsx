@@ -44,6 +44,7 @@ const DateRangePicker = ({ onChange, value }) => {
         presets={rangePresets}
         onChange={onRangeChange}
         separator="To"
+        clearIcon={false}
         // bordered={false}
         suffixIcon={false}
         className="custom_class"

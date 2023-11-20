@@ -21,7 +21,8 @@
 }
 
 .container:focus {
-  outline: 1px solid blue;
+  outline: 2px solid blue;
+  outline-offset: 1px;
 }
 
 .value {
