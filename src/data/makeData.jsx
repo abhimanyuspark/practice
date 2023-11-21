@@ -11,6 +11,7 @@ const range = (len) => {
 const newPerson = () => {
   return {
     id: faker.string.uuid(),
+    role: faker.helpers.arrayElement(["employee", "client"]),
     name: faker.person.fullName(),
     date: faker.date.between({ from: "2021-01-01", to: "2023-12-01" }),
     profile: faker.image.avatar(),

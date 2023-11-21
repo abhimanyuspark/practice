@@ -24,7 +24,7 @@ const Accordians = () => {
               <span>{d.name}</span>
               <span className="b">{index === i ? "-" : "+"}</span>
             </div>
-            <div>{index === i ? d.discription.jobTitle : null}</div>
+            <div>{index === i ? d.status.name : null}</div>
           </div>
         );
       })}
