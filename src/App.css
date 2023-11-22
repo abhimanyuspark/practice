@@ -120,7 +120,9 @@
   transition: 0.2s ease; /* Add a transition for smooth color change */
   color: grey;
 }
-
+.sort:hover {
+  color: #ff5722; /* Change this to the color you want */
+}
 .sort.active {
   color: #ff5722; /* Change this to the color you want */
 }

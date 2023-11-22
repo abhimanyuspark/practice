@@ -6,7 +6,8 @@ export const DropMenu = styled.div`
 `;
 
 export const Menu = styled.div`
-  border: 1px solid white;
+  border: 1px solid grey;
+  user-select: none;
   border-radius: 0.2rem;
   display: flex;
   padding: 2px 0px;
@@ -15,12 +16,20 @@ export const Menu = styled.div`
   cursor: pointer;
   & span {
     font-size: 20px;
+    color: #333;
+  }
+  &:hover,
+  &:focus {
+    background-color: white;
+    outline: 2px solid blue;
+    outline-offset: 1px;
   }
 `;
 
 export const MenuUl = styled.ul`
   width: 120px;
-  border: 1px solid black;
+  border: 1px solid grey;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
   border-radius: 0.2rem;
   padding: 5px 0px;
   list-style: none;
@@ -43,16 +52,21 @@ export const MenuUl = styled.ul`
 
 export const MenuLi = styled.li`
   padding: 7px 10px;
-  text-align: left;
+  /* text-align: left; */
   display: flex;
   align-items: center;
   color: black;
   gap: 0.5rem;
+  font-size: 14px;
+  & span {
+    display: flex;
+    align-items: center;
+  }
   & .material-symbols-outlined {
     font-size: 20px;
   }
   cursor: pointer;
   &:hover {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.1);
   }
 `;

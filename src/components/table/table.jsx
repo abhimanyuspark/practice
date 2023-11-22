@@ -20,7 +20,7 @@ function Table({
   loading = false,
 }) {
   const [rowSelection, setRowSelection] = useState({});
-  const columns = useMemo(() => Columns, []);
+  const columns = useMemo(() => Columns, [Columns]);
   const [sorting, setSorting] = useState([]);
 
   const table = useReactTable({

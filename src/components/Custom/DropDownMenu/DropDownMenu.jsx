@@ -21,6 +21,7 @@ const DropDownMenu = ({ data, onSubmitLi, id }) => {
   return (
     <DropMenu ref={dropRef}>
       <Menu
+        tabIndex={0}
         onClick={() => {
           handelShow();
         }}

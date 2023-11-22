@@ -8,6 +8,7 @@ const { Search } = Input;
 import { useDispatch, useSelector } from "react-redux";
 import { getUserApi } from "../../Redux/ReduxApi/ReduxApi";
 import FilterAnimation from "../../style/animations/FilterAnimation";
+import { ProgressCircle } from "../../style/progressBars/ProgressBars";
 
 const Home = () => {
   // const data = makeData(50);
@@ -65,6 +66,7 @@ const Home = () => {
     <div>
       <div>
         {/* <p>{JSON.stringify(data)}</p> */}
+        {/* <ProgressCircle $value={76}>76</ProgressCircle> */}
         <div className="flex" style={{ justifyContent: "space-between" }}>
           <Space>
             <Search

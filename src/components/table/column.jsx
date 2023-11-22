@@ -1,3 +1,4 @@
+import { ProgressCircle } from "../../style/progressBars/ProgressBars";
 import DropDownMenu from "../Custom/DropDownMenu/DropDownMenu";
 import Select from "../Custom/Select/SelectDropDown";
 import IndeterminateCheckbox from "./checkbox";
@@ -79,7 +80,11 @@ export const Columns = [
   {
     accessorKey: "date",
     header: () => <span>Date</span>,
-    cell: (info) => info.getValue(),
+    cell: (info) => {
+      const value = info.getValue();
+      const date = new Date(value);
+      return <span>{date.toLocaleDateString()}</span>;
+    },
     sortDescFirst: false,
   },
   {
@@ -91,6 +96,15 @@ export const Columns = [
     accessorKey: "visits",
     sortDescFirst: false,
     header: () => <span>Visits</span>,
+  },
+  {
+    accessorKey: "progress",
+    header: "Progress",
+    cell: (info) => {
+      const value = info.getValue();
+      return <ProgressCircle $value={value}>{value}%</ProgressCircle>;
+    },
+    sortDescFirst: false,
   },
   {
     accessorKey: "status",
@@ -149,11 +163,6 @@ export const Columns = [
     },
     sortDescFirst: false,
     invertSorting: true,
-  },
-  {
-    accessorKey: "progress",
-    header: "Profile Progress",
-    sortDescFirst: false,
   },
   {
     accessorKey: "id",
