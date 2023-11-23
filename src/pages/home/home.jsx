@@ -6,9 +6,9 @@ import DateRangePicker from "../../components/DateRangePicker/DateRangePicker";
 import { Input, Space, Button } from "antd";
 const { Search } = Input;
 import { useDispatch, useSelector } from "react-redux";
-import { getUserApi } from "../../Redux/ReduxApi/ReduxApi";
+import { getUserApi } from "../../Redux/ReduxApi/UserApi";
 import FilterAnimation from "../../style/animations/FilterAnimation";
-import { ProgressCircle } from "../../style/progressBars/ProgressBars";
+// import { ProgressCircle } from "../../style/progressBars/ProgressBars";
 
 const Home = () => {
   // const data = makeData(50);
@@ -19,7 +19,7 @@ const Home = () => {
     select: [],
   });
   const [clear, setClear] = useState(false);
-  const { user, loading } = useSelector((state) => state.user);
+  const { users, loading } = useSelector((state) => state.users);
   const dispatch = useDispatch();
 
   const handleDateChange = (From, To, dates) => {
@@ -48,7 +48,7 @@ const Home = () => {
     setClear(false);
   };
 
-  const filterByDate = user.filter((item) => {
+  const filterByDate = users.filter((item) => {
     if (date.start && date.end) {
       const d = new Date(item.date);
       return d >= date.start && d <= date.end;

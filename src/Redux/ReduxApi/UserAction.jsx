@@ -1,5 +1,5 @@
 import { userSlice } from "./UserApiReducer";
 
-const { filterLeaddata } = userSlice.actions;
+const { filterUserdata } = userSlice.actions;
 
-export { filterLeaddata };
+export { filterUserdata };

@@ -1,19 +1,26 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getUserApi } from "./ReduxApi";
+import { getUserApi } from "./UserApi";
 
 const initialState = {
-  user: [],
+  users: [],
   loading: false,
   error: "",
+  // auth: {},
 };
 
 export const userSlice = createSlice({
-  name: "user",
+  name: "users",
   initialState: initialState,
   reducers: {
-    filterLeaddata: (state, action) => {
+    // getUserObj: (state, action) => {
+    //   const { username, password } = action?.payload;
+    //   state.auth = state.users.find(
+    //     (u) => u.name === username && u.password === password
+    //   );
+    // },
+    filterUserdata: (state, action) => {
       const { filterStatus, filterFollow, filterConfig } = action.payload;
-      state.user = state.user.filter((user) => {
+      state.users = state.users.filter((user) => {
         let isStatusMatched = true;
         let isFollowMatched = true;
         let isLeadValueMatched = true;
@@ -53,11 +60,11 @@ export const userSlice = createSlice({
       })
       .addCase(getUserApi.fulfilled, (state, action) => {
         state.loading = false;
-        state.user = action.payload;
+        state.users = action.payload;
       })
       .addCase(getUserApi.rejected, (state, action) => {
         state.loading = false;
-        state.user = [];
+        state.users = [];
         state.error = action.error.message;
       });
   },

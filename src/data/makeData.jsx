@@ -13,6 +13,7 @@ const newPerson = () => {
     id: faker.string.uuid(),
     role: faker.helpers.arrayElement(["employee", "client"]),
     name: faker.person.fullName(),
+    password: faker.internet.password(),
     date: faker.date.between({ from: "2021-01-01", to: "2023-12-01" }),
     profile: faker.image.avatar(),
     age: faker.number.int({ min: 25, max: 50 }),
