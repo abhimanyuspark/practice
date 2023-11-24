@@ -31,6 +31,7 @@ export const NavbarWrapper = styled.nav`
   padding: 1rem;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 `;
 
 export const SidebarWrapper = styled.aside`
@@ -47,7 +48,7 @@ export const SidebarWrapper = styled.aside`
 export const SideHeader = styled.div`
   height: 60px;
   border-bottom: 1px solid var(--_border);
-  color: var(--_color);
+  color: white;
   display: flex;
   align-items: center;
   padding: 0px 10px;
@@ -56,22 +57,31 @@ export const SideHeader = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    & .hs {
-      justify-content: center;
-    }
-    & h4 {
-      transition: all 1s ease-in-out;
+    & .opa {
       opacity: 1;
-      &.practice {
+      transition: opacity 0.5s ease-in;
+    }
+    &.hs {
+      & .practice {
         opacity: 0;
-        display: none;
+        position: absolute;
+      }
+      & .profile {
+        /* position: absolute; */
+        z-index: 5;
       }
     }
-    & span {
-      padding: 4px 10px;
+    & .div {
+      width: 40px;
+      height: 40px;
       background-color: grey;
       border-radius: 0.3rem;
       color: white;
+      overflow: hidden;
+      & img {
+        width: 100%;
+        height: 100%;
+      }
     }
   }
 `;

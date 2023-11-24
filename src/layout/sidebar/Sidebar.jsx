@@ -8,6 +8,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { toggleSidebar } from "../../Redux/Redux-Sidebar/ReduxSidebar";
 import SideMenu from "./SideMenu";
+import Cookies from "js-cookie";
 
 const Sidebar = () => {
   const [expanded, setExpanded] = useState(false);
@@ -30,7 +31,7 @@ const Sidebar = () => {
 
   return (
     <SidebarWrapper $expanded={expanded}>
-      <Header sideBar={sideBar} />
+      <Header sideBar={sideBar} expanded={expanded} />
       <SideChild onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
         <SideMenu sideBar={sideBar} />
       </SideChild>
@@ -39,12 +40,21 @@ const Sidebar = () => {
   );
 };
 
-const Header = ({ sideBar }) => {
+const Header = ({ sideBar, expanded }) => {
+  const user = JSON.parse(Cookies.get("user"));
+
   return (
     <SideHeader>
-      <div className={`header ${!sideBar ? "hs" : ""}`}>
-        <h4 className={`${!sideBar ? "practice" : ""}`}>Practice</h4>
-        <span className={`${!sideBar ? "p" : ""}`}>P</span>
+      <div
+        className={`header ${!sideBar ? (expanded === false ? "hs" : "") : ""}`}
+      >
+        <div className="opa practice">
+          <h4>{user.name}</h4>
+          <h5>Practice</h5>
+        </div>
+        <div className="div profile">
+          <img src={user.profile} alt="profile" />
+        </div>
       </div>
     </SideHeader>
   );

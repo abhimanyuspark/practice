@@ -29,14 +29,14 @@ export const SideBarMenuData = [
     value: "Accordians",
     link: "/accordians",
   },
+  // {
+  //   id: 3,
+  //   icon: Login,
+  //   value: "Login",
+  //   link: "/login",
+  // },
   {
     id: 3,
-    icon: Login,
-    value: "Login",
-    link: "/login",
-  },
-  {
-    id: 4,
     icon: Setting,
     value: "App setting",
     subMenu: [

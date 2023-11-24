@@ -8,8 +8,15 @@ import {
   SideHeader,
   SideChildItem,
 } from "../Layout/LayoutStyle";
-import { FlexDiv } from "../container/Container";
+import { FlexDiv, CenterWarapper, Container } from "../container/Container";
 import { RNavLink } from "../LinkStyle/LinkStyle";
+import {
+  InputWrapper,
+  Label,
+  Input,
+  ErrorMessage,
+} from "../InputField/InputField";
+import { Buttons } from "../buttons/buttons";
 
 export {
   NavbarWrapper,
@@ -21,5 +28,12 @@ export {
   SideHeader,
   SideChildItem,
   FlexDiv,
+  Container,
+  CenterWarapper,
   RNavLink,
+  InputWrapper,
+  Label,
+  Input,
+  ErrorMessage,
+  Buttons,
 };

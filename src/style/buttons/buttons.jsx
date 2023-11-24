@@ -89,7 +89,7 @@ const Loader = ({ margin }) => {
   );
 };
 
-const Buttons = ({ dir, text, icon, loading, onClick }) => {
+export const Buttons = ({ dir, text, icon, loading, onClick }) => {
   return (
     <Button $direction={dir} onClick={onClick} $cursor={loading}>
       <span className="text">{text ? text : "Button"}</span>
@@ -97,5 +97,3 @@ const Buttons = ({ dir, text, icon, loading, onClick }) => {
     </Button>
   );
 };
-
-export default Buttons;

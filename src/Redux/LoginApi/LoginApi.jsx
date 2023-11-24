@@ -1,10 +1,10 @@
 // authSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 // Define an initial state for authentication
 const initialState = {
-  user: null,
   error: null,
   loading: false,
 };
@@ -31,7 +31,7 @@ export const authenticateUser = createAsyncThunk(
         return rejectWithValue("Please Enter valid credentials");
       }
     } catch (error) {
-      return rejectWithValue(`Login Failed due to: ${error.message}`);
+      return rejectWithValue(`Please Enter valid username`);
     }
   }
 );
@@ -40,7 +40,13 @@ export const authenticateUser = createAsyncThunk(
 const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {},
+  reducers: {
+    logout: (state) => {
+      state.error = null;
+      state.loading = false;
+      Cookies.remove("user");
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(authenticateUser.pending, (state) => {
@@ -48,15 +54,40 @@ const authSlice = createSlice({
       })
       .addCase(authenticateUser.fulfilled, (state, action) => {
         state.loading = false;
-        state.user = action?.payload;
+        const {
+          id,
+          role,
+          name,
+          date,
+          profile,
+          age,
+          visits,
+          progress,
+          status,
+          followUp,
+        } = action?.payload;
+        // Set a cookie with user information
+        const obj = {
+          id: id,
+          role: role,
+          name: name,
+          date: date,
+          profile: profile,
+          age: age,
+          visits: visits,
+          progress: progress,
+          status: status,
+          followUp: followUp,
+        };
+        Cookies.set("user", JSON.stringify(obj), { expires: 1 / 48 }); // Expires in 30 minutes
       })
       .addCase(authenticateUser.rejected, (state, action) => {
         state.loading = false;
-        state.user = null;
         state.error = action.payload;
       });
   },
 });
 
+export const { logout } = authSlice.actions;
 // Export the reducer
 export default authSlice.reducer;

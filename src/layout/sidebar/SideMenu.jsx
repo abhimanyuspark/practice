@@ -43,7 +43,7 @@ const SideMenu = ({ sideBar }) => {
 
   return (
     <>
-      {data.map((d, i) => (
+      {data?.map((d, i) => (
         <SideChildItem key={i}>
           <div
             className={`child ${isChildActive(i, pathname) ? "active" : ""}`}

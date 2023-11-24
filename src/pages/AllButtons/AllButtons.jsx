@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import Buttons from "../../style/buttons/buttons";
+import { Buttons } from "../../style/Export/Export";
+import { Check } from "../../style/Icons/Icons";
 
 const AllButtons = () => {
   const [loading, setLoading] = useState(false);
@@ -24,7 +25,7 @@ const AllButtons = () => {
         // dir={true}
         onClick={click}
         loading={loading}
-        icon={<span className="material-symbols-outlined">check</span>}
+        icon={Check}
       />
     </div>
   );
