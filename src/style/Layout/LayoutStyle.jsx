@@ -8,15 +8,34 @@ export const AppWrapper = styled.div`
   grid-template-areas:
     "sidebar navbar"
     "sidebar dashboard";
-  transition: all 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
   height: 100vh;
+  ::-webkit-scrollbar {
+    width: 11px;
+  }
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+  }
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: ${(props) => props.theme.lt_bg_cl};
+    border-radius: 10px;
+    border: 1px solid ${(props) => props.theme.lt_br};
+  }
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: grey;
+    border: 1px solid grey;
+  }
 `;
 
 export const DashboardWrapper = styled.main`
   position: relative;
   grid-area: dashboard;
   padding: 1rem;
-  background-color: #f0ebeb;
+  background-color: ${(props) => props.theme.bg_cl};
   overflow: auto; /* Add overflow property for scrolling */
   height: calc(100vh - 60px); /* Set a fixed height, minus navbar height */
   /* background: url(${image}); */
@@ -26,8 +45,8 @@ export const DashboardWrapper = styled.main`
 
 export const NavbarWrapper = styled.nav`
   grid-area: navbar;
-  background-color: #333;
-  color: white;
+  background-color: ${(props) => props.theme.lt_bg_cl};
+  color: ${(props) => props.theme.lt_cl};
   padding: 1rem;
   display: flex;
   align-items: center;
@@ -35,12 +54,12 @@ export const NavbarWrapper = styled.nav`
 `;
 
 export const SidebarWrapper = styled.aside`
-  --_color: grey;
-  --_border: #535353;
   grid-area: sidebar;
-  background-color: #333;
-  transition: all 0.3s ease-in-out;
+  background-color: ${(props) => props.theme.lt_bg_cl};
+  --_color: ${(props) => props.theme.lt_cl};
+  --_border: ${(props) => props.theme.lt_br};
   z-index: 9;
+  transition: width 0.3s ease-in-out;
   border-right: 1px solid var(--_border);
   width: ${({ $expanded }) => ($expanded ? "240px" : "100%")};
 `;
@@ -59,7 +78,7 @@ export const SideHeader = styled.div`
     justify-content: space-between;
     & .opa {
       opacity: 1;
-      transition: opacity 0.5s ease-in;
+      transition: 0.5s ease-in;
     }
     &.hs {
       & .practice {
@@ -95,22 +114,6 @@ export const SideChild = styled.ul`
   &::-webkit-scrollbar {
     width: 8px;
   }
-  /* Track */
-  &::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px grey;
-    border-radius: 10px;
-  }
-  /* Handle */
-  &::-webkit-scrollbar-thumb {
-    background: grey;
-    border-radius: 10px;
-    border: 1px solid grey;
-  }
-  /* Handle on hover */
-  &::-webkit-scrollbar-thumb:hover {
-    background: #333;
-    border: 1px solid grey;
-  }
 `;
 
 export const SideChildItem = styled.li`
@@ -137,7 +140,7 @@ export const SideChildItem = styled.li`
     }
     & .arrow {
       font-size: 22px;
-      transition: all 0.1s ease;
+      transition: 0.1s ease;
       &.open {
         transform: rotate(90deg);
       }
@@ -201,7 +204,7 @@ export const SideFooter = styled.div`
     color: var(--_color);
     & span:first-child {
       font-size: 16px;
-      transition: all 0.5s ease;
+      transition: 0.5s ease;
       width: 10px;
       &:hover {
         color: white;
@@ -214,7 +217,7 @@ export const SideFooter = styled.div`
       font-size: 12px;
       padding: 2px 5px;
       border-radius: 0.3rem;
-      transition: all 1s ease-in-out;
+      transition: 1s ease-in-out;
       opacity: 1;
       &:hover {
         background-color: grey;

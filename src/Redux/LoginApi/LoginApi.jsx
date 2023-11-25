@@ -54,32 +54,15 @@ const authSlice = createSlice({
       })
       .addCase(authenticateUser.fulfilled, (state, action) => {
         state.loading = false;
-        const {
-          id,
-          role,
-          name,
-          date,
-          profile,
-          age,
-          visits,
-          progress,
-          status,
-          followUp,
-        } = action?.payload;
-        // Set a cookie with user information
-        const obj = {
-          id: id,
-          role: role,
-          name: name,
-          date: date,
-          profile: profile,
-          age: age,
-          visits: visits,
-          progress: progress,
-          status: status,
-          followUp: followUp,
-        };
-        Cookies.set("user", JSON.stringify(obj), { expires: 1 / 48 }); // Expires in 30 minutes
+        const data = action?.payload;
+        // Keys to be excluded
+        let keysToExclude = ["id", "password"];
+
+        // Create a new object without specified keys
+        let newData = Object.fromEntries(
+          Object.entries(data).filter(([key]) => !keysToExclude.includes(key))
+        );
+        Cookies.set("user", JSON.stringify(newData), { expires: 1 / 24 }); // Expires in 1 hour
       })
       .addCase(authenticateUser.rejected, (state, action) => {
         state.loading = false;

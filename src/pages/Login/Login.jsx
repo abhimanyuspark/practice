@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { authenticateUser } from "../../Redux/LoginApi/LoginApi";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -10,11 +10,48 @@ import {
   Input,
   ErrorMessage,
   Buttons,
+  FlexDiv,
 } from "../../style/Export/Export";
 import { Check } from "../../style/Icons/Icons";
+import { getUserApi } from "../../Redux/ReduxApi/UserApi";
+
+// const AdminUser = ({ setFormData }) => {
+//   const { users } = useSelector((state) => state.users);
+//   const dispatch = useDispatch();
+
+//   const copyToClipboard = (textToCopy) => {
+//     // navigator.clipboard.writeText(textToCopy);
+//     setFormData((p) => ({
+//       ...p,
+//       username: textToCopy.name,
+//       password: textToCopy.password,
+//     }));
+//   };
+
+//   useEffect(() => {
+//     dispatch(getUserApi());
+//   }, [dispatch]);
+
+//   return (
+//     <div>
+//       {users.map((d) => {
+//         if (d.role === "admin") {
+//           return (
+//             <FlexDiv>
+//               <p>{d.role}</p>
+//               <p>{d.name}</p>
+//               <p>{d.password}</p>
+//               <button onClick={copyToClipboard(d)}>Copy</button>
+//             </FlexDiv>
+//           );
+//         }
+//       })}
+//     </div>
+//   );
+// };
 
 const Login = () => {
-  const { user, loading, error } = useSelector((state) => state.auth);
+  const { loading, error } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
@@ -113,6 +150,8 @@ const Login = () => {
 
           <Buttons type="submit" text="Submit" icon={Check} loading={loading} />
         </form>
+        <br />
+        {/* <AdminUser setFormData={setFormData} /> */}
       </Container>
     </CenterWarapper>
   );

@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import ReduxSidebarSlice from "../Redux-Sidebar/ReduxSidebar";
+import ReduxLayoutSlice from "../Redux-Layout/ReduxLayout";
 import userSlice from "../ReduxApi/UserApiReducer";
 import authSlice from "../LoginApi/LoginApi";
 
 const GlobalStore = configureStore({
   reducer: {
-    sidebar: ReduxSidebarSlice,
+    layout: ReduxLayoutSlice,
     users: userSlice,
     auth: authSlice,
   },

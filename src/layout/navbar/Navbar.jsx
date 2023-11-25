@@ -3,6 +3,7 @@ import { FlexDiv, NavbarWrapper, RNavLink } from "../../style/Export/Export";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "../../Redux/LoginApi/LoginApi";
+import { useThemeProvider } from "../../hooks/useThemeProvider";
 
 const UserProfile = () => {
   const dispatch = useDispatch();
@@ -12,16 +13,20 @@ const UserProfile = () => {
     const confirmLogout = window.confirm("Are you sure you want to logout?");
     if (confirmLogout) {
       dispatch(logout());
+      navigate("/login", { replace: true }); // Redirect to the login page
     }
-    navigate("/login", { replace: true }); // Redirect to the login page
   };
 
   return (
     <div>
-      {/* Your profile content */}
       <button onClick={handleLogout}>Logout</button>
     </div>
   );
+};
+
+const ThemeProvider = () => {
+  const [theme, toogler] = useThemeProvider();
+  return <button onClick={toogler}>theme: {theme ? "light" : "dark"}</button>;
 };
 
 const Navbar = () => {
@@ -30,9 +35,10 @@ const Navbar = () => {
       <FlexDiv>
         <RNavLink to="/">Home</RNavLink>
       </FlexDiv>
-      <div>
+      <FlexDiv>
         <UserProfile />
-      </div>
+        <ThemeProvider />
+      </FlexDiv>
     </NavbarWrapper>
   );
 };

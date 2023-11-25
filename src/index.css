@@ -1,15 +1,1 @@
-.video-container {
-  position: fixed; /* Fixed position to cover the entire viewport */
-  top: 60px;
-  left: 240px;
-  z-index: -9;
-  width: 100%;
-  height: 100%;
-  overflow: hidden; /* Hide any overflowing content */
-}
 
-video {
-  object-fit: cover; /* Cover the entire container */
-  width: 100%;
-  height: 100%;
-}

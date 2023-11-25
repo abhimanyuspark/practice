@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 // import Video from "./Video";
 
 const Layout = () => {
-  const { sideBar } = useSelector((state) => state.sidebar);
+  const { sideBar } = useSelector((state) => state.layout);
 
   return (
     <AppWrapper $width={sideBar}>
