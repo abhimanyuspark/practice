@@ -8,6 +8,7 @@ export const Label = styled.label`
   display: block;
   margin-bottom: 5px;
   font-size: 16px;
+  color: ${(props) => props.theme.cl_dark};
 `;
 
 export const Input = styled.input`
@@ -17,7 +18,7 @@ export const Input = styled.input`
   font-size: 16px;
   border: 1px solid ${({ $error }) => ($error ? "red" : "#ccc")};
   &:focus {
-    outline: 2px solid blue;
+    outline: 2px solid ${(props) => props.theme.bt_bg};
     outline-offset: 1px;
   }
 `;

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Select from "../../components/Custom/Select/SelectDropDown";
 import { makeData } from "../../data/makeData";
 import { Space } from "antd";
+import { useThemeProvider } from "../../hooks/useThemeProvider";
 
 const options = [
   { label: "First", value: 1, color: "red" },
@@ -24,6 +25,7 @@ const CustomSelect = () => {
   const [object, setObject] = useState(data[0]);
   const [object2, setObject2] = useState(options[0]);
   const [object3, setObject3] = useState(options[0]);
+  const [theme] = useThemeProvider();
 
   const onsubmit = (e) => {
     e.preventDefault();
@@ -104,6 +106,7 @@ const CustomSelect = () => {
         selectWidth="20em"
         optionsWidth="25em"
         enableSearch
+        theme={theme}
       />
       <br />
       <Space>
@@ -118,6 +121,7 @@ const CustomSelect = () => {
           optionsWidth="25em"
           enableSearch
           enableNoDataList
+          theme={theme}
         />
         <Select
           value={object2}
@@ -128,6 +132,7 @@ const CustomSelect = () => {
           }}
           selectWidth="10em"
           enableSearch
+          theme={theme}
         />
         <Select
           value={object3}
@@ -137,6 +142,7 @@ const CustomSelect = () => {
             // setObject2(o);
           }}
           selectWidth="10em"
+          theme={theme}
         />
       </Space>
       <br />

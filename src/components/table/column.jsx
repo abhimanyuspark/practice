@@ -4,6 +4,7 @@ import Select from "../Custom/Select/SelectDropDown";
 import IndeterminateCheckbox from "./checkbox";
 import { Edit, View, Delete } from "./Function";
 import { useState } from "react";
+import { useThemeProvider } from "../../hooks/useThemeProvider";
 
 const menu = [
   {
@@ -113,9 +114,7 @@ export const Columns = [
     cell: (info) => {
       const value = info.getValue();
       const [val, setVal] = useState(value);
-      const style = {
-        color: "black",
-      };
+      const [theme] = useThemeProvider();
       const optionTemplete = (o) => {
         return (
           <div
@@ -139,7 +138,7 @@ export const Columns = [
         );
       };
       return (
-        <span style={style} key={value.id}>
+        <span key={value.id}>
           <Select
             optionTemplate={optionTemplete}
             singleTemplate={optionTemplete}
@@ -149,6 +148,7 @@ export const Columns = [
             value={val}
             fields={{ labelFn: (l) => l.name }}
             onChange={(o) => setVal(o)}
+            theme={theme}
           />
         </span>
       );

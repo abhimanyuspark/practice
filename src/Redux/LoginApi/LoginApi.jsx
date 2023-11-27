@@ -62,7 +62,7 @@ const authSlice = createSlice({
         let newData = Object.fromEntries(
           Object.entries(data).filter(([key]) => !keysToExclude.includes(key))
         );
-        Cookies.set("user", JSON.stringify(newData), { expires: 1 / 24 }); // Expires in 1 hour
+        Cookies.set("user", JSON.stringify(newData), { expires: 1 }); // Expires in 1 day
       })
       .addCase(authenticateUser.rejected, (state, action) => {
         state.loading = false;

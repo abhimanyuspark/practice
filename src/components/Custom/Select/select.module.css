@@ -12,18 +12,11 @@
   padding: 0.4em;
   border-radius: 0.25em;
   outline: none;
-  background-color: white;
   border: 0.05em solid #777;
 }
 .border {
   border: 0.05em solid transparent;
   background-color: transparent;
-}
-
-.container:hover,
-.container:focus {
-  outline: 2px solid blue;
-  outline-offset: 1px;
 }
 
 .value {
@@ -68,6 +61,9 @@
   border: 0.25em solid transparent;
   border-top-color: #777;
 }
+.dark-theme .caret {
+  border-top-color: white;
+}
 
 .options {
   position: absolute;
@@ -80,7 +76,6 @@
   width: 100%;
   left: 0px;
   top: calc(100% + 0.5em);
-  background-color: white;
   z-index: 100;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
@@ -109,16 +104,6 @@
   font-size: 15px;
   padding: 0.5em;
   cursor: pointer;
-}
-
-.option.selected {
-  background-color: hsl(200, 100%, 70%);
-}
-
-.No-option-found:hover,
-.option:hover {
-  background-color: hsl(200, 100%, 50%);
-  color: white;
 }
 
 .option-badge {
@@ -154,8 +139,8 @@
 }
 
 .search-bar-container {
-  padding: 0px 5px 5px 5px;
-  height: 40px;
+  padding: 3px 8px 10px 8px;
+  height: 50px;
 }
 
 .search-bar {
@@ -164,10 +149,6 @@
   border: 1px solid #777;
   width: 100%;
   height: 100%;
-}
-
-.search-bar:focus {
-  outline: 2px solid blue;
 }
 
 .multi-btns-container {
@@ -183,11 +164,72 @@
   display: grid;
   font-size: 14px;
   place-content: center;
-  background-color: hsl(200, 100%, 70%);
-  color: white;
   cursor: pointer;
 }
 
-.multi-btns:hover {
-  background-color: hsl(200, 100%, 50%);
+.light-theme .multi-btns {
+  background-color: #1f4172;
+  color: white;
+}
+.dark-theme .multi-btns {
+  background-color: #333456;
+  color: white;
+}
+.dark-theme .multi-btns:hover,
+.light-theme .multi-btns:hover {
+  background-color: white;
+  color: #333;
+}
+
+.light-theme .container,
+.light-theme .options,
+.light-theme .search-bar-container,
+.light-theme .search-bar {
+  background-color: white;
+  color: #333;
+}
+.dark-theme .container,
+.dark-theme .options,
+.dark-theme .search-bar-container,
+.dark-theme .search-bar {
+  background-color: #333456;
+  color: white;
+}
+
+.light-theme .container:hover,
+.light-theme .container:focus,
+.light-theme .search-bar:hover,
+.light-theme .search-bar:focus {
+  outline: 2px solid #1f4172;
+  outline-offset: 1px;
+}
+.dark-theme .container:hover,
+.dark-theme .container:focus,
+.dark-theme .search-bar:hover,
+.dark-theme .search-bar:focus {
+  outline: 2px solid white;
+  outline-offset: 1px;
+}
+.dark-theme .search-bar::placeholder {
+  color: white;
+}
+
+.light-theme .option:hover,
+.light-theme .No-option-found:hover {
+  background-color: #1f4172;
+  color: white;
+}
+.dark-theme .option:hover,
+.dark-theme .No-option-found:hover {
+  background-color: white;
+  color: #333;
+}
+
+.light-theme .selected {
+  background-color: #1f4172;
+  color: white;
+}
+.dark-theme .selected {
+  background-color: white;
+  color: #333;
 }

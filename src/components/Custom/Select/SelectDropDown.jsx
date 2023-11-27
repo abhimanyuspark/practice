@@ -16,7 +16,7 @@ function Select({
   divider = false,
   enableNoDataList = false,
   border = true,
-  selectStyle,
+  theme = true,
   selectWidth,
   optionsWidth,
 }) {
@@ -73,13 +73,14 @@ function Select({
   return (
     <div
       ref={parentRef}
-      className={styles["main-container"]}
-      style={selectWidth ? { width: selectWidth } : { width: "100%" }}
+      className={`${styles["main-container"]} ${
+        theme ? styles["light-theme"] : styles["dark-theme"]
+      }`}
+      style={{ width: selectWidth || "100%" }}
     >
       <div
         tabIndex={0}
         className={`${border ? "" : styles.border} ${styles.container}`}
-        style={selectStyle}
         onClick={() => {
           setIsOpen((prev) => !prev);
           setQuery("");
@@ -124,7 +125,7 @@ function Select({
       </div>
 
       <div
-        style={optionsWidth ? { width: optionsWidth } : { width: "100%" }}
+        style={{ width: optionsWidth || "100%" }}
         className={`${styles.options} ${isOpen ? styles.show : ""}`}
       >
         {enableSearch && (

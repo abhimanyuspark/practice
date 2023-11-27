@@ -8,7 +8,13 @@ import {
   SideHeader,
   SideChildItem,
 } from "../Layout/LayoutStyle";
-import { FlexDiv, CenterWarapper, Container } from "../container/Container";
+import {
+  FlexDiv,
+  CenterWarapper,
+  Container,
+  MainWrapper,
+  LoginNavBar,
+} from "../Container/Container";
 import { RNavLink } from "../LinkStyle/LinkStyle";
 import {
   InputWrapper,
@@ -17,6 +23,7 @@ import {
   ErrorMessage,
 } from "../InputField/InputField";
 import { Buttons } from "../buttons/buttons";
+import Icon from "../Icons/Icon";
 
 export {
   NavbarWrapper,
@@ -30,10 +37,13 @@ export {
   FlexDiv,
   Container,
   CenterWarapper,
+  MainWrapper,
+  LoginNavBar,
   RNavLink,
   InputWrapper,
   Label,
   Input,
   ErrorMessage,
   Buttons,
+  Icon,
 };

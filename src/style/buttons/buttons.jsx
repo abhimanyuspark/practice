@@ -12,7 +12,7 @@ const Loaders = styled.div`
     position: absolute;
     width: 24px;
     height: 24px;
-    border: 3px solid #fff;
+    border: 3px solid;
     ${({ $margin }) =>
       $margin
         ? css`
@@ -23,7 +23,8 @@ const Loaders = styled.div`
           `}
     border-radius: 50%;
     animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-    border-color: #fff transparent transparent transparent;
+    border-color: ${(props) => props.theme.bt_cl} transparent transparent
+      transparent;
   }
   & div:nth-child(1) {
     animation-delay: -0.45s;
@@ -50,8 +51,8 @@ const Button = styled.button`
   border: none;
   padding: 0px 10px;
   border-radius: 0.3rem;
-  color: white;
-  background-color: blue;
+  color: ${(props) => props.theme.bt_cl};
+  background-color: ${(props) => props.theme.bt_bg};
   display: flex;
   align-items: center;
   gap: 0.3rem;
@@ -75,7 +76,12 @@ const Button = styled.button`
   }
   transition: 1s ease;
   &:hover {
-    background-color: black;
+    background-color: ${(props) => props.theme.bt_cl};
+    color: ${(props) => props.theme.bt_bg};
+  }
+  &:hover div {
+    border-color: ${(props) => props.theme.bt_bg}transparent transparent
+      transparent;
   }
 `;
 

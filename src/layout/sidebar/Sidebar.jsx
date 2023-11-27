@@ -9,7 +9,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggleSidebar } from "../../Redux/Redux-Layout/ReduxLayout";
 import SideMenu from "./SideMenu";
 import Cookies from "js-cookie";
-import { useThemeProvider } from "../../hooks/useThemeProvider";
 
 const Sidebar = () => {
   const [expanded, setExpanded] = useState(false);
@@ -62,8 +61,6 @@ const Header = ({ sideBar, expanded }) => {
 };
 
 const Footer = ({ sideBar, toogle }) => {
-  const [theme, toogler] = useThemeProvider();
-
   return (
     <SideFooter>
       <div className={`footer ${!sideBar ? "fs" : ""}`}>
@@ -74,8 +71,7 @@ const Footer = ({ sideBar, toogle }) => {
           arrow_back_ios
         </span>
         <span className={`spanv ${!sideBar ? "hidden" : ""}`}>
-          <button onClick={toogler}>{theme ? "Light" : "Dark"}</button>Version
-          0.0.1
+          Version 0.0.1
         </span>
       </div>
     </SideFooter>
