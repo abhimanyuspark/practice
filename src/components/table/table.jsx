@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from "react";
 import IndeterminateCheckbox from "./checkbox";
-import T from "./table.module.css";
 import SortingIcons from "./SortingIcons";
+import { Table1, Td1, Th1, Tr1, Container } from "../../style/Export/Export";
 
 import {
   flexRender,
@@ -44,7 +44,7 @@ function Table({
 
   const Loading = () => {
     return (
-      <div className={T["table-loading"]}>
+      <div className="table-loading">
         <div>loading...</div>
       </div>
     );
@@ -55,20 +55,22 @@ function Table({
   }, []);
 
   return (
-    <div className="p-2 table-container">
-      <table className={T.table}>
-        <thead className={T.thead}>
+    <Container>
+      <Table1>
+        <thead>
           {table.getHeaderGroups().map((headerGroup) => (
-            <tr className={T.tr} key={headerGroup.id}>
+            <Tr1 key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
                 return (
-                  <th className={T.th} key={header.id} colSpan={header.colSpan}>
+                  <Th1 key={header.id} colSpan={header.colSpan}>
                     {header.isPlaceholder ? null : (
                       <div
-                        className={T.different}
                         {...{
                           onClick: header.column.getToggleSortingHandler(),
                         }}
+                        className={
+                          header.column.getCanSort() ? "different" : ""
+                        }
                       >
                         {flexRender(
                           header.column.columnDef.header,
@@ -77,52 +79,46 @@ function Table({
                         <SortingIcons header={header} />
                       </div>
                     )}
-                  </th>
+                  </Th1>
                 );
               })}
-            </tr>
+            </Tr1>
           ))}
         </thead>
-        <tbody className={T.tbody}>
+        <tbody>
           {loading ? (
-            <tr>
+            <Tr1>
               <td colSpan={columnSpan}>{Loading()}</td>
-            </tr>
+            </Tr1>
           ) : table.getRowModel().rows.length > 0 ? (
             table.getRowModel().rows.map((row) => {
               const isSelected = row.getIsSelected(row.id);
               return (
-                <tr
-                  key={row.id}
-                  className={`${isSelected ? `${T.selectedrow}` : ""} ${T.tr}`}
-                >
+                <Tr1 key={row.id} className={isSelected ? "selectedrow" : ""}>
                   {row.getVisibleCells().map((cell) => {
                     return (
-                      <td className={T.td} key={cell.id}>
+                      <Td1 key={cell.id}>
                         {flexRender(
                           cell.column.columnDef.cell,
                           cell.getContext()
                         )}
-                      </td>
+                      </Td1>
                     );
                   })}
-                </tr>
+                </Tr1>
               );
             })
           ) : (
-            <tr className={T["no-data"]}>
-              <td colSpan={columnSpan}>
+            <Tr1 className="different">
+              <Td1 className="no-data" colSpan={columnSpan}>
                 No data Found
-                {/* <div>
-                  <div>No data found</div>
-                </div> */}
-              </td>
-            </tr>
+              </Td1>
+            </Tr1>
           )}
         </tbody>
-        <tfoot className={T.tfoot}>
+        <tfoot>
           <tr>
-            <td className="p-1">
+            <td style={{ padding: "5px" }}>
               <IndeterminateCheckbox
                 {...{
                   checked: table.getIsAllPageRowsSelected(),
@@ -131,10 +127,12 @@ function Table({
                 }}
               />
             </td>
-            <td colSpan={20}>Page Rows ({table.getRowModel().rows.length})</td>
+            <td colSpan={columnSpan}>
+              Page Rows ({table.getRowModel().rows.length})
+            </td>
           </tr>
         </tfoot>
-      </table>
+      </Table1>
       <div className="flex gap-1">
         <button
           className="button ac-l"
@@ -199,7 +197,7 @@ function Table({
           {table.getPreFilteredRowModel().rows.length} Total Rows Selected
         </div>
       </div>
-    </div>
+    </Container>
   );
 }
 

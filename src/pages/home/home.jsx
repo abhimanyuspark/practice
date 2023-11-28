@@ -8,6 +8,7 @@ const { Search } = Input;
 import { useDispatch, useSelector } from "react-redux";
 import { getUserApi } from "../../Redux/ReduxApi/UserApi";
 import FilterAnimation from "../../style/animations/FilterAnimation";
+import { FlexDiv, PaddingContainer } from "../../style/Export/Export";
 // import { ProgressCircle } from "../../style/progressBars/ProgressBars";
 
 const Home = () => {
@@ -63,36 +64,41 @@ const Home = () => {
   // console.log("home");
 
   return (
-    <div>
-      <div>
-        {/* <p>{JSON.stringify(data)}</p> */}
-        {/* <ProgressCircle $value={76}>76</ProgressCircle> */}
-        <div className="flex" style={{ justifyContent: "space-between" }}>
-          <Space>
-            <Search
-              placeholder="Search name here..."
-              value={globalFilter}
-              onChange={handleInputChange}
-              style={{
-                width: 200,
-              }}
-            />
-            <DateRangePicker value={date.select} onChange={handleDateChange} />
-            {clear ? <Button onClick={handleClear}>Clear</Button> : ""}
-          </Space>
+    <PaddingContainer>
+      <FlexDiv $direction>
+        <div>
+          {/* <p>{JSON.stringify(data)}</p> */}
+          {/* <ProgressCircle $value={76}>76</ProgressCircle> */}
+          <div className="flex" style={{ justifyContent: "space-between" }}>
+            <Space>
+              <Search
+                placeholder="Search name here..."
+                value={globalFilter}
+                onChange={handleInputChange}
+                style={{
+                  width: 200,
+                }}
+              />
+              <DateRangePicker
+                value={date.select}
+                onChange={handleDateChange}
+              />
+              {clear ? <Button onClick={handleClear}>Clear</Button> : ""}
+            </Space>
 
-          <FilterAnimation />
+            <FilterAnimation />
+          </div>
         </div>
-      </div>
 
-      <Table
-        loading={loading}
-        Columns={Columns}
-        data={filterByDate}
-        globalFilter={globalFilter}
-        setGlobalFilter={setGlobalFilter}
-      />
-    </div>
+        <Table
+          loading={loading}
+          Columns={Columns}
+          data={filterByDate}
+          globalFilter={globalFilter}
+          setGlobalFilter={setGlobalFilter}
+        />
+      </FlexDiv>
+    </PaddingContainer>
   );
 };
 

@@ -1,10 +1,10 @@
 import { Dashboard, List, Setting, LoginIcon } from "../../style/Icons/Icons";
 
-export const SideBarMenuData = [
+export const AdminSidebarData = [
   {
     id: 1,
     icon: Dashboard,
-    value: "Dashboard",
+    value: "Admin Dashboard",
     subMenu: [
       {
         id: 1,

@@ -16,12 +16,11 @@ export const Menu = styled.div`
   cursor: pointer;
   & span {
     font-size: 20px;
-    color: #333;
+    color: ${(props) => props.theme.cl_dark};
   }
   &:hover,
   &:focus {
-    background-color: white;
-    outline: 2px solid blue;
+    outline: 2px solid ${(props) => props.theme.bt_bg};
     outline-offset: 1px;
   }
 `;
@@ -39,7 +38,7 @@ export const MenuUl = styled.ul`
   top: 100%; /* Set the dropdown to appear below the menu */
   right: 0; /* Position it at the right */
   /* You can customize further (e.g., left, bottom) if needed */
-  background-color: white;
+  background-color: ${(props) => props.theme.bg_cl};
   ${({ $display }) =>
     $display
       ? css`
@@ -55,7 +54,7 @@ export const MenuLi = styled.li`
   /* text-align: left; */
   display: flex;
   align-items: center;
-  color: black;
+  color: ${(props) => props.theme.cl_dark};
   gap: 0.5rem;
   font-size: 14px;
   & span {
@@ -67,6 +66,7 @@ export const MenuLi = styled.li`
   }
   cursor: pointer;
   &:hover {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: ${(props) => props.theme.bt_bg};
+    color: ${(props) => props.theme.cl_light};
   }
 `;

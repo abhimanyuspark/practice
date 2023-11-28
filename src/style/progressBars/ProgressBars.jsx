@@ -10,6 +10,7 @@ export const ProgressCircle = styled.span`
   border-radius: 50%;
   border: 8px solid #0000;
   font-size: 14px;
+  color: black;
   font-family: math;
   font-weight: 600;
   cursor: pointer;

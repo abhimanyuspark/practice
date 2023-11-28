@@ -94,16 +94,3 @@
 .ac-r:active:not(:disabled) {
   transform: translateX(5px);
 }
-
-.sort {
-  width: 8px;
-  font-size: 0.8em; /* Adjust the size as needed */
-  transition: 0.2s ease; /* Add a transition for smooth color change */
-  color: grey;
-}
-.sort:hover {
-  color: #ff5722; /* Change this to the color you want */
-}
-.sort.active {
-  color: #ff5722; /* Change this to the color you want */
-}

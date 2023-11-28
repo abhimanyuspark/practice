@@ -2,7 +2,9 @@ import styled from "styled-components";
 
 export const FlexDiv = styled.div`
   display: flex;
-  align-items: center;
+  align-items: ${({ $direction }) => ($direction ? "" : "center")};
+  justify-content: ${({ $direction }) => ($direction ? "center" : "")};
+  flex-direction: ${({ $direction }) => ($direction ? "column" : "row")};
   gap: ${({ $gap }) => ($gap ? `${$gap}rem` : "1rem")};
 `;
 
@@ -15,6 +17,10 @@ export const CenterWarapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+
+export const PaddingContainer = styled.div`
+  padding: ${({ $padding }) => $padding || "20px"};
 `;
 
 export const Container = styled.div`

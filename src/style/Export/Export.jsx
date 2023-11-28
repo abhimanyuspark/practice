@@ -12,6 +12,7 @@ import {
   FlexDiv,
   CenterWarapper,
   Container,
+  PaddingContainer,
   MainWrapper,
   LoginNavBar,
 } from "../Container/Container";
@@ -24,6 +25,7 @@ import {
 } from "../InputField/InputField";
 import { Buttons } from "../buttons/buttons";
 import Icon from "../Icons/Icon";
+import { Table1, Td1, Th1, Tr1 } from "../table/table1";
 
 export {
   NavbarWrapper,
@@ -36,6 +38,7 @@ export {
   SideChildItem,
   FlexDiv,
   Container,
+  PaddingContainer,
   CenterWarapper,
   MainWrapper,
   LoginNavBar,
@@ -46,4 +49,8 @@ export {
   ErrorMessage,
   Buttons,
   Icon,
+  Table1,
+  Td1,
+  Th1,
+  Tr1,
 };
