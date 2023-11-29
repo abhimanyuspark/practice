@@ -66,7 +66,7 @@ function Select({
       ? option === value
       : CustomFields(option) === CustomFields(value);
 
-  const filterOptions = options.filter((o) =>
+  const filterOptions = options?.filter((o) =>
     CustomFields(o).toLowerCase().includes(query.toLowerCase())
   );
 
@@ -89,7 +89,7 @@ function Select({
         <span className={styles.value}>
           {multiple
             ? value?.length > 0
-              ? value.map((v, i) => (
+              ? value?.map((v, i) => (
                   <div
                     key={i}
                     onClick={(e) => {
@@ -102,12 +102,14 @@ function Select({
                     <span className={styles["remove-btn"]}>&times;</span>
                   </div>
                 ))
-              : "Search value..."
+              : "--"
             : singleTemplate
-            ? singleTemplate(value)
+            ? value
+              ? singleTemplate(value)
+              : "--"
             : value
             ? CustomFields(value)
-            : "Search value..."}
+            : "--"}
         </span>
         {clearButton && (
           <div
@@ -165,11 +167,11 @@ function Select({
                 setIsOpen(false);
               }}
             >
-              No Data Selected
+              --
             </li>
           )}
-          {filterOptions.length > 0 ? (
-            filterOptions.map((option, index) => (
+          {filterOptions?.length > 0 ? (
+            filterOptions?.map((option, index) => (
               <li
                 onClick={() => selectOption(option)}
                 key={index}
@@ -181,7 +183,7 @@ function Select({
               </li>
             ))
           ) : (
-            <li className={styles["No-option-found"]}>No data found</li>
+            <li className={styles["No-option-found"]}>--No data found--</li>
           )}
         </ul>
       </div>

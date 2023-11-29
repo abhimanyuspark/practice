@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "./pages/home/home";
 import AllButtons from "./pages/AllButtons/AllButtons";
 import Accordians from "./components/accordians/accordians";
@@ -13,6 +13,7 @@ import { lightTheme, darkTheme } from "./style/Theme/Theme";
 import { useSelector } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Unauthorized from "./pages/Unauthorized/Unauthorized";
 
 function App() {
   const { theme } = useSelector((state) => state.layout);
@@ -26,7 +27,7 @@ function App() {
     <ThemeProvider theme={theme ? lightTheme : darkTheme}>
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="/unauthorized" element={<h1>Unauthorized</h1>} />
+        <Route path="/unauthorized" element={<Unauthorized />} />
 
         {/*//?Routes for admin, employee and client */}
         <Route

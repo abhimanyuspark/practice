@@ -14,7 +14,7 @@ import {
   LoginNavBar,
 } from "../../style/Export/Export";
 import { Check } from "../../style/Icons/Icons";
-import Svg from "../../../public/vite.svg";
+import Logo from "../../assets/Vitelogo.svg";
 
 const Login = () => {
   const { loading, error } = useSelector((state) => state.auth);
@@ -78,7 +78,7 @@ const Login = () => {
   return (
     <MainWrapper>
       <LoginNavBar>
-        <img src={Svg} alt="svg" width="40px" height="40px" /> Practice
+        <img src={Logo} alt="svg" width="40px" height="40px" /> Practice
       </LoginNavBar>
       <CenterWarapper>
         <Container $width="450px" $margin="70px 0px 0px 0px">
@@ -94,7 +94,7 @@ const Login = () => {
                 $error={errors.username ? true : false}
                 autoFocus
               />
-              {error ? (
+              {error === "Please Enter valid username" ? (
                 <ErrorMessage>{error}</ErrorMessage>
               ) : (
                 errors.username && (

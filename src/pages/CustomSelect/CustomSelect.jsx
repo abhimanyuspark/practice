@@ -24,7 +24,7 @@ const CustomSelect = () => {
   const [array, setArray] = useState([options[0]]);
   const [object, setObject] = useState(data[0]);
   const [object2, setObject2] = useState(options[0]);
-  const [object3, setObject3] = useState(options[0]);
+  const [object3, setObject3] = useState("");
   const [theme] = useThemeProvider();
 
   const onsubmit = (e) => {
@@ -56,16 +56,10 @@ const CustomSelect = () => {
 
   const selectTemplate = (v) => {
     return (
-      <>
-        {v ? (
-          <div style={styles}>
-            <img style={style} src={v.profile} alt="p" />
-            <span>{v.name}</span>
-          </div>
-        ) : (
-          <i>Pass value...</i>
-        )}
-      </>
+      <div style={styles}>
+        <img style={style} src={v.profile} alt="p" />
+        <span>{v.name}</span>
+      </div>
     );
   };
 

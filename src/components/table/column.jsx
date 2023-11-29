@@ -5,6 +5,7 @@ import IndeterminateCheckbox from "./checkbox";
 import { Edit, View, Delete } from "./Function";
 import { useState } from "react";
 import { useThemeProvider } from "../../hooks/useThemeProvider";
+import Cookies from "js-cookie";
 
 const menu = [
   {
@@ -76,7 +77,18 @@ export const Columns = [
   {
     accessorKey: "name",
     header: () => "Name",
-    cell: (info) => info.getValue(),
+    cell: (info) => {
+      const user = JSON.parse(Cookies.get("user"));
+      const value = info.getValue();
+      return (
+        <div>
+          <span>{value}</span>
+          <span style={{ color: "red", marginLeft: "0.4rem" }}>
+            {user?.name === value && "its you"}
+          </span>
+        </div>
+      );
+    },
   },
   {
     accessorKey: "date",
