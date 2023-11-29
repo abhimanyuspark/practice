@@ -44,10 +44,9 @@ export const Th1 = styled.th`
     transition: 0.2s ease;
     color: grey;
   }
-  & > .different .sort:hover {
-    color: ${(props) => props.theme.cl_dark};
-  }
-  & > .different .sort.active {
+  & > .different .sort:hover,
+  .different .sort.active {
+    font-weight: 700;
     color: ${(props) => props.theme.cl_dark};
   }
 `;

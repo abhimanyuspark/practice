@@ -28,6 +28,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/unauthorized" element={<h1>Unauthorized</h1>} />
 
+        {/*//?Routes for admin, employee and client */}
         <Route
           element={
             <RequireAuth
@@ -35,29 +36,31 @@ function App() {
             />
           }
         >
-          <Route index element={<Home />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/setting" element={<h1>Setting</h1>} />
         </Route>
 
-        <Route element={<RequireAuth roleAccess={[role.Admin]} />}>
+        {/*//?those Routes only for admin and client */}
+        <Route element={<RequireAuth roleAccess={[role.Admin, role.Client]} />}>
           <Route path="/allbuttons" element={<AllButtons />} />
+        </Route>
+
+        {/*//?those Routes only for admin and employee */}
+        <Route
+          element={<RequireAuth roleAccess={[role.Admin, role.Employee]} />}
+        >
           <Route path="/accordians" element={<Accordians />} />
+        </Route>
+
+        {/*//?those Routes only for admin */}
+        <Route element={<RequireAuth roleAccess={[role.Admin]} />}>
           <Route path="/select" element={<CustomSelect />} />
           <Route path="/DropDown" element={<Form />} />
-          <Route path="/setting" element={<h1>Setting</h1>} />
         </Route>
 
-        <Route element={<RequireAuth roleAccess={[role.Employee]} />}>
-          <Route path="/accordians" element={<Accordians />} />
-          <Route path="/setting" element={<h1>Setting</h1>} />
-        </Route>
-
-        <Route element={<RequireAuth roleAccess={[role.Client]} />}>
-          <Route path="/allbuttons" element={<AllButtons />} />
-          <Route path="/setting" element={<h1>Setting</h1>} />
-        </Route>
-
-        <Route path="*" element={<Navigate to="/404" />} />
+        <Route path="*" element={<h1>Page Not found</h1>} />
       </Routes>
+
       <ToastContainer
         position="top-left"
         autoClose={5000}
