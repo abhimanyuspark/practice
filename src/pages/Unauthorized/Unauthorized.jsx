@@ -1,8 +1,16 @@
 import React from "react";
 import Unauth from "../../assets/404page1.png";
-import { UnAbs, UnContainer, UnImage, Unh } from "./UnStyles";
 import Cookies from "js-cookie";
 import { useLocation } from "react-router-dom";
+import {
+  MainWrapper,
+  StickyBar,
+  BackGroundImage,
+  Overflow,
+  AbsoluteDiv,
+  H1,
+} from "../../style/Export/Export";
+import Logo from "../../assets/Vitelogo.svg";
 
 const Unauthorized = () => {
   const user = JSON.parse(Cookies.get("user"));
@@ -13,14 +21,20 @@ const Unauthorized = () => {
   const roleConvert = user?.role.charAt(0).toUpperCase() + user?.role.slice(1);
 
   return (
-    <UnContainer>
-      <UnImage src={Unauth} alt="auth" />
-      <UnAbs>
-        <Unh>
-          {roleConvert} "{user?.name}" unauthorized accesses for {convert} page
-        </Unh>
-      </UnAbs>
-    </UnContainer>
+    <MainWrapper>
+      <StickyBar>
+        <img src={Logo} alt="svg" width="40px" height="40px" /> Practice
+      </StickyBar>
+      <Overflow>
+        <BackGroundImage src={Unauth} alt="auth" />
+        <AbsoluteDiv $width="500px" $bottom="250px" $right="50px">
+          <H1 $color="red">
+            {roleConvert} "{user?.name}" unauthorized accesses for {convert}{" "}
+            page
+          </H1>
+        </AbsoluteDiv>
+      </Overflow>
+    </MainWrapper>
   );
 };
 

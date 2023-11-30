@@ -45,9 +45,19 @@ const Loaders = styled.div`
   }
 `;
 
+const Loader = ({ margin }) => {
+  return (
+    <Loaders $margin={margin}>
+      <div></div>
+      <div></div>
+      <div></div>
+    </Loaders>
+  );
+};
+
 const Button = styled.button`
-  width: auto;
-  height: 2.4rem;
+  width: ${({ $width }) => ($width ? $width : "auto")};
+  height: 2.5rem;
   border: none;
   padding: 0px 10px;
   border-radius: 0.3rem;
@@ -55,7 +65,8 @@ const Button = styled.button`
   background-color: ${(props) => props.theme.bt_bg};
   display: flex;
   align-items: center;
-  gap: 0.3rem;
+  justify-content: center;
+  gap: 0.4rem;
   ${({ $cursor }) =>
     $cursor
       ? css`
@@ -71,10 +82,10 @@ const Button = styled.button`
         `
       : ""}
   & .text {
-    font-family: sans-serif;
-    font-size: 15px;
+    font-size: 16.5px;
+    line-height: 0.5cm;
   }
-  transition: 1s ease;
+  transition: 0.5s ease;
   &:hover {
     background-color: ${(props) => props.theme.bt_cl};
     color: ${(props) => props.theme.bt_bg};
@@ -85,19 +96,15 @@ const Button = styled.button`
   }
 `;
 
-const Loader = ({ margin }) => {
+export const Buttons = ({ type, width, dir, text, icon, loading, onClick }) => {
   return (
-    <Loaders $margin={margin}>
-      <div></div>
-      <div></div>
-      <div></div>
-    </Loaders>
-  );
-};
-
-export const Buttons = ({ dir, text, icon, loading, onClick }) => {
-  return (
-    <Button $direction={dir} onClick={onClick} $cursor={loading}>
+    <Button
+      type={type}
+      $width={width}
+      $direction={dir}
+      onClick={onClick}
+      $cursor={loading}
+    >
       <span className="text">{text ? text : "Button"}</span>
       {loading ? <Loader margin={dir} /> : icon && icon}
     </Button>

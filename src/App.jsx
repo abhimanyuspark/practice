@@ -14,6 +14,7 @@ import { useSelector } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Unauthorized from "./pages/Unauthorized/Unauthorized";
+import PageNotFound from "./pages/404/PageNotFound";
 
 function App() {
   const { theme } = useSelector((state) => state.layout);
@@ -59,7 +60,7 @@ function App() {
           <Route path="/DropDown" element={<Form />} />
         </Route>
 
-        <Route path="*" element={<h1>Page Not found</h1>} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
 
       <ToastContainer

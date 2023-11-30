@@ -11,9 +11,11 @@ import {
   ErrorMessage,
   Buttons,
   MainWrapper,
-  LoginNavBar,
+  H1,
+  PaddingContainer,
+  StickyBar,
 } from "../../style/Export/Export";
-import { Check } from "../../style/Icons/Icons";
+import { LoginIcon } from "../../style/Icons/Icons";
 import Logo from "../../assets/Vitelogo.svg";
 
 const Login = () => {
@@ -77,30 +79,37 @@ const Login = () => {
 
   return (
     <MainWrapper>
-      <LoginNavBar>
+      <StickyBar>
         <img src={Logo} alt="svg" width="40px" height="40px" /> Practice
-      </LoginNavBar>
+      </StickyBar>
+
       <CenterWarapper>
-        <Container $width="450px" $margin="70px 0px 0px 0px">
+        <Container $width="450px" $margin="80px 0px 0px">
+          <CenterWarapper>
+            <PaddingContainer $padding="5px 0px 20px">
+              <H1 $color="white">Login In</H1>
+            </PaddingContainer>
+          </CenterWarapper>
+
           <form onSubmit={handleSubmit}>
             <InputWrapper>
               <Label>Username</Label>
               <Input
                 type="text"
                 name="username"
-                placeholder="Enter your username"
+                autoCapitalize="true"
+                autoComplete="false"
+                placeholder="Enter your username..."
                 value={formData.username}
                 onChange={handleChange}
                 $error={errors.username ? true : false}
                 autoFocus
               />
-              {error === "Please Enter valid username" ? (
-                <ErrorMessage>{error}</ErrorMessage>
-              ) : (
-                errors.username && (
-                  <ErrorMessage>{errors.username}</ErrorMessage>
-                )
-              )}
+              <ErrorMessage>
+                {error === "Please Enter valid username"
+                  ? error
+                  : errors?.username}
+              </ErrorMessage>
             </InputWrapper>
 
             <InputWrapper>
@@ -108,25 +117,25 @@ const Login = () => {
               <Input
                 type="password"
                 name="password"
-                placeholder="Enter your password"
+                placeholder="Enter your password..."
                 value={formData.password}
                 onChange={handleChange}
                 $error={errors.password ? true : false}
+                autoComplete="false"
               />
-              {error === "Please Enter valid credentials" ? (
-                <ErrorMessage>{error}</ErrorMessage>
-              ) : (
-                errors.password && (
-                  <ErrorMessage>{errors.password}</ErrorMessage>
-                )
-              )}
+              <ErrorMessage>
+                {error === "Please Enter valid credentials"
+                  ? error
+                  : errors?.password}
+              </ErrorMessage>
             </InputWrapper>
 
             <Buttons
               type="submit"
-              text="Submit"
-              icon={Check}
+              text="Login"
+              icon={LoginIcon}
               loading={loading}
+              width="100%"
             />
           </form>
         </Container>

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const FlexDiv = styled.div`
   display: flex;
@@ -10,6 +10,7 @@ export const FlexDiv = styled.div`
 
 export const MainWrapper = styled.section`
   height: 100vh;
+  overflow: auto;
   background-color: ${(props) => props.theme.bg_cl};
 `;
 
@@ -33,12 +34,52 @@ export const Container = styled.div`
   background-color: ${(props) => props.theme.bg_cl};
 `;
 
-export const LoginNavBar = styled.nav`
+export const StickyBar = styled.nav`
   display: flex;
   align-items: center;
   justify-content: center;
+  position: sticky;
+  top: 0;
   width: 100%;
   height: 70px;
   color: white;
   background-color: ${(props) => props.theme.lt_bg_cl};
+`;
+
+export const Overflow = styled.div`
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 70px);
+  user-select: none;
+  overflow: hidden;
+`;
+
+export const BackGroundImage = styled.img`
+  width: 100%;
+  height: 100%;
+`;
+
+export const AbsoluteDiv = styled.div`
+  position: absolute;
+  width: ${({ $width }) => $width || "auto"};
+  ${({ $top }) =>
+    $top &&
+    css`
+      top: ${$top};
+    `};
+  ${({ $bottom }) =>
+    $bottom &&
+    css`
+      bottom: ${$bottom};
+    `};
+  ${({ $right }) =>
+    $right &&
+    css`
+      right: ${$right};
+    `};
+  ${({ $left }) =>
+    $left &&
+    css`
+      left: ${$left};
+    `};
 `;

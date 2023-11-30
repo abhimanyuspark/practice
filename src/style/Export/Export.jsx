@@ -14,7 +14,10 @@ import {
   Container,
   PaddingContainer,
   MainWrapper,
-  LoginNavBar,
+  StickyBar,
+  Overflow,
+  BackGroundImage,
+  AbsoluteDiv,
 } from "../Container/Container";
 import { RNavLink } from "../LinkStyle/LinkStyle";
 import {
@@ -26,6 +29,7 @@ import {
 import { Buttons } from "../buttons/buttons";
 import Icon from "../Icons/Icon";
 import { Table1, Td1, Th1, Tr1 } from "../table/table1";
+import { H1, P } from "../Head and para/FontStyling";
 
 export {
   NavbarWrapper,
@@ -41,7 +45,10 @@ export {
   PaddingContainer,
   CenterWarapper,
   MainWrapper,
-  LoginNavBar,
+  StickyBar,
+  Overflow,
+  BackGroundImage,
+  AbsoluteDiv,
   RNavLink,
   InputWrapper,
   Label,
@@ -53,4 +60,6 @@ export {
   Td1,
   Th1,
   Tr1,
+  H1,
+  P,
 };
