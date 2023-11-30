@@ -15,6 +15,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Unauthorized from "./pages/Unauthorized/Unauthorized";
 import PageNotFound from "./pages/404/PageNotFound";
+import AllInput from "./pages/Input/AllInput";
 
 function App() {
   const { theme } = useSelector((state) => state.layout);
@@ -58,6 +59,11 @@ function App() {
         <Route element={<RequireAuth roleAccess={[role.Admin]} />}>
           <Route path="/select" element={<CustomSelect />} />
           <Route path="/DropDown" element={<Form />} />
+        </Route>
+
+        {/*//?those Routes only for client */}
+        <Route element={<RequireAuth roleAccess={[role.Client]} />}>
+          <Route path="/allinput" element={<AllInput />} />
         </Route>
 
         <Route path="*" element={<PageNotFound />} />

@@ -4,17 +4,28 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "../../Redux/LoginApi/LoginApi";
 import { useThemeProvider } from "../../hooks/useThemeProvider";
+import Swal from "sweetalert2";
 
 const UserProfile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [theme] = useThemeProvider();
 
   const handleLogout = () => {
-    const confirmLogout = window.confirm("Are you sure you want to logout?");
-    if (confirmLogout) {
-      dispatch(logout());
-      navigate("/login", { replace: true }); // Redirect to the login page
-    }
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You want to logout?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, logout!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(logout());
+        navigate("/login", { replace: true }); // Redirect to the login page
+      }
+    });
   };
 
   return (

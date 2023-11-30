@@ -29,6 +29,12 @@ export const ClientSidebarData = [
   //     value: "Accordians",
   //     link: "/accordians",
   //   },
+  {
+    id: 4,
+    icon: List,
+    value: "All Inputs",
+    link: "/allinput",
+  },
   // {
   //   id: 3,
   //   icon: LoginIcon,
