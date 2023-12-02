@@ -5,12 +5,11 @@ export const FilterContainer = styled.div`
   border-left: 1px solid grey;
   border-top: 0.2px solid grey;
   height: 100%;
-  overflow-x: hidden;
   position: fixed;
   right: 0;
   top: 60px;
   width: 260px;
-  z-index: 3;
+  z-index: 9;
   transition: all 0.3s ease-in-out;
   &.in {
     transform: translateZ(0px);

@@ -45,13 +45,6 @@ export const Container = styled.div`
   background-color: ${(props) => props.theme.bg_cl};
 `;
 
-export const ScrollBar = styled.div`
-  width: 100%;
-  border-top: 1px solid grey;
-  border-bottom: 1px solid grey;
-  height: calc(100vh - ${({ $height }) => $height || "110px"});
-`;
-
 export const StickyBar = styled.nav`
   display: flex;
   align-items: center;
@@ -67,9 +60,19 @@ export const StickyBar = styled.nav`
 export const Overflow = styled.div`
   position: relative;
   width: 100%;
-  height: calc(100vh - 70px);
+  ${({ $border }) =>
+    $border ||
+    css`
+      border-top: 1px solid grey;
+    `}
+  ${({ $border }) =>
+    $border ||
+    css`
+      border-bottom: 1px solid grey;
+    `}
+  height: calc(100vh - ${({ $height }) => $height || "70px"});
   user-select: none;
-  overflow: hidden;
+  overflow: ${({ $overFlow }) => $overFlow || "hidden"};
 `;
 
 export const BackGroundImage = styled.img`

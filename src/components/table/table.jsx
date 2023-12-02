@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from "react";
 import IndeterminateCheckbox from "./checkbox";
 import SortingIcons from "./SortingIcons";
-import { Table1, Td1, Th1, Tr1, Container } from "../../style/Export/Export";
+import { Table1, Td1, Th1, Tr1, TableWrapper } from "../../style/Export/Export";
 
 import {
   flexRender,
@@ -55,7 +55,7 @@ function Table({
   }, []);
 
   return (
-    <Container>
+    <TableWrapper>
       <Table1>
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
@@ -197,7 +197,7 @@ function Table({
           {table.getPreFilteredRowModel().rows.length} Total Rows Selected
         </div>
       </div>
-    </Container>
+    </TableWrapper>
   );
 }
 

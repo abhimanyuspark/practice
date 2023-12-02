@@ -3,7 +3,7 @@ import React from "react";
 const SortingIcons = ({ header }) => {
   return (
     header.column.getCanSort() && (
-      <div>
+      <div style={{ width: "max-content" }}>
         <span
           className={`sort material-symbols-outlined ${
             header.column.getIsSorted() === "asc" ? "active" : ""

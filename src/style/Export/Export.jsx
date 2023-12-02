@@ -19,7 +19,6 @@ import {
   BackGroundImage,
   AbsoluteDiv,
   JustifyWrapper,
-  ScrollBar,
   FlexWrapper,
 } from "../Container/Container";
 import { RNavLink } from "../LinkStyle/LinkStyle";
@@ -31,7 +30,7 @@ import {
 } from "../InputField/InputField";
 import { Buttons } from "../buttons/buttons";
 import Icon from "../Icons/Icon";
-import { Table1, Td1, Th1, Tr1 } from "../table/table1";
+import { TableWrapper, Table1, Td1, Th1, Tr1 } from "../table/table1";
 import { H1, H2, H3, P } from "../Head and para/FontStyling";
 
 export {
@@ -54,7 +53,6 @@ export {
   AbsoluteDiv,
   JustifyWrapper,
   FlexWrapper,
-  ScrollBar,
   RNavLink,
   InputWrapper,
   Label,
@@ -62,6 +60,7 @@ export {
   ErrorMessage,
   Buttons,
   Icon,
+  TableWrapper,
   Table1,
   Td1,
   Th1,

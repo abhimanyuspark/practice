@@ -6,8 +6,8 @@ import {
   H3,
   Icon,
   JustifyWrapper,
+  Overflow,
   PaddingContainer,
-  ScrollBar,
 } from "../Export/Export";
 import { Close } from "../Icons/Icons";
 
@@ -36,7 +36,9 @@ const FilterAnimation = ({ children }) => {
             <Icon onClick={clickOutsideHandler} icon={Close} />
           </JustifyWrapper>
         </PaddingContainer>
-        <ScrollBar $height="160px">{children}</ScrollBar>
+        <Overflow $height="160px" $overFlow="auto">
+          {children}
+        </Overflow>
         <PaddingContainer $padding="15px 10px">
           <JustifyWrapper $justify="end">
             <button>Clear</button>

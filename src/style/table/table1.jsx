@@ -1,13 +1,26 @@
 import styled from "styled-components";
 
+export const TableWrapper = styled.div`
+  overflow-x: auto;
+  width: 100%;
+  height: 100%;
+  border: 1px solid grey;
+  border-radius: 0.3rem;
+  padding: 10px 20px;
+`;
+
 export const Table1 = styled.table`
   border-collapse: collapse;
+  table-layout: auto;
   color: ${(props) => props.theme.cl_dark};
   height: 100%;
   width: 100%;
   & thead,
   tfoot {
     height: 50px;
+  }
+  & tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.3);
   }
 `;
 
@@ -16,7 +29,6 @@ export const Td1 = styled.td`
   text-align: left;
   &:last-child {
     padding: 5px;
-    padding-right: 15px;
     text-align: right;
   }
   &.no-data {
@@ -30,6 +42,7 @@ export const Th1 = styled.th`
   padding: 5px;
   text-align: left;
   &:last-child {
+    width: 100px;
     padding: 5px;
     text-align: right;
   }

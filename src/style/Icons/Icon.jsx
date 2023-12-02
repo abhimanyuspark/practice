@@ -10,7 +10,7 @@ const IconStyle = styled.span`
   color: ${({ $color }) => $color || "grey"};
   cursor: pointer;
   &:hover {
-    color: ${({ $color }) => $color || "black"};
+    color: ${(props) => props.theme.cl_dark};
   }
 `;
 

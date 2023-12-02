@@ -75,11 +75,11 @@ export const Columns = [
       const user = JSON.parse(Cookies.get("user"));
       const value = info.getValue();
       return (
-        <div>
-          <span>{value}</span>
-          <span style={{ color: "red", marginLeft: "0.4rem" }}>
+        <div style={{ width: "180px" }}>
+          <p>{value}</p>
+          <p style={{ color: "red", marginLeft: "0.4rem" }}>
             {user?.name === value && "its you"}
-          </span>
+          </p>
         </div>
       );
     },
