@@ -15,9 +15,10 @@ export const ProgressCircle = styled.span`
   font-weight: 600;
   cursor: pointer;
   transition: transform 0.2s ease;
-  --g: ${({ $value }) => ($value ? `${($value * 360) / 100}deg` : "180deg")};
+  --g: ${({ $value }) =>
+    $value ? `${Math.ceil(($value * 360) / 100)}deg` : "180deg"};
   --r: ${({ $value }) =>
-    $value ? `${360 - ($value * 360) / 100}deg` : "180deg"};
+    $value ? `${Math.floor(360 - ($value * 360) / 100)}deg` : "180deg"};
   background: linear-gradient(white, white) padding-box,
     conic-gradient(#18f303 var(--g), #ff0b0b var(--r)) border-box;
   &:hover {

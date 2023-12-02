@@ -8,9 +8,9 @@ export const DropMenu = styled.div`
 export const Menu = styled.div`
   border: 1px solid grey;
   user-select: none;
-  border-radius: 0.2rem;
+  border-radius: 0.3rem;
   display: flex;
-  padding: 2px 0px;
+  padding: 5px 2px;
   align-items: center;
   justify-content: center;
   cursor: pointer;
@@ -34,7 +34,7 @@ export const MenuUl = styled.ul`
   list-style: none;
   position: absolute;
   z-index: 9;
-  margin-top: 5px;
+  margin-top: 7px;
   top: 100%; /* Set the dropdown to appear below the menu */
   right: 0; /* Position it at the right */
   /* You can customize further (e.g., left, bottom) if needed */

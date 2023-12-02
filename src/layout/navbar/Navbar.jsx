@@ -2,7 +2,7 @@ import React from "react";
 import { FlexDiv, NavbarWrapper, RNavLink } from "../../style/Export/Export";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { logout } from "../../Redux/LoginApi/LoginApi";
+import { logout } from "../../Redux/LoginApi/reducer";
 import { useThemeProvider } from "../../hooks/useThemeProvider";
 import Swal from "sweetalert2";
 
@@ -37,7 +37,17 @@ const UserProfile = () => {
 
 const ThemeProvider = () => {
   const [theme, toogler] = useThemeProvider();
-  return <button onClick={toogler}>theme: {theme ? "light" : "dark"}</button>;
+  const handle = () => {
+    toogler();
+    Swal.fire({
+      position: "bottom-end",
+      icon: "success",
+      title: "Theme Changes",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+  };
+  return <button onClick={handle}>theme: {theme ? "light" : "dark"}</button>;
 };
 
 const Navbar = () => {

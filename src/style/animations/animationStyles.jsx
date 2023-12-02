@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const FilterContainer = styled.div`
-  background-color: #333;
+  background-color: ${(props) => props.theme.bg_cl};
   border-left: 1px solid grey;
   border-top: 0.2px solid grey;
   height: 100%;
@@ -13,13 +13,9 @@ export const FilterContainer = styled.div`
   z-index: 3;
   transition: all 0.3s ease-in-out;
   &.in {
-    transform: translateZ(0);
+    transform: translateZ(0px);
   }
   &.out {
     transform: translate3d(260px, 0, 0);
   }
-`;
-
-export const Div = styled.div`
-  /* ... */
 `;

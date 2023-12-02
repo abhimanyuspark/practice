@@ -22,12 +22,6 @@ const menu = [
   },
 ];
 
-const options = [
-  { id: 1, name: "Pending", color: "yellow" },
-  { id: 2, name: "Inprocess", color: "#159afb" },
-  { id: 3, name: "Complete", color: "#0cf90c" },
-];
-
 export const Columns = [
   {
     id: "select",
@@ -122,11 +116,12 @@ export const Columns = [
   {
     accessorKey: "status",
     header: "Status",
-    // setFilterValue: (info) => info.name,
     cell: (info) => {
       const value = info.getValue();
       const [val, setVal] = useState(value);
       const [theme] = useThemeProvider();
+      const options = info.row.original.statusMenu;
+
       const optionTemplete = (o) => {
         return (
           <div
@@ -155,7 +150,6 @@ export const Columns = [
             optionTemplate={optionTemplete}
             singleTemplate={optionTemplete}
             selectWidth="9em"
-            // optionsWidth="11em"
             options={options}
             value={val}
             fields={{ labelFn: (l) => l.name }}

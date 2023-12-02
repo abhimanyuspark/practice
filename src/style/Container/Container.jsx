@@ -8,6 +8,11 @@ export const FlexDiv = styled.div`
   gap: ${({ $gap }) => ($gap ? `${$gap}rem` : "1rem")};
 `;
 
+export const FlexWrapper = styled.div`
+  display: flex;
+  align-items: ${({ $align }) => $align || "center"};
+`;
+
 export const MainWrapper = styled.section`
   height: 100vh;
   overflow: auto;
@@ -20,18 +25,31 @@ export const CenterWarapper = styled.div`
   justify-content: center;
 `;
 
+export const JustifyWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: ${({ $justify }) => $justify || "space-between"};
+`;
+
 export const PaddingContainer = styled.div`
   padding: ${({ $padding }) => $padding || "20px"};
 `;
 
 export const Container = styled.div`
-  padding: 20px;
+  padding: ${({ $padding }) => $padding || "20px"};
   border: 1px solid grey;
   border-radius: 0.4rem;
   width: ${({ $width }) => $width || "100%"};
   height: ${({ $height }) => $height || "auto"};
   margin: ${({ $margin }) => $margin || "0"};
   background-color: ${(props) => props.theme.bg_cl};
+`;
+
+export const ScrollBar = styled.div`
+  width: 100%;
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
+  height: calc(100vh - ${({ $height }) => $height || "110px"});
 `;
 
 export const StickyBar = styled.nav`

@@ -2,8 +2,16 @@ import React, { useRef, useState } from "react";
 import ClickOutside from "../../utilities/ClickOutside";
 import { FilterContainer } from "./animationStyles";
 import { Button } from "antd";
+import {
+  H3,
+  Icon,
+  JustifyWrapper,
+  PaddingContainer,
+  ScrollBar,
+} from "../Export/Export";
+import { Close } from "../Icons/Icons";
 
-const FilterAnimation = () => {
+const FilterAnimation = ({ children }) => {
   const [filterVisible, setFilterVisible] = useState(false);
   const parentRef = useRef();
 
@@ -22,7 +30,18 @@ const FilterAnimation = () => {
         Toggle Filter
       </Button>
       <FilterContainer className={filterVisible ? "in" : "out"}>
-        <button onClick={clickOutsideHandler}>X</button>Filter
+        <PaddingContainer $padding="15px 20px">
+          <JustifyWrapper>
+            <H3>Filter</H3>
+            <Icon onClick={clickOutsideHandler} icon={Close} />
+          </JustifyWrapper>
+        </PaddingContainer>
+        <ScrollBar $height="160px">{children}</ScrollBar>
+        <PaddingContainer $padding="15px 10px">
+          <JustifyWrapper $justify="end">
+            <button>Clear</button>
+          </JustifyWrapper>
+        </PaddingContainer>
       </FilterContainer>
     </div>
   );

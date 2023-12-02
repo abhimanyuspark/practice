@@ -17,6 +17,7 @@ import {
 } from "../../style/Export/Export";
 import { LoginIcon } from "../../style/Icons/Icons";
 import Logo from "../../assets/Vitelogo.svg";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const { loading, error } = useSelector((state) => state.auth);
@@ -75,6 +76,9 @@ const Login = () => {
     // If there are no errors, proceed with form submission
     await dispatch(authenticateUser(formData));
     navigate(from, { replace: true });
+    toast.success(`Login Successfull ${formData.username}`, {
+      position: "top-left",
+    });
   };
 
   return (

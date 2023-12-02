@@ -24,6 +24,12 @@ const newPerson = () => {
       { name: "Inprocess", color: "#159afb", id: faker.string.uuid() },
       { name: "Complete", color: "#0cf90c", id: faker.string.uuid() },
     ]),
+    statusMenu: [
+      { name: "Pending", color: "yellow", id: faker.string.uuid() },
+      { name: "Inprocess", color: "#159afb", id: faker.string.uuid() },
+      { name: "Complete", color: "#0cf90c", id: faker.string.uuid() },
+    ],
+    theme: faker.helpers.arrayElement([true, false]),
     followUp: faker.helpers.arrayElement([{ type: "Yes" }, { type: "No" }]),
   };
 };

@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserApi } from "../../Redux/ReduxApi/UserApi";
 import FilterAnimation from "../../style/animations/FilterAnimation";
 import { FlexDiv, PaddingContainer } from "../../style/Export/Export";
+import Filterform from "./Filterform";
 // import { ProgressCircle } from "../../style/progressBars/ProgressBars";
 
 const Home = () => {
@@ -86,7 +87,7 @@ const Home = () => {
               {clear ? <Button onClick={handleClear}>Clear</Button> : ""}
             </Space>
 
-            <FilterAnimation />
+            <FilterAnimation children={<Filterform />} />
           </div>
         </div>
 
