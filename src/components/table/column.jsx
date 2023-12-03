@@ -6,6 +6,7 @@ import { Edit, View, Delete } from "./Function";
 import { useState } from "react";
 import { useThemeProvider } from "../../hooks/useThemeProvider";
 import Cookies from "js-cookie";
+import { useSelector } from "react-redux";
 
 const menu = [
   {
@@ -72,7 +73,7 @@ export const Columns = [
     accessorKey: "name",
     header: () => "Name",
     cell: (info) => {
-      const user = JSON.parse(Cookies.get("user"));
+      const { user } = useSelector((state) => state.auth);
       const value = info.getValue();
       return (
         <div style={{ width: "180px" }}>
@@ -120,8 +121,8 @@ export const Columns = [
       const value = info.getValue();
       const [val, setVal] = useState(value);
       const [theme] = useThemeProvider();
-      const options = info.row.original.statusMenu;
-
+      const { user } = useSelector((state) => state.auth);
+      const options = user?.statusMenu;
       const optionTemplete = (o) => {
         return (
           <div

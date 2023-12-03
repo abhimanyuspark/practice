@@ -28,6 +28,22 @@ export const authenticateUser = createAsyncThunk(
   }
 );
 
+export const getAuthUser = createAsyncThunk(
+  "authUser/getAuthUser",
+  async (username, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3500/user?name=${username}`
+      );
+      //   console.log(username);
+      const user = response.data[0];
+      return user;
+    } catch (error) {
+      return rejectWithValue(`Please Enter valid username`);
+    }
+  }
+);
+
 export const updateThemeFromUser = createAsyncThunk(
   "theme/updatetheme",
   async ({ user, theme }) => {

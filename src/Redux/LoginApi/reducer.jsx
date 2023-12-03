@@ -1,12 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import Cookies from "js-cookie";
-import { authenticateUser } from "./LoginApi";
+import { authenticateUser, getAuthUser } from "./LoginApi";
 
 // Define an initial state for authentication
 const initialState = {
   error: null,
   loading: false,
   theme: false,
+  user: {},
 };
 
 // Create a slice for authentication
@@ -29,15 +30,28 @@ const authSlice = createSlice({
         state.loading = false;
         const data = action?.payload;
         // Keys to be excluded
-        let keysToExclude = ["id", "password"];
+        let keysToExclude = ["name", "role"];
 
         // Create a new object without specified keys
         let newData = Object.fromEntries(
-          Object.entries(data).filter(([key]) => !keysToExclude.includes(key))
+          Object.entries(data).filter(([key]) => keysToExclude.includes(key))
         );
         Cookies.set("user", JSON.stringify(newData), { expires: 1 }); // Expires in 1 day
       })
       .addCase(authenticateUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+
+      .addCase(getAuthUser.pending, (state) => {
+        state.loading = true;
+        state.user = {};
+      })
+      .addCase(getAuthUser.fulfilled, (state, action) => {
+        state.loading = false;
+        state.user = action?.payload;
+      })
+      .addCase(getAuthUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });

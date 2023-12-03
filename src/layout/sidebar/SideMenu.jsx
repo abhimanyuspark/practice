@@ -91,7 +91,7 @@ const MainDiv = ({ d, i, index }) => {
       <span>{d.value}</span>
     </div>
   );
-  // console.log("sidemain");
+
   return (
     <>
       {d.link ? (

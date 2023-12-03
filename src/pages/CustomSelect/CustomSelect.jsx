@@ -3,7 +3,6 @@ import Select from "../../components/Custom/Select/SelectDropDown";
 import { Space } from "antd";
 import { useThemeProvider } from "../../hooks/useThemeProvider";
 import { useSelector } from "react-redux";
-import Cookies from "js-cookie";
 import { FlexDiv, P } from "../../style/Export/Export";
 
 const options = [
@@ -15,8 +14,8 @@ const options = [
 ];
 
 const CustomSelect = () => {
-  const { users, loading } = useSelector((state) => state.users);
-  const auth = JSON.parse(Cookies.get("user"));
+  const { users } = useSelector((state) => state.users);
+  const { user } = useSelector((state) => state.auth);
   const [array, setArray] = useState([options[0]]);
   const [object, setObject] = useState(users[0]);
   const [object2, setObject2] = useState(options[0]);
@@ -45,7 +44,7 @@ const CustomSelect = () => {
     return (
       <div style={styles}>
         <img style={style} src={o.profile} alt="p" />
-        {auth.name === o.name ? (
+        {user?.name === o.name ? (
           <FlexDiv>
             <span>{o.name}</span>
             <P $color="red">its you</P>

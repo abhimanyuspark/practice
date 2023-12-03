@@ -33,7 +33,7 @@ export const MenuUl = styled.ul`
   padding: 5px 0px;
   list-style: none;
   position: absolute;
-  z-index: 9;
+  z-index: 3;
   margin-top: 7px;
   top: 100%; /* Set the dropdown to appear below the menu */
   right: 0; /* Position it at the right */

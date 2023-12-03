@@ -2,15 +2,19 @@ import React from "react";
 import { useLocation, Navigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import Layout from "../../pages/Layout/Layout";
+import { useDispatch } from "react-redux";
+import { getAuthUser } from "../../Redux/LoginApi/LoginApi";
 
 const RequireAuth = ({ roleAccess = [] }) => {
   const location = useLocation();
   //? Check for authentication cookies
   const userCookies = Cookies.get("user");
+  const dispatch = useDispatch();
 
   //? Check if user is authenticated
   if (userCookies) {
     const user = JSON.parse(Cookies.get("user"));
+    dispatch(getAuthUser(user.name));
     //TODO Check if the user has the required role access
     if (roleAccess.length === 0 || roleAccess.includes(user.role)) {
       //TODO Render the children if authenticated and has required role access

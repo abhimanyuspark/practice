@@ -237,7 +237,7 @@ export const SideFooter = styled.div`
 export const SubNavbar = styled.nav`
   position: sticky;
   top: 0;
-  z-index: 2;
+  z-index: 9;
   background-color: ${(props) => props.theme.bg_cl};
   width: 100%;
   height: 52px;

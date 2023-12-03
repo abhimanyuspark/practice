@@ -8,7 +8,6 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { toggleSidebar } from "../../Redux/Redux-Layout/ReduxLayout";
 import SideMenu from "./SideMenu";
-import Cookies from "js-cookie";
 
 const Sidebar = () => {
   const [expanded, setExpanded] = useState(false);
@@ -41,7 +40,7 @@ const Sidebar = () => {
 };
 
 const Header = ({ sideBar, expanded }) => {
-  const user = JSON.parse(Cookies.get("user"));
+  const { user } = useSelector((state) => state.auth);
 
   return (
     <SideHeader>

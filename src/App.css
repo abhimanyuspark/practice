@@ -7,20 +7,6 @@
   font-family: "Open Sans", sans-serif;
 }
 
-.span-circle {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-}
-
-.p {
-  padding: 10px;
-}
-.p-2 {
-  padding: 20px;
-}
-
 /* for profile image start  */
 .avatar {
   width: 30px;
@@ -35,21 +21,6 @@
 }
 /* for profile image end  */
 
-.flex {
-  display: flex;
-  align-items: center;
-}
-
-.s-b {
-  justify-content: space-between;
-}
-
-.gap-1 {
-  gap: 1rem;
-}
-.b {
-  font-weight: 900;
-}
 .container {
   display: flex;
   flex-direction: column;
