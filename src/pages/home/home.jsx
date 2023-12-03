@@ -1,16 +1,21 @@
-import React, { useEffect, useState } from "react";
-import Table from "../../components/table/table";
-import { Columns } from "../../components/table/column";
+import React, { useState, useEffect } from "react";
+import {
+  FlexWrapper,
+  JustifyWrapper,
+  PaddingContainer,
+  SubNavbar,
+  SubNavbarChild,
+} from "../../style/Export/Export";
 // import { makeData } from "../../data/makeData";
+// import { ProgressCircle } from "../../style/progressBars/ProgressBars";
+import UseList from "../UserList/UseList";
 import DateRangePicker from "../../components/DateRangePicker/DateRangePicker";
-import { Input, Space, Button } from "antd";
+import { Button, Input } from "antd";
 const { Search } = Input;
 import { useDispatch, useSelector } from "react-redux";
 import { getUserApi } from "../../Redux/ReduxApi/UserApi";
 import FilterAnimation from "../../style/animations/FilterAnimation";
-import { FlexDiv, PaddingContainer } from "../../style/Export/Export";
 import Filterform from "./Filterform";
-// import { ProgressCircle } from "../../style/progressBars/ProgressBars";
 
 const Home = () => {
   // const data = makeData(50);
@@ -62,44 +67,46 @@ const Home = () => {
     dispatch(getUserApi());
   }, [dispatch]);
 
-  // console.log("home");
-
   return (
-    <PaddingContainer>
-      <FlexDiv $direction>
-        <div>
-          {/* <p>{JSON.stringify(data)}</p> */}
-          {/* <ProgressCircle $value={76}>76</ProgressCircle> */}
-          <div className="flex" style={{ justifyContent: "space-between" }}>
-            <Space>
-              <Search
-                placeholder="Search name here..."
-                value={globalFilter}
-                onChange={handleInputChange}
-                style={{
-                  width: 200,
-                }}
-              />
-              <DateRangePicker
-                value={date.select}
-                onChange={handleDateChange}
-              />
-              {clear ? <Button onClick={handleClear}>Clear</Button> : ""}
-            </Space>
+    <div>
+      <SubNavbar>
+        <FlexWrapper $align="normal">
+          <SubNavbarChild>
+            Date{" "}
+            <DateRangePicker value={date.select} onChange={handleDateChange} />
+          </SubNavbarChild>
+          <SubNavbarChild>
+            <Search
+              placeholder="Search name here..."
+              value={globalFilter}
+              onChange={handleInputChange}
+              style={{
+                width: 200,
+              }}
+            />
+          </SubNavbarChild>
+          {clear && (
+            <SubNavbarChild>
+              <Button onClick={handleClear}>Clear</Button>
+            </SubNavbarChild>
+          )}
+        </FlexWrapper>
+        <SubNavbarChild $borderDir>
+          <FilterAnimation children={<Filterform />} />
+        </SubNavbarChild>
+      </SubNavbar>
 
-            <FilterAnimation children={<Filterform />} />
-          </div>
-        </div>
-
-        <Table
+      <PaddingContainer>
+        {/* <p>{JSON.stringify(data)}</p> */}
+        {/* <ProgressCircle $value={76}>76</ProgressCircle> */}
+        <UseList
           loading={loading}
-          Columns={Columns}
-          data={filterByDate}
+          filterByDate={filterByDate}
           globalFilter={globalFilter}
           setGlobalFilter={setGlobalFilter}
         />
-      </FlexDiv>
-    </PaddingContainer>
+      </PaddingContainer>
+    </div>
   );
 };
 

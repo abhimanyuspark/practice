@@ -2,9 +2,8 @@ import styled from "styled-components";
 
 export const FilterContainer = styled.div`
   background-color: ${(props) => props.theme.bg_cl};
-  border-left: 1px solid grey;
-  border-top: 0.2px solid grey;
-  height: 100%;
+  border: 1px solid grey;
+  height: calc(100vh - 60px);
   position: fixed;
   right: 0;
   top: 60px;

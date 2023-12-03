@@ -4,7 +4,7 @@ export const InputWrapper = styled.div`
   margin-bottom: 10px;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: ${({ $gap }) => $gap || "0.5rem"};
 `;
 
 export const Label = styled.label`

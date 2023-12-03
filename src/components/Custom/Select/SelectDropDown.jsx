@@ -26,10 +26,10 @@ function Select({
   const parentRef = useRef(null);
 
   useEffect(() => {
-    if (isOpen) {
+    if ((isOpen, enableSearch)) {
       searchRef?.current?.focus();
     }
-  }, [isOpen]);
+  }, [isOpen, enableSearch]);
 
   const outsideClickHandler = () => {
     setIsOpen(false);

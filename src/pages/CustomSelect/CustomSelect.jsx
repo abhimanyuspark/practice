@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import Select from "../../components/Custom/Select/SelectDropDown";
-import { makeData } from "../../data/makeData";
 import { Space } from "antd";
 import { useThemeProvider } from "../../hooks/useThemeProvider";
+import { useSelector } from "react-redux";
+import Cookies from "js-cookie";
+import { FlexDiv, P } from "../../style/Export/Export";
 
 const options = [
   { label: "First", value: 1, color: "red" },
@@ -11,18 +13,12 @@ const options = [
   { label: "Fourth", value: 4, color: "aqua" },
   { label: "Fifth", value: 5, color: "yellow" },
 ];
-// const options2 = [
-//   { name: { n: "abhi" } },
-//   { name: { n: "vasu" } },
-//   { name: { n: "ani" } },
-//   { name: { n: "tony" } },
-//   { name: { n: "manju" } },
-// ];
-const data = makeData(10);
 
 const CustomSelect = () => {
+  const { users, loading } = useSelector((state) => state.users);
+  const auth = JSON.parse(Cookies.get("user"));
   const [array, setArray] = useState([options[0]]);
-  const [object, setObject] = useState(data[0]);
+  const [object, setObject] = useState(users[0]);
   const [object2, setObject2] = useState(options[0]);
   const [object3, setObject3] = useState("");
   const [theme] = useThemeProvider();
@@ -49,7 +45,14 @@ const CustomSelect = () => {
     return (
       <div style={styles}>
         <img style={style} src={o.profile} alt="p" />
-        <span>{o.name}</span>
+        {auth.name === o.name ? (
+          <FlexDiv>
+            <span>{o.name}</span>
+            <P $color="red">its you</P>
+          </FlexDiv>
+        ) : (
+          <span>{o.name}</span>
+        )}
       </div>
     );
   };
@@ -106,7 +109,7 @@ const CustomSelect = () => {
       <Space>
         <Select
           value={object}
-          options={data}
+          options={users}
           singleTemplate={selectTemplate}
           optionTemplate={optionTemplate}
           onChange={(o) => setObject(o)}

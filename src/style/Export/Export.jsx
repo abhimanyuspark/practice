@@ -7,6 +7,8 @@ import {
   SideFooter,
   SideHeader,
   SideChildItem,
+  SubNavbar,
+  SubNavbarChild,
 } from "../Layout/LayoutStyle";
 import {
   FlexDiv,
@@ -42,6 +44,8 @@ export {
   SideFooter,
   SideHeader,
   SideChildItem,
+  SubNavbar,
+  SubNavbarChild,
   FlexDiv,
   Container,
   PaddingContainer,

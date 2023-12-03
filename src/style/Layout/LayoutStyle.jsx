@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import image from "../../assets/liquid-cheese-blue.svg";
 
 export const AppWrapper = styled.div`
@@ -34,7 +34,6 @@ export const AppWrapper = styled.div`
 export const DashboardWrapper = styled.main`
   position: relative;
   grid-area: dashboard;
-  padding: 1rem;
   background-color: ${(props) => props.theme.bg_cl};
   overflow: auto; /* Add overflow property for scrolling */
   height: calc(100vh - 60px); /* Set a fixed height, minus navbar height */
@@ -233,4 +232,31 @@ export const SideFooter = styled.div`
   & .fs {
     justify-content: center;
   }
+`;
+
+export const SubNavbar = styled.nav`
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background-color: ${(props) => props.theme.bg_cl};
+  width: 100%;
+  height: 52px;
+  border-bottom: 1px solid grey;
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const SubNavbarChild = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0px 10px;
+  ${({ $borderDir }) =>
+    $borderDir
+      ? css`
+          border-left: 1px solid grey;
+        `
+      : css`
+          border-right: 1px solid grey;
+        `}
 `;
