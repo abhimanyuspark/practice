@@ -7,6 +7,16 @@
   font-family: "Open Sans", sans-serif;
 }
 
+:root {
+  --navy-blue: #1f4172;
+  --dark-blue: #060930;
+  --purple-blue: #333456;
+  --grey-black: #333;
+  --grey: grey;
+  --white: white;
+  --black: black;
+}
+
 .span-circle {
   display: inline-block;
   width: 10px;

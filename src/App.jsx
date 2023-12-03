@@ -1,21 +1,23 @@
-import React from "react";
-import "./App.css";
+import React, { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
-import Home from "./pages/home/home";
-import AllButtons from "./pages/AllButtons/AllButtons";
-import Accordians from "./components/accordians/accordians";
-import CustomSelect from "./pages/CustomSelect/CustomSelect";
-import Login from "./pages/Login/Login";
-import Form from "./components/DropDown/Form";
-import RequireAuth from "./components/RequireAuth/RequireAuth";
 import { ThemeProvider } from "styled-components";
-import { lightTheme, darkTheme } from "./style/Theme/Theme";
 import { useSelector } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Unauthorized from "./pages/Unauthorized/Unauthorized";
-import PageNotFound from "./pages/404/PageNotFound";
-import AllInput from "./pages/Input/AllInput";
+import "./App.css";
+
+import { lightTheme, darkTheme } from "./style/Theme/Theme";
+const RequireAuth = lazy(() => import("./components/RequireAuth/RequireAuth"));
+
+const Home = lazy(() => import("./pages/home/home"));
+const AllButtons = lazy(() => import("./pages/AllButtons/AllButtons"));
+const Accordians = lazy(() => import("./components/accordians/accordians"));
+const CustomSelect = lazy(() => import("./pages/CustomSelect/CustomSelect"));
+const Login = lazy(() => import("./pages/Login/Login"));
+const Form = lazy(() => import("./components/DropDown/Form"));
+const Unauthorized = lazy(() => import("./pages/Unauthorized/Unauthorized"));
+const PageNotFound = lazy(() => import("./pages/404/PageNotFound"));
+const AllInput = lazy(() => import("./pages/Input/AllInput"));
 
 function App() {
   const { theme } = useSelector((state) => state.layout);
@@ -27,47 +29,51 @@ function App() {
 
   return (
     <ThemeProvider theme={theme ? lightTheme : darkTheme}>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/unauthorized" element={<Unauthorized />} />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/unauthorized" element={<Unauthorized />} />
 
-        {/*//?Routes for admin, employee and client */}
-        <Route
-          element={
-            <RequireAuth
-              roleAccess={[role.Admin, role.Employee, role.Client]}
-            />
-          }
-        >
-          <Route path="/" element={<Home />} />
-          <Route path="/setting" element={<h1>Setting</h1>} />
-        </Route>
+          {/*//?Routes for admin, employee and client */}
+          <Route
+            element={
+              <RequireAuth
+                roleAccess={[role.Admin, role.Employee, role.Client]}
+              />
+            }
+          >
+            <Route path="/" element={<Home />} />
+            <Route path="/setting" element={<h1>Setting</h1>} />
+          </Route>
 
-        {/*//?those Routes only for admin and client */}
-        <Route element={<RequireAuth roleAccess={[role.Admin, role.Client]} />}>
-          <Route path="/allbuttons" element={<AllButtons />} />
-        </Route>
+          {/*//?those Routes only for admin and client */}
+          <Route
+            element={<RequireAuth roleAccess={[role.Admin, role.Client]} />}
+          >
+            <Route path="/allbuttons" element={<AllButtons />} />
+          </Route>
 
-        {/*//?those Routes only for admin and employee */}
-        <Route
-          element={<RequireAuth roleAccess={[role.Admin, role.Employee]} />}
-        >
-          <Route path="/accordians" element={<Accordians />} />
-        </Route>
+          {/*//?those Routes only for admin and employee */}
+          <Route
+            element={<RequireAuth roleAccess={[role.Admin, role.Employee]} />}
+          >
+            <Route path="/accordians" element={<Accordians />} />
+          </Route>
 
-        {/*//?those Routes only for admin */}
-        <Route element={<RequireAuth roleAccess={[role.Admin]} />}>
-          <Route path="/select" element={<CustomSelect />} />
-          <Route path="/DropDown" element={<Form />} />
-        </Route>
+          {/*//?those Routes only for admin */}
+          <Route element={<RequireAuth roleAccess={[role.Admin]} />}>
+            <Route path="/select" element={<CustomSelect />} />
+            <Route path="/DropDown" element={<Form />} />
+          </Route>
 
-        {/*//?those Routes only for client */}
-        <Route element={<RequireAuth roleAccess={[role.Client]} />}>
-          <Route path="/allinput" element={<AllInput />} />
-        </Route>
+          {/*//?those Routes only for client */}
+          <Route element={<RequireAuth roleAccess={[role.Client]} />}>
+            <Route path="/allinput" element={<AllInput />} />
+          </Route>
 
-        <Route path="*" element={<PageNotFound />} />
-      </Routes>
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+      </Suspense>
 
       <ToastContainer
         position="top-left"
