@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, memo, useCallback } from "react";
 import {
   SideChild,
   SideFooter,
   SideHeader,
   SidebarWrapper,
 } from "../../style/Export/Export";
-import { useDispatch, useSelector } from "react-redux";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { toggleSidebar } from "../../Redux/Redux-Layout/ReduxLayout";
 import SideMenu from "./SideMenu";
 
@@ -13,20 +13,22 @@ const Sidebar = () => {
   const [expanded, setExpanded] = useState(false);
   const { sideBar } = useSelector((state) => state.layout);
   const dispatch = useDispatch();
-  const handleToogle = () => {
-    return dispatch(toggleSidebar(!sideBar));
-  };
 
-  const handleEnter = () => {
+  const handleToogle = useCallback(() => {
+    dispatch(toggleSidebar(!sideBar));
+  }, [dispatch, sideBar]);
+
+  const handleEnter = useCallback(() => {
     if (sideBar === false) {
       setExpanded(true);
     }
-  };
-  const handleLeave = () => {
+  }, [sideBar]);
+
+  const handleLeave = useCallback(() => {
     if (sideBar === false) {
       setExpanded(false);
     }
-  };
+  }, [sideBar]);
 
   return (
     <SidebarWrapper $expanded={expanded}>
@@ -39,8 +41,8 @@ const Sidebar = () => {
   );
 };
 
-const Header = ({ sideBar, expanded }) => {
-  const { user } = useSelector((state) => state.auth);
+const Header = memo(({ sideBar, expanded }) => {
+  const { user } = useSelector((state) => state.auth, shallowEqual);
 
   return (
     <SideHeader>
@@ -57,7 +59,7 @@ const Header = ({ sideBar, expanded }) => {
       </div>
     </SideHeader>
   );
-};
+});
 
 const Footer = ({ sideBar, toogle }) => {
   return (

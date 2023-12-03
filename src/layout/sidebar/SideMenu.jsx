@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, memo } from "react";
 import { AdminSidebarData as Admin } from "./AdminSidebarData";
 import { EmployeeSidebarData as Employee } from "./EmployeeSidebarData";
 import { ClientSidebarData as Client } from "./ClientSidebarData";
@@ -6,7 +6,7 @@ import { SideChildItem } from "../../style/Export/Export";
 import { NavLink, useLocation } from "react-router-dom";
 import Cookies from "js-cookie";
 
-const SideMenu = ({ sideBar }) => {
+const SideMenu = memo(({ sideBar }) => {
   const [activeChildIndex, setActiveChildIndex] = useState(0);
   const { pathname } = useLocation();
   const user = JSON.parse(Cookies.get("user"));
@@ -18,10 +18,6 @@ const SideMenu = ({ sideBar }) => {
       : user?.role === "client"
       ? Client
       : "";
-
-  const Main = useCallback((d, i, index) => {
-    return <MainDiv d={d} i={i} index={index} />;
-  }, []);
 
   const handleIndex = (i) => {
     setActiveChildIndex((prevIndex) => (prevIndex === i ? null : i));
@@ -61,7 +57,7 @@ const SideMenu = ({ sideBar }) => {
             className={`child ${isChildActive(i, pathname) ? "active" : ""}`}
             onClick={handleIndex.bind(null, i)}
           >
-            {Main(d, i, activeChildIndex)}
+            <MainDiv d={d} i={i} index={activeChildIndex} />
           </div>
           {activeChildIndex === i && (
             <div className="subMenu">
@@ -82,9 +78,9 @@ const SideMenu = ({ sideBar }) => {
       ))}
     </>
   );
-};
+});
 
-const MainDiv = ({ d, i, index }) => {
+const MainDiv = memo(({ d, i, index }) => {
   const DivGap = (d) => (
     <div className="smgap">
       {d.icon && d.icon}
@@ -112,6 +108,6 @@ const MainDiv = ({ d, i, index }) => {
       )}
     </>
   );
-};
+});
 
 export default SideMenu;
