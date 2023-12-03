@@ -3,7 +3,7 @@ import Select from "../../components/Custom/Select/SelectDropDown";
 import { Space } from "antd";
 import { useThemeProvider } from "../../hooks/useThemeProvider";
 import { useSelector } from "react-redux";
-import { FlexDiv, P } from "../../style/Export/Export";
+import { FlexDiv, P, PaddingContainer } from "../../style/Export/Export";
 
 const options = [
   { label: "First", value: 1, color: "red" },
@@ -91,60 +91,62 @@ const CustomSelect = () => {
   // object3.ob1();
 
   return (
-    <form onSubmit={onsubmit}>
-      <Select
-        value={array}
-        options={options}
-        multiple
-        multiTemplate={multiTemplate}
-        optionTemplate={multiTemplate}
-        onChange={(o) => setArray(o)}
-        selectWidth="20em"
-        optionsWidth="25em"
-        enableSearch
-        theme={theme}
-      />
-      <br />
-      <Space>
+    <PaddingContainer>
+      <form onSubmit={onsubmit}>
         <Select
-          value={object}
-          options={users}
-          singleTemplate={selectTemplate}
-          optionTemplate={optionTemplate}
-          onChange={(o) => setObject(o)}
-          fields={{ labelFn: (l) => l.name }}
+          value={array}
+          options={options}
+          multiple
+          multiTemplate={multiTemplate}
+          optionTemplate={multiTemplate}
+          onChange={(o) => setArray(o)}
           selectWidth="20em"
           optionsWidth="25em"
           enableSearch
-          enableNoDataList
           theme={theme}
         />
-        <Select
-          value={object2}
-          options={options}
-          onChange={(o) => {
-            setObject2(o);
-            setObject3(o);
-          }}
-          selectWidth="10em"
-          enableSearch
-          theme={theme}
-        />
-        <Select
-          value={object3}
-          options={options}
-          onChange={(o) => {
-            setObject3(o);
-            // setObject2(o);
-          }}
-          selectWidth="10em"
-          theme={theme}
-        />
-      </Space>
-      <br />
-      <br />
-      <button type="submit">Submit</button>
-    </form>
+        <br />
+        <Space>
+          <Select
+            value={object}
+            options={users}
+            singleTemplate={selectTemplate}
+            optionTemplate={optionTemplate}
+            onChange={(o) => setObject(o)}
+            fields={{ labelFn: (l) => l.name }}
+            selectWidth="20em"
+            optionsWidth="25em"
+            enableSearch
+            enableNoDataList
+            theme={theme}
+          />
+          <Select
+            value={object2}
+            options={options}
+            onChange={(o) => {
+              setObject2(o);
+              setObject3(o);
+            }}
+            selectWidth="10em"
+            enableSearch
+            theme={theme}
+          />
+          <Select
+            value={object3}
+            options={options}
+            onChange={(o) => {
+              setObject3(o);
+              // setObject2(o);
+            }}
+            selectWidth="10em"
+            theme={theme}
+          />
+        </Space>
+        <br />
+        <br />
+        <button type="submit">Submit</button>
+      </form>
+    </PaddingContainer>
   );
 };
 

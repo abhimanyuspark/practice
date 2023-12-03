@@ -2,7 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 const IconStyle = styled.span`
-  & span {
+  font-size: ${({ $fontSize }) => $fontSize || "20px"};
+  & > span {
     font-size: ${({ $fontSize }) => $fontSize || "20px"};
   }
   display: flex;

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Buttons } from "../../style/Export/Export";
+import { Buttons, PaddingContainer } from "../../style/Export/Export";
 import { Check } from "../../style/Icons/Icons";
 
 const AllButtons = () => {
@@ -19,7 +19,7 @@ const AllButtons = () => {
   };
 
   return (
-    <div>
+    <PaddingContainer>
       <Buttons
         text="Submit"
         // dir={true}
@@ -27,7 +27,7 @@ const AllButtons = () => {
         loading={loading}
         icon={Check}
       />
-    </div>
+    </PaddingContainer>
   );
 };
 

@@ -1,5 +1,11 @@
 import React, { useState, useMemo } from "react";
 import { makeData } from "../../data/makeData";
+import {
+  FlexDiv,
+  Icon,
+  JustifyWrapper,
+  PaddingContainer,
+} from "../../style/Export/Export";
 
 const Accordians = () => {
   const data = useMemo(() => {
@@ -10,25 +16,27 @@ const Accordians = () => {
   const handletoggle = (i) => (index !== i ? setIndex(i) : setIndex(null));
 
   return (
-    <div className="container">
-      {data.map((d, i) => {
-        return (
-          <div
-            key={i}
-            className="box"
-            onClick={() => {
-              handletoggle(i);
-            }}
-          >
-            <div className="flex s-b">
-              <span>{d.name}</span>
-              <span className="b">{index === i ? "-" : "+"}</span>
+    <PaddingContainer>
+      <FlexDiv $direction>
+        {data.map((d, i) => {
+          return (
+            <div
+              key={i}
+              className="box"
+              onClick={() => {
+                handletoggle(i);
+              }}
+            >
+              <JustifyWrapper>
+                <span>{d.name}</span>
+                <Icon fontSize="25px" icon={index === i ? "-" : "+"} />
+              </JustifyWrapper>
+              <div>{index === i ? d.status.name : null}</div>
             </div>
-            <div>{index === i ? d.status.name : null}</div>
-          </div>
-        );
-      })}
-    </div>
+          );
+        })}
+      </FlexDiv>
+    </PaddingContainer>
   );
 };
 

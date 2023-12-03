@@ -121,6 +121,8 @@ export const Columns = [
       const value = info.getValue();
       const [val, setVal] = useState(value);
       const [theme] = useThemeProvider();
+      const id = info.row.original.id;
+      // console.log(id);
       const { user } = useSelector((state) => state.auth);
       const options = user?.statusMenu;
       const optionTemplete = (o) => {

@@ -30,6 +30,11 @@
                     "name": "Complete",
                     "color": "#0cf90c",
                     "id": "20125f8e-6d7f-430d-b3bb-c17a5e41d425"
+                },
+                {
+                    "name": "Deleted",
+                    "color": "red",
+                    "id": "20125f8e-6d7f-430d-b3bb-c17a5e41d434"
                 }
             ],
             "theme": true,
