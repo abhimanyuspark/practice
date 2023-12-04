@@ -1,5 +1,5 @@
-import React, { useRef, useState } from "react";
-import ClickOutside from "../../utilities/ClickOutside";
+import React, { useState } from "react";
+// import ClickOutside from "../../utilities/ClickOutside";
 import { BlackBackground, FilterContainer } from "./animationStyles";
 import { Button } from "antd";
 import {
@@ -13,15 +13,13 @@ import { Close } from "../Icons/Icons";
 
 const FilterAnimation = ({ children }) => {
   const [filterVisible, setFilterVisible] = useState(false);
-  const parentRef = useRef();
 
   const clickOutsideHandler = () => {
     setFilterVisible(false);
   };
-  ClickOutside(clickOutsideHandler, parentRef);
 
   return (
-    <div ref={parentRef}>
+    <div>
       <Button
         onClick={() => {
           setFilterVisible(!filterVisible);

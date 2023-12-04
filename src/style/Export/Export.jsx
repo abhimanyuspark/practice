@@ -29,6 +29,7 @@ import {
   Label,
   Input,
   ErrorMessage,
+  SelectInput,
 } from "../InputField/InputField";
 import { Buttons } from "../buttons/buttons";
 import Icon from "../Icons/Icon";
@@ -62,6 +63,7 @@ export {
   Label,
   Input,
   ErrorMessage,
+  SelectInput,
   Buttons,
   Icon,
   TableWrapper,

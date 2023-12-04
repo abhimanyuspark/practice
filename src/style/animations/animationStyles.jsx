@@ -9,7 +9,7 @@ export const FilterContainer = styled.div`
   top: 60px;
   width: 260px;
   z-index: 9;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
   &.in {
     transform: translateZ(0px);
   }

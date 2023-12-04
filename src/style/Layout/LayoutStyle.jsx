@@ -57,8 +57,8 @@ export const SidebarWrapper = styled.aside`
   background-color: ${(props) => props.theme.lt_bg_cl};
   --_color: ${(props) => props.theme.lt_cl};
   --_border: ${(props) => props.theme.lt_br};
-  z-index: 4;
-  transition: width 0.3s ease-in-out;
+  z-index: ${({ $expanded }) => ($expanded ? "5" : "3")};
+  transition: all 0.3s ease-in-out;
   border-right: 1px solid var(--_border);
   width: ${({ $expanded }) => ($expanded ? "240px" : "100%")};
 `;

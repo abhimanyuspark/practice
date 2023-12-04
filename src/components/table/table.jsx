@@ -1,7 +1,20 @@
 import React, { useState, useMemo } from "react";
 import IndeterminateCheckbox from "./checkbox";
 import SortingIcons from "./SortingIcons";
-import { Table1, Td1, Th1, Tr1, TableWrapper } from "../../style/Export/Export";
+import {
+  Table1,
+  Td1,
+  Th1,
+  Tr1,
+  TableWrapper,
+  FlexDiv,
+  SelectInput,
+  Input,
+  P,
+  Label,
+  JustifyWrapper,
+  PaddingContainer,
+} from "../../style/Export/Export";
 
 import {
   flexRender,
@@ -41,6 +54,10 @@ function Table({
     getPaginationRowModel: getPaginationRowModel(),
     // debugTable: true,
   });
+
+  const [currentPageIndex, setCurrentPageIndex] = useState(
+    table.getState().pagination.pageIndex + 1
+  );
 
   const Loading = () => {
     return (
@@ -131,72 +148,96 @@ function Table({
               Page Rows ({table.getRowModel().rows.length})
             </td>
           </tr>
+
+          <tr>
+            <td colSpan={columnSpan} style={{ padding: "15px 0px" }}>
+              <JustifyWrapper>
+                <FlexDiv>
+                  <FlexDiv>
+                    <Label>
+                      Page {table.getState().pagination.pageIndex + 1} of{" "}
+                      {table.getPageCount()} | Go to page :
+                    </Label>
+                    <Input
+                      $width="50px"
+                      type="number"
+                      value={currentPageIndex}
+                      onChange={(e) => {
+                        const enteredValue = e.target.value.trim(); // Trim to handle leading/trailing whitespace
+                        const page =
+                          enteredValue === ""
+                            ? 0
+                            : Math.max(0, Number(enteredValue) - 1);
+
+                        // Update the local state to reflect the entered value if it's not empty
+                        if (
+                          enteredValue === "" ||
+                          (Number(enteredValue) > 0 &&
+                            enteredValue <= table.getPageCount())
+                        ) {
+                          setCurrentPageIndex(enteredValue);
+                          table.setPageIndex(page);
+                        }
+                      }}
+                    />
+                  </FlexDiv>
+
+                  <FlexDiv>
+                    <SelectInput
+                      value={table.getState().pagination.pageSize}
+                      onChange={(e) => {
+                        table.setPageSize(Number(e.target.value));
+                      }}
+                    >
+                      {[10, 20, 30, 40, 50].map((pageSize) => (
+                        <option key={pageSize} value={pageSize}>
+                          {pageSize}
+                        </option>
+                      ))}
+                    </SelectInput>
+                    <Label>
+                      {Object.keys(rowSelection).length} of{" "}
+                      {table.getPreFilteredRowModel().rows.length} Total Rows
+                      Selected
+                    </Label>
+                  </FlexDiv>
+                </FlexDiv>
+
+                <FlexDiv $gap="0.5">
+                  <button
+                    className="button ac-l"
+                    onClick={() => table.setPageIndex(0)}
+                    disabled={!table.getCanPreviousPage()}
+                  >
+                    {"<<"}
+                  </button>
+                  <button
+                    className="button ac-l"
+                    onClick={() => table.previousPage()}
+                    disabled={!table.getCanPreviousPage()}
+                  >
+                    {"<"}
+                  </button>
+                  <button
+                    className="button ac-r"
+                    onClick={() => table.nextPage()}
+                    disabled={!table.getCanNextPage()}
+                  >
+                    {">"}
+                  </button>
+                  <button
+                    className="button ac-r"
+                    onClick={() => table.setPageIndex(table.getPageCount() - 1)}
+                    disabled={!table.getCanNextPage()}
+                  >
+                    {">>"}
+                  </button>
+                </FlexDiv>
+              </JustifyWrapper>
+            </td>
+          </tr>
         </tfoot>
       </Table1>
-      <div className="flex gap-1">
-        <button
-          className="button ac-l"
-          onClick={() => table.setPageIndex(0)}
-          disabled={!table.getCanPreviousPage()}
-        >
-          {"<<"}
-        </button>
-        <button
-          className="button ac-l"
-          onClick={() => table.previousPage()}
-          disabled={!table.getCanPreviousPage()}
-        >
-          {"<"}
-        </button>
-        <button
-          className="button ac-r"
-          onClick={() => table.nextPage()}
-          disabled={!table.getCanNextPage()}
-        >
-          {">"}
-        </button>
-        <button
-          className="button ac-r"
-          onClick={() => table.setPageIndex(table.getPageCount() - 1)}
-          disabled={!table.getCanNextPage()}
-        >
-          {">>"}
-        </button>
-        <span className="flex gap-1">
-          <div>Page</div>
-          <strong>
-            {table.getState().pagination.pageIndex + 1} of{" "}
-            {table.getPageCount()}
-          </strong>
-        </span>
-        <span className="flex gap-1">
-          | Go to page:
-          <input
-            type="number"
-            defaultValue={table.getState().pagination.pageIndex + 1}
-            onChange={(e) => {
-              const page = e.target.value ? Number(e.target.value) - 1 : 0;
-              table.setPageIndex(page);
-            }}
-          />
-        </span>
-        <select
-          value={table.getState().pagination.pageSize}
-          onChange={(e) => {
-            table.setPageSize(Number(e.target.value));
-          }}
-        >
-          {[10, 20, 30, 40, 50].map((pageSize) => (
-            <option key={pageSize} value={pageSize}>
-              Show {pageSize}
-            </option>
-          ))}
-        </select>
-        <div>
-          {Object.keys(rowSelection).length} of{" "}
-          {table.getPreFilteredRowModel().rows.length} Total Rows Selected
-        </div>
-      </div>
     </TableWrapper>
   );
 }

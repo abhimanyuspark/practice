@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getUserApi } from "./UserApi";
+import { getRoleBasedUser, getUserApi } from "./UserApi";
 
 const initialState = {
   users: [],
@@ -12,12 +12,6 @@ export const userSlice = createSlice({
   name: "users",
   initialState: initialState,
   reducers: {
-    // getUserObj: (state, action) => {
-    //   const { username, password } = action?.payload;
-    //   state.auth = state.users.find(
-    //     (u) => u.name === username && u.password === password
-    //   );
-    // },
     filterUserdata: (state, action) => {
       const { filterStatus, filterFollow, filterConfig } = action.payload;
       state.users = state.users.filter((user) => {
@@ -55,14 +49,26 @@ export const userSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getUserApi.pending, (state) => {
+      // .addCase(getUserApi.pending, (state) => {
+      //   state.loading = true;
+      // })
+      // .addCase(getUserApi.fulfilled, (state, action) => {
+      //   state.loading = false;
+      //   state.users = action.payload;
+      // })
+      // .addCase(getUserApi.rejected, (state, action) => {
+      //   state.loading = false;
+      //   state.users = [];
+      //   state.error = action.error.message;
+      // })
+      .addCase(getRoleBasedUser.pending, (state) => {
         state.loading = true;
       })
-      .addCase(getUserApi.fulfilled, (state, action) => {
+      .addCase(getRoleBasedUser.fulfilled, (state, action) => {
         state.loading = false;
         state.users = action.payload;
       })
-      .addCase(getUserApi.rejected, (state, action) => {
+      .addCase(getRoleBasedUser.rejected, (state, action) => {
         state.loading = false;
         state.users = [];
         state.error = action.error.message;

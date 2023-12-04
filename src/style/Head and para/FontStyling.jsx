@@ -16,6 +16,6 @@ export const H3 = styled.h3`
 `;
 
 export const P = styled.p`
-  color: ${({ $color }) => $color || "grey"};
-  line-height: 1cm;
+  color: ${({ $color, theme }) => $color || theme.cl_dark};
+  line-height: 0.5cm;
 `;
