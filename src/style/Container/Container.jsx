@@ -61,15 +61,21 @@ export const Overflow = styled.div`
   position: relative;
   width: 100%;
   ${({ $border }) =>
-    $border ||
-    css`
-      border-top: 1px solid grey;
-    `}
+    $border
+      ? css`
+          border-top: none;
+        `
+      : css`
+          border-top: 1px solid grey;
+        `}
   ${({ $border }) =>
-    $border ||
-    css`
-      border-bottom: 1px solid grey;
-    `}
+    $border
+      ? css`
+          border-bottom: none;
+        `
+      : css`
+          border-bottom: 1px solid grey;
+        `}
   height: calc(100vh - ${({ $height }) => $height || "70px"});
   user-select: none;
   overflow: ${({ $overFlow }) => $overFlow || "hidden"};

@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
+import Loader from "./style/loader/Loader";
 
 import { lightTheme, darkTheme } from "./style/Theme/Theme";
 const RequireAuth = lazy(() => import("./components/RequireAuth/RequireAuth"));
@@ -29,7 +30,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme ? lightTheme : darkTheme}>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/unauthorized" element={<Unauthorized />} />

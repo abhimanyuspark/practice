@@ -57,7 +57,7 @@ export const SidebarWrapper = styled.aside`
   background-color: ${(props) => props.theme.lt_bg_cl};
   --_color: ${(props) => props.theme.lt_cl};
   --_border: ${(props) => props.theme.lt_br};
-  z-index: 9;
+  z-index: 4;
   transition: width 0.3s ease-in-out;
   border-right: 1px solid var(--_border);
   width: ${({ $expanded }) => ($expanded ? "240px" : "100%")};
@@ -237,7 +237,7 @@ export const SideFooter = styled.div`
 export const SubNavbar = styled.nav`
   position: sticky;
   top: 0;
-  z-index: 9;
+  z-index: 3;
   background-color: ${(props) => props.theme.bg_cl};
   width: 100%;
   height: 52px;

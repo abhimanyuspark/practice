@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Buttons, PaddingContainer } from "../../style/Export/Export";
 import { Check } from "../../style/Icons/Icons";
+// import Loader from "../../style/loader/Loader";
 
 const AllButtons = () => {
   const [loading, setLoading] = useState(false);
@@ -27,6 +28,8 @@ const AllButtons = () => {
         loading={loading}
         icon={Check}
       />
+
+      {/* <Loader height="200px" /> */}
     </PaddingContainer>
   );
 };

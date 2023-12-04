@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import ClickOutside from "../../utilities/ClickOutside";
-import { FilterContainer } from "./animationStyles";
+import { BlackBackground, FilterContainer } from "./animationStyles";
 import { Button } from "antd";
 import {
   H3,
@@ -29,6 +29,7 @@ const FilterAnimation = ({ children }) => {
       >
         Toggle Filter
       </Button>
+      {filterVisible && <BlackBackground onClick={clickOutsideHandler} />}
       <FilterContainer className={filterVisible ? "in" : "out"}>
         <PaddingContainer $padding="15px 20px">
           <JustifyWrapper>

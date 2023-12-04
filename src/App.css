@@ -7,6 +7,10 @@
   font-family: "Open Sans", sans-serif;
 }
 
+body {
+  background-color: #1f4172;
+}
+
 :root {
   --navy-blue: #1f4172;
   --dark-blue: #060930;

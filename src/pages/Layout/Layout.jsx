@@ -5,6 +5,7 @@ import Navbar from "../../layout/navbar/Navbar";
 import Sidebar from "../../layout/sidebar/Sidebar";
 import { useSelector } from "react-redux";
 // import Video from "./Video";
+import Loader from "../../style/loader/Loader";
 
 const Layout = () => {
   const { sideBar } = useSelector((state) => state.layout);
@@ -14,7 +15,7 @@ const Layout = () => {
       <Navbar />
       <Sidebar />
       <DashboardWrapper>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<Loader height="150px" />}>
           {/* <Video /> */}
           <Outlet />
         </Suspense>

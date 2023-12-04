@@ -17,3 +17,14 @@ export const FilterContainer = styled.div`
     transform: translate3d(260px, 0, 0);
   }
 `;
+
+export const BlackBackground = styled.div`
+  background-color: black;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0.5; /* Adjust the opacity as needed */
+  z-index: 8; /* Make sure it's below FilterContainer */
+`;

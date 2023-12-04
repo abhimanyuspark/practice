@@ -1,22 +1,23 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const Loaders = styled.div`
-  display: inline-block;
   position: relative;
-  width: 80px;
-  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: ${({ $height }) => ($height ? `calc(100vh - ${$height})` : "100vh")};
+
   & div {
     box-sizing: border-box;
     display: block;
     position: absolute;
     width: 64px;
     height: 64px;
-    margin: 8px;
-    border: 8px solid #fff;
+    border: 8px solid;
     border-radius: 50%;
     animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-    border-color: #fff transparent transparent transparent;
+    border-color: white transparent transparent transparent;
   }
   & div:nth-child(1) {
     animation-delay: -0.45s;
@@ -27,6 +28,7 @@ const Loaders = styled.div`
   & div:nth-child(3) {
     animation-delay: -0.15s;
   }
+
   @keyframes lds-ring {
     0% {
       transform: rotate(0deg);
@@ -37,9 +39,9 @@ const Loaders = styled.div`
   }
 `;
 
-const Loader = () => {
+const Loader = ({ height }) => {
   return (
-    <Loaders>
+    <Loaders $height={height}>
       <div></div>
       <div></div>
       <div></div>
