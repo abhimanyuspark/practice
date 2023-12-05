@@ -7,10 +7,11 @@ import { getAuthUser } from "../../Redux/LoginApi/LoginApi";
 
 const RequireAuth = ({ roleAccess = [] }) => {
   const location = useLocation();
-  const user = useMemo(() => JSON.parse(Cookies.get("user")), []);
+  const auth = Cookies.get("user") !== undefined;
   const dispatch = useDispatch();
 
-  if (user) {
+  if (auth) {
+    const user = useMemo(() => JSON.parse(Cookies.get("user")), []);
     useEffect(() => {
       dispatch(getAuthUser(user.name));
     }, [dispatch, user.name]);

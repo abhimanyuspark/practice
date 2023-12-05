@@ -1,7 +1,7 @@
 **When ever you use the ClickOutside function you have to remember that you have to gave ref in parent component .**
 
 > [!NOTE]
-> **Inside the parent component you have to sepecified the click event who open and close the child element .**
+> **Inside the parent component you have to sepecified the click event who open and close the child element**
 
 Example:-
 
