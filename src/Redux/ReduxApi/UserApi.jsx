@@ -25,3 +25,11 @@ export const getRoleBasedUser = createAsyncThunk(
     return response.data;
   }
 );
+
+export const updateUserStatus = createAsyncThunk(
+  "Status/updateUserStatus",
+  async ({ id, status }) => {
+    const response = await axios.patch(`${apiUrl}/user/${id}`, { status });
+    return response.data;
+  }
+);

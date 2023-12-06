@@ -5,8 +5,9 @@ import IndeterminateCheckbox from "./checkbox";
 import { Edit, View, Delete } from "./Function";
 import { useState } from "react";
 import { useThemeProvider } from "../../hooks/useThemeProvider";
-import Cookies from "js-cookie";
-import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+import { updateUserStatus } from "../../Redux/ReduxApi/UserApi";
 
 const menu = [
   {
@@ -120,11 +121,22 @@ export const Columns = [
     cell: (info) => {
       const value = info.getValue();
       const [val, setVal] = useState(value);
+      const dispatch = useDispatch();
       const [theme] = useThemeProvider();
-      const id = info.row.original.id;
-      // console.log(id);
+      const { id, name } = info.row.original;
+
       const { user } = useSelector((state) => state.auth);
       const options = user?.statusMenu;
+
+      const updateStatus = (status) => {
+        setVal(status);
+        const wait = setTimeout(() => {
+          toast.success(`${name} status is Update`, { position: "top-right" });
+          dispatch(updateUserStatus({ id, status }));
+        }, 300);
+        return () => clearTimeout(wait);
+      };
+
       const optionTemplete = (o) => {
         return (
           <div
@@ -147,16 +159,18 @@ export const Columns = [
           </div>
         );
       };
+
       return (
         <span key={value.id}>
           <Select
             optionTemplate={optionTemplete}
             singleTemplate={optionTemplete}
-            selectWidth="9em"
+            selectWidth="8em"
+            optionsWidth="10em"
             options={options}
             value={val}
             fields={{ labelFn: (l) => l.name }}
-            onChange={(o) => setVal(o)}
+            onChange={(o) => updateStatus(o)}
             theme={theme}
           />
         </span>
