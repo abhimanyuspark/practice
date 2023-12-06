@@ -8,7 +8,7 @@ export const AppWrapper = styled.div`
   grid-template-areas:
     "sidebar navbar"
     "sidebar dashboard";
-  transition: 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   height: 100vh;
   ::-webkit-scrollbar {
     width: 11px;

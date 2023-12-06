@@ -5,7 +5,6 @@ import { ClientSidebarData as Client } from "./ClientSidebarData";
 import { SideChildItem } from "../../style/Export/Export";
 import { NavLink, useLocation } from "react-router-dom";
 import Cookies from "js-cookie";
-import { useTitle } from "../../hooks/useTitle";
 
 const SideMenu = memo(({ sideBar }) => {
   const [activeChildIndex, setActiveChildIndex] = useState(0);
@@ -28,8 +27,6 @@ const SideMenu = memo(({ sideBar }) => {
     const currentSubMenu = data[i]?.subMenu;
     return currentSubMenu && currentSubMenu.some((item) => item.link === path);
   };
-
-  useTitle(pathname);
 
   useEffect(() => {
     if (sideBar === false) {
@@ -67,7 +64,11 @@ const SideMenu = memo(({ sideBar }) => {
               {d?.subMenu?.map((s, sub_index) => (
                 <div key={sub_index}>
                   {s.link ? (
-                    <NavLink className="subMenuLink" to={s.link}>
+                    <NavLink
+                      className="subMenuLink"
+                      state={s.value}
+                      to={s.link}
+                    >
                       {s.value}
                     </NavLink>
                   ) : (
@@ -94,7 +95,7 @@ const MainDiv = memo(({ d, i, index }) => {
   return (
     <>
       {d.link ? (
-        <NavLink to={d.link} className="smlink">
+        <NavLink state={d.value} to={d.link} className="smlink">
           {DivGap(d)}
         </NavLink>
       ) : (
