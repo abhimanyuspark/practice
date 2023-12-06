@@ -11,7 +11,6 @@ import {
   H1,
 } from "../../style/Export/Export";
 import Logo from "../../assets/Vitelogo.svg";
-import { useTitle } from "../../hooks/useTitle";
 
 const Unauthorized = () => {
   const user = JSON.parse(Cookies.get("user"));
@@ -20,8 +19,6 @@ const Unauthorized = () => {
   const from = location?.state?.from?.pathname;
   const convert = from.slice(1);
   const roleConvert = user?.role.charAt(0).toUpperCase() + user?.role.slice(1);
-
-  useTitle("UnAuthorized");
 
   return (
     <MainWrapper>

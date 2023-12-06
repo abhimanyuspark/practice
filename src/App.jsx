@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import { useSelector } from "react-redux";
 import { ToastContainer } from "react-toastify";
@@ -20,19 +20,14 @@ const Unauthorized = lazy(() => import("./pages/Unauthorized/Unauthorized"));
 const PageNotFound = lazy(() => import("./pages/404/PageNotFound"));
 const AllInput = lazy(() => import("./pages/Input/AllInput"));
 const UseList = lazy(() => import("./pages/UserList/UseList"));
-import { useTitle } from "./hooks/useTitle";
 
 function App() {
   const { theme } = useSelector((state) => state.layout);
-  const location = useLocation();
   const role = {
     Admin: "admin",
     Employee: "employee",
     Client: "client",
   };
-  const title = location?.state;
-
-  useTitle(title);
 
   return (
     <ThemeProvider theme={theme ? lightTheme : darkTheme}>

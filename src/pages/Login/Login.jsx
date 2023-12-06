@@ -18,7 +18,6 @@ import {
 import { LoginIcon } from "../../style/Icons/Icons";
 import Logo from "../../assets/Vitelogo.svg";
 import { toast } from "react-toastify";
-import { useTitle } from "../../hooks/useTitle";
 
 const Login = () => {
   const { loading, error } = useSelector((state) => state.auth);
@@ -35,8 +34,6 @@ const Login = () => {
     username: "",
     password: "",
   });
-
-  useTitle("Login");
 
   const handleChange = (e) => {
     const { name, value } = e.target;

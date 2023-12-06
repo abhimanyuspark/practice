@@ -207,8 +207,8 @@
 .dark-theme .container:focus,
 .dark-theme .search-bar:hover,
 .dark-theme .search-bar:focus {
-  outline: 2px solid white;
-  outline-offset: 1px;
+  outline: 2px auto white;
+  outline-offset: -2px;
 }
 .dark-theme .search-bar::placeholder {
   color: white;
