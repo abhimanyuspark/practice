@@ -19,6 +19,7 @@ const Form = lazy(() => import("./components/DropDown/Form"));
 const Unauthorized = lazy(() => import("./pages/Unauthorized/Unauthorized"));
 const PageNotFound = lazy(() => import("./pages/404/PageNotFound"));
 const AllInput = lazy(() => import("./pages/Input/AllInput"));
+const UseList = lazy(() => import("./pages/UserList/UseList"));
 
 function App() {
   const { theme } = useSelector((state) => state.layout);
@@ -63,6 +64,7 @@ function App() {
 
           {/*//?those Routes only for admin */}
           <Route element={<RequireAuth roleAccess={[role.Admin]} />}>
+            <Route path="/users" element={<UseList />} />
             <Route path="/select" element={<CustomSelect />} />
             <Route path="/DropDown" element={<Form />} />
           </Route>

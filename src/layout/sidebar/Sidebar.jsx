@@ -14,21 +14,21 @@ const Sidebar = () => {
   const { sideBar } = useSelector((state) => state.layout);
   const dispatch = useDispatch();
 
-  const handleToogle = useCallback(() => {
+  const handleToogle = () => {
     dispatch(toggleSidebar(!sideBar));
-  }, [dispatch, sideBar]);
+  }
 
-  const handleEnter = useCallback(() => {
+  const handleEnter = () => {
     if (sideBar === false) {
       setExpanded(true);
     }
-  }, [sideBar]);
+  }
 
-  const handleLeave = useCallback(() => {
+  const handleLeave = () => {
     if (sideBar === false) {
       setExpanded(false);
     }
-  }, [sideBar]);
+  }
 
   return (
     <SidebarWrapper $expanded={expanded}>

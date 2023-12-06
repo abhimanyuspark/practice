@@ -8,7 +8,7 @@ export const AdminSidebarData = [
     subMenu: [
       {
         id: 1,
-        value: "Home",
+        value: "Dashboard",
         link: "/",
       },
       {
@@ -28,6 +28,12 @@ export const AdminSidebarData = [
     icon: List,
     value: "Accordians",
     link: "/accordians",
+  },
+  {
+    id: 3,
+    icon: List,
+    value: "Users",
+    link: "/users",
   },
   // {
   //   id: 3,

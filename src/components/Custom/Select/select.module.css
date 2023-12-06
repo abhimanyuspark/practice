@@ -200,8 +200,8 @@
 .light-theme .container:focus,
 .light-theme .search-bar:hover,
 .light-theme .search-bar:focus {
-  outline: 2px solid #1f4172;
-  outline-offset: 1px;
+  outline: 2px auto #1f4172;
+  outline-offset: -2px;
 }
 .dark-theme .container:hover,
 .dark-theme .container:focus,

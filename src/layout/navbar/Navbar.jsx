@@ -54,7 +54,7 @@ const Navbar = () => {
   return (
     <NavbarWrapper>
       <FlexDiv>
-        <RNavLink to="/">Home</RNavLink>
+        <RNavLink to="/">Dashboard</RNavLink>
       </FlexDiv>
       <FlexDiv>
         <UserProfile />

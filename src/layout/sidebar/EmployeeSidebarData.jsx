@@ -8,7 +8,7 @@ export const EmployeeSidebarData = [
     subMenu: [
       {
         id: 1,
-        value: "Home",
+        value: "Dashboard",
         link: "/",
       },
       //   {

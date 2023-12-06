@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useCallback, memo } from "react";
+import React, { useState, useEffect, memo } from "react";
 import { AdminSidebarData as Admin } from "./AdminSidebarData";
 import { EmployeeSidebarData as Employee } from "./EmployeeSidebarData";
 import { ClientSidebarData as Client } from "./ClientSidebarData";
 import { SideChildItem } from "../../style/Export/Export";
 import { NavLink, useLocation } from "react-router-dom";
 import Cookies from "js-cookie";
+import { useTitle } from "../../hooks/useTitle";
 
 const SideMenu = memo(({ sideBar }) => {
   const [activeChildIndex, setActiveChildIndex] = useState(0);
@@ -27,6 +28,8 @@ const SideMenu = memo(({ sideBar }) => {
     const currentSubMenu = data[i]?.subMenu;
     return currentSubMenu && currentSubMenu.some((item) => item.link === path);
   };
+
+  useTitle(pathname);
 
   useEffect(() => {
     if (sideBar === false) {

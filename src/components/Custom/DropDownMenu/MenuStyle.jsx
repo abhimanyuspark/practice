@@ -20,8 +20,8 @@ export const Menu = styled.div`
   }
   &:hover,
   &:focus {
-    outline: 2px solid ${(props) => props.theme.bt_bg};
-    outline-offset: 1px;
+    outline: 2px auto ${(props) => props.theme.bt_bg};
+    outline-offset: -2px;
   }
 `;
 

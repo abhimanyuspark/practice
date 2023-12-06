@@ -8,7 +8,7 @@ export const ClientSidebarData = [
     subMenu: [
       {
         id: 1,
-        value: "Home",
+        value: "Dashboard",
         link: "/",
       },
       //   {
