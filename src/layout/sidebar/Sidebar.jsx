@@ -1,5 +1,6 @@
-import React, { useState, memo, useCallback } from "react";
+import React, { useState, memo } from "react";
 import {
+  FlexDiv,
   SideChild,
   SideFooter,
   SideHeader,
@@ -16,19 +17,19 @@ const Sidebar = () => {
 
   const handleToogle = () => {
     dispatch(toggleSidebar(!sideBar));
-  }
+  };
 
   const handleEnter = () => {
     if (sideBar === false) {
       setExpanded(true);
     }
-  }
+  };
 
   const handleLeave = () => {
     if (sideBar === false) {
       setExpanded(false);
     }
-  }
+  };
 
   return (
     <SidebarWrapper $expanded={expanded}>
@@ -50,8 +51,11 @@ const Header = memo(({ sideBar, expanded }) => {
         className={`header ${!sideBar ? (expanded === false ? "hs" : "") : ""}`}
       >
         <div className="opa practice">
-          <h4>{user?.name}</h4>
-          <h5>Practice</h5>
+          <h4>Practice</h4>
+          <FlexDiv $gap="0.4">
+            <span className="activate-user-logo"></span>
+            <h5>{user?.name}</h5>
+          </FlexDiv>
         </div>
         <div className="div profile">
           <img src={user?.profile} alt="profile" />

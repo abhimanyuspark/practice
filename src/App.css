@@ -21,6 +21,14 @@ body {
   --black: black;
 }
 
+.activate-user-logo {
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background-color: rgb(17, 250, 17);
+}
+
 .span-circle {
   display: inline-block;
   width: 10px;
