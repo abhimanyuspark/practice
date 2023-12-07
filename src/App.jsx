@@ -31,7 +31,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme ? lightTheme : darkTheme}>
-      <Suspense fallback={<Loader />}>
+      <Suspense fallback={<Loader height="0px" />}>
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/unauthorized" element={<Unauthorized />} />

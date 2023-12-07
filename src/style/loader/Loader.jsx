@@ -1,12 +1,13 @@
 import React from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 const Loaders = styled.div`
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: ${({ $height }) => ($height ? `calc(100vh - ${$height})` : "100vh")};
+  height: ${({ $height }) =>
+    $height ? `calc(100vh - ${$height})` : `calc(100vh - 60px)`};
 
   & div {
     box-sizing: border-box;
@@ -17,7 +18,8 @@ const Loaders = styled.div`
     border: 8px solid;
     border-radius: 50%;
     animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-    border-color: white transparent transparent transparent;
+    border-color: ${(props) => props.theme.bt_bg} transparent transparent
+      transparent;
   }
   & div:nth-child(1) {
     animation-delay: -0.45s;

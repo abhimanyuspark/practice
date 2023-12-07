@@ -1,14 +1,13 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { apiUrl } from "../apikey";
 
 // Define the authentication asynchronous thunk
 export const authenticateUser = createAsyncThunk(
   "auth/authenticateUser",
   async ({ username, password }, { rejectWithValue }) => {
     try {
-      const response = await axios.get(
-        `http://localhost:3500/user?name=${username}`
-      );
+      const response = await axios.get(`${apiUrl}/user?name=${username}`);
       //   console.log(username, password);
       const user = response.data[0];
 
@@ -32,9 +31,7 @@ export const getAuthUser = createAsyncThunk(
   "authUser/getAuthUser",
   async (username, { rejectWithValue }) => {
     try {
-      const response = await axios.get(
-        `http://localhost:3500/user?name=${username}`
-      );
+      const response = await axios.get(`${apiUrl}/user?name=${username}`);
       //   console.log(username);
       const user = response.data[0];
       return user;
@@ -48,7 +45,7 @@ export const updateThemeFromUser = createAsyncThunk(
   "theme/updatetheme",
   async ({ user, theme }) => {
     try {
-      await axios.put(`http://localhost:3500/user?name=${user}`, {
+      await axios.put(`${apiUrl}/user?name=${user}`, {
         theme: theme,
       });
     } catch (error) {

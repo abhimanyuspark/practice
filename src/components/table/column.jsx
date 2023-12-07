@@ -2,12 +2,13 @@ import { ProgressCircle } from "../../style/progressBars/ProgressBars";
 import DropDownMenu from "../Custom/DropDownMenu/DropDownMenu";
 import Select from "../Custom/Select/SelectDropDown";
 import IndeterminateCheckbox from "./checkbox";
-import { Edit, View, Delete } from "./Function";
+// import { Edit, View, Delete } from "./Function";
 import { useState } from "react";
 import { useThemeProvider } from "../../hooks/useThemeProvider";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
-import { updateUserStatus } from "../../Redux/ReduxApi/UserApi";
+import { updateUserStatus, deleteUser } from "../../Redux/ReduxApi/UserApi";
+import Swal from "sweetalert2";
 
 const menu = [
   {
@@ -192,6 +193,8 @@ export const Columns = [
     enableSorting: false,
     header: () => "Actions",
     cell: (info) => {
+      const dispatch = useDispatch();
+
       const handelli = (d, id) => {
         switch (d) {
           case "Edit":
@@ -207,6 +210,34 @@ export const Columns = [
             break;
         }
       };
+
+      const Edit = (id) => {
+        // alert(`Function Edit: ${id}`);
+        toast.success(`Function Edit: ${id}`);
+      };
+      const View = (id) => {
+        // alert(`Function View: ${id}`);
+        toast.info(`Function View: ${id}`);
+      };
+      const Delete = (id) => {
+        Swal.fire({
+          title: "Are you sure?",
+          text: `You want to delete the ${id}!`,
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, delete!",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            dispatch(deleteUser(id));
+            toast.success(`${id} deleted successfull`, {
+              position: "top-right",
+            });
+          }
+        });
+      };
+
       return (
         <DropDownMenu data={menu} onSubmitLi={handelli} id={info.getValue()} />
       );

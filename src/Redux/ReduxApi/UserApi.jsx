@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-const apiUrl = "http://localhost:3500";
+import { apiUrl } from "../apikey";
 
 export const getUserApi = createAsyncThunk("user/fetchUser", async () => {
   const response = axios.get(`${apiUrl}/user`);
@@ -23,6 +23,33 @@ export const getRoleBasedUser = createAsyncThunk(
     );
 
     return response.data;
+  }
+);
+
+export const deleteUser = createAsyncThunk("delete/deleteUser", async (id) => {
+  try {
+    await axios.delete(`${apiUrl}/user/${id}`);
+    return id;
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
+export const deleteMultipleUsers = createAsyncThunk(
+  "multiple/deleteMultipleUsers",
+  async (ids) => {
+    try {
+      const deletePromises = ids.map(async (id) => {
+        const response = await axios.delete(`${apiUrl}/user/${id}`);
+        return { id, success: true, data: response.data };
+      });
+
+      const results = await Promise.all(deletePromises);
+
+      console.log("Items deleted successfully:", results);
+    } catch (error) {
+      console.error("Error deleting items:", error.message);
+    }
   }
 );
 

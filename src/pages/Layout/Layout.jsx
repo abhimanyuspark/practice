@@ -15,7 +15,7 @@ const Layout = () => {
       <Navbar />
       <Sidebar />
       <DashboardWrapper>
-        <Suspense fallback={<Loader height="150px" />}>
+        <Suspense fallback={<Loader />}>
           {/* <Video /> */}
           <Outlet />
         </Suspense>

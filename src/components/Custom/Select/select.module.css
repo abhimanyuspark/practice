@@ -9,7 +9,8 @@
   display: flex;
   align-items: center;
   gap: 0.5em;
-  padding: 0.4em;
+  height: 2.2rem;
+  padding: 0px 10px 0px 5px;
   border-radius: 0.25em;
   outline: none;
   border: 0.05em solid #777;
@@ -24,8 +25,10 @@
   flex-grow: 1;
   white-space: nowrap;
   display: flex;
+  align-items: center;
   gap: 0.5em;
   font-size: 15px;
+  line-height: 0.5cm;
   overflow: auto;
   scroll-behavior: smooth;
   padding: 0px 5px;
@@ -52,8 +55,9 @@
 
 .divider {
   background-color: #777;
-  align-self: stretch;
+  align-self: center;
   width: 0.05em;
+  height: 20px;
 }
 
 .caret {
@@ -203,13 +207,24 @@
   outline: 2px auto #1f4172;
   outline-offset: -2px;
 }
+.light-theme .container:hover,
+.light-theme .container:focus {
+  background-color: rgb(228, 231, 234);
+}
+
 .dark-theme .container:hover,
 .dark-theme .container:focus,
 .dark-theme .search-bar:hover,
 .dark-theme .search-bar:focus {
-  outline: 2px auto white;
-  outline-offset: -2px;
+  outline: 1px auto white;
+  outline-offset: -4px;
 }
+
+.dark-theme .container:hover,
+.dark-theme .container:focus {
+  background-color: rgb(61, 61, 76);
+}
+
 .dark-theme .search-bar::placeholder {
   color: white;
 }

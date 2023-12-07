@@ -1,5 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getRoleBasedUser, getUserApi, updateUserStatus } from "./UserApi";
+import {
+  deleteUser,
+  getRoleBasedUser,
+  getUserApi,
+  updateUserStatus,
+} from "./UserApi";
 
 const initialState = {
   users: [],
@@ -84,6 +89,20 @@ export const userSlice = createSlice({
         );
       })
       .addCase(updateUserStatus.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      .addCase(deleteUser.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(deleteUser.fulfilled, (state, action) => {
+        state.loading = false;
+        const id = action.payload;
+        state.users = state.users.filter((i) => {
+          return i.id !== id;
+        });
+      })
+      .addCase(deleteUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       });

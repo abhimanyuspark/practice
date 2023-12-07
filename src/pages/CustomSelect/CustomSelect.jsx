@@ -127,6 +127,8 @@ const CustomSelect = () => {
               setObject2(o);
               setObject3(o);
             }}
+            clearButton
+            divider
             selectWidth="10em"
             enableSearch
             theme={theme}
