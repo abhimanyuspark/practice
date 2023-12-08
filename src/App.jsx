@@ -20,6 +20,9 @@ const Unauthorized = lazy(() => import("./pages/Unauthorized/Unauthorized"));
 const PageNotFound = lazy(() => import("./pages/404/PageNotFound"));
 const AllInput = lazy(() => import("./pages/Input/AllInput"));
 const UseList = lazy(() => import("./pages/UserList/UseList"));
+const UserDetails = lazy(() => import("./pages/UserList/UserDetails"));
+const UsersAdd = lazy(() => import("./pages/UserList/UsersForm/UsersAdd"));
+const UsersEdit = lazy(() => import("./pages/UserList/UsersForm/UsersEdit"));
 
 function App() {
   const { theme } = useSelector((state) => state.layout);
@@ -65,6 +68,9 @@ function App() {
           {/*//?those Routes only for admin */}
           <Route element={<RequireAuth roleAccess={[role.Admin]} />}>
             <Route path="/users" element={<UseList />} />
+            <Route path="/user/details/:id" element={<UserDetails />} />
+            <Route path="/user/add" element={<UsersAdd />} />
+            <Route path="/user/update/:id" element={<UsersEdit />} />
             <Route path="/select" element={<CustomSelect />} />
             <Route path="/DropDown" element={<Form />} />
           </Route>

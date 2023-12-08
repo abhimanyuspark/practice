@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUserStatus, deleteUser } from "../../Redux/ReduxApi/UserApi";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const menu = [
   {
@@ -194,6 +195,7 @@ export const Columns = [
     header: () => "Actions",
     cell: (info) => {
       const dispatch = useDispatch();
+      const navigate = useNavigate();
 
       const handelli = (d, id) => {
         switch (d) {
@@ -212,12 +214,10 @@ export const Columns = [
       };
 
       const Edit = (id) => {
-        // alert(`Function Edit: ${id}`);
-        toast.success(`Function Edit: ${id}`);
+        navigate(`/user/update/${id}`);
       };
       const View = (id) => {
-        // alert(`Function View: ${id}`);
-        toast.info(`Function View: ${id}`);
+        navigate(`/user/details/${id}`);
       };
       const Delete = (id) => {
         Swal.fire({

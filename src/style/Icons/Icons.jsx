@@ -5,8 +5,17 @@ const Icons = {
   Setting: <span className="material-symbols-outlined">settings</span>,
   LoginIcon: <span className="material-symbols-outlined">login</span>,
   Check: <span className="material-symbols-outlined">check</span>,
+  Add: <span className="material-symbols-outlined">add</span>,
   LogoutIcon: <span className="material-symbols-outlined">logout</span>,
 };
 
-export const { Dashboard, List, Close, Setting, LoginIcon, Check, LogoutIcon } =
-  Icons;
+export const {
+  Dashboard,
+  List,
+  Close,
+  Setting,
+  LoginIcon,
+  Check,
+  Add,
+  LogoutIcon,
+} = Icons;

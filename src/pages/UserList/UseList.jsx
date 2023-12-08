@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {
+  Buttons,
   FlexWrapper,
   PaddingContainer,
   SubNavbar,
@@ -16,6 +17,8 @@ import FilterAnimation from "../../style/animations/FilterAnimation";
 import Filterform from "./Filterform";
 import Select from "../../components/Custom/Select/SelectDropDown";
 import { useThemeProvider } from "../../hooks/useThemeProvider";
+import { useNavigate } from "react-router-dom";
+import { Add } from "../../style/Icons/Icons";
 
 const types = [
   { name: "All", role: ["client", "employee"] },
@@ -35,6 +38,7 @@ const UseList = () => {
   const [clear, setClear] = useState(false);
   const { users, loading } = useSelector((state) => state.users);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleDateChange = (From, To, dates) => {
     if (From === "" && To === "") {
@@ -118,6 +122,16 @@ const UseList = () => {
           <FilterAnimation children={<Filterform />} />
         </SubNavbarChild>
       </SubNavbar>
+
+      <PaddingContainer $padding="30px 20px 0px 20px">
+        <Buttons
+          text="Add User"
+          onClick={() => {
+            navigate("/user/add");
+          }}
+          icon={Add}
+        />
+      </PaddingContainer>
 
       <PaddingContainer>
         <Table
