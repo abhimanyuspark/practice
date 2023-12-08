@@ -4,6 +4,8 @@ import quillEmoji from "react-quill-emoji";
 import "react-quill/dist/quill.snow.css";
 // import "react-quill/dist/quill.bubble.css";
 import "react-quill-emoji/dist/quill-emoji.css";
+// Import your custom styles
+import "./custom-quill-styles.css";
 
 const { EmojiBlot, ShortNameEmoji, ToolbarEmoji, TextAreaEmoji } = quillEmoji;
 
@@ -36,16 +38,6 @@ const TextEditor = ({ value, setValue }) => {
     [{ direction: "rtl" }], // text direction
     ["clean"], // remove formatting button
   ];
-
-  // const myToolbar = [
-  //   [{ size: ["huge", "large", "small", false] }],
-  //   [{ header: [1, 2, 3, 4, 5, false] }],
-  //   [{ list: "ordered" }, { list: "bullet" }],
-  //   ["bold", "italic", "underline", "strike"],
-  //   ["image", "code-block", "link", "video"],
-  //   [{ direction: "rtl" }],
-  //   ["clean"],
-  // ];
 
   const modules = {
     toolbar: toolbarOptions,
@@ -80,6 +72,9 @@ const TextEditor = ({ value, setValue }) => {
     "emoji",
     "color",
     "background",
+    "script",
+    "sub",
+    "super",
   ];
 
   return (
@@ -89,6 +84,7 @@ const TextEditor = ({ value, setValue }) => {
       modules={modules}
       formats={formats}
       theme="snow"
+      className="mycontainer"
     />
   );
 };

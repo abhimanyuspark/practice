@@ -14,10 +14,16 @@ export const Label = styled.label`
   color: ${(props) => props.theme.cl_dark};
 `;
 
+export const Super = styled.sup`
+  line-height: 0.5cm;
+  font-weight: 900;
+  color: red;
+`;
+
 export const Input = styled.input`
   border-radius: 0.3rem;
   width: ${({ $width }) => $width || "100%"};
-  padding: 7px;
+  padding: 6px;
   font-size: 15px;
   border: 1px solid ${({ $error }) => ($error ? "red" : "#ccc")};
   &:hover,

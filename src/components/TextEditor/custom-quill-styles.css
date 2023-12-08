@@ -1,0 +1,9 @@
+.mycontainer > .ql-toolbar.ql-snow {
+  border-top-right-radius: 0.3rem !important;
+  border-top-left-radius: 0.3rem !important;
+}
+
+.mycontainer > .ql-container.ql-snow {
+  border-bottom-right-radius: 0.3rem !important;
+  border-bottom-left-radius: 0.3rem !important;
+}

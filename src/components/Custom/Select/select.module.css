@@ -11,9 +11,9 @@
   gap: 0.5em;
   height: 2.2rem;
   padding: 0px 10px 0px 5px;
-  border-radius: 0.25em;
+  border-radius: 0.3rem;
   outline: none;
-  border: 0.05em solid #777;
+  border: 0.05em solid #ccc;
 }
 .border {
   border: 0.05em solid transparent;
@@ -75,8 +75,8 @@
   padding: 8px 0px;
   list-style: none;
   display: none;
-  border: 0.05em solid #777;
-  border-radius: 0.25em;
+  border: 0.05em solid #ccc;
+  border-radius: 0.3rem;
   width: 100%;
   left: 0px;
   top: calc(100% + 0.5em);
@@ -99,7 +99,7 @@
 .option {
   scroll-snap-align: center;
   font-size: 15px;
-  padding: 0.5em;
+  padding: 0.45em 0.45em 0.45em 1.5em;
   cursor: pointer;
 }
 .No-option-found {
@@ -115,7 +115,7 @@
   align-items: center;
   height: 25px;
   font-size: 13px;
-  border: 0.05em solid #777;
+  border: 0.05em solid #ccc;
   border-radius: 20px;
   padding: 0em 0.6em 0em 0.4em;
   gap: 0.3em;
@@ -150,7 +150,7 @@
 .search-bar {
   padding: 5px;
   border-radius: 0.25em;
-  border: 1px solid #777;
+  border: 1px solid #ccc;
   width: 100%;
   height: 100%;
 }
@@ -204,8 +204,9 @@
 .light-theme .container:focus,
 .light-theme .search-bar:hover,
 .light-theme .search-bar:focus {
-  outline: 2px auto #1f4172;
-  outline-offset: -2px;
+  border-radius: 0.4rem;
+  outline: 2px solid #1f4172;
+  outline-offset: -4px;
 }
 .light-theme .container:hover,
 .light-theme .container:focus {
@@ -216,7 +217,8 @@
 .dark-theme .container:focus,
 .dark-theme .search-bar:hover,
 .dark-theme .search-bar:focus {
-  outline: 1px auto white;
+  border-radius: 0.4rem;
+  outline: 2px solid white;
   outline-offset: -4px;
 }
 

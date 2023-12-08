@@ -27,6 +27,7 @@ import { RNavLink } from "../LinkStyle/LinkStyle";
 import {
   InputWrapper,
   Label,
+  Super,
   Input,
   ErrorMessage,
   SelectInput,
@@ -61,6 +62,7 @@ export {
   RNavLink,
   InputWrapper,
   Label,
+  Super,
   Input,
   ErrorMessage,
   SelectInput,

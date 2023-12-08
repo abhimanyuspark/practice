@@ -19,6 +19,7 @@ function Select({
   theme = true,
   selectWidth,
   optionsWidth,
+  loading = false,
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState("");
