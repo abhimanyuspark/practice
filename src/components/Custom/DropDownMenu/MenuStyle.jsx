@@ -6,7 +6,7 @@ export const DropMenu = styled.div`
 `;
 
 export const Menu = styled.div`
-  border: 1px solid grey;
+  border: 1px solid #ccc;
   user-select: none;
   border-radius: 0.3rem;
   display: flex;
@@ -20,14 +20,15 @@ export const Menu = styled.div`
   }
   &:hover,
   &:focus {
-    outline: 2px auto ${(props) => props.theme.bt_bg};
-    outline-offset: -2px;
+    border-radius: 0.3rem;
+    outline: 2px solid ${(props) => props.theme.bt_bg};
+    outline-offset: -4px;
   }
 `;
 
 export const MenuUl = styled.ul`
   width: 120px;
-  border: 1px solid grey;
+  border: 1px solid #ccc;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
   border-radius: 0.2rem;
   padding: 5px 0px;

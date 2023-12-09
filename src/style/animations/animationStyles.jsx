@@ -25,6 +25,6 @@ export const BlackBackground = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  opacity: 0.5; /* Adjust the opacity as needed */
+  opacity: 0.3; /* Adjust the opacity as needed */
   z-index: 8; /* Make sure it's below FilterContainer */
 `;

@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUserStatus, deleteUser } from "../../Redux/ReduxApi/UserApi";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { tableMenu } from "../../data/all_menu";
 import { deleteUserReducer } from "../../Redux/ReduxApi/UserAction";
 
@@ -180,6 +180,7 @@ export const Columns = [
     cell: (info) => {
       const dispatch = useDispatch();
       const navigate = useNavigate();
+      const location = useLocation();
       const { name } = info.row.original;
       const handelli = (d, id) => {
         switch (d) {
@@ -198,10 +199,10 @@ export const Columns = [
       };
 
       const Edit = (id) => {
-        navigate(`/user/update/${id}`);
+        navigate(`/user/update/${id}`, { state: { from: location } });
       };
       const View = (id) => {
-        navigate(`/user/details/${id}`);
+        navigate(`/user/details/${id}`, { state: { from: location } });
       };
       const Delete = (id) => {
         Swal.fire({
