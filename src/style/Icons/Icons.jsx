@@ -7,6 +7,9 @@ const Icons = {
   Check: <span className="material-symbols-outlined">check</span>,
   Add: <span className="material-symbols-outlined">add</span>,
   LogoutIcon: <span className="material-symbols-outlined">logout</span>,
+  Delete: <span className="material-symbols-outlined">delete</span>,
+  Edit: <span className="material-symbols-outlined">edit_square</span>,
+  View: <span className="material-symbols-outlined">visibility</span>,
 };
 
 export const {
@@ -18,4 +21,7 @@ export const {
   Check,
   Add,
   LogoutIcon,
+  Delete,
+  Edit,
+  View,
 } = Icons;

@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import {
   Buttons,
+  FlexDiv,
   FlexWrapper,
   PaddingContainer,
   SubNavbar,
@@ -12,13 +13,14 @@ import DateRangePicker from "../../components/DateRangePicker/DateRangePicker";
 import { Button, Input } from "antd";
 const { Search } = Input;
 import { useDispatch, useSelector } from "react-redux";
-import { getRoleBasedUser, getUserApi } from "../../Redux/ReduxApi/UserApi";
+import { getRoleBasedUsers } from "../../Redux/ReduxApi/UserApi";
 import FilterAnimation from "../../style/animations/FilterAnimation";
 import Filterform from "./Filterform";
 import Select from "../../components/Custom/Select/SelectDropDown";
 import { useThemeProvider } from "../../hooks/useThemeProvider";
 import { useNavigate } from "react-router-dom";
 import { Add } from "../../style/Icons/Icons";
+import { ExportToExcel } from "../../components/ExportToExcel/ExportToExcel";
 
 const types = [
   { name: "All", role: ["client", "employee"] },
@@ -36,7 +38,7 @@ const UseList = () => {
     select: [],
   });
   const [clear, setClear] = useState(false);
-  const { users, loading } = useSelector((state) => state.users);
+  const { roleBasedUsers, loading } = useSelector((state) => state.users);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -51,13 +53,13 @@ const UseList = () => {
 
   const handleInputChange = (e) => {
     const value = e.target.value;
-    // if (value === "") {
-    //   setClear(false);
-    //   setGlobalFilter("");
-    // } else {
-    setGlobalFilter(value);
-    setClear(true);
-    // }
+    if (value === "") {
+      setClear(false);
+      setGlobalFilter("");
+    } else {
+      setGlobalFilter(value);
+      setClear(true);
+    }
   };
 
   const handleClear = () => {
@@ -67,7 +69,7 @@ const UseList = () => {
     setClear(false);
   };
 
-  const filterByDate = users.filter((item) => {
+  const filterByDate = roleBasedUsers.filter((item) => {
     if (date.start && date.end) {
       const d = new Date(item.date);
       return d >= date.start && d <= date.end;
@@ -76,8 +78,20 @@ const UseList = () => {
   });
 
   useEffect(() => {
-    dispatch(getRoleBasedUser(type.role));
+    dispatch(getRoleBasedUsers(type.role));
   }, [dispatch, type.role]);
+
+  const customArray = useMemo(() => {
+    const data = filterByDate.map((item, i) => ({
+      "#": i + 1,
+      Id: item.id,
+      Username: item.name,
+      Created: item.date,
+      Status: item.status.name,
+    }));
+    // console.log(data);
+    return data;
+  }, [filterByDate]);
 
   return (
     <>
@@ -124,13 +138,16 @@ const UseList = () => {
       </SubNavbar>
 
       <PaddingContainer $padding="30px 20px 0px 20px">
-        <Buttons
-          text="Add User"
-          onClick={() => {
-            navigate("/user/add");
-          }}
-          icon={Add}
-        />
+        <FlexDiv>
+          <Buttons
+            text="Add User"
+            onClick={() => {
+              navigate("/user/add");
+            }}
+            icon={Add}
+          />
+          <ExportToExcel apiData={customArray} fileName="MyUser Data" />
+        </FlexDiv>
       </PaddingContainer>
 
       <PaddingContainer>

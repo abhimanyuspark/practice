@@ -2,12 +2,12 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { apiUrl } from "../apikey";
 
-export const getUserApi = createAsyncThunk("user/fetchUser", async () => {
-  const response = axios.get(`${apiUrl}/user`);
-  return (await response).data;
+export const getUserData = createAsyncThunk("user/fetchUser", async (id) => {
+  const response = await axios.get(`${apiUrl}/user/${id}`);
+  return response.data;
 });
 
-export const getRoleBasedUser = createAsyncThunk(
+export const getRoleBasedUsers = createAsyncThunk(
   "roleBaseUser/fetchRoleBaseUser",
   async (role) => {
     let rolesToFetch;
@@ -22,6 +22,14 @@ export const getRoleBasedUser = createAsyncThunk(
       `${apiUrl}/user${`?role=${rolesToFetch}`}`
     );
 
+    return response.data;
+  }
+);
+
+export const updateUserStatus = createAsyncThunk(
+  "Status/updateUserStatus",
+  async ({ id, status }) => {
+    const response = await axios.patch(`${apiUrl}/user/${id}`, { status });
     return response.data;
   }
 );
@@ -50,13 +58,5 @@ export const deleteMultipleUsers = createAsyncThunk(
     } catch (error) {
       console.error("Error deleting items:", error.message);
     }
-  }
-);
-
-export const updateUserStatus = createAsyncThunk(
-  "Status/updateUserStatus",
-  async ({ id, status }) => {
-    const response = await axios.patch(`${apiUrl}/user/${id}`, { status });
-    return response.data;
   }
 );

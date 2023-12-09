@@ -20,9 +20,13 @@ const Unauthorized = lazy(() => import("./pages/Unauthorized/Unauthorized"));
 const PageNotFound = lazy(() => import("./pages/404/PageNotFound"));
 const AllInput = lazy(() => import("./pages/Input/AllInput"));
 const UseList = lazy(() => import("./pages/UserList/UseList"));
-const UserDetails = lazy(() => import("./pages/UserList/UserDetails"));
-const UsersAdd = lazy(() => import("./pages/UserList/UsersForm/UsersAdd"));
-const UsersEdit = lazy(() => import("./pages/UserList/UsersForm/UsersEdit"));
+const UserDetails = lazy(() =>
+  import("./pages/UserList/CRUD_For_User/UserDetails")
+);
+const UsersAdd = lazy(() => import("./pages/UserList/CRUD_For_User/UsersAdd"));
+const UsersEdit = lazy(() =>
+  import("./pages/UserList/CRUD_For_User/UsersEdit")
+);
 
 function App() {
   const { theme } = useSelector((state) => state.layout);

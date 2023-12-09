@@ -39,12 +39,13 @@ export const ErrorMessage = styled.p`
 `;
 
 export const SelectInput = styled.select`
-  padding: 7px 5px;
+  padding: 6px 5px;
   border-radius: 0.3rem;
   border: 1px solid grey;
   &:hover,
   &:focus {
+    border-radius: 0.3rem;
     outline: 2px solid ${(props) => props.theme.bt_bg};
-    outline-offset: 1px;
+    outline-offset: -4px;
   }
 `;

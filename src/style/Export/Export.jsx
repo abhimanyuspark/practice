@@ -33,6 +33,7 @@ import {
   SelectInput,
 } from "../InputField/InputField";
 import { Buttons } from "../buttons/buttons";
+import Loader from "../loader/Loader";
 import Icon from "../Icons/Icon";
 import { TableWrapper, Table1, Td1, Th1, Tr1 } from "../table/table1";
 import { H1, H2, H3, P } from "../Head and para/FontStyling";
@@ -68,6 +69,7 @@ export {
   SelectInput,
   Buttons,
   Icon,
+  Loader,
   TableWrapper,
   Table1,
   Td1,

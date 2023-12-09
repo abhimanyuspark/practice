@@ -1,22 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {
-  deleteUser,
-  getRoleBasedUser,
-  getUserApi,
-  updateUserStatus,
-} from "./UserApi";
+import { getRoleBasedUsers, getUserData } from "./UserApi";
 
 const initialState = {
-  users: [],
+  roleBasedUsers: [],
   loading: false,
   error: "",
-  // auth: {},
+  user: {},
 };
 
 export const userSlice = createSlice({
   name: "users",
   initialState: initialState,
   reducers: {
+    deleteUserReducer: (state, action) => {
+      const id = action?.payload;
+      state.roleBasedUsers = state.roleBasedUsers.filter((i) => {
+        return i.id !== id;
+      });
+    },
     filterUserdata: (state, action) => {
       const { filterStatus, filterFollow, filterConfig } = action.payload;
       state.users = state.users.filter((user) => {
@@ -54,56 +55,33 @@ export const userSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      // .addCase(getUserApi.pending, (state) => {
-      //   state.loading = true;
-      // })
-      // .addCase(getUserApi.fulfilled, (state, action) => {
-      //   state.loading = false;
-      //   state.users = action.payload;
-      // })
-      // .addCase(getUserApi.rejected, (state, action) => {
-      //   state.loading = false;
-      //   state.users = [];
-      //   state.error = action.error.message;
-      // })
-      .addCase(getRoleBasedUser.pending, (state) => {
+      // Get Users data depand on role change
+
+      .addCase(getRoleBasedUsers.pending, (state) => {
         state.loading = true;
       })
-      .addCase(getRoleBasedUser.fulfilled, (state, action) => {
+      .addCase(getRoleBasedUsers.fulfilled, (state, action) => {
         state.loading = false;
-        state.users = action.payload;
+        state.roleBasedUsers = action.payload;
       })
-      .addCase(getRoleBasedUser.rejected, (state, action) => {
+      .addCase(getRoleBasedUsers.rejected, (state, action) => {
         state.loading = false;
-        state.users = [];
+        state.roleBasedUsers = [];
         state.error = action.error.message;
       })
-      .addCase(updateUserStatus.pending, (state) => {
+
+      //User data
+
+      .addCase(getUserData.pending, (state) => {
         state.loading = true;
       })
-      .addCase(updateUserStatus.fulfilled, (state, action) => {
+      .addCase(getUserData.fulfilled, (state, action) => {
         state.loading = false;
-        const { id, status } = action.payload;
-        state.users = state.users.map((item) =>
-          item.id === id ? { ...item, status: status } : item
-        );
+        state.user = action.payload;
       })
-      .addCase(updateUserStatus.rejected, (state, action) => {
+      .addCase(getUserData.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message;
-      })
-      .addCase(deleteUser.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(deleteUser.fulfilled, (state, action) => {
-        state.loading = false;
-        const id = action.payload;
-        state.users = state.users.filter((i) => {
-          return i.id !== id;
-        });
-      })
-      .addCase(deleteUser.rejected, (state, action) => {
-        state.loading = false;
+        state.user = {};
         state.error = action.error.message;
       });
   },

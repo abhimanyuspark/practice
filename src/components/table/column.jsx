@@ -10,21 +10,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateUserStatus, deleteUser } from "../../Redux/ReduxApi/UserApi";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-
-const menu = [
-  {
-    name: "View",
-    icon: <span className="material-symbols-outlined">visibility</span>,
-  },
-  {
-    name: "Edit",
-    icon: <span className="material-symbols-outlined">edit_square</span>,
-  },
-  {
-    name: "Delete",
-    icon: <span className="material-symbols-outlined">delete</span>,
-  },
-];
+import { tableMenu } from "../../data/all_menu";
+import { deleteUserReducer } from "../../Redux/ReduxApi/UserAction";
 
 export const Columns = [
   {
@@ -132,11 +119,8 @@ export const Columns = [
 
       const updateStatus = (status) => {
         setVal(status);
-        const wait = setTimeout(() => {
-          toast.success(`${name} status is Update`, { position: "top-right" });
-          dispatch(updateUserStatus({ id, status }));
-        }, 300);
-        return () => clearTimeout(wait);
+        toast.success(`${name} status is Update`, { position: "top-right" });
+        dispatch(updateUserStatus({ id, status }));
       };
 
       const optionTemplete = (o) => {
@@ -196,7 +180,7 @@ export const Columns = [
     cell: (info) => {
       const dispatch = useDispatch();
       const navigate = useNavigate();
-
+      const { name } = info.row.original;
       const handelli = (d, id) => {
         switch (d) {
           case "Edit":
@@ -231,7 +215,8 @@ export const Columns = [
         }).then((result) => {
           if (result.isConfirmed) {
             dispatch(deleteUser(id));
-            toast.success(`${id} deleted successfull`, {
+            dispatch(deleteUserReducer(id));
+            toast.success(`${name} deleted successfull`, {
               position: "top-right",
             });
           }
@@ -239,7 +224,11 @@ export const Columns = [
       };
 
       return (
-        <DropDownMenu data={menu} onSubmitLi={handelli} id={info.getValue()} />
+        <DropDownMenu
+          data={tableMenu}
+          onSubmitLi={handelli}
+          id={info.getValue()}
+        />
       );
     },
   },

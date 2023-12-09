@@ -28,7 +28,7 @@
   align-items: center;
   gap: 0.5em;
   font-size: 15px;
-  line-height: 0.5cm;
+  /* line-height: 0.5cm; */
   overflow: auto;
   scroll-behavior: smooth;
   padding: 0px 5px;

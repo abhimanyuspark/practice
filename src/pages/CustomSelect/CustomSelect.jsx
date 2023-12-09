@@ -14,10 +14,10 @@ const options = [
 ];
 
 const CustomSelect = () => {
-  const { users } = useSelector((state) => state.users);
+  const { roleBasedUsers } = useSelector((state) => state.users);
   const { user } = useSelector((state) => state.auth);
   const [array, setArray] = useState([options[0]]);
-  const [object, setObject] = useState(users[0]);
+  const [object, setObject] = useState(roleBasedUsers[0]);
   const [object2, setObject2] = useState(options[0]);
   const [object3, setObject3] = useState("");
   const [theme] = useThemeProvider();
@@ -109,7 +109,7 @@ const CustomSelect = () => {
         <Space>
           <Select
             value={object}
-            options={users}
+            options={roleBasedUsers}
             singleTemplate={selectTemplate}
             optionTemplate={optionTemplate}
             onChange={(o) => setObject(o)}
