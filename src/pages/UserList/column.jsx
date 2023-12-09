@@ -1,7 +1,7 @@
 import { ProgressCircle } from "../../style/progressBars/ProgressBars";
-import DropDownMenu from "../Custom/DropDownMenu/DropDownMenu";
-import Select from "../Custom/Select/SelectDropDown";
-import IndeterminateCheckbox from "./checkbox";
+import DropDownMenu from "../../components/Custom/DropDownMenu/DropDownMenu";
+import Select from "../../components/Custom/Select/SelectDropDown";
+import IndeterminateCheckbox from "../../components/table/checkbox";
 // import { Edit, View, Delete } from "./Function";
 import { useState } from "react";
 import { useThemeProvider } from "../../hooks/useThemeProvider";

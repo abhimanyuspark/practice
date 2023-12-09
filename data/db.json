@@ -53,9 +53,9 @@
       "visits": 827,
       "progress": 63,
       "status": {
-        "name": "Deleted",
-        "color": "red",
-        "id": "20125f8e-6d7f-430d-b3bb-c17a5e41d434"
+        "name": "Inprocess",
+        "color": "#159afb",
+        "id": "d290236c-35aa-4faf-b4dd-3a879bf9f49e"
       },
       "statusMenu": [
         {
@@ -275,9 +275,9 @@
       "visits": 319,
       "progress": 41,
       "status": {
-        "name": "Deleted",
-        "color": "red",
-        "id": "20125f8e-6d7f-430d-b3bb-c17a5e41d434"
+        "name": "Complete",
+        "color": "#0cf90c",
+        "id": "20125f8e-6d7f-430d-b3bb-c17a5e41d425"
       },
       "statusMenu": [
         {
@@ -312,9 +312,9 @@
       "visits": 847,
       "progress": 60,
       "status": {
-        "name": "Complete",
-        "color": "#0cf90c",
-        "id": "20125f8e-6d7f-430d-b3bb-c17a5e41d425"
+        "name": "Inprocess",
+        "color": "#159afb",
+        "id": "d290236c-35aa-4faf-b4dd-3a879bf9f49e"
       },
       "statusMenu": [
         {
@@ -669,43 +669,6 @@
       "theme": true,
       "followUp": {
         "type": "No"
-      }
-    },
-    {
-      "id": "523259cc-ef75-4fdd-860f-9c2ab3df2bac",
-      "role": "client",
-      "name": "Lynne Kuvalis",
-      "password": "9gck2wE9wqxqj3r",
-      "date": "2021-10-02T15:33:42.149Z",
-      "profile": "https://avatars.githubusercontent.com/u/69589732",
-      "age": 29,
-      "visits": 312,
-      "progress": 71,
-      "status": {
-        "name": "Pending",
-        "color": "yellow",
-        "id": "a9eb88ae-1ff4-4efc-ab2e-e8eb06ee5404"
-      },
-      "statusMenu": [
-        {
-          "name": "Pending",
-          "color": "yellow",
-          "id": "a66af39b-c093-41d9-ad8f-77b58b30e370"
-        },
-        {
-          "name": "Inprocess",
-          "color": "#159afb",
-          "id": "8b496c33-878e-475c-8734-8a3a40549b6a"
-        },
-        {
-          "name": "Complete",
-          "color": "#0cf90c",
-          "id": "af2d7d88-5248-436d-bd11-63dd67d52493"
-        }
-      ],
-      "theme": true,
-      "followUp": {
-        "type": "Yes"
       }
     },
     {

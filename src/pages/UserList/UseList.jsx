@@ -8,7 +8,7 @@ import {
   SubNavbarChild,
 } from "../../style/Export/Export";
 import Table from "../../components/table/table";
-import { Columns } from "../../components/table/column";
+import { Columns } from "./column";
 import DateRangePicker from "../../components/DateRangePicker/DateRangePicker";
 import { Button, Input } from "antd";
 const { Search } = Input;
