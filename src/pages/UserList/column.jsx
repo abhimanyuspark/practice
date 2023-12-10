@@ -2,7 +2,6 @@ import { ProgressCircle } from "../../style/progressBars/ProgressBars";
 import DropDownMenu from "../../components/Custom/DropDownMenu/DropDownMenu";
 import Select from "../../components/Custom/Select/SelectDropDown";
 import IndeterminateCheckbox from "../../components/table/checkbox";
-// import { Edit, View, Delete } from "./Function";
 import { useState } from "react";
 import { useThemeProvider } from "../../hooks/useThemeProvider";
 import { toast } from "react-toastify";
@@ -16,25 +15,26 @@ import { deleteUserReducer } from "../../Redux/ReduxApi/UserAction";
 export const Columns = [
   {
     id: "select",
-    header: ({ table }) => (
-      <IndeterminateCheckbox
-        {...{
-          checked: table.getIsAllRowsSelected(),
-          indeterminate: table.getIsSomeRowsSelected(),
-          onChange: table.getToggleAllRowsSelectedHandler(),
-        }}
-      />
-    ),
-    cell: ({ row }) => (
-      <IndeterminateCheckbox
-        {...{
-          checked: row.getIsSelected(),
-          disabled: !row.getCanSelect(),
-          indeterminate: row.getIsSomeSelected(),
-          onChange: row.getToggleSelectedHandler(),
-        }}
-      />
-    ),
+    enableSorting: false,
+    header: ({ table }) => {
+      return (
+        <IndeterminateCheckbox
+          checked={table.getIsAllRowsSelected()}
+          indeterminate={table.getIsSomeRowsSelected()}
+          onChange={table.getToggleAllRowsSelectedHandler()}
+        />
+      );
+    },
+    cell: ({ row }) => {
+      return (
+        <IndeterminateCheckbox
+          checked={row.getIsSelected()}
+          disabled={!row.getCanSelect()}
+          indeterminate={row.getIsSomeSelected()}
+          onChange={row.getToggleSelectedHandler()}
+        />
+      );
+    },
   },
   {
     accessorKey: "index",

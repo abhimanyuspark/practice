@@ -47,7 +47,8 @@ export const deleteMultipleUsers = createAsyncThunk(
   "multiple/deleteMultipleUsers",
   async (ids) => {
     try {
-      const deletePromises = ids.map(async (id) => {
+      const deletePromises = ids.map(async (d) => {
+        const id = d;
         const response = await axios.delete(`${apiUrl}/user/${id}`);
         return { id, success: true, data: response.data };
       });

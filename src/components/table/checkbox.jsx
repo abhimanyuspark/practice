@@ -1,15 +1,30 @@
 import { useEffect, useRef } from "react";
 
-function IndeterminateCheckbox({ indeterminate, className = "", ...rest }) {
+function IndeterminateCheckbox({
+  className = "",
+  indeterminate,
+  checked,
+  disabled,
+  onChange,
+}) {
   const ref = useRef(null);
 
   useEffect(() => {
     if (typeof indeterminate === "boolean") {
-      ref.current.indeterminate = !rest.checked && indeterminate;
+      ref.current.indeterminate = !checked && indeterminate;
     }
   }, [ref, indeterminate]);
 
-  return <input type="checkbox" ref={ref} className={className} {...rest} />;
+  return (
+    <input
+      type="checkbox"
+      ref={ref}
+      checked={checked}
+      disabled={disabled}
+      className={className}
+      onChange={onChange}
+    />
+  );
 }
 
 export default IndeterminateCheckbox;

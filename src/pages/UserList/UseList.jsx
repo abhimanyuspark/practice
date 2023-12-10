@@ -13,7 +13,11 @@ import DateRangePicker from "../../components/DateRangePicker/DateRangePicker";
 import { Button, Input } from "antd";
 const { Search } = Input;
 import { useDispatch, useSelector } from "react-redux";
-import { getRoleBasedUsers } from "../../Redux/ReduxApi/UserApi";
+import {
+  deleteMultipleUsers,
+  getRoleBasedUsers,
+} from "../../Redux/ReduxApi/UserApi";
+import { deleteMultipleUsersReducer } from "../../Redux/ReduxApi/UserAction";
 import FilterAnimation from "../../style/animations/FilterAnimation";
 import Filterform from "./Filterform";
 import Select from "../../components/Custom/Select/SelectDropDown";
@@ -21,6 +25,7 @@ import { useThemeProvider } from "../../hooks/useThemeProvider";
 import { useNavigate } from "react-router-dom";
 import { Add } from "../../style/Icons/Icons";
 import { ExportToExcel } from "../../components/ExportToExcel/ExportToExcel";
+import { toast } from "react-toastify";
 
 const types = [
   { name: "All", role: ["client", "employee"] },
@@ -30,6 +35,7 @@ const types = [
 
 const UseList = () => {
   const [globalFilter, setGlobalFilter] = useState("");
+  // const [rowSelection, setRowSelection] = useState([]);
   const [type, setType] = useState(types[0]);
   const [theme] = useThemeProvider();
   const [date, setDate] = useState({
@@ -93,6 +99,19 @@ const UseList = () => {
     return data;
   }, [filterByDate]);
 
+  // const DeleteAlluser = () => {
+  //   if (rowSelection.length <= 0) {
+  //     toast.warning("Select Users", { position: "top-right" });
+  //   } else {
+  //     toast.success(`${rowSelection.length} users deleted successfully`, {
+  //       position: "top-right",
+  //     });
+  //     console.log(rowSelection);
+  //     // dispatch(deleteMultipleUsers(rowSelection));
+  //     dispatch(deleteMultipleUsersReducer(rowSelection));
+  //   }
+  // };
+
   return (
     <>
       <SubNavbar>
@@ -147,6 +166,7 @@ const UseList = () => {
             icon={Add}
           />
           <ExportToExcel apiData={customArray} fileName="MyUser Data" />
+          {/* <Buttons text="Delete All User" onClick={DeleteAlluser} /> */}
         </FlexDiv>
       </PaddingContainer>
 
@@ -157,6 +177,9 @@ const UseList = () => {
           data={filterByDate}
           globalFilter={globalFilter}
           setGlobalFilter={setGlobalFilter}
+          // onSelectedRowIdsChange={(e) => {
+          //   setRowSelection(e);
+          // }}
         />
       </PaddingContainer>
     </>

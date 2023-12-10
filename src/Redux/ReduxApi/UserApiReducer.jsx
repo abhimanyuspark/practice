@@ -18,9 +18,15 @@ export const userSlice = createSlice({
         return i.id !== id;
       });
     },
+    deleteMultipleUsersReducer: (state, action) => {
+      const ids = action?.payload;
+      state.roleBasedUsers = state.roleBasedUsers.filter(
+        (d) => !ids.includes(d.id)
+      );
+    },
     filterUserdata: (state, action) => {
       const { filterStatus, filterFollow, filterConfig } = action.payload;
-      state.users = state.users.filter((user) => {
+      state.roleBasedUsers = state.roleBasedUsers.filter((user) => {
         let isStatusMatched = true;
         let isFollowMatched = true;
         let isLeadValueMatched = true;
