@@ -76,4 +76,7 @@ export const ToogleIconInput = styled.div`
     $borderLeft ? "0rem" : "0.3rem"};
   border-bottom-left-radius: ${({ $borderLeft }) =>
     $borderLeft ? "0rem" : "0.3rem"};
+  &:hover {
+    background-color: #ccc;
+  }
 `;

@@ -1,16 +1,13 @@
-// PersistenceAuth.js
 import React, { useEffect, useMemo, useState } from "react";
 import { useDispatch } from "react-redux";
 import { refreshAuthUser } from "../../Redux/LoginApi/LoginApi";
 import { Outlet } from "react-router-dom";
 import Cookies from "js-cookie";
 import Loader from "../../style/loader/Loader";
-import { useNavigate } from "react-router-dom";
 
 const PersistenceAuth = () => {
   const auth = Cookies.get("user");
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
 
   if (auth) {
@@ -34,14 +31,12 @@ const PersistenceAuth = () => {
         refresh(user?.name);
       } else {
         setLoading(false);
-        // Redirect to login page if username or persist flag is missing
-        navigate("/login", { state: { error: true }, replace: true });
       }
 
       return () => {
         mounted = false;
       };
-    }, [dispatch, navigate, user]);
+    }, [dispatch, user?.name]);
 
     return loading ? <Loader height="0px" /> : <Outlet />;
   } else {

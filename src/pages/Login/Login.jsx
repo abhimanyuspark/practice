@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { authenticateUser } from "../../Redux/LoginApi/LoginApi";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -24,13 +24,12 @@ import InputContainer from "../../components/InputContainer/InputContainer";
 import { togglePersist } from "../../Redux/LoginApi/reducer";
 
 const Login = () => {
-  const { persist, loading, error } = useSelector((state) => state.auth);
+  const { persist, loading, error, user } = useSelector((state) => state.auth);
   const [show, setShow] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
-  const stateError = location?.state?.error;
 
   const [formData, setFormData] = useState({
     username: "",
@@ -82,10 +81,11 @@ const Login = () => {
 
     try {
       await dispatch(authenticateUser(formData));
-      navigate(from, { replace: true });
-      toast.success(`Login Successful ${formData.username}`, {
-        position: "top-left",
-      });
+      setFormData((prevData) => ({
+        ...prevData,
+        username: "",
+        password: "",
+      }));
     } catch (error) {
       // Handle authentication error
       toast.error(error.message, {
@@ -93,6 +93,14 @@ const Login = () => {
       });
     }
   };
+
+  useEffect(() => {
+    let mounted = true;
+    if (Object.keys(user).length > 0 && mounted) {
+      navigate(from, { replace: true });
+    }
+    return () => (mounted = false);
+  }, [user]);
 
   return (
     <MainWrapper>
@@ -105,9 +113,6 @@ const Login = () => {
           <CenterWarapper>
             <PaddingContainer $padding="5px 0px 20px">
               <H1 $color="white">Login In</H1>
-              {stateError && (
-                <ErrorMessage>Enter a valide username</ErrorMessage>
-              )}
             </PaddingContainer>
           </CenterWarapper>
 
@@ -168,12 +173,11 @@ const Login = () => {
                   type="checkbox"
                   onChange={(e) => {
                     const check = e.target.checked;
-                    // console.log(check);
                     dispatch(togglePersist(check));
                   }}
                   checked={persist}
                 />
-                <Label htmlFor="persist">Remmber me</Label>
+                <Label htmlFor="persist">Remember me</Label>
               </FlexDiv>
             </InputWrapper>
 

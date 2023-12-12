@@ -7,7 +7,7 @@ const RequireAuth = ({ roleAccess = [] }) => {
   const location = useLocation();
   const { user } = useSelector((state) => state.auth);
 
-  if (user !== undefined && Object.keys(user).length > 0 && user) {
+  if (user !== undefined && Object.keys(user).length > 0) {
     if (roleAccess.length === 0 || roleAccess.includes(user?.role)) {
       return <Layout />;
     } else {
