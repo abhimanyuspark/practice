@@ -10,6 +10,8 @@ const Icons = {
   Delete: <span className="material-symbols-outlined">delete</span>,
   Edit: <span className="material-symbols-outlined">edit_square</span>,
   View: <span className="material-symbols-outlined">visibility</span>,
+  ViewOff: <span className="material-symbols-outlined">visibility_off</span>,
+  Error: <span className="material-symbols-outlined">error</span>,
 };
 
 export const {
@@ -24,4 +26,6 @@ export const {
   Delete,
   Edit,
   View,
+  ViewOff,
+  Error,
 } = Icons;

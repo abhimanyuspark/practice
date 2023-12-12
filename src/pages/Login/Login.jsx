@@ -5,26 +5,32 @@ import { useNavigate, useLocation } from "react-router-dom";
 import {
   CenterWarapper,
   Container,
-  InputWrapper,
-  Label,
-  Input,
-  ErrorMessage,
   Buttons,
   MainWrapper,
   H1,
   PaddingContainer,
   StickyBar,
+  Icon,
+  ToogleIconInput,
+  InputWrapper,
+  Label,
+  FlexDiv,
+  ErrorMessage,
 } from "../../style/Export/Export";
-import { LoginIcon } from "../../style/Icons/Icons";
+import { LoginIcon, View, ViewOff } from "../../style/Icons/Icons";
 import Logo from "../../assets/Vitelogo.svg";
 import { toast } from "react-toastify";
+import InputContainer from "../../components/InputContainer/InputContainer";
+import { togglePersist } from "../../Redux/LoginApi/reducer";
 
 const Login = () => {
-  const { loading, error } = useSelector((state) => state.auth);
+  const { persist, loading, error } = useSelector((state) => state.auth);
+  const [show, setShow] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
+  const stateError = location?.state?.error;
 
   const [formData, setFormData] = useState({
     username: "",
@@ -74,12 +80,18 @@ const Login = () => {
       return;
     }
 
-    // If there are no errors, proceed with form submission
-    await dispatch(authenticateUser(formData));
-    navigate(from, { replace: true });
-    toast.success(`Login Successfull ${formData.username}`, {
-      position: "top-left",
-    });
+    try {
+      await dispatch(authenticateUser(formData));
+      navigate(from, { replace: true });
+      toast.success(`Login Successful ${formData.username}`, {
+        position: "top-left",
+      });
+    } catch (error) {
+      // Handle authentication error
+      toast.error(error.message, {
+        position: "top-left",
+      });
+    }
   };
 
   return (
@@ -93,46 +105,76 @@ const Login = () => {
           <CenterWarapper>
             <PaddingContainer $padding="5px 0px 20px">
               <H1 $color="white">Login In</H1>
+              {stateError && (
+                <ErrorMessage>Enter a valide username</ErrorMessage>
+              )}
             </PaddingContainer>
           </CenterWarapper>
 
           <form onSubmit={handleSubmit}>
-            <InputWrapper>
-              <Label>Username</Label>
-              <Input
-                type="text"
-                name="username"
-                autoCapitalize="true"
-                autoComplete="false"
-                placeholder="Enter your username..."
-                value={formData.username}
-                onChange={handleChange}
-                $error={errors.username ? true : false}
-                autoFocus
-              />
-              <ErrorMessage>
-                {error === "Please Enter valid username"
+            <InputContainer
+              sup
+              type="text"
+              name="username"
+              label="Username"
+              value={formData.username}
+              error={errors.username ? true : false}
+              onChange={handleChange}
+              errorMessage={
+                error === "Please Enter valid username"
                   ? error
-                  : errors?.username}
-              </ErrorMessage>
-            </InputWrapper>
+                  : errors?.username
+              }
+              {...{
+                autoComplete: "false",
+                placeholder: "Enter your username...",
+              }}
+            />
+
+            <InputContainer
+              sup
+              borderRight
+              type={show ? "text" : "password"}
+              name="password"
+              label="Password"
+              value={formData.password}
+              error={errors.password ? true : false}
+              onChange={handleChange}
+              errorMessage={
+                error === "Please Enter valid credentials"
+                  ? error
+                  : errors?.password
+              }
+              {...{
+                autoComplete: "false",
+                placeholder: "Enter your password...",
+              }}
+              children={
+                <ToogleIconInput $borderLeft>
+                  <Icon
+                    icon={show ? View : ViewOff}
+                    onClick={() => {
+                      setShow(!show);
+                    }}
+                  />
+                </ToogleIconInput>
+              }
+            />
 
             <InputWrapper>
-              <Label>Password</Label>
-              <Input
-                type="password"
-                name="password"
-                placeholder="Enter your password..."
-                value={formData.password}
-                onChange={handleChange}
-                $error={errors.password ? true : false}
-                autoComplete="false"
-              />
-              <ErrorMessage>
-                {error === "Please Enter valid credentials"
-                  ? error
-                  : errors?.password}
-              </ErrorMessage>
+              <FlexDiv>
+                <input
+                  id="persist"
+                  type="checkbox"
+                  onChange={(e) => {
+                    const check = e.target.checked;
+                    // console.log(check);
+                    dispatch(togglePersist(check));
+                  }}
+                  checked={persist}
+                />
+                <Label htmlFor="persist">Remmber me</Label>
+              </FlexDiv>
             </InputWrapper>
 
             <Buttons

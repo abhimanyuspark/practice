@@ -1,16 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 import Cookies from "js-cookie";
-import { authenticateUser, getAuthUser } from "./LoginApi";
+import { authenticateUser, refreshAuthUser } from "./LoginApi";
 
-// Define an initial state for authentication
 const initialState = {
   error: null,
   loading: false,
   theme: false,
   user: {},
+  persist: false,
 };
 
-// Create a slice for authentication
 const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -18,46 +17,41 @@ const authSlice = createSlice({
     logout: (state) => {
       state.error = null;
       state.loading = false;
+      state.user = {};
+      state.persist = false;
       Cookies.remove("user");
+    },
+    togglePersist: (state, action) => {
+      state.persist = action?.payload;
     },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(authenticateUser.pending, (state) => {
-        state.loading = true;
-      })
       .addCase(authenticateUser.fulfilled, (state, action) => {
         state.loading = false;
-        const data = action?.payload;
-        // Keys to be excluded
-        let keysToExclude = ["name", "role"];
-
-        // Create a new object without specified keys
-        let newData = Object.fromEntries(
-          Object.entries(data).filter(([key]) => keysToExclude.includes(key))
-        );
-        Cookies.set("user", JSON.stringify(newData), { expires: 7 }); // Expires in 7 day
+        state.user = action.payload;
+        const persist = state.persist;
+        if (persist) {
+          const { name, role } = action.payload;
+          Cookies.set("user", JSON.stringify({ name, role, persist }), {
+            expires: 7,
+          });
+        }
       })
-      .addCase(authenticateUser.rejected, (state, action) => {
+      .addCase(refreshAuthUser.fulfilled, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.user = action.payload;
       })
-
-      .addCase(getAuthUser.pending, (state) => {
-        state.loading = true;
-        state.user = {};
-      })
-      .addCase(getAuthUser.fulfilled, (state, action) => {
-        state.loading = false;
-        state.user = action?.payload;
-      })
-      .addCase(getAuthUser.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      });
+      .addMatcher(
+        (action) =>
+          action.type.endsWith("/pending") || action.type.endsWith("/rejected"),
+        (state, action) => {
+          state.loading = false;
+          state.error = action.payload;
+        }
+      );
   },
 });
 
-export const { logout } = authSlice.actions;
-// Export the reducer
+export const { logout, togglePersist } = authSlice.actions;
 export default authSlice.reducer;

@@ -4,12 +4,12 @@ import { EmployeeSidebarData as Employee } from "./EmployeeSidebarData";
 import { ClientSidebarData as Client } from "./ClientSidebarData";
 import { SideChildItem } from "../../style/Export/Export";
 import { NavLink, useLocation } from "react-router-dom";
-import Cookies from "js-cookie";
+import { useSelector } from "react-redux";
 
 const SideMenu = memo(({ sideBar }) => {
   const [activeChildIndex, setActiveChildIndex] = useState(0);
   const { pathname } = useLocation();
-  const user = JSON.parse(Cookies.get("user"));
+  const { user } = useSelector((state) => state.auth);
   const data =
     user?.role === "admin"
       ? Admin

@@ -1,22 +1,14 @@
-import React, { useEffect, useMemo } from "react";
+import React from "react";
 import { useLocation, Navigate } from "react-router-dom";
-import Cookies from "js-cookie";
 import Layout from "../../pages/Layout/Layout";
-import { useDispatch } from "react-redux";
-import { getAuthUser } from "../../Redux/LoginApi/LoginApi";
+import { useSelector } from "react-redux";
 
 const RequireAuth = ({ roleAccess = [] }) => {
   const location = useLocation();
-  const auth = Cookies.get("user") !== undefined;
-  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth);
 
-  if (auth) {
-    const user = useMemo(() => JSON.parse(Cookies.get("user")), []);
-    useEffect(() => {
-      dispatch(getAuthUser(user.name));
-    }, [dispatch, user.name]);
-
-    if (roleAccess.length === 0 || roleAccess.includes(user.role)) {
+  if (user !== undefined && Object.keys(user).length > 0 && user) {
+    if (roleAccess.length === 0 || roleAccess.includes(user?.role)) {
       return <Layout />;
     } else {
       return <Navigate to="/unauthorized" state={{ from: location }} replace />;

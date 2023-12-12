@@ -1,5 +1,10 @@
 import styled, { css } from "styled-components";
 
+export const Relative = styled.div`
+  position: relative;
+  width: ${({ $width }) => $width || "100%"};
+`;
+
 export const FlexDiv = styled.div`
   display: flex;
   align-items: ${({ $direction }) => ($direction ? "" : "center")};

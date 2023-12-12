@@ -2,14 +2,18 @@ import React, { useState } from "react";
 import TextEditor from "../../components/TextEditor/TextEditor";
 import {
   FlexDiv,
+  Icon,
   Input,
   InputWrapper,
   Label,
   PaddingContainer,
   Super,
+  ToogleIconInput,
 } from "../../style/Export/Export";
 import Select from "../../components/Custom/Select/SelectDropDown";
 import { useThemeProvider } from "../../hooks/useThemeProvider";
+import InputContainer from "../../components/InputContainer/InputContainer";
+import { Error, View, ViewOff } from "../../style/Icons/Icons";
 
 const options = [
   { color: "Red" },
@@ -20,22 +24,49 @@ const options = [
 
 const AllInput = () => {
   const [value, setValue] = useState("");
+  const [show, setShow] = useState(true);
   const [sel, setSel] = useState("");
   const [theme] = useThemeProvider();
 
   return (
     <PaddingContainer>
-      <InputWrapper>
-        <FlexDiv $gap="0.5">
-          <Label>Name</Label>
-          <Super>*</Super>
-        </FlexDiv>
-        <Input />
-      </InputWrapper>
+      <InputContainer
+        sup
+        type={show ? "text" : "password"}
+        id="Name"
+        label="Name"
+        error={true}
+        errorMessage="Data not fetch"
+        {...{
+          autoFocus: true,
+          autoComplete: "false",
+        }}
+        borderRight
+        children={
+          <ToogleIconInput $borderLeft>
+            <Icon
+              icon={show ? View : ViewOff}
+              onClick={() => {
+                setShow(!show);
+              }}
+            />
+          </ToogleIconInput>
+        }
+      />
 
-      <InputWrapper>
-        <Label>Email</Label>
-        <Input />
+      <InputWrapper $width="200px">
+        <Label>Password</Label>
+        <FlexDiv $gap="0">
+          <Input $borderRight />
+          <ToogleIconInput $borderLeft>
+            <Icon
+              icon={show ? View : ViewOff}
+              onClick={() => {
+                setShow(!show);
+              }}
+            />
+          </ToogleIconInput>
+        </FlexDiv>
       </InputWrapper>
 
       <InputWrapper>

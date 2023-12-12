@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const IconStyle = styled.span`
   font-size: ${({ $fontSize }) => $fontSize || "20px"};
@@ -11,13 +11,23 @@ const IconStyle = styled.span`
   color: ${({ $color }) => $color || "grey"};
   cursor: pointer;
   &:hover {
-    color: ${(props) => props.theme.cl_dark};
+    ${({ $hover }) =>
+      $hover
+        ? ""
+        : css`
+            color: ${(props) => props.theme.cl_dark};
+          `}
   }
 `;
 
-const Icon = ({ icon, fontSize, color, onClick }) => {
+const Icon = ({ icon, fontSize, color, onClick, hover }) => {
   return (
-    <IconStyle onClick={onClick} $fontSize={fontSize} $color={color}>
+    <IconStyle
+      onClick={onClick}
+      $hover={hover}
+      $fontSize={fontSize}
+      $color={color}
+    >
       {icon}
     </IconStyle>
   );

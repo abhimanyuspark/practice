@@ -6,8 +6,11 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import Loader from "./style/loader/Loader";
-
 import { lightTheme, darkTheme } from "./style/Theme/Theme";
+
+const PersistenceAuth = lazy(() =>
+  import("./components/Persistence/PersistenceAuth")
+);
 const RequireAuth = lazy(() => import("./components/RequireAuth/RequireAuth"));
 
 const Home = lazy(() => import("./pages/home/home"));
@@ -43,45 +46,47 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/unauthorized" element={<Unauthorized />} />
 
-          {/*//?Routes for admin, employee and client */}
-          <Route
-            element={
-              <RequireAuth
-                roleAccess={[role.Admin, role.Employee, role.Client]}
-              />
-            }
-          >
-            <Route path="/" element={<Home />} />
-            <Route path="/setting" element={<h1>Setting</h1>} />
-          </Route>
+          <Route element={<PersistenceAuth />}>
+            {/*//?Routes for admin, employee and client */}
+            <Route
+              element={
+                <RequireAuth
+                  roleAccess={[role.Admin, role.Employee, role.Client]}
+                />
+              }
+            >
+              <Route path="/" element={<Home />} />
+              <Route path="/setting" element={<h1>Setting</h1>} />
+            </Route>
 
-          {/*//?those Routes only for admin and client */}
-          <Route
-            element={<RequireAuth roleAccess={[role.Admin, role.Client]} />}
-          >
-            <Route path="/allbuttons" element={<AllButtons />} />
-          </Route>
+            {/*//?those Routes only for admin and client */}
+            <Route
+              element={<RequireAuth roleAccess={[role.Admin, role.Client]} />}
+            >
+              <Route path="/allbuttons" element={<AllButtons />} />
+            </Route>
 
-          {/*//?those Routes only for admin and employee */}
-          <Route
-            element={<RequireAuth roleAccess={[role.Admin, role.Employee]} />}
-          >
-            <Route path="/accordians" element={<Accordians />} />
-          </Route>
+            {/*//?those Routes only for admin and employee */}
+            <Route
+              element={<RequireAuth roleAccess={[role.Admin, role.Employee]} />}
+            >
+              <Route path="/accordians" element={<Accordians />} />
+            </Route>
 
-          {/*//?those Routes only for admin */}
-          <Route element={<RequireAuth roleAccess={[role.Admin]} />}>
-            <Route path="/users" element={<UseList />} />
-            <Route path="/user/details/:id" element={<UserDetails />} />
-            <Route path="/user/add" element={<UsersAdd />} />
-            <Route path="/user/update/:id" element={<UsersEdit />} />
-            <Route path="/select" element={<CustomSelect />} />
-            <Route path="/DropDown" element={<Form />} />
-          </Route>
+            {/*//?those Routes only for admin */}
+            <Route element={<RequireAuth roleAccess={[role.Admin]} />}>
+              <Route path="/users" element={<UseList />} />
+              <Route path="/user/details/:id" element={<UserDetails />} />
+              <Route path="/user/add" element={<UsersAdd />} />
+              <Route path="/user/update/:id" element={<UsersEdit />} />
+              <Route path="/select" element={<CustomSelect />} />
+              <Route path="/DropDown" element={<Form />} />
+            </Route>
 
-          {/*//?those Routes only for client */}
-          <Route element={<RequireAuth roleAccess={[role.Client]} />}>
-            <Route path="/allinput" element={<AllInput />} />
+            {/*//?those Routes only for client */}
+            <Route element={<RequireAuth roleAccess={[role.Client]} />}>
+              <Route path="/allinput" element={<AllInput />} />
+            </Route>
           </Route>
 
           <Route path="*" element={<PageNotFound />} />

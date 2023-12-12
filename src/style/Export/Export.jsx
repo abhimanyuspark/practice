@@ -22,10 +22,12 @@ import {
   AbsoluteDiv,
   JustifyWrapper,
   FlexWrapper,
+  Relative,
 } from "../Container/Container";
 import { RNavLink } from "../LinkStyle/LinkStyle";
 import {
   InputWrapper,
+  ToogleIconInput,
   Label,
   Super,
   Input,
@@ -53,6 +55,7 @@ export {
   Container,
   PaddingContainer,
   CenterWarapper,
+  Relative,
   MainWrapper,
   StickyBar,
   Overflow,
@@ -62,6 +65,7 @@ export {
   FlexWrapper,
   RNavLink,
   InputWrapper,
+  ToogleIconInput,
   Label,
   Super,
   Input,

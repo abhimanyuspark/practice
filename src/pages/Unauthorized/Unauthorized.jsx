@@ -1,6 +1,6 @@
 import React from "react";
 import Unauth from "../../assets/404page1.png";
-import Cookies from "js-cookie";
+// import Cookies from "js-cookie";
 import { useLocation } from "react-router-dom";
 import {
   MainWrapper,
@@ -11,14 +11,17 @@ import {
   H1,
 } from "../../style/Export/Export";
 import Logo from "../../assets/Vitelogo.svg";
+import { useSelector } from "react-redux";
 
 const Unauthorized = () => {
-  const user = JSON.parse(Cookies.get("user"));
+  // const user = JSON.parse(Cookies.get("user"));
+  const { user } = useSelector((state) => state.auth);
   const location = useLocation();
-  // console.log(location);
+
   const from = location?.state?.from?.pathname;
   const convert = from.slice(1);
-  const roleConvert = user?.role.charAt(0).toUpperCase() + user?.role.slice(1);
+  const roleConvert =
+    user?.role?.charAt(0).toUpperCase() + user?.role?.slice(1);
 
   return (
     <MainWrapper>
