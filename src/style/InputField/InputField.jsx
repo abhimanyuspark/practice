@@ -79,4 +79,5 @@ export const ToogleIconInput = styled.div`
   &:hover {
     background-color: #ccc;
   }
+  pointer-events: ${({ $pointer }) => $pointer || "auto"};
 `;

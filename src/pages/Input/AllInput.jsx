@@ -32,6 +32,7 @@ const AllInput = () => {
     <PaddingContainer>
       <InputContainer
         sup
+        flexDirection="row-reverse"
         type={show ? "text" : "password"}
         id="Name"
         label="Name"
@@ -41,9 +42,9 @@ const AllInput = () => {
           autoFocus: true,
           autoComplete: "false",
         }}
-        borderRight
+        borderLeft
         children={
-          <ToogleIconInput $borderLeft>
+          <ToogleIconInput $borderRight $pointer="none">
             <Icon
               icon={show ? View : ViewOff}
               onClick={() => {

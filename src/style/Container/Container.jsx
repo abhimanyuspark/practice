@@ -10,6 +10,11 @@ export const FlexDiv = styled.div`
   align-items: ${({ $direction }) => ($direction ? "" : "center")};
   justify-content: ${({ $direction }) => ($direction ? "center" : "")};
   flex-direction: ${({ $direction }) => ($direction ? "column" : "row")};
+  ${({ $flexDirection }) =>
+    $flexDirection &&
+    css`
+      flex-direction: ${$flexDirection};
+    `}
   gap: ${({ $gap }) => ($gap ? `${$gap}rem` : "1rem")};
 `;
 

@@ -20,6 +20,7 @@ const InputContainer = ({
   label,
   error,
   errorMessage,
+  flexDirection,
   onChange,
   children,
   borderRight,
@@ -32,7 +33,7 @@ const InputContainer = ({
         {label && <Label htmlFor={name}>{label}</Label>}
         {sup && <Super>*</Super>}
       </FlexDiv>
-      <FlexDiv $gap="0">
+      <FlexDiv $flexDirection={flexDirection} $gap="0">
         <Relative>
           <Input
             id={name}
