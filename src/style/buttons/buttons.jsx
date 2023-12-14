@@ -57,7 +57,7 @@ const Loader = ({ margin }) => {
 
 const Button = styled.button`
   width: ${({ $width }) => ($width ? $width : "auto")};
-  height: 2.5rem;
+  height: 2.4rem;
   border: none;
   padding: 0px 10px;
   border-radius: 0.3rem;

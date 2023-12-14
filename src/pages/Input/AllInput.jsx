@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import TextEditor from "../../components/TextEditor/TextEditor";
 import {
+  Checkbox,
   FlexDiv,
   Icon,
   Input,
@@ -13,7 +14,7 @@ import {
 import Select from "../../components/Custom/Select/SelectDropDown";
 import { useThemeProvider } from "../../hooks/useThemeProvider";
 import InputContainer from "../../components/InputContainer/InputContainer";
-import { Error, View, ViewOff } from "../../style/Icons/Icons";
+import { View, ViewOff } from "../../style/Icons/Icons";
 
 const options = [
   { color: "Red" },
@@ -32,7 +33,7 @@ const AllInput = () => {
     <PaddingContainer>
       <InputContainer
         sup
-        flexDirection="row-reverse"
+        flexDirection
         type={show ? "text" : "password"}
         id="Name"
         label="Name"
@@ -69,6 +70,10 @@ const AllInput = () => {
           </ToogleIconInput>
         </FlexDiv>
       </InputWrapper>
+
+      <Checkbox type="checkbox" />
+      <br />
+      <Checkbox type="radio" />
 
       <InputWrapper>
         <Label>Password</Label>

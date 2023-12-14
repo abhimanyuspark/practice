@@ -15,7 +15,8 @@ import {
   InputWrapper,
   Label,
   FlexDiv,
-  ErrorMessage,
+  LinkStyle,
+  Checkbox,
 } from "../../style/Export/Export";
 import { LoginIcon, View, ViewOff } from "../../style/Icons/Icons";
 import Logo from "../../assets/Vitelogo.svg";
@@ -98,6 +99,7 @@ const Login = () => {
     let mounted = true;
     if (Object.keys(user).length > 0 && mounted) {
       navigate(from, { replace: true });
+      toast.success(`${user.name} login Successfull`, { position: "top-left" });
     }
     return () => (mounted = false);
   }, [user]);
@@ -167,8 +169,12 @@ const Login = () => {
             />
 
             <InputWrapper>
-              <FlexDiv>
-                <input
+              <LinkStyle to="/forget">Forget your password?</LinkStyle>
+            </InputWrapper>
+
+            <InputWrapper $margin="20px 0px">
+              <FlexDiv $gap="0.5">
+                <Checkbox
                   id="persist"
                   type="checkbox"
                   onChange={(e) => {

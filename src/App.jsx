@@ -18,6 +18,7 @@ const AllButtons = lazy(() => import("./pages/AllButtons/AllButtons"));
 const Accordians = lazy(() => import("./components/accordians/accordians"));
 const CustomSelect = lazy(() => import("./pages/CustomSelect/CustomSelect"));
 const Login = lazy(() => import("./pages/Login/Login"));
+const Forget = lazy(() => import("./pages/Login/Forget"));
 const Form = lazy(() => import("./components/DropDown/Form"));
 const Unauthorized = lazy(() => import("./pages/Unauthorized/Unauthorized"));
 const PageNotFound = lazy(() => import("./pages/404/PageNotFound"));
@@ -44,6 +45,7 @@ function App() {
       <Suspense fallback={<Loader height="0px" />}>
         <Routes>
           <Route path="/login" element={<Login />} />
+          <Route path="/forget" element={<Forget />} />
           <Route path="/unauthorized" element={<Unauthorized />} />
 
           <Route element={<PersistenceAuth />}>

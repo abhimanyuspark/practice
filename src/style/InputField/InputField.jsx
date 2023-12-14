@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
 export const InputWrapper = styled.div`
-  margin-bottom: 10px;
+  margin: ${({ $margin }) => $margin || "0px 0px 10px 0px"};
   display: flex;
   flex-direction: ${({ $dir }) => $dir || "column"};
   width: ${({ $width }) => $width || "100%"};
-  gap: ${({ $gap }) => $gap || "0.5rem"};
+  gap: ${({ $gap }) => $gap || "1rem"};
 `;
 
 export const Label = styled.label`
@@ -18,6 +18,12 @@ export const Super = styled.sup`
   line-height: 0.5cm;
   font-weight: 900;
   color: red;
+`;
+
+export const Checkbox = styled.input`
+  width: 15px;
+  height: 15px;
+  accent-color: ${($props) => $props.theme.bt_bg};
 `;
 
 export const Input = styled.input`

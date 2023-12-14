@@ -11,10 +11,11 @@ export const FlexDiv = styled.div`
   justify-content: ${({ $direction }) => ($direction ? "center" : "")};
   flex-direction: ${({ $direction }) => ($direction ? "column" : "row")};
   ${({ $flexDirection }) =>
-    $flexDirection &&
-    css`
-      flex-direction: ${$flexDirection};
-    `}
+    $flexDirection
+      ? css`
+          flex-direction: row-reverse;
+        `
+      : ""}
   gap: ${({ $gap }) => ($gap ? `${$gap}rem` : "1rem")};
 `;
 
