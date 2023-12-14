@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Select from "../../components/Custom/Select/SelectDropDown";
 import { Space } from "antd";
 import { useThemeProvider } from "../../hooks/useThemeProvider";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FlexDiv, P, PaddingContainer } from "../../style/Export/Export";
 import { sportsData } from "../../data/source.json";
+import { getContryApi } from "../../Redux/Redux-Country-Api/CountryApi";
+import { getRoleBasedUsers } from "../../Redux/ReduxApi/UserApi";
 
 const options = [
   { label: "First", value: 1, color: "red" },
@@ -16,18 +18,30 @@ const options = [
 
 const CustomSelect = () => {
   const { roleBasedUsers } = useSelector((state) => state.users);
+  const { country } = useSelector((state) => state.country);
   const { user } = useSelector((state) => state.auth);
+
   const [array, setArray] = useState([options[0]]);
   const [object, setObject] = useState(roleBasedUsers[0]);
   const [object2, setObject2] = useState(sportsData[0]);
   const [object3, setObject3] = useState("");
+
+  const [count, setCount] = useState("");
+
   const [theme] = useThemeProvider();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getRoleBasedUsers(["client", "employee"]));
+    dispatch(getContryApi());
+  }, [dispatch]);
 
   const onsubmit = (e) => {
     e.preventDefault();
     console.log(array);
     console.log(object);
     console.log(object2);
+    console.log(count);
   };
 
   const style = {
@@ -107,6 +121,15 @@ const CustomSelect = () => {
           enableSearch
           theme={theme}
         />
+        <br />
+        <Select
+          fields={{ labelFn: (l) => l?.name?.common }}
+          value={count}
+          options={country}
+          onChange={(e) => setCount(e)}
+          theme={theme}
+        />
+
         <br />
         <Space>
           <Select
