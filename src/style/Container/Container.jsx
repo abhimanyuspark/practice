@@ -10,13 +10,11 @@ export const FlexDiv = styled.div`
   align-items: ${({ $direction }) => ($direction ? "" : "center")};
   justify-content: ${({ $direction }) => ($direction ? "center" : "")};
   flex-direction: ${({ $direction }) => ($direction ? "column" : "row")};
-  ${({ $flexDirection }) =>
-    $flexDirection
-      ? css`
-          flex-direction: row-reverse;
-        `
-      : ""}
   gap: ${({ $gap }) => ($gap ? `${$gap}rem` : "1rem")};
+`;
+
+export const FlexDirection = styled(FlexDiv)`
+  flex-direction: ${({ $direction }) => ($direction ? "row-reverse" : "")};
 `;
 
 export const FlexWrapper = styled.div`

@@ -12,6 +12,7 @@ import {
 } from "../Layout/LayoutStyle";
 import {
   FlexDiv,
+  FlexDirection,
   CenterWarapper,
   Container,
   PaddingContainer,
@@ -53,6 +54,7 @@ export {
   SubNavbar,
   SubNavbarChild,
   FlexDiv,
+  FlexDirection,
   Container,
   PaddingContainer,
   CenterWarapper,

@@ -2,6 +2,7 @@ import React from "react";
 import {
   AbsoluteDiv,
   ErrorMessage,
+  FlexDirection,
   FlexDiv,
   Icon,
   Input,
@@ -33,7 +34,7 @@ const InputContainer = ({
         {label && <Label htmlFor={name}>{label}</Label>}
         {sup && <Super>*</Super>}
       </FlexDiv>
-      <FlexDiv $flexDirection={flexDirection} $gap="0">
+      <FlexDirection $direction={flexDirection} $gap="0">
         <Relative>
           <Input
             id={name}
@@ -51,7 +52,7 @@ const InputContainer = ({
           </AbsoluteDiv>
         </Relative>
         {children}
-      </FlexDiv>
+      </FlexDirection>
       <ErrorMessage>{errorMessage && errorMessage}</ErrorMessage>
     </InputWrapper>
   );

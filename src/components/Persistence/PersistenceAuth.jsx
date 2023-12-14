@@ -27,7 +27,7 @@ const PersistenceAuth = () => {
         }
       };
 
-      if (user?.name && user?.persist) {
+      if (user?.name) {
         refresh(user?.name);
       } else {
         setLoading(false);
@@ -36,7 +36,7 @@ const PersistenceAuth = () => {
       return () => {
         mounted = false;
       };
-    }, [dispatch, user?.name]);
+    }, [dispatch, user]);
 
     return loading ? <Loader height="0px" /> : <Outlet />;
   } else {

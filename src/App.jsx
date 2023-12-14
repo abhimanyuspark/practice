@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import Loader from "./style/loader/Loader";
 import { lightTheme, darkTheme } from "./style/Theme/Theme";
+import { useThemeProvider } from "./hooks/useThemeProvider";
 
 const PersistenceAuth = lazy(() =>
   import("./components/Persistence/PersistenceAuth")
@@ -33,7 +34,7 @@ const UsersEdit = lazy(() =>
 );
 
 function App() {
-  const { theme } = useSelector((state) => state.layout);
+  const [theme] = useThemeProvider();
   const role = {
     Admin: "admin",
     Employee: "employee",

@@ -90,9 +90,9 @@
       "visits": 840,
       "progress": 84,
       "status": {
-        "name": "Pending",
-        "color": "yellow",
-        "id": "1c180990-7c1e-46e2-b81d-b909f2551f0c"
+        "name": "Complete",
+        "color": "#0cf90c",
+        "id": "20125f8e-6d7f-430d-b3bb-c17a5e41d425"
       },
       "statusMenu": [
         {

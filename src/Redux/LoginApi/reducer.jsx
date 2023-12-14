@@ -32,8 +32,8 @@ const authSlice = createSlice({
         state.user = action.payload;
         const persist = state.persist;
         if (persist) {
-          const { name, role } = action.payload;
-          Cookies.set("user", JSON.stringify({ name, role, persist }), {
+          const { name } = action.payload;
+          Cookies.set("user", JSON.stringify({ name }), {
             expires: 7,
           });
         }

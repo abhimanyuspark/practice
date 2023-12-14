@@ -14,10 +14,10 @@ import { Button, Input } from "antd";
 const { Search } = Input;
 import { useDispatch, useSelector } from "react-redux";
 import {
-  deleteMultipleUsers,
+  // deleteMultipleUsers,
   getRoleBasedUsers,
 } from "../../Redux/ReduxApi/UserApi";
-import { deleteMultipleUsersReducer } from "../../Redux/ReduxApi/UserAction";
+// import { deleteMultipleUsersReducer } from "../../Redux/ReduxApi/UserAction";
 import FilterAnimation from "../../style/animations/FilterAnimation";
 import Filterform from "./Filterform";
 import Select from "../../components/Custom/Select/SelectDropDown";
@@ -25,7 +25,7 @@ import { useThemeProvider } from "../../hooks/useThemeProvider";
 import { useNavigate } from "react-router-dom";
 import { Add } from "../../style/Icons/Icons";
 import { ExportToExcel } from "../../components/ExportToExcel/ExportToExcel";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 
 const types = [
   { name: "All", role: ["client", "employee"] },

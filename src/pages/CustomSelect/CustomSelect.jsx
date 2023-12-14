@@ -4,6 +4,7 @@ import { Space } from "antd";
 import { useThemeProvider } from "../../hooks/useThemeProvider";
 import { useSelector } from "react-redux";
 import { FlexDiv, P, PaddingContainer } from "../../style/Export/Export";
+import { sportsData } from "../../data/source.json";
 
 const options = [
   { label: "First", value: 1, color: "red" },
@@ -18,7 +19,7 @@ const CustomSelect = () => {
   const { user } = useSelector((state) => state.auth);
   const [array, setArray] = useState([options[0]]);
   const [object, setObject] = useState(roleBasedUsers[0]);
-  const [object2, setObject2] = useState(options[0]);
+  const [object2, setObject2] = useState(sportsData[0]);
   const [object3, setObject3] = useState("");
   const [theme] = useThemeProvider();
 
@@ -28,6 +29,7 @@ const CustomSelect = () => {
     console.log(object);
     console.log(object2);
   };
+
   const style = {
     width: "20px",
     height: "20px",
@@ -122,25 +124,26 @@ const CustomSelect = () => {
           />
           <Select
             value={object2}
-            options={options}
+            options={sportsData}
+            fields={{ labelFn: (l) => l.Game }}
             onChange={(o) => {
               setObject2(o);
               setObject3(o);
             }}
             clearButton
             divider
-            selectWidth="10em"
+            selectWidth="15em"
             enableSearch
             theme={theme}
           />
           <Select
             value={object3}
-            options={options}
+            options={sportsData}
+            fields={{ labelFn: (l) => l.Game }}
             onChange={(o) => {
               setObject3(o);
-              // setObject2(o);
             }}
-            selectWidth="10em"
+            selectWidth="15em"
             theme={theme}
           />
         </Space>

@@ -9,7 +9,6 @@ import {
   TableWrapper,
   FlexDiv,
   SelectInput,
-  Input,
   Label,
   JustifyWrapper,
 } from "../../style/Export/Export";
@@ -54,10 +53,6 @@ const Table = memo(
       getPaginationRowModel: getPaginationRowModel(),
       // debugTable: true,
     });
-
-    const [currentPageIndex, setCurrentPageIndex] = useState(
-      table.getState().pagination.pageIndex + 1
-    );
 
     const Loading = () => {
       return (
@@ -165,28 +160,19 @@ const Table = memo(
                         Page {table.getState().pagination.pageIndex + 1} of{" "}
                         {table.getPageCount()} | Go to page :
                       </Label>
-                      <Input
-                        $width="50px"
-                        type="number"
-                        value={currentPageIndex}
+                      <SelectInput
+                        value={table.getState().pagination.pageIndex}
                         onChange={(e) => {
-                          const enteredValue = e.target.value.trim(); // Trim to handle leading/trailing whitespace
-                          const page =
-                            enteredValue === ""
-                              ? 0
-                              : Math.max(0, Number(enteredValue) - 1);
-
-                          // Update the local state to reflect the entered value if it's not empty
-                          if (
-                            enteredValue === "" ||
-                            (Number(enteredValue) > 0 &&
-                              enteredValue <= table.getPageCount())
-                          ) {
-                            setCurrentPageIndex(enteredValue);
-                            table.setPageIndex(page);
-                          }
+                          const page = e.target.value;
+                          table.setPageIndex(page);
                         }}
-                      />
+                      >
+                        {table.getPageOptions().map((i) => (
+                          <option key={i} value={i}>
+                            {i + 1}
+                          </option>
+                        ))}
+                      </SelectInput>
                     </FlexDiv>
 
                     <FlexDiv>
@@ -196,7 +182,7 @@ const Table = memo(
                           table.setPageSize(Number(e.target.value));
                         }}
                       >
-                        {[10, 20, 30, 40, 50].map((pageSize) => (
+                        {[5, 10, 20, 30, 40, 50].map((pageSize) => (
                           <option key={pageSize} value={pageSize}>
                             {pageSize}
                           </option>
