@@ -1,40 +1,42 @@
 import React, { lazy, Suspense } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
-import { useSelector } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import Loader from "./style/loader/Loader";
 import { lightTheme, darkTheme } from "./style/Theme/Theme";
 import { useThemeProvider } from "./hooks/useThemeProvider";
+import { useTitle } from "./hooks/useTitle";
 
 const PersistenceAuth = lazy(() =>
   import("./components/Persistence/PersistenceAuth")
 );
 const RequireAuth = lazy(() => import("./components/RequireAuth/RequireAuth"));
 
-const Home = lazy(() => import("./pages/home/home"));
-const AllButtons = lazy(() => import("./pages/AllButtons/AllButtons"));
-const Accordians = lazy(() => import("./components/accordians/accordians"));
-const CustomSelect = lazy(() => import("./pages/CustomSelect/CustomSelect"));
-const Login = lazy(() => import("./pages/Login/Login"));
-const Forget = lazy(() => import("./pages/Login/Forget"));
-const Form = lazy(() => import("./components/DropDown/Form"));
-const Unauthorized = lazy(() => import("./pages/Unauthorized/Unauthorized"));
-const PageNotFound = lazy(() => import("./pages/404/PageNotFound"));
-const AllInput = lazy(() => import("./pages/Input/AllInput"));
-const UseList = lazy(() => import("./pages/UserList/UseList"));
-const UserDetails = lazy(() =>
-  import("./pages/UserList/CRUD_For_User/UserDetails")
-);
-const UsersAdd = lazy(() => import("./pages/UserList/CRUD_For_User/UsersAdd"));
-const UsersEdit = lazy(() =>
-  import("./pages/UserList/CRUD_For_User/UsersEdit")
-);
+import {
+  Home,
+  Form,
+  AllButtons,
+  Accordians,
+  CustomSelect,
+  Login,
+  Forget,
+  Unauthorized,
+  PageNotFound,
+  AllInput,
+  UseList,
+  UserDetails,
+  UsersAdd,
+  UsersEdit,
+  Upload,
+} from "./pages/Export/Export";
 
 function App() {
   const [theme] = useThemeProvider();
+  const { state } = useLocation();
+  useTitle(state);
+
   const role = {
     Admin: "admin",
     Employee: "employee",
@@ -89,6 +91,7 @@ function App() {
             {/*//?those Routes only for client */}
             <Route element={<RequireAuth roleAccess={[role.Client]} />}>
               <Route path="/allinput" element={<AllInput />} />
+              <Route path="/upload" element={<Upload />} />
             </Route>
           </Route>
 

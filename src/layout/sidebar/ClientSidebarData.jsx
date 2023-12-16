@@ -23,14 +23,14 @@ export const ClientSidebarData = [
       },
     ],
   },
-  //   {
-  //     id: 2,
-  //     icon: List,
-  //     value: "Accordians",
-  //     link: "/accordians",
-  //   },
   {
-    id: 4,
+    id: 2,
+    icon: List,
+    value: "Upload",
+    link: "/upload",
+  },
+  {
+    id: 3,
     icon: List,
     value: "All Inputs",
     link: "/allinput",

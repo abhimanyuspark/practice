@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { logout } from "../../Redux/LoginApi/reducer";
 import { useThemeProvider } from "../../hooks/useThemeProvider";
 import Swal from "sweetalert2";
+import { useTitle } from "../../hooks/useTitle";
 
 const UserProfile = () => {
   const dispatch = useDispatch();
@@ -51,10 +52,13 @@ const ThemeProvider = () => {
 };
 
 const Navbar = () => {
+  const [state] = useTitle();
+
   return (
     <NavbarWrapper>
       <FlexDiv>
         <RNavLink to="/">Dashboard</RNavLink>
+        <RNavLink>.{state}</RNavLink>
       </FlexDiv>
       <FlexDiv>
         <UserProfile />
