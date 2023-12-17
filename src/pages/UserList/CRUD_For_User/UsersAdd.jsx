@@ -18,12 +18,12 @@ import { useTitle } from "../../../hooks/useTitle";
 import { Tooltip } from "antd";
 import { useRandomPassword } from "../../../hooks/useRandomPassword";
 import { v4 as uuidv4 } from "uuid";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 const UsersAdd = () => {
   const { user } = useSelector((state) => state.auth);
   const [theme] = useThemeProvider();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   useTitle("Add User");
 
   const id = uuidv4();
@@ -63,7 +63,7 @@ const UsersAdd = () => {
     password: "",
   });
   const [isSubmited, setIsSubmited] = useState(false);
-  const [isnavigate, setIsNavigate] = useState(false);
+  // const [isnavigate, setIsNavigate] = useState(false);
   const [show, setShow] = useState(false);
 
   const handleChange = (e) => {
@@ -71,17 +71,29 @@ const UsersAdd = () => {
     setFormError((p) => ({ ...p, [e.target.name]: "" }));
   };
 
+  const onSubmit = (e) => {
+    e.preventDefault();
+    formValiDate(formData);
+  };
+
   const formValiDate = (data) => {
     const errors = {};
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
 
     if (data.name.trim() === "") {
       errors.name = "Enter an username";
     }
+
     if (data.email.trim() === "") {
       errors.email = "Enter an email";
+    } else if (!regex.test(data.email)) {
+      errors.email = "This is not a valid email format!";
     }
+
     if (data.password.trim() === "") {
       errors.password = "Enter a password";
+    } else if (data.password.length < 8 || data.password.length > 10) {
+      errors.password = "Password must be between 8 to 10 characters in length";
     }
 
     setFormError((prevErrors) => ({
@@ -91,11 +103,6 @@ const UsersAdd = () => {
 
     const hasErrors = Object.keys(errors).length > 0;
     setIsSubmited(!hasErrors);
-  };
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-    formValiDate(formData);
   };
 
   useEffect(() => {
@@ -109,9 +116,9 @@ const UsersAdd = () => {
         email: "",
         stats: "",
       }));
-      if (isnavigate) {
-        navigate("/users", { replace: true });
-      }
+      // if (isnavigate) {
+      //   navigate("/users", { replace: true });
+      // }
     }
   }, [isSubmited]);
 
@@ -135,7 +142,7 @@ const UsersAdd = () => {
           <InputContainer
             name="email"
             sup
-            type="email"
+            type="text"
             value={formData.email}
             label="Email"
             onChange={handleChange}
@@ -155,6 +162,7 @@ const UsersAdd = () => {
             error={formError.password ? true : false}
             errorMessage={formError.password}
             borderRight
+            width="250px"
             {...{
               autoComplete: "false",
               placeholder: "Enter a password",
@@ -204,20 +212,23 @@ const UsersAdd = () => {
             />
           </InputWrapper>
 
-          <FlexDiv>
-            <Tooltip title="Navigte to users">
-              <Buttons
-                type="submit"
-                text="Submit"
-                icon={Check}
-                onClick={() => {
-                  const has = Object.keys(formError).length > 0;
-                  setIsNavigate(!has);
-                }}
-              />
-            </Tooltip>
-            <Buttons type="submit" text="Submit / Add More" icon={Check} />
-          </FlexDiv>
+          <PaddingContainer $padding="20px 0px 0px">
+            <FlexDiv>
+              {/* <Buttons
+              type="submit"
+              text="Submit"
+              icon={Check}
+              onClick={() => {
+                const has = Object.keys(formError).length > 0;
+                if (!has) {
+                  setIsNavigate(true);
+                  console.log("true");
+                }
+              }}
+            /> */}
+              <Buttons type="submit" text="Save / Add More" icon={Check} />
+            </FlexDiv>
+          </PaddingContainer>
         </form>
       </Container>
     </PaddingContainer>

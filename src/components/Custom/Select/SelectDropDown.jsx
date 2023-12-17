@@ -89,7 +89,9 @@ function Select({
           setQuery("");
         }}
       >
-        <span className={styles.value}>
+        <span
+          className={`${styles.value} ${value ? `` : `${styles.notvalue}`}`}
+        >
           {multiple
             ? value?.length > 0
               ? value?.map((v, i) => (

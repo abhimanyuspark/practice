@@ -26,10 +26,11 @@ const InputContainer = ({
   children,
   borderRight,
   borderLeft,
+  width,
   ...rest
 }) => {
   return (
-    <InputWrapper>
+    <InputWrapper $width={width}>
       <FlexDiv $gap="0.5">
         {label && <Label htmlFor={name}>{label}</Label>}
         {sup && <Super>*</Super>}
