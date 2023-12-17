@@ -6,12 +6,14 @@ import {
   JustifyWrapper,
   PaddingContainer,
 } from "../../style/Export/Export";
+import { useTitle } from "../../hooks/useTitle";
 
 const Accordians = () => {
   const data = useMemo(() => {
     return makeData(5);
   }, []);
   const [index, setIndex] = useState();
+  useTitle("Accordians");
 
   const handletoggle = (i) => (index !== i ? setIndex(i) : setIndex(null));
 

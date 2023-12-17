@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Buttons, PaddingContainer } from "../../style/Export/Export";
 import { Check } from "../../style/Icons/Icons";
+import { useTitle } from "../../hooks/useTitle";
 // import Loader from "../../style/loader/Loader";
 
 const AllButtons = () => {
   const [loading, setLoading] = useState(false);
+  useTitle("All Buttons");
 
   const copyToClipboard = () => {
     const textToCopy = "This is the text to copy to clipboard";

@@ -169,13 +169,14 @@ const Table = memo(
                       >
                         {table.getPageOptions().map((i) => (
                           <option key={i} value={i}>
-                            {i + 1}
+                            Page {i + 1}
                           </option>
                         ))}
                       </SelectInput>
                     </FlexDiv>
 
                     <FlexDiv>
+                      <Label>Show : </Label>
                       <SelectInput
                         value={table.getState().pagination.pageSize}
                         onChange={(e) => {

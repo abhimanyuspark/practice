@@ -7,6 +7,7 @@ import { FlexDiv, P, PaddingContainer } from "../../style/Export/Export";
 import { sportsData } from "../../data/source.json";
 import { getContryApi } from "../../Redux/Redux-Country-Api/CountryApi";
 import { getRoleBasedUsers } from "../../Redux/ReduxApi/UserApi";
+import { useTitle } from "../../hooks/useTitle";
 
 const options = [
   { label: "First", value: 1, color: "red" },
@@ -20,6 +21,7 @@ const CustomSelect = () => {
   const { roleBasedUsers } = useSelector((state) => state.users);
   const { country } = useSelector((state) => state.country);
   const { user } = useSelector((state) => state.auth);
+  useTitle("Select");
 
   const [array, setArray] = useState([options[0]]);
   const [object, setObject] = useState(roleBasedUsers[0]);

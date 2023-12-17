@@ -25,6 +25,7 @@ import { useThemeProvider } from "../../hooks/useThemeProvider";
 import { useNavigate } from "react-router-dom";
 import { Add } from "../../style/Icons/Icons";
 import { ExportToExcel } from "../../components/ExportToExcel/ExportToExcel";
+import { useTitle } from "../../hooks/useTitle";
 // import { toast } from "react-toastify";
 
 const types = [
@@ -47,6 +48,7 @@ const UseList = () => {
   const { roleBasedUsers, loading } = useSelector((state) => state.users);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  useTitle("Users");
 
   const handleDateChange = (From, To, dates) => {
     if (From === "" && To === "") {

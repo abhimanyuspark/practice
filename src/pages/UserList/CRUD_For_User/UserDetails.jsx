@@ -14,6 +14,7 @@ import DropDownMenu from "../../../components/Custom/DropDownMenu/DropDownMenu";
 import { detailsMenu } from "../../../data/all_menu";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
+import { useTitle } from "../../../hooks/useTitle";
 
 const UserDetails = () => {
   const { id } = useParams();
@@ -24,6 +25,7 @@ const UserDetails = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/users";
+  useTitle(name);
 
   useEffect(() => {
     dispatch(getUserData(id));

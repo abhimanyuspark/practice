@@ -7,7 +7,6 @@ import "./App.css";
 import Loader from "./style/loader/Loader";
 import { lightTheme, darkTheme } from "./style/Theme/Theme";
 import { useThemeProvider } from "./hooks/useThemeProvider";
-import { useTitle } from "./hooks/useTitle";
 
 const PersistenceAuth = lazy(() =>
   import("./components/Persistence/PersistenceAuth")
@@ -34,9 +33,6 @@ import {
 
 function App() {
   const [theme] = useThemeProvider();
-  const { state } = useLocation();
-  useTitle(state);
-
   const role = {
     Admin: "admin",
     Employee: "employee",

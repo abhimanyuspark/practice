@@ -11,11 +11,13 @@ import { Check } from "../../../style/Icons/Icons";
 import Select from "../../../components/Custom/Select/SelectDropDown";
 import { useSelector } from "react-redux";
 import { useThemeProvider } from "../../../hooks/useThemeProvider";
+import { useTitle } from "../../../hooks/useTitle";
 // import { v4 as uuidv4 } from "uuid";
 
 const UsersAdd = () => {
   const { user } = useSelector((state) => state.auth);
   const [theme] = useThemeProvider();
+  useTitle("Add User");
 
   const [formData, setFormData] = useState({
     id: "",

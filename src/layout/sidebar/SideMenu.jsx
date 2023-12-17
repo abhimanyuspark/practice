@@ -64,11 +64,7 @@ const SideMenu = memo(({ sideBar }) => {
               {d?.subMenu?.map((s, sub_index) => (
                 <div key={sub_index}>
                   {s.link ? (
-                    <NavLink
-                      className="subMenuLink"
-                      state={s.value}
-                      to={s.link}
-                    >
+                    <NavLink className="subMenuLink" to={s.link}>
                       {s.value}
                     </NavLink>
                   ) : (
@@ -95,7 +91,7 @@ const MainDiv = memo(({ d, i, index }) => {
   return (
     <>
       {d.link ? (
-        <NavLink state={d.value} to={d.link} className="smlink">
+        <NavLink to={d.link} className="smlink">
           {DivGap(d)}
         </NavLink>
       ) : (

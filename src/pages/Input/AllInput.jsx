@@ -15,6 +15,7 @@ import Select from "../../components/Custom/Select/SelectDropDown";
 import { useThemeProvider } from "../../hooks/useThemeProvider";
 import InputContainer from "../../components/InputContainer/InputContainer";
 import { View, ViewOff } from "../../style/Icons/Icons";
+import { useTitle } from "../../hooks/useTitle";
 
 const options = [
   { color: "Red" },
@@ -28,6 +29,7 @@ const AllInput = () => {
   const [show, setShow] = useState(true);
   const [sel, setSel] = useState("");
   const [theme] = useThemeProvider();
+  useTitle("All Input");
 
   return (
     <PaddingContainer>
