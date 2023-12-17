@@ -14,7 +14,9 @@ const UseList = lazy(() => import("../UserList/UseList"));
 const UserDetails = lazy(() => import("../UserList/CRUD_For_User/UserDetails"));
 const UsersAdd = lazy(() => import("../UserList/CRUD_For_User/UsersAdd"));
 const UsersEdit = lazy(() => import("../UserList/CRUD_For_User/UsersEdit"));
-const Upload = lazy(() => import("../../components/Upload/ImageUpload"));
+const Upload = lazy(() =>
+  import("../../components/Upload/FileUploadComponent")
+);
 
 export {
   Home,

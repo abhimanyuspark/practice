@@ -3,6 +3,7 @@ import styles from "./select.module.css";
 import ClickOutside from "../../../utilities/ClickOutside";
 
 function Select({
+  id = "",
   multiple = false,
   value,
   onChange,
@@ -80,6 +81,7 @@ function Select({
       style={{ width: selectWidth || "100%" }}
     >
       <div
+        id={id}
         tabIndex={0}
         className={`${border ? "" : styles.border} ${styles.container}`}
         onClick={() => {

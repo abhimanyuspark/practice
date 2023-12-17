@@ -15,9 +15,9 @@ const PersistenceAuth = () => {
     useEffect(() => {
       let mounted = true;
 
-      const refresh = async (username) => {
+      const refresh = async (email) => {
         try {
-          await dispatch(refreshAuthUser(username));
+          await dispatch(refreshAuthUser(email));
         } catch (err) {
           console.error("Error refreshing user data:", err);
         } finally {
@@ -27,8 +27,8 @@ const PersistenceAuth = () => {
         }
       };
 
-      if (user?.name) {
-        refresh(user?.name);
+      if (user?.email) {
+        refresh(user?.email);
       } else {
         setLoading(false);
       }

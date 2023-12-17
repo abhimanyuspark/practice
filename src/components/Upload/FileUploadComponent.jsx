@@ -1,52 +1,35 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./FileUploadComponent.css";
 import axios from "axios";
 
 const FileUploadComponent = () => {
   const [files, setFiles] = useState([]);
 
-  const fetchImagesFromAPI = async () => {
-    try {
-      const response = await axios.get(
-        "https://653f81109e8bd3be29e0b5b1.mockapi.io/fileList/1"
-      );
-      const data = response.data;
-      return data; // Assuming the API returns an array of image URLs
-    } catch (error) {
-      console.error("Error fetching images:", error);
-    }
-  };
+  console.log(files);
 
   const uploadImages = async (images) => {
-    const formData = new FormData();
+    if (images) {
+      try {
+        const response = await axios.post(
+          "http://localhost:3500/images",
+          images,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              "Custom-Header": "value",
+            },
+          }
+        );
 
-    images.forEach((image, index) => {
-      formData.append(`filelist[${index}]`, images);
-      console.log(image, index);
-    });
-
-    console.log(formData);
-
-    // try {
-    //   const response = await axios.post(
-    //     "https://653f81109e8bd3be29e0b5b1.mockapi.io/fileList/1",
-    //     formData
-    //   );
-
-    //   if (response.status !== 200) {
-    //     throw new Error("Upload failed");
-    //   }
-
-    //   const data = response.data;
-    //   console.log(data);
-    // } catch (error) {
-    //   console.error("Error uploading images:", error);
-    // }
+        const data = response.data;
+        console.log(data);
+      } catch (error) {
+        console.error("Error uploading images:", error);
+      }
+    } else {
+      console.log("Select images first");
+    }
   };
-
-  useEffect(() => {
-    fetchImagesFromAPI().then((images) => setFiles(images.filelist));
-  }, []); // Fetch images when component mounts
 
   const handleFileChange = (event) => {
     const fileList = event.target.files;
@@ -54,13 +37,16 @@ const FileUploadComponent = () => {
       file,
       preview: URL.createObjectURL(file),
     }));
+
     setFiles((prevFiles) => [...prevFiles, ...newFiles]);
   };
 
   const handleUpload = () => {
-    const imagesToUpload = files.map((file) => file);
-    // console.log(imagesToUpload);
-    uploadImages(imagesToUpload);
+    uploadImages(files);
+  };
+
+  const handleDelete = (index) => {
+    setFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
   };
 
   return (
@@ -68,7 +54,7 @@ const FileUploadComponent = () => {
       <input type="file" multiple onChange={handleFileChange} />
       <button onClick={handleUpload}>Upload Images</button>
       <div className="preview-container">
-        {files?.map((file, index) => (
+        {files.map((file, index) => (
           <div key={index} className="preview-item">
             <img src={file.preview} alt={file.file.name} />
             <button onClick={() => handleDelete(index)}>Delete</button>

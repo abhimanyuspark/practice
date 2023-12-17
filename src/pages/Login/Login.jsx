@@ -23,6 +23,7 @@ import Logo from "../../assets/Vitelogo.svg";
 import { toast } from "react-toastify";
 import InputContainer from "../../components/InputContainer/InputContainer";
 import { togglePersist } from "../../Redux/LoginApi/reducer";
+import { useTitle } from "../../hooks/useTitle";
 
 const Login = () => {
   const { persist, loading, error, user } = useSelector((state) => state.auth);
@@ -33,11 +34,11 @@ const Login = () => {
   const from = location.state?.from?.pathname || "/";
 
   const [formData, setFormData] = useState({
-    username: "",
+    email: "",
     password: "",
   });
   const [errors, setErrors] = useState({
-    username: "",
+    email: "",
     password: "",
   });
 
@@ -56,10 +57,10 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Validation before submitting the form
-    if (formData.username.trim() === "") {
+    if (formData.email.trim() === "") {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        username: "Enter Username",
+        email: "Enter email address",
       }));
       return;
     }
@@ -72,10 +73,10 @@ const Login = () => {
       return;
     }
 
-    if (formData.password.length < 10 || formData.password.length > 15) {
+    if (formData.password.length < 8 || formData.password.length > 10) {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        password: "Password must be between 10 and 15 characters in length",
+        password: "Password must be between 8 and 10 characters in length",
       }));
       return;
     }
@@ -84,7 +85,7 @@ const Login = () => {
       await dispatch(authenticateUser(formData));
       setFormData((prevData) => ({
         ...prevData,
-        username: "",
+        email: "",
         password: "",
       }));
     } catch (error) {
@@ -95,11 +96,15 @@ const Login = () => {
     }
   };
 
+  useTitle("Login");
+
   useEffect(() => {
     let mounted = true;
     if (Object.keys(user).length > 0 && mounted) {
       navigate(from, { replace: true });
-      toast.success(`${user.name} login Successfull`, { position: "top-left" });
+      toast.success(`${user.email} login Successfull`, {
+        position: "top-left",
+      });
     }
     return () => (mounted = false);
   }, [user]);
@@ -121,20 +126,18 @@ const Login = () => {
           <form onSubmit={handleSubmit}>
             <InputContainer
               sup
-              type="text"
-              name="username"
-              label="Username"
-              value={formData.username}
-              error={errors.username ? true : false}
+              type="email"
+              name="email"
+              label="Email Address"
+              value={formData.email}
+              error={errors.email ? true : false}
               onChange={handleChange}
               errorMessage={
-                error === "Please Enter valid username"
-                  ? error
-                  : errors?.username
+                error === "Please Enter valid email" ? error : errors?.email
               }
               {...{
-                autoComplete: "false",
-                placeholder: "Enter your username...",
+                autoComplete: "true",
+                placeholder: "Enter your email address...",
               }}
             />
 

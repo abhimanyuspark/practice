@@ -4,9 +4,9 @@ import { apiUrl } from "../apikey";
 
 export const authenticateUser = createAsyncThunk(
   "auth/authenticateUser",
-  async ({ username, password }, { rejectWithValue }) => {
+  async ({ email, password }, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`${apiUrl}/user?name=${username}`);
+      const response = await axios.get(`${apiUrl}/user?email=${email}`);
       const user = response.data[0];
 
       if (user.password === password) {
@@ -15,20 +15,20 @@ export const authenticateUser = createAsyncThunk(
         return rejectWithValue("Please Enter valid credentials");
       }
     } catch (error) {
-      return rejectWithValue("Please Enter valid username");
+      return rejectWithValue("Please Enter valid email");
     }
   }
 );
 
 export const refreshAuthUser = createAsyncThunk(
   "auth/refreshAuthUser",
-  async (username, { rejectWithValue }) => {
+  async (email, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`${apiUrl}/user?name=${username}`);
+      const response = await axios.get(`${apiUrl}/user?email=${email}`);
       const user = response.data[0];
       return user;
     } catch (error) {
-      return rejectWithValue("Please Enter valid username");
+      return rejectWithValue("Please Enter valid email");
     }
   }
 );

@@ -12,6 +12,7 @@ import {
 } from "../../style/Export/Export";
 import Logo from "../../assets/Vitelogo.svg";
 import { useSelector } from "react-redux";
+import { useTitle } from "../../hooks/useTitle";
 
 const Unauthorized = () => {
   // const user = JSON.parse(Cookies.get("user"));
@@ -22,6 +23,8 @@ const Unauthorized = () => {
   const convert = from.slice(1);
   const roleConvert =
     user?.role?.charAt(0).toUpperCase() + user?.role?.slice(1);
+
+  useTitle("Unauthorized");
 
   return (
     <MainWrapper>

@@ -7,8 +7,11 @@ import {
 } from "../../style/Export/Export";
 import Logo from "../../assets/Vitelogo.svg";
 import NotFound from "../../assets/404-page.avif";
+import { useTitle } from "../../hooks/useTitle";
 
 const PageNotFound = () => {
+  useTitle("404 page not found");
+
   return (
     <MainWrapper>
       <StickyBar>
