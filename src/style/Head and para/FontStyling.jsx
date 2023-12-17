@@ -17,6 +17,7 @@ export const H3 = styled.h3`
 `;
 
 export const P = styled.p`
+  font-size: ${({ $size }) => $size || "16px"};
   color: ${({ $color, theme }) => $color || theme.cl_dark};
   line-height: 0.5cm;
 `;

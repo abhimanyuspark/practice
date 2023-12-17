@@ -11,6 +11,8 @@ import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router-dom";
 import { tableMenu } from "../../data/all_menu";
 import { deleteUserReducer } from "../../Redux/ReduxApi/UserAction";
+import { Progress, notification } from "antd";
+import { FlexDiv } from "../../style/Export/Export";
 
 export const Columns = [
   {
@@ -100,7 +102,7 @@ export const Columns = [
     header: "Progress",
     cell: (info) => {
       const value = info.getValue();
-      return <ProgressCircle $value={value}>{value}%</ProgressCircle>;
+      return <Progress type="circle" percent={value} size={40} />;
     },
     sortDescFirst: false,
   },
@@ -109,29 +111,32 @@ export const Columns = [
     header: "Status",
     cell: (info) => {
       const value = info.getValue();
+      const { id, name } = info.row.original;
+      const [api, contextHolder] = notification.useNotification();
+      const [theme] = useThemeProvider();
       const [val, setVal] = useState(value);
       const dispatch = useDispatch();
-      const [theme] = useThemeProvider();
-      const { id, name } = info.row.original;
 
       const { user } = useSelector((state) => state.auth);
       const options = user?.statusMenu;
 
+      const openNotificationWithIcon = (type) => {
+        api[type]({
+          message: "Status Update",
+          description: `${name} status is Update`,
+          duration: 3,
+        });
+      };
+
       const updateStatus = (status) => {
         setVal(status);
-        toast.success(`${name} status is Update`, { position: "top-right" });
+        openNotificationWithIcon("success");
         dispatch(updateUserStatus({ id, status }));
       };
 
       const optionTemplete = (o) => {
         return (
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "0.5rem",
-            }}
-          >
+          <FlexDiv $gap="0.5">
             <span
               style={{
                 display: "inline-block",
@@ -142,24 +147,27 @@ export const Columns = [
               }}
             ></span>
             <span>{o.name}</span>
-          </div>
+          </FlexDiv>
         );
       };
 
       return (
-        <span key={value.id}>
-          <Select
-            optionTemplate={optionTemplete}
-            singleTemplate={optionTemplete}
-            selectWidth="8em"
-            optionsWidth="10em"
-            options={options}
-            value={val}
-            fields={{ labelFn: (l) => l.name }}
-            onChange={(o) => updateStatus(o)}
-            theme={theme}
-          />
-        </span>
+        <>
+          {contextHolder}
+          <span key={value.id}>
+            <Select
+              optionTemplate={optionTemplete}
+              singleTemplate={optionTemplete}
+              selectWidth="8em"
+              optionsWidth="10em"
+              options={options}
+              value={val}
+              fields={{ labelFn: (l) => l.name }}
+              onChange={(o) => updateStatus(o)}
+              theme={theme}
+            />
+          </span>
+        </>
       );
     },
     sortingFn: (row1, row2, column) => {
@@ -207,7 +215,7 @@ export const Columns = [
       const Delete = (id) => {
         Swal.fire({
           title: "Are you sure?",
-          text: `You want to delete the ${id}!`,
+          text: `You want to delete ${name} user!`,
           icon: "warning",
           showCancelButton: true,
           confirmButtonColor: "#3085d6",

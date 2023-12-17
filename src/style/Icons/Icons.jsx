@@ -12,6 +12,10 @@ const Icons = {
   View: <span className="material-symbols-outlined">visibility</span>,
   ViewOff: <span className="material-symbols-outlined">visibility_off</span>,
   Error: <span className="material-symbols-outlined">error</span>,
+  Filter: (
+    <span className="material-symbols-outlined material-fill">filter_alt</span>
+  ),
+  Random: <span className="material-symbols-outlined">shuffle</span>,
 };
 
 export const {
@@ -28,4 +32,6 @@ export const {
   View,
   ViewOff,
   Error,
+  Filter,
+  Random,
 } = Icons;

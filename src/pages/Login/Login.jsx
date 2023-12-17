@@ -24,6 +24,7 @@ import { toast } from "react-toastify";
 import InputContainer from "../../components/InputContainer/InputContainer";
 import { togglePersist } from "../../Redux/LoginApi/reducer";
 import { useTitle } from "../../hooks/useTitle";
+import { Tooltip } from "antd";
 
 const Login = () => {
   const { persist, loading, error, user } = useSelector((state) => state.auth);
@@ -31,6 +32,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+  useTitle("Login");
   const from = location.state?.from?.pathname || "/";
 
   const [formData, setFormData] = useState({
@@ -96,8 +98,6 @@ const Login = () => {
     }
   };
 
-  useTitle("Login");
-
   useEffect(() => {
     let mounted = true;
     if (Object.keys(user).length > 0 && mounted) {
@@ -160,14 +160,16 @@ const Login = () => {
                 placeholder: "Enter your password...",
               }}
               children={
-                <ToogleIconInput $borderLeft>
-                  <Icon
-                    icon={show ? View : ViewOff}
-                    onClick={() => {
-                      setShow(!show);
-                    }}
-                  />
-                </ToogleIconInput>
+                <Tooltip title="Show/Hide">
+                  <ToogleIconInput $borderLeft>
+                    <Icon
+                      icon={show ? View : ViewOff}
+                      onClick={() => {
+                        setShow(!show);
+                      }}
+                    />
+                  </ToogleIconInput>
+                </Tooltip>
               }
             />
 
@@ -177,15 +179,17 @@ const Login = () => {
 
             <InputWrapper $margin="20px 0px">
               <FlexDiv $gap="0.5">
-                <Checkbox
-                  id="persist"
-                  type="checkbox"
-                  onChange={(e) => {
-                    const check = e.target.checked;
-                    dispatch(togglePersist(check));
-                  }}
-                  checked={persist}
-                />
+                <Tooltip title={`${persist ? "Checked" : "UnChecked"}`}>
+                  <Checkbox
+                    id="persist"
+                    type="checkbox"
+                    onChange={(e) => {
+                      const check = e.target.checked;
+                      dispatch(togglePersist(check));
+                    }}
+                    checked={persist}
+                  />
+                </Tooltip>
                 <Label htmlFor="persist">Remember me</Label>
               </FlexDiv>
             </InputWrapper>

@@ -53,11 +53,11 @@
       "profile": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1018.jpg",
       "age": 30,
       "visits": 383,
-      "progress": 58,
+      "progress": 100,
       "status": {
-        "name": "Waiting",
-        "color": "orange",
-        "id": "98ca40e1-007c-486a-9e14-4ce74db9342e"
+        "name": "Complete",
+        "color": "#0cf90c",
+        "id": "98ca40e1-007c-486a-9e14-4ce74db97860"
       },
       "statusMenu": [
         {
@@ -93,9 +93,9 @@
       "visits": 484,
       "progress": 55,
       "status": {
-        "name": "Complete",
-        "color": "#0cf90c",
-        "id": "98ca40e1-007c-486a-9e14-4ce74db97860"
+        "name": "Waiting",
+        "color": "orange",
+        "id": "98ca40e1-007c-486a-9e14-4ce74db9342e"
       },
       "statusMenu": [
         {
@@ -207,9 +207,9 @@
       "visits": 328,
       "progress": 56,
       "status": {
-        "name": "Pending",
-        "color": "yellow",
-        "id": "5cfe57b8-28ea-410a-964e-1e3cc23a5275"
+        "name": "Complete",
+        "color": "#0cf90c",
+        "id": "98ca40e1-007c-486a-9e14-4ce74db97860"
       },
       "statusMenu": [
         {
@@ -245,9 +245,9 @@
       "visits": 681,
       "progress": 56,
       "status": {
-        "name": "Inprocess",
-        "color": "#159afb",
-        "id": "75a74865-c562-4e9f-b63c-4578a1b0fd17"
+        "name": "Waiting",
+        "color": "orange",
+        "id": "98ca40e1-007c-486a-9e14-4ce74db9342e"
       },
       "statusMenu": [
         {
@@ -321,9 +321,9 @@
       "visits": 890,
       "progress": 66,
       "status": {
-        "name": "Pending",
-        "color": "yellow",
-        "id": "0e6a873c-aec5-43c3-9f95-8f6b4d86a479"
+        "name": "Inprocess",
+        "color": "#159afb",
+        "id": "dbd3fefd-e164-4f5a-960e-76eac44cc32d"
       },
       "statusMenu": [
         {
@@ -359,9 +359,9 @@
       "visits": 30,
       "progress": 78,
       "status": {
-        "name": "Inprocess",
-        "color": "#159afb",
-        "id": "ce456170-e6ce-475e-b692-d4d01a809251"
+        "name": "Waiting",
+        "color": "orange",
+        "id": "98ca40e1-007c-486a-9e14-4ce74db9342e"
       },
       "statusMenu": [
         {

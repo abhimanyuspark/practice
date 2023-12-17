@@ -13,10 +13,12 @@ import {
 import { LoginIcon } from "../../style/Icons/Icons";
 import Logo from "../../assets/Vitelogo.svg";
 import { toast } from "react-toastify";
+import { useTitle } from "../../hooks/useTitle";
 
 const Forget = () => {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
+  useTitle("Recover Password");
 
   const onSubmit = (e) => {
     e.preventDefault();

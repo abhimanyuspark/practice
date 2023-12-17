@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 // import ClickOutside from "../../utilities/ClickOutside";
 import { BlackBackground, FilterContainer } from "./animationStyles";
-import { Button } from "antd";
 import {
+  FlexDiv,
   H3,
   Icon,
   JustifyWrapper,
   Overflow,
   PaddingContainer,
+  P,
 } from "../Export/Export";
-import { Close } from "../Icons/Icons";
+import { Close, Filter } from "../Icons/Icons";
 
 const FilterAnimation = ({ children }) => {
   const [filterVisible, setFilterVisible] = useState(false);
@@ -20,13 +21,15 @@ const FilterAnimation = ({ children }) => {
 
   return (
     <div>
-      <Button
+      <FlexDiv
+        $gap="0.5"
         onClick={() => {
           setFilterVisible(!filterVisible);
         }}
       >
-        Toggle Filter
-      </Button>
+        <P $size="15px">Filter</P>
+        {Filter}
+      </FlexDiv>
       {filterVisible && <BlackBackground onClick={clickOutsideHandler} />}
       <FilterContainer className={filterVisible ? "in" : "out"}>
         <PaddingContainer $padding="15px 20px">
