@@ -8,7 +8,7 @@ const IconStyle = styled.span`
   }
   display: flex;
   align-items: center;
-  color: ${({ $color }) => $color || "grey"};
+  color: ${({ $color, theme }) => $color || theme.cl_dark};
   cursor: pointer;
   &:hover {
     ${({ $hover }) =>

@@ -28,7 +28,7 @@ const FilterAnimation = ({ children }) => {
         }}
       >
         <P $size="15px">Filter</P>
-        {Filter}
+        <Icon icon={Filter} />
       </FlexDiv>
       {filterVisible && <BlackBackground onClick={clickOutsideHandler} />}
       <FilterContainer className={filterVisible ? "in" : "out"}>

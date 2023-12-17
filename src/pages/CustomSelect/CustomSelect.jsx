@@ -111,70 +111,72 @@ const CustomSelect = () => {
   return (
     <PaddingContainer>
       <form onSubmit={onsubmit}>
-        <Select
-          value={array}
-          options={options}
-          multiple
-          multiTemplate={multiTemplate}
-          optionTemplate={multiTemplate}
-          onChange={(o) => setArray(o)}
-          selectWidth="20em"
-          optionsWidth="25em"
-          enableSearch
-          theme={theme}
-        />
-        <br />
-        <Select
-          fields={{ labelFn: (l) => l?.name?.common }}
-          value={count}
-          options={country}
-          onChange={(e) => setCount(e)}
-          theme={theme}
-        />
-
-        <br />
-        <Space>
+        <Space direction="vertical">
           <Select
-            value={object}
-            options={roleBasedUsers}
-            singleTemplate={selectTemplate}
-            optionTemplate={optionTemplate}
-            onChange={(o) => setObject(o)}
-            fields={{ labelFn: (l) => l.name }}
+            value={array}
+            options={options}
+            multiple
+            multiTemplate={multiTemplate}
+            optionTemplate={multiTemplate}
+            onChange={(o) => setArray(o)}
             selectWidth="20em"
             optionsWidth="25em"
             enableSearch
-            enableNoDataList
             theme={theme}
           />
+
           <Select
-            value={object2}
-            options={sportsData}
-            fields={{ labelFn: (l) => l.Game }}
-            onChange={(o) => {
-              setObject2(o);
-              setObject3(o);
-            }}
-            clearButton
-            divider
-            selectWidth="15em"
+            fields={{ labelFn: (l) => l?.name?.common }}
+            value={count}
             enableSearch
+            options={country}
+            onChange={(e) => setCount(e)}
             theme={theme}
+            selectWidth="20em"
+            optionsWidth="25em"
           />
-          <Select
-            value={object3}
-            options={sportsData}
-            fields={{ labelFn: (l) => l.Game }}
-            onChange={(o) => {
-              setObject3(o);
-            }}
-            selectWidth="15em"
-            theme={theme}
-          />
+
+          <Space>
+            <Select
+              value={object}
+              options={roleBasedUsers}
+              singleTemplate={selectTemplate}
+              optionTemplate={optionTemplate}
+              onChange={(o) => setObject(o)}
+              fields={{ labelFn: (l) => l.name }}
+              selectWidth="20em"
+              optionsWidth="25em"
+              enableSearch
+              enableNoDataList
+              theme={theme}
+            />
+            <Select
+              value={object2}
+              options={sportsData}
+              fields={{ labelFn: (l) => l.Game }}
+              onChange={(o) => {
+                setObject2(o);
+                setObject3(o);
+              }}
+              clearButton
+              divider
+              selectWidth="15em"
+              enableSearch
+              theme={theme}
+            />
+            <Select
+              value={object3}
+              options={sportsData}
+              fields={{ labelFn: (l) => l.Game }}
+              onChange={(o) => {
+                setObject3(o);
+              }}
+              selectWidth="15em"
+              theme={theme}
+            />
+          </Space>
+          <button type="submit">Submit</button>
         </Space>
-        <br />
-        <br />
-        <button type="submit">Submit</button>
       </form>
     </PaddingContainer>
   );

@@ -90,7 +90,15 @@ function Select({
         }}
       >
         <span
-          className={`${styles.value} ${value ? `` : `${styles.notvalue}`}`}
+          className={`${styles.value} ${
+            multiple
+              ? value?.length > 0
+                ? ``
+                : `${styles.notvalue}`
+              : value
+              ? ``
+              : `${styles.notvalue}`
+          }`}
         >
           {multiple
             ? value?.length > 0
