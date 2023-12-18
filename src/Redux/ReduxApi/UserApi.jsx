@@ -26,6 +26,11 @@ export const getRoleBasedUsers = createAsyncThunk(
   }
 );
 
+export const addUser = createAsyncThunk("adduser/postUser", async (data) => {
+  const response = await axios.post(`${apiUrl}/user`, data);
+  return response.data;
+});
+
 export const updateUserStatus = createAsyncThunk(
   "Status/updateUserStatus",
   async ({ id, status }) => {

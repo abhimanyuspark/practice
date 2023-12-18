@@ -4,11 +4,14 @@ const charset =
 
 export const useRandomPassword = () => {
   const length = 8; // Set the desired password length
-
-  const newPassword = Array.from({ length }, () => {
+  // const newPassword = Array.from({ length }, () => {
+  //   const randomIndex = Math.floor(Math.random() * charset.length);
+  //   return charset[randomIndex];
+  // }).join("");
+  let newPassword = "";
+  for (let index = 0; index < length; index++) {
     const randomIndex = Math.floor(Math.random() * charset.length);
-    return charset[randomIndex];
-  }).join("");
-
+    newPassword += charset[randomIndex];
+  }
   return newPassword;
 };

@@ -90,8 +90,6 @@
   max-height: 15em;
   overflow-x: hidden;
   overflow-y: auto;
-  white-space: nowrap;
-  scroll-snap-type: y mandatory;
 }
 
 .options.show {

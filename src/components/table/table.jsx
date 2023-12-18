@@ -66,14 +66,14 @@ const Table = memo(
       return table.getHeaderGroups().map((d) => d.headers.length);
     }, []);
 
-    // useEffect(() => {
-    //   let push = [];
-    //   table.getSelectedRowModel().flatRows.map((d) => {
-    //     let obj = d.original.id;
-    //     push.push(obj);
-    //   });
-    //   onSelectedRowIdsChange(push);
-    // }, [rowSelection]);
+    useEffect(() => {
+      let push = [];
+      table.getSelectedRowModel().flatRows.map((d) => {
+        let obj = d.original.id;
+        push.push(obj);
+      });
+      onSelectedRowIdsChange(push);
+    }, [rowSelection]);
 
     return (
       <TableWrapper>

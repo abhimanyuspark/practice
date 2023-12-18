@@ -25,7 +25,7 @@ const CustomSelect = () => {
 
   const [array, setArray] = useState([options[0]]);
   const [object, setObject] = useState(roleBasedUsers[0]);
-  const [object2, setObject2] = useState(sportsData[0]);
+  const [object2, setObject2] = useState("");
   const [object3, setObject3] = useState("");
 
   const [count, setCount] = useState("");

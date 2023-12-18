@@ -12,16 +12,18 @@ import {
 import InputContainer from "../../../components/InputContainer/InputContainer";
 import { Check, Random, View, ViewOff } from "../../../style/Icons/Icons";
 import Select from "../../../components/Custom/Select/SelectDropDown";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useThemeProvider } from "../../../hooks/useThemeProvider";
 import { useTitle } from "../../../hooks/useTitle";
 import { Tooltip } from "antd";
 import { useRandomPassword } from "../../../hooks/useRandomPassword";
 import { v4 as uuidv4 } from "uuid";
+import { addUser } from "../../../Redux/ReduxApi/UserApi";
 // import { useNavigate } from "react-router-dom";
 
 const UsersAdd = () => {
   const { user } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
   const [theme] = useThemeProvider();
   // const navigate = useNavigate();
   useTitle("Add User");
@@ -107,7 +109,7 @@ const UsersAdd = () => {
 
   useEffect(() => {
     if (isSubmited) {
-      console.log(formData);
+      dispatch(addUser(formData));
       setIsSubmited(false);
       setFormData((p) => ({
         ...p,
@@ -139,6 +141,7 @@ const UsersAdd = () => {
               placeholder: "Enter a username",
             }}
           />
+
           <InputContainer
             name="email"
             sup
@@ -152,6 +155,7 @@ const UsersAdd = () => {
               placeholder: "Enter a email",
             }}
           />
+
           <InputContainer
             name="password"
             sup

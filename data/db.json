@@ -1904,6 +1904,40 @@
       "followUp": {
         "type": "No"
       }
+    },
+    {
+      "id": "6fb7b6d9-3a14-46de-81b6-039e7b6ddfe4",
+      "name": "anirudh pal",
+      "email": "abhisml05@gmail.com",
+      "role": "client",
+      "password": "0jTnKuV4",
+      "followUp": "",
+      "status": {
+        "name": "Waiting",
+        "color": "orange",
+        "id": "98ca40e1-007c-486a-9e14-4ce74db9342e"
+      },
+      "age": "",
+      "visits": "",
+      "progress": "",
+      "date": "2023-12-18T06:59:39.311Z",
+      "statusMenu": [
+        {
+          "name": "Pending",
+          "color": "yellow",
+          "id": "1c180990-7c1e-46e2-b81d-b909f2551f0c"
+        },
+        {
+          "name": "Inprocess",
+          "color": "#159afb",
+          "id": "d290236c-35aa-4faf-b4dd-3a879bf9f49e"
+        },
+        {
+          "name": "Complete",
+          "color": "#0cf90c",
+          "id": "20125f8e-6d7f-430d-b3bb-c17a5e41d425"
+        }
+      ]
     }
   ],
   "images": []
