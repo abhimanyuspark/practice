@@ -103,7 +103,7 @@ function App() {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme={theme ? "light" : "dark"}
+        theme={theme ? "colored" : "dark"}
       />
     </ThemeProvider>
   );

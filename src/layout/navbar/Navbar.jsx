@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { logout } from "../../Redux/LoginApi/reducer";
 import { useThemeProvider } from "../../hooks/useThemeProvider";
 import Swal from "sweetalert2";
-import { notification } from "antd";
+import { Switch, notification } from "antd";
 
 const UserProfile = () => {
   const dispatch = useDispatch();
@@ -53,8 +53,7 @@ const ThemeProvider = () => {
 
   return (
     <>
-      {contextHolder}{" "}
-      <button onClick={handle}>theme: {theme ? "light" : "dark"}</button>
+      {contextHolder} <Switch value={!theme} onChange={handle} />
     </>
   );
 };

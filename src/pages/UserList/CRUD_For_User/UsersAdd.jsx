@@ -33,6 +33,7 @@ const UsersAdd = () => {
     id: id,
     name: "",
     email: "",
+    profile: "",
     role: "client",
     password: "",
     followUp: "",
@@ -124,6 +125,12 @@ const UsersAdd = () => {
     }
   }, [isSubmited]);
 
+  const handleFile = (e) => {
+    const file = e.target.files[0];
+    const pro = URL.createObjectURL(file);
+    setFormData((p) => ({ ...p, profile: pro }));
+  };
+
   return (
     <PaddingContainer>
       <Container>
@@ -199,6 +206,9 @@ const UsersAdd = () => {
               </>
             }
           />
+
+          <input type="file" onChange={handleFile} alt="profile" />
+          <img width="50px" height="50px" src={formData?.profile} />
 
           <InputWrapper>
             <Label>Status</Label>

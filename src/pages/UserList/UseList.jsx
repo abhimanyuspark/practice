@@ -87,12 +87,8 @@ const UseList = () => {
     });
   }, [roleBasedUsers, date.start, date.end]);
 
-  useEffect(() => {
-    dispatch(getRoleBasedUsers(type.role));
-  }, [dispatch, type.role]);
-
   const customArray = useMemo(() => {
-    const data = filterByDate.map((item, i) => ({
+    const data = filterByDate?.map((item, i) => ({
       "#": i + 1,
       Id: item.id,
       Username: item.name,
@@ -101,6 +97,10 @@ const UseList = () => {
     }));
     return data;
   }, [filterByDate]);
+
+  useEffect(() => {
+    dispatch(getRoleBasedUsers(type.role));
+  }, [dispatch, type.role]);
 
   const DeleteAlluser = () => {
     if (rowSelection.length <= 0) {

@@ -1906,21 +1906,22 @@
       }
     },
     {
-      "id": "6fb7b6d9-3a14-46de-81b6-039e7b6ddfe4",
+      "id": "df875cb5-2883-458a-9296-a0470c1f33a8",
       "name": "anirudh pal",
-      "email": "abhisml05@gmail.com",
+      "email": "abhis6410088@gmail.com",
+      "profile": {},
       "role": "client",
-      "password": "0jTnKuV4",
+      "password": "c%UfdAew",
       "followUp": "",
       "status": {
-        "name": "Waiting",
-        "color": "orange",
-        "id": "98ca40e1-007c-486a-9e14-4ce74db9342e"
+        "name": "Pending",
+        "color": "yellow",
+        "id": "59acd070-a826-4ceb-8a88-1952e9b2bbf1"
       },
       "age": "",
       "visits": "",
       "progress": "",
-      "date": "2023-12-18T06:59:39.311Z",
+      "date": "2023-12-18T08:35:47.371Z",
       "statusMenu": [
         {
           "name": "Pending",

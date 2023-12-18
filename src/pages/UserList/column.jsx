@@ -1,4 +1,3 @@
-import { ProgressCircle } from "../../style/progressBars/ProgressBars";
 import DropDownMenu from "../../components/Custom/DropDownMenu/DropDownMenu";
 import Select from "../../components/Custom/Select/SelectDropDown";
 import IndeterminateCheckbox from "../../components/table/checkbox";
@@ -11,7 +10,7 @@ import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router-dom";
 import { tableMenu } from "../../data/all_menu";
 import { deleteUserReducer } from "../../Redux/ReduxApi/UserAction";
-import { Progress, notification } from "antd";
+import { Progress } from "antd";
 import { FlexDiv } from "../../style/Export/Export";
 
 export const Columns = [
@@ -102,7 +101,9 @@ export const Columns = [
     header: "Progress",
     cell: (info) => {
       const value = info.getValue();
-      return <Progress type="circle" percent={value} size={40} />;
+      return (
+        <Progress type="circle" percent={value} size={40} strokeWidth={15} />
+      );
     },
     sortDescFirst: false,
   },
@@ -112,26 +113,16 @@ export const Columns = [
     cell: (info) => {
       const value = info.getValue();
       const { id, name } = info.row.original;
-      const [api, contextHolder] = notification.useNotification();
       const [theme] = useThemeProvider();
       const [val, setVal] = useState(value);
       const dispatch = useDispatch();
-
       const { user } = useSelector((state) => state.auth);
       const options = user?.statusMenu;
 
-      const openNotificationWithIcon = (type) => {
-        api[type]({
-          message: "Status Update",
-          description: `${name} status is Update`,
-          duration: 3,
-        });
-      };
-
       const updateStatus = (status) => {
         setVal(status);
-        openNotificationWithIcon("success");
         dispatch(updateUserStatus({ id, status }));
+        toast.success(`${name} status is Update`, { position: "top-right" });
       };
 
       const optionTemplete = (o) => {
@@ -152,22 +143,19 @@ export const Columns = [
       };
 
       return (
-        <>
-          {contextHolder}
-          <span key={value.id}>
-            <Select
-              optionTemplate={optionTemplete}
-              singleTemplate={optionTemplete}
-              selectWidth="8em"
-              optionsWidth="10em"
-              options={options}
-              value={val}
-              fields={{ labelFn: (l) => l.name }}
-              onChange={(o) => updateStatus(o)}
-              theme={theme}
-            />
-          </span>
-        </>
+        <span>
+          <Select
+            optionTemplate={optionTemplete}
+            singleTemplate={optionTemplete}
+            selectWidth="8em"
+            optionsWidth="10em"
+            options={options}
+            value={val}
+            fields={{ labelFn: (l) => l.name }}
+            onChange={(o) => updateStatus(o)}
+            theme={theme}
+          />
+        </span>
       );
     },
     sortingFn: (row1, row2, column) => {
