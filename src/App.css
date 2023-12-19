@@ -83,3 +83,33 @@ body {
 .ac-r:active:not(:disabled) {
   transform: translateX(5px);
 }
+
+.avatar-uploader {
+  position: relative;
+  width: auto;
+  .image-preview-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  &:hover {
+    .image-preview-overlay {
+      opacity: 1;
+    }
+  }
+
+  .anticon {
+    font-size: 20px;
+    cursor: pointer;
+    margin-right: 8px;
+  }
+}

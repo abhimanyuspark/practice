@@ -1,5 +1,18 @@
 import styled from "styled-components";
 
+export const Filterbutton = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: grey;
+  & span {
+    font-size: 22px;
+  }
+  &:hover {
+    color: ${(props) => props.theme.cl_dark};
+  }
+`;
+
 export const FilterContainer = styled.div`
   background-color: ${(props) => props.theme.bg_cl};
   border: 1px solid grey;

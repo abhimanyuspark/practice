@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 // import ClickOutside from "../../utilities/ClickOutside";
-import { BlackBackground, FilterContainer } from "./animationStyles";
+import {
+  BlackBackground,
+  FilterContainer,
+  Filterbutton,
+} from "./animationStyles";
 import {
   FlexDiv,
   H3,
@@ -27,10 +31,7 @@ const FilterAnimation = ({ children }) => {
           setFilterVisible(!filterVisible);
         }}
       >
-        <P $hover="grey" $size="15px">
-          Filter
-        </P>
-        <Icon icon={Filter} hover={"grey"} />
+        <Filterbutton>Filter{Filter}</Filterbutton>
       </FlexDiv>
       {filterVisible && <BlackBackground onClick={clickOutsideHandler} />}
       <FilterContainer className={filterVisible ? "in" : "out"}>

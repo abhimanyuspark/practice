@@ -39,7 +39,7 @@
         }
       ],
       "theme": false,
-      "sideBar": true,
+      "sideBar": false,
       "followUp": {
         "type": "No"
       }
@@ -1956,5 +1956,9 @@
       }
     }
   ],
-  "images": []
+  "images": [
+    {
+      "id": 1
+    }
+  ]
 }

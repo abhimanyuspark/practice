@@ -118,7 +118,7 @@ const UseList = () => {
   return (
     <>
       <SubNavbar>
-        <FlexWrapper $align="normal">
+        <FlexWrapper $wrap="nowrap" $gap="0" $grow="0">
           <SubNavbarChild>
             Date{" "}
             <DateRangePicker value={date.select} onChange={handleDateChange} />

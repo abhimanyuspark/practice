@@ -57,7 +57,7 @@ const Header = memo(({ user, sideBar, expanded }) => {
         <div className="opa practice">
           <h4>Practice</h4>
           <FlexDiv $gap="0.4">
-            <Shape $circle $color="green" />
+            <Shape $circle $color="#0cf90c" />
             <h5>{user?.name}</h5>
           </FlexDiv>
         </div>

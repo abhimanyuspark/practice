@@ -250,6 +250,8 @@ export const SubNavbarChild = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  /* color: ${(props) => props.theme.cl_dark}; */
+  color: grey;
   padding: 0px 10px;
   ${({ $borderDir }) =>
     $borderDir

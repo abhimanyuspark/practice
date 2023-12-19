@@ -19,7 +19,23 @@ export const FlexDirection = styled(FlexDiv)`
 
 export const FlexWrapper = styled.div`
   display: flex;
-  align-items: ${({ $align }) => $align || "center"};
+  align-items: ${({ $align }) => $align || "normal"};
+  gap: ${({ $gap }) => ($gap ? `${$gap}rem` : "1rem")};
+  flex-wrap: ${({ $wrap }) => $wrap || "wrap"};
+  & > * {
+    flex: ${({ $grow }) => $grow || "315px"} 0 1;
+  }
+
+  @media screen and (max-width: 1024px) {
+    & > * {
+      flex: 320px 0 1;
+    }
+  }
+  @media screen and (max-width: 720px) {
+    & > * {
+      flex: 100% 0 1;
+    }
+  }
 `;
 
 export const MainWrapper = styled.section`
