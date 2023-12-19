@@ -130,8 +130,14 @@ const UseList = () => {
               value={type}
               options={types}
               onChange={(e) => {
-                setType(e);
-                setClear(true);
+                if (e === types[0]) {
+                  setClear(false);
+                } else {
+                  setClear(true);
+                }
+                if (e !== type) {
+                  setType(e);
+                }
               }}
               theme={theme}
               fields={{ labelFn: (e) => e.name }}

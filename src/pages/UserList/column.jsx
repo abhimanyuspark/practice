@@ -120,9 +120,11 @@ export const Columns = [
       const options = user?.statusMenu;
 
       const updateStatus = (status) => {
-        setVal(status);
-        dispatch(updateUserStatus({ id, status }));
-        toast.success(`${name} status is Update`, { position: "top-right" });
+        if (status !== val) {
+          setVal(status);
+          dispatch(updateUserStatus({ id, status }));
+          toast.success(`${name} status is Update`, { position: "top-right" });
+        }
       };
 
       const optionTemplete = (o) => {
