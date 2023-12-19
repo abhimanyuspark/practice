@@ -1,16 +1,35 @@
 import React from "react";
-import { FlexDiv, NavbarWrapper, RNavLink } from "../../style/Export/Export";
+import {
+  FlexDiv,
+  Icon,
+  NavbarWrapper,
+  RNavLink,
+} from "../../style/Export/Export";
+import { LogoutIcon } from "../../style/Icons/Icons";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "../../Redux/LoginApi/reducer";
 import { useThemeProvider } from "../../hooks/useThemeProvider";
 import Swal from "sweetalert2";
-import { Switch, notification } from "antd";
+import { Switch, Tooltip, notification } from "antd";
+
+const Navbar = () => {
+  return (
+    <NavbarWrapper>
+      <FlexDiv>
+        <RNavLink to="/">Dashboard</RNavLink>
+      </FlexDiv>
+      <FlexDiv>
+        <UserProfile />
+        <ThemeProvider />
+      </FlexDiv>
+    </NavbarWrapper>
+  );
+};
 
 const UserProfile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [theme] = useThemeProvider();
 
   const handleLogout = () => {
     Swal.fire({
@@ -30,9 +49,13 @@ const UserProfile = () => {
   };
 
   return (
-    <div>
-      <button onClick={handleLogout}>Logout</button>
-    </div>
+    <>
+      <Tooltip title="Logout">
+        <div>
+          <Icon icon={LogoutIcon} color={"grey"} onClick={handleLogout} />
+        </div>
+      </Tooltip>
+    </>
   );
 };
 
@@ -53,22 +76,11 @@ const ThemeProvider = () => {
 
   return (
     <>
-      {contextHolder} <Switch value={!theme} onChange={handle} />
+      {contextHolder}{" "}
+      <Tooltip title="Toogle Theme">
+        <Switch value={!theme} onChange={handle} />
+      </Tooltip>
     </>
-  );
-};
-
-const Navbar = () => {
-  return (
-    <NavbarWrapper>
-      <FlexDiv>
-        <RNavLink to="/">Dashboard</RNavLink>
-      </FlexDiv>
-      <FlexDiv>
-        <UserProfile />
-        <ThemeProvider />
-      </FlexDiv>
-    </NavbarWrapper>
   );
 };
 

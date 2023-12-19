@@ -7,6 +7,7 @@ import {
   PaddingContainer,
   Loader,
   JustifyWrapper,
+  Shape,
 } from "../../../style/Export/Export";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { deleteUser, getUserData } from "../../../Redux/ReduxApi/UserApi";
@@ -19,7 +20,7 @@ import { useTitle } from "../../../hooks/useTitle";
 const UserDetails = () => {
   const { id } = useParams();
   const { user, loading } = useSelector((state) => state.users);
-  const { name, date, status } = user;
+  const { name, date, status, progress, visits, age, email } = user;
   const newDate = new Date(date);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -45,13 +46,13 @@ const UserDetails = () => {
   };
 
   const Edit = (id) => {
-    navigate(`/user/update/${id}`);
+    navigate(`/users/update/${id}`);
   };
 
   const Delete = (id) => {
     Swal.fire({
       title: "Are you sure?",
-      text: `You want to delete the ${id}!`,
+      text: `You want to delete the ${name}!`,
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -70,39 +71,41 @@ const UserDetails = () => {
 
   return (
     <PaddingContainer>
-      <FlexDiv $direction>
-        <JustifyWrapper $justify="flex-end">
-          <DropDownMenu data={detailsMenu} onSubmitLi={handelli} id={id} />
-        </JustifyWrapper>
+      {loading ? (
+        <Loader height="100px" />
+      ) : (
+        <FlexDiv $direction>
+          <JustifyWrapper $justify="flex-end">
+            <DropDownMenu data={detailsMenu} onSubmitLi={handelli} id={id} />
+          </JustifyWrapper>
 
-        <Container>
-          {loading ? (
-            <Loader height="100px" />
-          ) : (
+          <Container>
             <FlexDiv $gap="15">
-              <FlexDiv $direction>
+              <FlexDiv $gap="2" $direction>
                 <P>Name</P>
                 <P>Create Date</P>
+                <P>Progress</P>
                 <P>Status</P>
+                <P>Email</P>
+                <P>Age</P>
+                <P>Visits</P>
               </FlexDiv>
-              <FlexDiv $direction>
+              <FlexDiv $gap="2" $direction>
                 <P>{name}</P>
                 <P>{newDate.toLocaleDateString()}</P>
-                <P>
-                  <span
-                    className="activate-user-logo"
-                    style={{
-                      background: status?.color,
-                      margin: "0px 10px 0px 0px",
-                    }}
-                  ></span>
-                  {status?.name}
-                </P>
+                <P>{progress}</P>
+                <FlexDiv $gap="0.5">
+                  <Shape $circle $color={status?.color} />
+                  <P>{status?.name}</P>
+                </FlexDiv>
+                <P>{email}</P>
+                <P>{age}</P>
+                <P>{visits}</P>
               </FlexDiv>
             </FlexDiv>
-          )}
-        </Container>
-      </FlexDiv>
+          </Container>
+        </FlexDiv>
+      )}
     </PaddingContainer>
   );
 };

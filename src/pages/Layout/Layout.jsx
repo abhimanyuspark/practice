@@ -8,12 +8,12 @@ import { useSelector } from "react-redux";
 import Loader from "../../style/loader/Loader";
 
 const Layout = () => {
-  const { sideBar } = useSelector((state) => state.layout);
+  const { sideBar } = useSelector((state) => state.auth.user);
 
   return (
     <AppWrapper $width={sideBar}>
       <Navbar />
-      <Sidebar />
+      <Sidebar sideBar={sideBar} />
       <DashboardWrapper>
         <Suspense fallback={<Loader />}>
           {/* <Video /> */}

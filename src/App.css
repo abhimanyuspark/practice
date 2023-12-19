@@ -28,21 +28,6 @@ body {
   font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
 }
 
-.activate-user-logo {
-  display: inline-block;
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-  background-color: rgb(17, 250, 17);
-}
-
-.span-circle {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-}
-
 /* for profile image start  */
 .avatar {
   width: 30px;

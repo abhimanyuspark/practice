@@ -13,9 +13,11 @@ const IconStyle = styled.span`
   &:hover {
     ${({ $hover }) =>
       $hover
-        ? ""
+        ? css`
+            color: ${$hover};
+          `
         : css`
-            color: ${(props) => props.theme.cl_dark};
+            color: white;
           `}
   }
 `;

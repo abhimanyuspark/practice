@@ -32,3 +32,18 @@ export const refreshAuthUser = createAsyncThunk(
     }
   }
 );
+
+export const changeSideBar = createAsyncThunk(
+  "auth/changeSideBar",
+  async ({ id, side }, { rejectWithValue }) => {
+    try {
+      const response = await axios.patch(`${apiUrl}/user/${id}`, {
+        sideBar: side,
+      });
+      const user = response.data[0];
+      return user;
+    } catch (error) {
+      return rejectWithValue("api rejected sideBar change request");
+    }
+  }
+);

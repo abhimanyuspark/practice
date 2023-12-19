@@ -5,7 +5,6 @@ import { authenticateUser, refreshAuthUser } from "./LoginApi";
 const initialState = {
   error: null,
   loading: false,
-  theme: false,
   user: {},
   persist: false,
 };
@@ -24,6 +23,9 @@ const authSlice = createSlice({
     togglePersist: (state, action) => {
       state.persist = action?.payload;
     },
+    toggleSidebar: (state, action) => {
+      state.user.sideBar = action?.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -37,6 +39,7 @@ const authSlice = createSlice({
             expires: 7,
           });
         }
+        localStorage.setItem("sideBar", true);
       })
       .addCase(refreshAuthUser.fulfilled, (state, action) => {
         state.loading = false;
@@ -53,5 +56,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { logout, togglePersist } = authSlice.actions;
+export const { logout, togglePersist, toggleSidebar } = authSlice.actions;
 export default authSlice.reducer;

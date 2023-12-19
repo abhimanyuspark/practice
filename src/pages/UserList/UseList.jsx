@@ -164,7 +164,7 @@ const UseList = () => {
           <Buttons
             text="Add User"
             onClick={() => {
-              navigate("/user/add");
+              navigate("/users/add");
             }}
             icon={Add}
           />

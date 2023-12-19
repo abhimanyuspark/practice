@@ -31,6 +31,7 @@ const newPerson = () => {
       { name: "Complete", color: "#0cf90c", id: faker.string.uuid() },
     ],
     theme: faker.helpers.arrayElement([true, false]),
+    sideBar: true,
     followUp: faker.helpers.arrayElement([{ type: "Yes" }, { type: "No" }]),
   };
 };

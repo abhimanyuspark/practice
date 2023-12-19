@@ -11,7 +11,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { tableMenu } from "../../data/all_menu";
 import { deleteUserReducer } from "../../Redux/ReduxApi/UserAction";
 import { Progress } from "antd";
-import { FlexDiv } from "../../style/Export/Export";
+import { FlexDiv, Shape } from "../../style/Export/Export";
 
 export const Columns = [
   {
@@ -128,15 +128,7 @@ export const Columns = [
       const optionTemplete = (o) => {
         return (
           <FlexDiv $gap="0.5">
-            <span
-              style={{
-                display: "inline-block",
-                width: "12px",
-                height: "12px",
-                borderRadius: "50%",
-                background: o.color,
-              }}
-            ></span>
+            <Shape $circle $color={o.color} />
             <span>{o.name}</span>
           </FlexDiv>
         );
@@ -195,10 +187,10 @@ export const Columns = [
       };
 
       const Edit = (id) => {
-        navigate(`/user/update/${id}`, { state: { from: location } });
+        navigate(`/users/update/${id}`, { state: { from: location } });
       };
       const View = (id) => {
-        navigate(`/user/details/${id}`, { state: { from: location } });
+        navigate(`/users/details/${id}`, { state: { from: location } });
       };
       const Delete = (id) => {
         Swal.fire({

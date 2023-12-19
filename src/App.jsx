@@ -77,9 +77,9 @@ function App() {
             {/*//?those Routes only for admin */}
             <Route element={<RequireAuth roleAccess={[role.Admin]} />}>
               <Route path="/users" element={<UseList />} />
-              <Route path="/user/details/:id" element={<UserDetails />} />
-              <Route path="/user/add" element={<UsersAdd />} />
-              <Route path="/user/update/:id" element={<UsersEdit />} />
+              <Route path="/users/details/:id" element={<UserDetails />} />
+              <Route path="/users/add" element={<UsersAdd />} />
+              <Route path="/users/update/:id" element={<UsersEdit />} />
               <Route path="/select" element={<CustomSelect />} />
               <Route path="/DropDown" element={<Form />} />
             </Route>

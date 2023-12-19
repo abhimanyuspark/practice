@@ -1,22 +1,28 @@
 import React, { useState, memo } from "react";
 import {
   FlexDiv,
+  Shape,
   SideChild,
   SideFooter,
   SideHeader,
   SidebarWrapper,
 } from "../../style/Export/Export";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
-import { toggleSidebar } from "../../Redux/Redux-Layout/ReduxLayout";
+import { toggleSidebar } from "../../Redux/LoginApi/reducer";
+import { changeSideBar } from "../../Redux/LoginApi/LoginApi";
 import SideMenu from "./SideMenu";
 
-const Sidebar = () => {
+const Sidebar = ({ sideBar }) => {
+  const { user } = useSelector((state) => state.auth, shallowEqual);
   const [expanded, setExpanded] = useState(false);
-  const { sideBar } = useSelector((state) => state.layout);
+  const { id } = user;
+
   const dispatch = useDispatch();
 
   const handleToogle = () => {
-    dispatch(toggleSidebar(!sideBar));
+    const side = !sideBar;
+    dispatch(toggleSidebar(side));
+    dispatch(changeSideBar({ id, side }));
   };
 
   const handleEnter = () => {
@@ -33,7 +39,7 @@ const Sidebar = () => {
 
   return (
     <SidebarWrapper $expanded={expanded}>
-      <Header sideBar={sideBar} expanded={expanded} />
+      <Header user={user} sideBar={sideBar} expanded={expanded} />
       <SideChild onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
         <SideMenu sideBar={sideBar} />
       </SideChild>
@@ -42,9 +48,7 @@ const Sidebar = () => {
   );
 };
 
-const Header = memo(({ sideBar, expanded }) => {
-  const { user } = useSelector((state) => state.auth, shallowEqual);
-
+const Header = memo(({ user, sideBar, expanded }) => {
   return (
     <SideHeader>
       <div
@@ -53,7 +57,7 @@ const Header = memo(({ sideBar, expanded }) => {
         <div className="opa practice">
           <h4>Practice</h4>
           <FlexDiv $gap="0.4">
-            <span className="activate-user-logo"></span>
+            <Shape $circle $color="green" />
             <h5>{user?.name}</h5>
           </FlexDiv>
         </div>
