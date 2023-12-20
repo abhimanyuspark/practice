@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import ClickOutside from "../../utilities/ClickOutside";
 import {
   BlackBackground,
   FilterContainer,

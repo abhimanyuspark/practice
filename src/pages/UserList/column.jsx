@@ -11,7 +11,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { tableMenu } from "../../data/all_menu";
 import { deleteUserReducer } from "../../Redux/ReduxApi/UserAction";
 import { Progress } from "antd";
-import { FlexDiv, Shape } from "../../style/Export/Export";
+import { FlexDiv, Icon, Shape } from "../../style/Export/Export";
+import { AvatarIcon } from "../../style/Icons/Icons";
 
 export const Columns = [
   {
@@ -42,7 +43,6 @@ export const Columns = [
     header: "Id",
     cell: (info) => {
       const index = info.row.index;
-      // console.log(index);
       return <span>{index + 1}</span>;
     },
     enableSorting: true,
@@ -56,9 +56,14 @@ export const Columns = [
     accessorKey: "profile",
     enableSorting: false,
     header: () => "Profile",
-    cell: (info) => (
-      <img src={info.getValue()} alt="profile" className="avatar" />
-    ),
+    cell: (info) => {
+      const value = info.getValue();
+      return value ? (
+        <img src={value} alt="profile" className="avatar" />
+      ) : (
+        <Icon icon={AvatarIcon} fontSize="35px" color="grey" />
+      );
+    },
   },
   {
     accessorKey: "name",
@@ -90,19 +95,29 @@ export const Columns = [
     accessorKey: "age",
     header: () => "Age",
     sortDescFirst: false,
+    cell: (info) => {
+      const value = info.getValue();
+      return value ? <>{value}</> : "--";
+    },
   },
   {
     accessorKey: "visits",
     sortDescFirst: false,
     header: () => <span>Visits</span>,
+    cell: (info) => {
+      const value = info.getValue();
+      return value ? <>{value}</> : "--";
+    },
   },
   {
     accessorKey: "progress",
     header: "Progress",
     cell: (info) => {
       const value = info.getValue();
-      return (
+      return value ? (
         <Progress type="circle" percent={value} size={40} strokeWidth={15} />
+      ) : (
+        "--"
       );
     },
     sortDescFirst: false,
@@ -120,11 +135,9 @@ export const Columns = [
       const options = user?.statusMenu;
 
       const updateStatus = (status) => {
-        if (status !== val) {
-          setVal(status);
-          dispatch(updateUserStatus({ id, status }));
-          toast.success(`${name} status is Update`, { position: "top-right" });
-        }
+        setVal(status);
+        dispatch(updateUserStatus({ id, status }));
+        toast.success(`${name} status is Update`, { position: "top-right" });
       };
 
       const optionTemplete = (o) => {
@@ -136,20 +149,24 @@ export const Columns = [
         );
       };
 
-      return (
-        <span>
-          <Select
-            optionTemplate={optionTemplete}
-            singleTemplate={optionTemplete}
-            selectWidth="8em"
-            optionsWidth="10em"
-            options={options}
-            value={val}
-            fields={{ labelFn: (l) => l.name }}
-            onChange={(o) => updateStatus(o)}
-            theme={theme}
-          />
-        </span>
+      return val ? (
+        <Select
+          optionTemplate={optionTemplete}
+          singleTemplate={optionTemplete}
+          selectWidth="9em"
+          optionsWidth="11em"
+          options={options}
+          value={val}
+          fields={{ labelFn: (l) => l.name }}
+          onChange={(o) => {
+            if (o !== val) {
+              updateStatus(o);
+            }
+          }}
+          theme={theme}
+        />
+      ) : (
+        "--"
       );
     },
     sortingFn: (row1, row2, column) => {

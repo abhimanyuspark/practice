@@ -20,7 +20,8 @@ import { Tooltip } from "antd";
 import { useRandomPassword } from "../../../hooks/useRandomPassword";
 import { v4 as uuidv4 } from "uuid";
 import { addUser } from "../../../Redux/ReduxApi/UserApi";
-import Avatar from "../../../components/Avatar/Avatar";
+import { makeData } from "../../../data/makeData";
+import AvatarImage from "../../../components/Custom/AvatarImage/AvatarImage";
 
 const UsersAdd = () => {
   const { user } = useSelector((state) => state.auth);
@@ -31,16 +32,20 @@ const UsersAdd = () => {
   const id = uuidv4();
   const [formData, setFormData] = useState({
     id: id,
+    profile: "",
     name: "",
     email: "",
-    profile: "",
     role: "client",
     password: "",
-    followUp: "",
+    allowFollowUp: {
+      type: "Yes",
+    },
     status: "",
     age: "",
     visits: "",
     progress: "",
+    theme: true,
+    sideBar: true,
     date: new Date(),
     statusMenu: [
       {
@@ -67,6 +72,7 @@ const UsersAdd = () => {
   });
   const [isSubmited, setIsSubmited] = useState(false);
   const [show, setShow] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData((p) => ({ ...p, [e.target.name]: e.target.value }));
@@ -107,6 +113,27 @@ const UsersAdd = () => {
     setIsSubmited(!hasErrors);
   };
 
+  const handleFile = async () => {
+    try {
+      setLoading(true); // Set loading to true immediately
+
+      const data = await makeData(1);
+      const { profile } = data[0];
+
+      // Use setTimeout to delay setting the profile in formData
+      const time = setTimeout(() => {
+        setFormData((prevData) => ({ ...prevData, profile: profile }));
+        setLoading(false); // Set loading to false after the delay
+      }, 1500);
+
+      return () => clearTimeout(time);
+    } catch (error) {
+      console.error("Error: ", error);
+      setFormData((prevData) => ({ ...prevData, profile: "" }));
+      setLoading(false); // Set loading to false in case of an error
+    }
+  };
+
   useEffect(() => {
     if (isSubmited) {
       dispatch(addUser(formData));
@@ -116,25 +143,20 @@ const UsersAdd = () => {
         name: "",
         password: "",
         email: "",
-        stats: "",
+        status: "",
+        allowFollowUp: { type: "Yes" },
+        date: "",
+        visits: "",
+        progress: "",
+        profile: "",
       }));
     }
   }, [isSubmited]);
-
-  const handleFile = (e) => {
-    const file = e.target.files[0];
-    const pro = URL.createObjectURL(file);
-    setFormData((p) => ({ ...p, profile: pro }));
-  };
 
   return (
     <PaddingContainer>
       <Container>
         <form onSubmit={onSubmit}>
-          <Avatar />
-          {/* <input type="file" onChange={handleFile} alt="profile" />
-          <img width="50px" height="50px" src={formData?.profile} /> */}
-
           <FlexWrapper>
             <InputContainer
               name="name"
@@ -165,6 +187,19 @@ const UsersAdd = () => {
             />
 
             <InputWrapper>
+              <Label>Profile</Label>
+              <AvatarImage
+                image={formData.profile}
+                loading={loading}
+                onClick={() => {
+                  handleFile();
+                }}
+              />
+            </InputWrapper>
+          </FlexWrapper>
+
+          <FlexWrapper $grow="315px">
+            <InputWrapper>
               <Label>Status</Label>
               <Select
                 id="status"
@@ -179,9 +214,21 @@ const UsersAdd = () => {
                 theme={theme}
               />
             </InputWrapper>
-          </FlexWrapper>
 
-          <FlexWrapper $grow="315px">
+            <InputWrapper>
+              <Label>Allow FollowUp</Label>
+              <Select
+                id="allowFollowUp"
+                value={formData.allowFollowUp}
+                onChange={(e) => {
+                  setFormData((p) => ({ ...p, allowFollowUp: e }));
+                }}
+                fields={{ labelFn: (e) => e.type }}
+                options={[{ type: "Yes" }, { type: "No" }]}
+                theme={theme}
+              />
+            </InputWrapper>
+
             <InputContainer
               name="password"
               sup

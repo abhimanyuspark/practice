@@ -54,6 +54,7 @@ export const JustifyWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: ${({ $justify }) => $justify || "space-between"};
+  flex-direction: ${({ $direction }) => ($direction ? "column" : "row")};
 `;
 
 export const PaddingContainer = styled.div`
@@ -62,7 +63,7 @@ export const PaddingContainer = styled.div`
 
 export const Container = styled.div`
   padding: ${({ $padding }) => $padding || "20px"};
-  border: 1px solid grey;
+  border: 1px ${({ $line }) => $line || "solid"} grey;
   border-radius: 0.4rem;
   width: ${({ $width }) => $width || "100%"};
   height: ${({ $height }) => $height || "auto"};

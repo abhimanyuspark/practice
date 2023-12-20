@@ -32,7 +32,10 @@ const newPerson = () => {
     ],
     theme: faker.helpers.arrayElement([true, false]),
     sideBar: true,
-    followUp: faker.helpers.arrayElement([{ type: "Yes" }, { type: "No" }]),
+    allowFollowUp: faker.helpers.arrayElement([
+      { type: "Yes" },
+      { type: "No" },
+    ]),
   };
 };
 

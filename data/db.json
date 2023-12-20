@@ -40,7 +40,7 @@
       ],
       "theme": false,
       "sideBar": false,
-      "followUp": {
+      "allowFollowUp": {
         "type": "No"
       }
     },
@@ -79,7 +79,7 @@
       ],
       "theme": true,
       "sideBar": true,
-      "followUp": {
+      "allowFollowUp": {
         "type": "Yes"
       }
     },
@@ -118,7 +118,7 @@
       ],
       "theme": false,
       "sideBar": true,
-      "followUp": {
+      "allowFollowUp": {
         "type": "No"
       }
     },
@@ -157,7 +157,7 @@
       ],
       "theme": true,
       "sideBar": true,
-      "followUp": {
+      "allowFollowUp": {
         "type": "Yes"
       }
     },
@@ -175,7 +175,7 @@
       "status": {
         "name": "Pending",
         "color": "yellow",
-        "id": "6712d3da-2903-4a8c-8182-14a671dc3cbc"
+        "id": "3840aa3b-323b-415f-b8a5-e36d03d40c0b"
       },
       "statusMenu": [
         {
@@ -196,7 +196,7 @@
       ],
       "theme": false,
       "sideBar": true,
-      "followUp": {
+      "allowFollowUp": {
         "type": "No"
       }
     },
@@ -214,7 +214,7 @@
       "status": {
         "name": "Complete",
         "color": "#0cf90c",
-        "id": "c01fd94b-fad3-4450-a3ac-97c2fc49f460"
+        "id": "99373bd6-d3ec-4e76-a04b-5ea7a5e5ffbe"
       },
       "statusMenu": [
         {
@@ -235,7 +235,7 @@
       ],
       "theme": true,
       "sideBar": true,
-      "followUp": {
+      "allowFollowUp": {
         "type": "No"
       }
     },
@@ -274,7 +274,7 @@
       ],
       "theme": false,
       "sideBar": true,
-      "followUp": {
+      "allowFollowUp": {
         "type": "Yes"
       }
     },
@@ -313,7 +313,7 @@
       ],
       "theme": false,
       "sideBar": true,
-      "followUp": {
+      "allowFollowUp": {
         "type": "No"
       }
     },
@@ -352,7 +352,7 @@
       ],
       "theme": true,
       "sideBar": true,
-      "followUp": {
+      "allowFollowUp": {
         "type": "Yes"
       }
     },
@@ -391,7 +391,7 @@
       ],
       "theme": true,
       "sideBar": true,
-      "followUp": {
+      "allowFollowUp": {
         "type": "Yes"
       }
     },
@@ -430,7 +430,7 @@
       ],
       "theme": true,
       "sideBar": true,
-      "followUp": {
+      "allowFollowUp": {
         "type": "Yes"
       }
     },
@@ -469,7 +469,7 @@
       ],
       "theme": true,
       "sideBar": true,
-      "followUp": {
+      "allowFollowUp": {
         "type": "Yes"
       }
     },
@@ -508,7 +508,7 @@
       ],
       "theme": true,
       "sideBar": true,
-      "followUp": {
+      "allowFollowUp": {
         "type": "Yes"
       }
     },
@@ -547,7 +547,7 @@
       ],
       "theme": true,
       "sideBar": true,
-      "followUp": {
+      "allowFollowUp": {
         "type": "No"
       }
     },
@@ -586,7 +586,7 @@
       ],
       "theme": true,
       "sideBar": true,
-      "followUp": {
+      "allowFollowUp": {
         "type": "No"
       }
     },
@@ -625,7 +625,7 @@
       ],
       "theme": true,
       "sideBar": true,
-      "followUp": {
+      "allowFollowUp": {
         "type": "Yes"
       }
     },
@@ -664,7 +664,7 @@
       ],
       "theme": true,
       "sideBar": true,
-      "followUp": {
+      "allowFollowUp": {
         "type": "No"
       }
     },
@@ -703,7 +703,7 @@
       ],
       "theme": false,
       "sideBar": true,
-      "followUp": {
+      "allowFollowUp": {
         "type": "No"
       }
     },
@@ -742,7 +742,7 @@
       ],
       "theme": false,
       "sideBar": true,
-      "followUp": {
+      "allowFollowUp": {
         "type": "Yes"
       }
     },
@@ -781,7 +781,7 @@
       ],
       "theme": false,
       "sideBar": true,
-      "followUp": {
+      "allowFollowUp": {
         "type": "No"
       }
     },
@@ -820,7 +820,7 @@
       ],
       "theme": false,
       "sideBar": true,
-      "followUp": {
+      "allowFollowUp": {
         "type": "Yes"
       }
     },
@@ -859,7 +859,7 @@
       ],
       "theme": true,
       "sideBar": true,
-      "followUp": {
+      "allowFollowUp": {
         "type": "No"
       }
     },
@@ -898,7 +898,7 @@
       ],
       "theme": false,
       "sideBar": true,
-      "followUp": {
+      "allowFollowUp": {
         "type": "No"
       }
     },
@@ -937,7 +937,7 @@
       ],
       "theme": true,
       "sideBar": true,
-      "followUp": {
+      "allowFollowUp": {
         "type": "No"
       }
     },
@@ -976,7 +976,7 @@
       ],
       "theme": false,
       "sideBar": true,
-      "followUp": {
+      "allowFollowUp": {
         "type": "No"
       }
     },
@@ -1015,7 +1015,7 @@
       ],
       "theme": true,
       "sideBar": true,
-      "followUp": {
+      "allowFollowUp": {
         "type": "No"
       }
     },
@@ -1054,7 +1054,7 @@
       ],
       "theme": false,
       "sideBar": true,
-      "followUp": {
+      "allowFollowUp": {
         "type": "Yes"
       }
     },
@@ -1093,7 +1093,7 @@
       ],
       "theme": true,
       "sideBar": true,
-      "followUp": {
+      "allowFollowUp": {
         "type": "No"
       }
     },
@@ -1132,7 +1132,7 @@
       ],
       "theme": true,
       "sideBar": true,
-      "followUp": {
+      "allowFollowUp": {
         "type": "No"
       }
     },
@@ -1171,7 +1171,7 @@
       ],
       "theme": true,
       "sideBar": true,
-      "followUp": {
+      "allowFollowUp": {
         "type": "Yes"
       }
     },
@@ -1210,7 +1210,7 @@
       ],
       "theme": false,
       "sideBar": true,
-      "followUp": {
+      "allowFollowUp": {
         "type": "Yes"
       }
     },
@@ -1249,7 +1249,7 @@
       ],
       "theme": false,
       "sideBar": true,
-      "followUp": {
+      "allowFollowUp": {
         "type": "Yes"
       }
     },
@@ -1288,7 +1288,7 @@
       ],
       "theme": true,
       "sideBar": true,
-      "followUp": {
+      "allowFollowUp": {
         "type": "Yes"
       }
     },
@@ -1327,7 +1327,7 @@
       ],
       "theme": true,
       "sideBar": true,
-      "followUp": {
+      "allowFollowUp": {
         "type": "No"
       }
     },
@@ -1366,7 +1366,7 @@
       ],
       "theme": false,
       "sideBar": true,
-      "followUp": {
+      "allowFollowUp": {
         "type": "No"
       }
     },
@@ -1405,7 +1405,7 @@
       ],
       "theme": false,
       "sideBar": true,
-      "followUp": {
+      "allowFollowUp": {
         "type": "Yes"
       }
     },
@@ -1444,7 +1444,7 @@
       ],
       "theme": true,
       "sideBar": true,
-      "followUp": {
+      "allowFollowUp": {
         "type": "Yes"
       }
     },
@@ -1483,7 +1483,7 @@
       ],
       "theme": false,
       "sideBar": true,
-      "followUp": {
+      "allowFollowUp": {
         "type": "No"
       }
     },
@@ -1522,7 +1522,7 @@
       ],
       "theme": true,
       "sideBar": true,
-      "followUp": {
+      "allowFollowUp": {
         "type": "No"
       }
     },
@@ -1561,7 +1561,7 @@
       ],
       "theme": true,
       "sideBar": true,
-      "followUp": {
+      "allowFollowUp": {
         "type": "No"
       }
     },
@@ -1600,7 +1600,7 @@
       ],
       "theme": false,
       "sideBar": true,
-      "followUp": {
+      "allowFollowUp": {
         "type": "Yes"
       }
     },
@@ -1639,7 +1639,7 @@
       ],
       "theme": true,
       "sideBar": true,
-      "followUp": {
+      "allowFollowUp": {
         "type": "No"
       }
     },
@@ -1678,7 +1678,7 @@
       ],
       "theme": true,
       "sideBar": true,
-      "followUp": {
+      "allowFollowUp": {
         "type": "No"
       }
     },
@@ -1717,7 +1717,7 @@
       ],
       "theme": true,
       "sideBar": true,
-      "followUp": {
+      "allowFollowUp": {
         "type": "Yes"
       }
     },
@@ -1756,7 +1756,7 @@
       ],
       "theme": false,
       "sideBar": true,
-      "followUp": {
+      "allowFollowUp": {
         "type": "No"
       }
     },
@@ -1795,7 +1795,7 @@
       ],
       "theme": true,
       "sideBar": true,
-      "followUp": {
+      "allowFollowUp": {
         "type": "Yes"
       }
     },
@@ -1834,7 +1834,7 @@
       ],
       "theme": true,
       "sideBar": true,
-      "followUp": {
+      "allowFollowUp": {
         "type": "Yes"
       }
     },
@@ -1873,7 +1873,7 @@
       ],
       "theme": true,
       "sideBar": true,
-      "followUp": {
+      "allowFollowUp": {
         "type": "No"
       }
     },
@@ -1912,7 +1912,7 @@
       ],
       "theme": false,
       "sideBar": true,
-      "followUp": {
+      "allowFollowUp": {
         "type": "Yes"
       }
     },
@@ -1951,9 +1951,121 @@
       ],
       "theme": true,
       "sideBar": true,
-      "followUp": {
+      "allowFollowUp": {
         "type": "No"
       }
+    },
+    {
+      "id": "ca9f06c1-8c55-469d-9322-86d4af93339f",
+      "profile": "https://avatars.githubusercontent.com/u/17773679",
+      "name": "warlock",
+      "email": "abhisml05@gmail.com",
+      "role": "client",
+      "password": "WurNUGmI",
+      "allowFollowUp": {
+        "type": "No"
+      },
+      "status": {
+        "name": "Pending",
+        "color": "yellow",
+        "id": "3840aa3b-323b-415f-b8a5-e36d03d40c0b"
+      },
+      "age": "",
+      "visits": "",
+      "progress": "",
+      "theme": true,
+      "sideBar": true,
+      "date": "2023-12-20T06:05:52.941Z",
+      "statusMenu": [
+        {
+          "name": "Pending",
+          "color": "yellow",
+          "id": "1c180990-7c1e-46e2-b81d-b909f2551f0c"
+        },
+        {
+          "name": "Inprocess",
+          "color": "#159afb",
+          "id": "d290236c-35aa-4faf-b4dd-3a879bf9f49e"
+        },
+        {
+          "name": "Complete",
+          "color": "#0cf90c",
+          "id": "20125f8e-6d7f-430d-b3bb-c17a5e41d425"
+        }
+      ]
+    },
+    {
+      "id": "f9482f40-1bb4-41c1-879f-e1b493d43b73",
+      "profile": "https://avatars.githubusercontent.com/u/47930120",
+      "name": "warlock",
+      "email": "abhisml05@gmail.com",
+      "role": "client",
+      "password": "xzxJw6vb",
+      "allowFollowUp": {
+        "type": "Yes"
+      },
+      "age": "",
+      "visits": "",
+      "progress": "",
+      "date": "2023-12-20T09:43:47.409Z",
+      "theme": true,
+      "sideBar": true,
+      "statusMenu": [
+        {
+          "name": "Pending",
+          "color": "yellow",
+          "id": "1c180990-7c1e-46e2-b81d-b909f2551f0c"
+        },
+        {
+          "name": "Inprocess",
+          "color": "#159afb",
+          "id": "d290236c-35aa-4faf-b4dd-3a879bf9f49e"
+        },
+        {
+          "name": "Complete",
+          "color": "#0cf90c",
+          "id": "20125f8e-6d7f-430d-b3bb-c17a5e41d425"
+        }
+      ]
+    },
+    {
+      "id": "a75289e7-382d-4409-b3af-b8d564a2ad2f",
+      "profile": "",
+      "name": "Abhimanyu",
+      "email": "abhis6410088@gmail.com",
+      "role": "client",
+      "password": "NotFr56U",
+      "allowFollowUp": {
+        "type": "No"
+      },
+      "status": {
+        "name": "Inprocess",
+        "color": "#159afb",
+        "id": "59e278fa-5dc9-4d06-baf7-0dee06380ef4"
+      },
+      "age": "",
+      "visits": "",
+      "progress": "",
+      "theme": true,
+      "sideBar": true,
+      "date": "2023-12-20T10:55:35.692Z",
+      "statusMenu": [
+        {
+          "name": "Pending",
+          "color": "yellow",
+          "id": "1c180990-7c1e-46e2-b81d-b909f2551f0c"
+        },
+        {
+          "name": "Inprocess",
+          "color": "#159afb",
+          "id": "d290236c-35aa-4faf-b4dd-3a879bf9f49e"
+        },
+        {
+          "name": "Complete",
+          "color": "#0cf90c",
+          "id": "20125f8e-6d7f-430d-b3bb-c17a5e41d425"
+        }
+      ]
     }
   ],
   "images": [

@@ -16,6 +16,7 @@ const Icons = {
     <span className="material-symbols-outlined material-fill">filter_alt</span>
   ),
   Random: <span className="material-symbols-outlined">shuffle</span>,
+  AvatarIcon: <span className="material-symbols-outlined">account_circle</span>,
 };
 
 export const {
@@ -34,4 +35,5 @@ export const {
   Error,
   Filter,
   Random,
+  AvatarIcon,
 } = Icons;

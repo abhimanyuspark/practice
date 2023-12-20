@@ -8,3 +8,10 @@ export const Shape = styled.span`
   background-color: ${({ $color }) => $color || "white"};
   margin: ${({ $margin }) => $margin || "0px 0px 0px 0px"};
 `;
+
+export const Image = styled.img`
+  width: ${({ $width }) => $width || "100%"};
+  aspect-ratio: 1/1;
+  border-radius: ${({ $circle }) => $circle && "50%"};
+  margin: ${({ $margin }) => $margin || "0px 0px 0px 0px"};
+`;

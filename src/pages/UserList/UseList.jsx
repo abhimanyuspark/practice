@@ -79,21 +79,21 @@ const UseList = () => {
 
   const filterByDate = useMemo(() => {
     return roleBasedUsers?.filter((item) => {
-      if (date.start && date.end) {
-        const d = new Date(item.date);
-        return d >= date.start && d <= date.end;
+      if (date?.start && date?.end) {
+        const d = new Date(item?.date);
+        return d >= date?.start && d <= date?.end;
       }
       return true;
     });
-  }, [roleBasedUsers, date.start, date.end]);
+  }, [roleBasedUsers, date?.start, date?.end]);
 
   const customArray = useMemo(() => {
     const data = filterByDate?.map((item, i) => ({
       "#": i + 1,
-      Id: item.id,
-      Username: item.name,
-      Created: item.date,
-      Status: item.status.name,
+      Id: item?.id,
+      Username: item?.name,
+      Created: item?.date,
+      Status: item?.status?.name,
     }));
     return data;
   }, [filterByDate]);

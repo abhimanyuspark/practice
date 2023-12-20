@@ -7,7 +7,9 @@ const IconStyle = styled.span`
     font-size: ${({ $fontSize }) => $fontSize || "20px"};
   }
   display: flex;
-  align-items: center;
+  align-items: ${({ $direction }) => ($direction ? "" : "center")};
+  justify-content: ${({ $direction }) => ($direction ? "center" : "")};
+  flex-direction: ${({ $direction }) => ($direction ? "column" : "row")};
   color: ${({ $color, theme }) => $color || theme.cl_dark};
   cursor: pointer;
   &:hover {
@@ -22,13 +24,14 @@ const IconStyle = styled.span`
   }
 `;
 
-const Icon = ({ icon, fontSize, color, onClick, hover }) => {
+const Icon = ({ icon, fontSize, color, onClick, hover, dir }) => {
   return (
     <IconStyle
       onClick={onClick}
       $hover={hover}
       $fontSize={fontSize}
       $color={color}
+      $direction={dir}
     >
       {icon}
     </IconStyle>

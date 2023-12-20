@@ -93,14 +93,18 @@ const UserDetails = () => {
               <FlexDiv $gap="2" $direction>
                 <P>{name}</P>
                 <P>{newDate.toLocaleDateString()}</P>
-                <P>{progress}</P>
-                <FlexDiv $gap="0.5">
-                  <Shape $circle $color={status?.color} />
-                  <P>{status?.name}</P>
-                </FlexDiv>
-                <P>{email}</P>
-                <P>{age}</P>
-                <P>{visits}</P>
+                <P>{progress || "--"}</P>
+                {status ? (
+                  <FlexDiv $gap="0.5">
+                    <Shape $circle $color={status?.color} />
+                    <P>{status?.name}</P>
+                  </FlexDiv>
+                ) : (
+                  <P>{"--"}</P>
+                )}
+                <P>{email || "--"}</P>
+                <P>{age || "--"}</P>
+                <P>{visits || "--"}</P>
               </FlexDiv>
             </FlexDiv>
           </Container>

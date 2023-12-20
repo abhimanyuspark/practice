@@ -41,7 +41,7 @@ import Loader from "../loader/Loader";
 import Icon from "../Icons/Icon";
 import { TableWrapper, Table1, Td1, Th1, Tr1 } from "../table/table1";
 import { H1, H2, H3, P, LinkStyle } from "../Head and para/FontStyling";
-import { Shape } from "../Other/Other";
+import { Shape, Image } from "../Other/Other";
 
 export {
   NavbarWrapper,
@@ -90,4 +90,5 @@ export {
   P,
   LinkStyle,
   Shape,
+  Image,
 };

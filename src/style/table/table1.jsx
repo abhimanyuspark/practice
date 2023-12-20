@@ -27,6 +27,7 @@ export const Table1 = styled.table`
 export const Td1 = styled.td`
   padding: 5px;
   text-align: left;
+  font-size: 14px;
   &:last-child {
     padding: 5px;
     text-align: right;

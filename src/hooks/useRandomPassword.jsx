@@ -2,8 +2,8 @@
 const charset =
   "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%&_?";
 
-export const useRandomPassword = () => {
-  const length = 8; // Set the desired password length
+export const useRandomPassword = (plen) => {
+  const length = plen || 8; // Set the desired password length
   // const newPassword = Array.from({ length }, () => {
   //   const randomIndex = Math.floor(Math.random() * charset.length);
   //   return charset[randomIndex];

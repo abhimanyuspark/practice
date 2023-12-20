@@ -25,7 +25,7 @@ const beforeUpload = (file) => {
   return isJpgOrPng && isLt2M;
 };
 
-const Avatar = () => {
+const AntdAvatar = () => {
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState();
   const [previewVisible, setPreviewVisible] = useState(false);
@@ -103,4 +103,4 @@ const Avatar = () => {
   );
 };
 
-export default Avatar;
+export default AntdAvatar;
