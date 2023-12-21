@@ -127,16 +127,16 @@
       "role": "client",
       "email": "Lula_Huel22@yahoo.com",
       "name": "Cora Larson Jr.",
-      "password": "sEzCK5yl",
-      "date": "2022-06-13T19:09:46.265Z",
+      "password": "VYOZDVsw",
+      "date": "2023-12-21T11:54:08.242Z",
       "profile": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/775.jpg",
       "age": 34,
       "visits": 775,
       "progress": 52,
       "status": {
-        "name": "Complete",
-        "color": "#0cf90c",
-        "id": "a480787b-ae26-4d2d-ba04-77377908200c"
+        "name": "Inprocess",
+        "color": "#159afb",
+        "id": "59e278fa-5dc9-4d06-baf7-0dee06380ef4"
       },
       "statusMenu": [
         {
@@ -212,9 +212,9 @@
       "visits": 0,
       "progress": 69,
       "status": {
-        "name": "Complete",
-        "color": "#0cf90c",
-        "id": "99373bd6-d3ec-4e76-a04b-5ea7a5e5ffbe"
+        "name": "Waitting",
+        "color": "orange",
+        "id": "99373bd6-d3ec-4e76-a04b-5ea7a5e5ff4e"
       },
       "statusMenu": [
         {
@@ -276,45 +276,6 @@
       "sideBar": true,
       "allowFollowUp": {
         "type": "Yes"
-      }
-    },
-    {
-      "id": "9095b801-ecb5-4c36-9e86-236d41313914",
-      "role": "client",
-      "email": "Adaline_Quitzon6@gmail.com",
-      "name": "Elsie Cartwright",
-      "password": "ZZJNxYa1",
-      "date": "2021-03-30T14:19:50.683Z",
-      "profile": "https://avatars.githubusercontent.com/u/35021345",
-      "age": 39,
-      "visits": 417,
-      "progress": 59,
-      "status": {
-        "name": "Inprocess",
-        "color": "#159afb",
-        "id": "0a3172a4-7677-4b9b-aa15-11333a7f2d27"
-      },
-      "statusMenu": [
-        {
-          "name": "Pending",
-          "color": "yellow",
-          "id": "02a16e64-86da-4370-8648-609cad09b99e"
-        },
-        {
-          "name": "Inprocess",
-          "color": "#159afb",
-          "id": "fec76b1c-f485-4bbc-ab90-703c1d6982a7"
-        },
-        {
-          "name": "Complete",
-          "color": "#0cf90c",
-          "id": "57f79c62-7937-49e1-95a4-7647c4e12e67"
-        }
-      ],
-      "theme": false,
-      "sideBar": true,
-      "allowFollowUp": {
-        "type": "No"
       }
     },
     {
@@ -407,9 +368,9 @@
       "visits": 992,
       "progress": 77,
       "status": {
-        "name": "Inprocess",
-        "color": "#159afb",
-        "id": "59e278fa-5dc9-4d06-baf7-0dee06380ef4"
+        "name": "Pending",
+        "color": "yellow",
+        "id": "3840aa3b-323b-415f-b8a5-e36d03d40c0b"
       },
       "statusMenu": [
         {
@@ -2049,6 +2010,40 @@
       "theme": true,
       "sideBar": true,
       "date": "2023-12-20T10:55:35.692Z",
+      "statusMenu": [
+        {
+          "name": "Pending",
+          "color": "yellow",
+          "id": "1c180990-7c1e-46e2-b81d-b909f2551f0c"
+        },
+        {
+          "name": "Inprocess",
+          "color": "#159afb",
+          "id": "d290236c-35aa-4faf-b4dd-3a879bf9f49e"
+        },
+        {
+          "name": "Complete",
+          "color": "#0cf90c",
+          "id": "20125f8e-6d7f-430d-b3bb-c17a5e41d425"
+        }
+      ]
+    },
+    {
+      "id": "c936b6c7-021e-4b71-889b-f72350c4f6ee",
+      "profile": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/145.jpg",
+      "name": "daddy",
+      "email": "admin@example.com",
+      "role": "client",
+      "password": "jW_A2m#N",
+      "allowFollowUp": {
+        "type": "No"
+      },
+      "age": "",
+      "visits": "",
+      "progress": "",
+      "theme": true,
+      "sideBar": true,
+      "date": "2023-12-20T13:36:50.127Z",
       "statusMenu": [
         {
           "name": "Pending",

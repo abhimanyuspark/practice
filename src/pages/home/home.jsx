@@ -4,6 +4,7 @@ import React from "react";
 import { PaddingContainer, P, Container } from "../../style/Export/Export";
 import { useSelector } from "react-redux";
 import { useTitle } from "../../hooks/useTitle";
+import Sepreate from "../../components/seprate/sepreateFile";
 
 const Home = () => {
   // const data = makeData(50);
@@ -17,6 +18,7 @@ const Home = () => {
       <PaddingContainer>
         <Container>
           <P>{user.name}</P>
+          <Sepreate />
         </Container>
       </PaddingContainer>
     </div>
