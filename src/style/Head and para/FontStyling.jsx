@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 
 export const H1 = styled.h1`
-  color: ${({ $color }) => $color || "grey"};
+  color: ${({ $color, theme }) => $color || theme.cl_dark};
   line-height: 1cm;
   &:hover {
     ${({ $hover }) =>
@@ -15,7 +15,7 @@ export const H1 = styled.h1`
 `;
 
 export const H2 = styled.h2`
-  color: ${({ $color }) => $color || "grey"};
+  color: ${({ $color, theme }) => $color || theme.cl_dark};
   line-height: 0.5cm;
   &:hover {
     ${({ $hover }) =>
@@ -28,7 +28,7 @@ export const H2 = styled.h2`
 `;
 
 export const H3 = styled.h3`
-  color: ${({ $color }) => $color || "grey"};
+  color: ${({ $color, theme }) => $color || theme.cl_dark};
   line-height: 0.5cm;
   &:hover {
     ${({ $hover }) =>

@@ -11,6 +11,7 @@ import {
   FlexDiv,
   FlexWrapper,
   Loader,
+  H2,
 } from "../../../style/Export/Export";
 import { useParams } from "react-router-dom";
 import { getUserData, editUser } from "../../../Redux/ReduxApi/UserApi";
@@ -23,6 +24,7 @@ import { Check, Random, View, ViewOff } from "../../../style/Icons/Icons";
 import InputContainer from "../../../components/InputContainer/InputContainer";
 import Select from "../../../components/Custom/Select/SelectDropDown";
 import { useThemeProvider } from "../../../hooks/useThemeProvider";
+import { toast } from "react-toastify";
 
 const UsersEdit = () => {
   const { id } = useParams();
@@ -95,6 +97,9 @@ const UsersEdit = () => {
 
     const hasErrors = Object.keys(errors).length > 0;
     setIsSubmited(!hasErrors);
+    if (hasErrors) {
+      toast.error(`data invalid`);
+    }
   };
 
   const handleFile = async () => {
@@ -122,6 +127,7 @@ const UsersEdit = () => {
     if (isSubmited) {
       dispatch(editUser(formData));
       setIsSubmited(false);
+      toast.success(`${formData.name} updated user details`);
     }
   }, [isSubmited]);
 
@@ -152,133 +158,149 @@ const UsersEdit = () => {
 
   return (
     <PaddingContainer>
-      <Container>
+      <Container $padding="0px">
         {userLoading ? (
           <Loader />
         ) : (
-          <form onSubmit={onSubmit}>
-            <FlexWrapper>
-              <InputContainer
-                name="name"
-                sup
-                type="text"
-                value={formData.name}
-                label="Username"
-                onChange={handleChange}
-                error={formError.name ? true : false}
-                errorMessage={formError.name}
-                {...{
-                  placeholder: "Enter a username",
-                }}
-              />
-
-              <InputContainer
-                name="email"
-                sup
-                type="text"
-                value={formData.email}
-                label="Email"
-                onChange={handleChange}
-                error={formError.email ? true : false}
-                errorMessage={formError.email}
-                {...{
-                  placeholder: "Enter a email",
-                }}
-              />
-
-              <InputWrapper>
-                <Label>Profile</Label>
-                <AvatarImage
-                  image={formData.profile}
-                  loading={loading}
-                  onClick={() => {
-                    handleFile();
-                  }}
-                />
-              </InputWrapper>
-            </FlexWrapper>
-
-            <FlexWrapper $grow="315px">
-              <InputWrapper>
-                <Label>Status</Label>
-                <Select
-                  id="status"
-                  enableSearch
-                  enableNoDataList
-                  value={formData.status}
-                  onChange={(e) => {
-                    setFormData((p) => ({ ...p, status: e }));
-                  }}
-                  fields={{ labelFn: (e) => e.name }}
-                  options={statusMenu}
-                  theme={theme}
-                />
-              </InputWrapper>
-
-              <InputWrapper>
-                <Label>Allow FollowUp</Label>
-                <Select
-                  id="allowFollowUp"
-                  value={formData.allowFollowUp}
-                  onChange={(e) => {
-                    setFormData((p) => ({ ...p, allowFollowUp: e }));
-                  }}
-                  fields={{ labelFn: (e) => e.type }}
-                  options={[{ type: "Yes" }, { type: "No" }]}
-                  theme={theme}
-                />
-              </InputWrapper>
-
-              <InputContainer
-                name="password"
-                sup
-                type={show ? "text" : "password"}
-                value={formData.password}
-                label="Password"
-                onChange={handleChange}
-                error={formError.password ? true : false}
-                errorMessage={formError.password}
-                borderRight
-                {...{
-                  autoComplete: "false",
-                  placeholder: "Enter a password",
-                }}
-                children={
-                  <>
-                    <Tooltip title="Show/Hide">
-                      <ToogleIconInput
-                        $borderLeft
-                        $borderRight
-                        onClick={() => {
-                          setShow(!show);
-                        }}
-                      >
-                        <Icon icon={show ? View : ViewOff} />
-                      </ToogleIconInput>
-                    </Tooltip>
-                    <Tooltip title="Random Password">
-                      <ToogleIconInput
-                        $borderLeft
-                        onClick={() => {
-                          const password = useRandomPassword();
-                          setFormData((p) => ({ ...p, password: password }));
-                          setFormError((p) => ({ ...p, password: "" }));
-                        }}
-                      >
-                        <Icon icon={Random} />
-                      </ToogleIconInput>
-                    </Tooltip>
-                  </>
-                }
-              />
-            </FlexWrapper>
-
-            <PaddingContainer $padding="20px 0px 0px">
-              <FlexDiv>
-                <Buttons type="submit" text="Save / Add More" icon={Check} />
-              </FlexDiv>
+          <>
+            <PaddingContainer $padding="25px">
+              <H2>Update User</H2>
             </PaddingContainer>
-          </form>
+            <hr />
+            <PaddingContainer $padding="25px">
+              <form onSubmit={onSubmit}>
+                <FlexWrapper>
+                  <InputContainer
+                    name="name"
+                    sup
+                    type="text"
+                    value={formData.name}
+                    label="Username"
+                    onChange={handleChange}
+                    error={formError.name ? true : false}
+                    errorMessage={formError.name}
+                    {...{
+                      placeholder: "Enter a username",
+                    }}
+                  />
+
+                  <InputContainer
+                    name="email"
+                    sup
+                    type="text"
+                    value={formData.email}
+                    label="Email"
+                    onChange={handleChange}
+                    error={formError.email ? true : false}
+                    errorMessage={formError.email}
+                    {...{
+                      placeholder: "Enter a email",
+                    }}
+                  />
+
+                  <InputWrapper>
+                    <Label>Profile</Label>
+                    <AvatarImage
+                      image={formData.profile}
+                      loading={loading}
+                      onClick={() => {
+                        handleFile();
+                      }}
+                    />
+                  </InputWrapper>
+                </FlexWrapper>
+
+                <FlexWrapper $grow="315px">
+                  <InputWrapper>
+                    <Label>Status</Label>
+                    <Select
+                      id="status"
+                      enableSearch
+                      enableNoDataList
+                      value={formData.status}
+                      onChange={(e) => {
+                        setFormData((p) => ({ ...p, status: e }));
+                      }}
+                      fields={{ labelFn: (e) => e.name }}
+                      options={statusMenu}
+                      theme={theme}
+                    />
+                  </InputWrapper>
+
+                  <InputWrapper>
+                    <Label>Allow FollowUp</Label>
+                    <Select
+                      id="allowFollowUp"
+                      value={formData.allowFollowUp}
+                      onChange={(e) => {
+                        setFormData((p) => ({ ...p, allowFollowUp: e }));
+                      }}
+                      fields={{ labelFn: (e) => e.type }}
+                      options={[{ type: "Yes" }, { type: "No" }]}
+                      theme={theme}
+                    />
+                  </InputWrapper>
+
+                  <InputContainer
+                    name="password"
+                    sup
+                    type={show ? "text" : "password"}
+                    value={formData.password}
+                    label="Password"
+                    onChange={handleChange}
+                    error={formError.password ? true : false}
+                    errorMessage={formError.password}
+                    borderRight
+                    {...{
+                      autoComplete: "false",
+                      placeholder: "Enter a password",
+                    }}
+                    children={
+                      <>
+                        <Tooltip title="Show/Hide">
+                          <ToogleIconInput
+                            $borderLeft
+                            $borderRight
+                            onClick={() => {
+                              setShow(!show);
+                            }}
+                          >
+                            <Icon icon={show ? View : ViewOff} />
+                          </ToogleIconInput>
+                        </Tooltip>
+                        <Tooltip title="Random Password">
+                          <ToogleIconInput
+                            $borderLeft
+                            onClick={() => {
+                              const password = useRandomPassword();
+                              setFormData((p) => ({
+                                ...p,
+                                password: password,
+                              }));
+                              setFormError((p) => ({ ...p, password: "" }));
+                            }}
+                          >
+                            <Icon icon={Random} />
+                          </ToogleIconInput>
+                        </Tooltip>
+                      </>
+                    }
+                  />
+                </FlexWrapper>
+
+                <PaddingContainer $padding="20px 0px 0px">
+                  <FlexDiv>
+                    <Buttons
+                      type="submit"
+                      text="Save / Update user"
+                      icon={Check}
+                      loading={userLoading}
+                    />
+                  </FlexDiv>
+                </PaddingContainer>
+              </form>
+            </PaddingContainer>
+          </>
         )}
       </Container>
     </PaddingContainer>

@@ -24,7 +24,12 @@ const Sepreate = () => {
         })}
       </select>
 
-      <select value={state}>
+      <select
+        value={state}
+        onChange={(e) => {
+          setState(e.target.value);
+        }}
+      >
         {array.map((d, i) => {
           return (
             <option key={i} value={d.city}>

@@ -20,7 +20,6 @@ import {
 } from "../../style/Export/Export";
 import { LoginIcon, View, ViewOff } from "../../style/Icons/Icons";
 import Logo from "../../assets/Vitelogo.svg";
-import { toast } from "react-toastify";
 import InputContainer from "../../components/InputContainer/InputContainer";
 import { togglePersist } from "../../Redux/LoginApi/reducer";
 import { useTitle } from "../../hooks/useTitle";
@@ -29,6 +28,7 @@ import { Tooltip } from "antd";
 const Login = () => {
   const { persist, loading, error, user } = useSelector((state) => state.auth);
   const [show, setShow] = useState(false);
+  const [isSubmited, setIsSubmited] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
@@ -39,7 +39,7 @@ const Login = () => {
     email: "",
     password: "",
   });
-  const [errors, setErrors] = useState({
+  const [formErrors, setFormErrors] = useState({
     email: "",
     password: "",
   });
@@ -50,64 +50,71 @@ const Login = () => {
       ...prevData,
       [name]: value,
     }));
-    setErrors((prevErrors) => ({
+    setFormErrors((prevErrors) => ({
       ...prevErrors,
       [name]: "",
     }));
   };
 
+  const formValiDate = async (data) => {
+    const errors = {};
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+
+    if (data.email.trim() === "") {
+      errors.email = "Enter an email";
+    } else if (!regex.test(data.email)) {
+      errors.email = "This is not a valid email format!";
+    }
+
+    if (data.password.trim() === "") {
+      errors.password = "Enter a password";
+    } else if (data.password.length < 8 || data.password.length > 10) {
+      errors.password = "Password must be between 8 to 10 characters in length";
+    }
+
+    setFormErrors((prevErrors) => ({
+      ...prevErrors,
+      ...errors,
+    }));
+
+    const hasErrors = Object.keys(errors).length > 0;
+    setIsSubmited(!hasErrors);
+    if (hasErrors) {
+      setFormErrors((prevErrors) => ({
+        ...prevErrors,
+        email: "Data Invalid",
+      }));
+    } else {
+      try {
+        await dispatch(authenticateUser(formData));
+        setFormData((prevData) => ({
+          ...prevData,
+          email: "",
+          password: "",
+        }));
+      } catch (error) {
+        // Handle authentication error
+        setFormErrors((prevErrors) => ({
+          ...prevErrors,
+          email: error,
+        }));
+      }
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Validation before submitting the form
-    if (formData.email.trim() === "") {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        email: "Enter email address",
-      }));
-      return;
-    }
-
-    if (formData.password.trim() === "") {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        password: "Enter password",
-      }));
-      return;
-    }
-
-    if (formData.password.length < 8 || formData.password.length > 10) {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        password: "Password must be between 8 and 10 characters in length",
-      }));
-      return;
-    }
-
-    try {
-      await dispatch(authenticateUser(formData));
-      setFormData((prevData) => ({
-        ...prevData,
-        email: "",
-        password: "",
-      }));
-    } catch (error) {
-      // Handle authentication error
-      toast.error(error.message, {
-        position: "top-left",
-      });
-    }
+    formValiDate(formData);
   };
 
   useEffect(() => {
     let mounted = true;
-    if (Object.keys(user).length > 0 && mounted) {
+    if (isSubmited && Object.keys(user).length > 0 && mounted) {
       navigate(from, { replace: true });
-      toast.success(`${user.email} login Successfull`, {
-        position: "top-left",
-      });
     }
     return () => (mounted = false);
-  }, [user]);
+  }, [isSubmited, user]);
 
   return (
     <MainWrapper>
@@ -130,13 +137,13 @@ const Login = () => {
               name="email"
               label="Email Address"
               value={formData.email}
-              error={errors.email ? true : false}
+              error={formErrors.email ? true : false}
               onChange={handleChange}
               errorMessage={
-                error === "Please Enter valid email" ? error : errors?.email
+                error === "Please Enter valid email" ? error : formErrors?.email
               }
               {...{
-                autoComplete: "true",
+                autoComplete: "false",
                 placeholder: "Enter your email address...",
               }}
             />
@@ -148,12 +155,12 @@ const Login = () => {
               name="password"
               label="Password"
               value={formData.password}
-              error={errors.password ? true : false}
+              error={formErrors.password ? true : false}
               onChange={handleChange}
               errorMessage={
                 error === "Please Enter valid credentials"
                   ? error
-                  : errors?.password
+                  : formErrors?.password
               }
               {...{
                 autoComplete: "false",

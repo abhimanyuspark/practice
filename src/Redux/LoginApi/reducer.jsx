@@ -39,7 +39,6 @@ const authSlice = createSlice({
             expires: 7,
           });
         }
-        localStorage.setItem("sideBar", true);
       })
       .addCase(refreshAuthUser.fulfilled, (state, action) => {
         state.loading = false;

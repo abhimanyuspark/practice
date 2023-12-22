@@ -50,7 +50,7 @@
       "email": "Kianna.Veum@gmail.com",
       "name": "Constance Goodwin",
       "password": "1OMYSq9q",
-      "date": "2022-06-19T23:58:17.663Z",
+      "date": "2023-12-22T12:18:09.723Z",
       "profile": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1027.jpg",
       "age": 41,
       "visits": 629,
@@ -80,7 +80,7 @@
       "theme": true,
       "sideBar": true,
       "allowFollowUp": {
-        "type": "Yes"
+        "type": "No"
       }
     },
     {
@@ -88,8 +88,8 @@
       "role": "client",
       "email": "Deron_OHara80@hotmail.com",
       "name": "Bernice Block",
-      "password": "jH72PNiq",
-      "date": "2021-02-04T20:22:04.130Z",
+      "password": "piqqstDl",
+      "date": "2023-12-22T12:21:04.252Z",
       "profile": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1053.jpg",
       "age": 32,
       "visits": 859,
@@ -116,7 +116,7 @@
           "id": "feac9f8b-d293-4e02-88d9-6145548d823f"
         }
       ],
-      "theme": false,
+      "theme": "",
       "sideBar": true,
       "allowFollowUp": {
         "type": "No"
@@ -1918,7 +1918,7 @@
     },
     {
       "id": "ca9f06c1-8c55-469d-9322-86d4af93339f",
-      "profile": "https://avatars.githubusercontent.com/u/17773679",
+      "profile": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/861.jpg",
       "name": "warlock",
       "email": "abhisml05@gmail.com",
       "role": "client",
@@ -1927,16 +1927,16 @@
         "type": "No"
       },
       "status": {
-        "name": "Pending",
-        "color": "yellow",
-        "id": "3840aa3b-323b-415f-b8a5-e36d03d40c0b"
+        "name": "Complete",
+        "color": "#0cf90c",
+        "id": "99373bd6-d3ec-4e76-a04b-5ea7a5e5ffbe"
       },
       "age": "",
       "visits": "",
       "progress": "",
       "theme": true,
       "sideBar": true,
-      "date": "2023-12-20T06:05:52.941Z",
+      "date": "2023-12-22T10:04:50.283Z",
       "statusMenu": [
         {
           "name": "Pending",
@@ -1968,7 +1968,7 @@
       "age": "",
       "visits": "",
       "progress": "",
-      "date": "2023-12-20T09:43:47.409Z",
+      "date": "2023-12-22T10:05:07.335Z",
       "theme": true,
       "sideBar": true,
       "statusMenu": [
@@ -1987,7 +1987,8 @@
           "color": "#0cf90c",
           "id": "20125f8e-6d7f-430d-b3bb-c17a5e41d425"
         }
-      ]
+      ],
+      "status": ""
     },
     {
       "id": "a75289e7-382d-4409-b3af-b8d564a2ad2f",
@@ -2000,9 +2001,9 @@
         "type": "No"
       },
       "status": {
-        "name": "Inprocess",
-        "color": "#159afb",
-        "id": "59e278fa-5dc9-4d06-baf7-0dee06380ef4"
+        "name": "Waitting",
+        "color": "orange",
+        "id": "99373bd6-d3ec-4e76-a04b-5ea7a5e5ff4e"
       },
       "age": "",
       "visits": "",
@@ -2044,6 +2045,45 @@
       "theme": true,
       "sideBar": true,
       "date": "2023-12-20T13:36:50.127Z",
+      "statusMenu": [
+        {
+          "name": "Pending",
+          "color": "yellow",
+          "id": "1c180990-7c1e-46e2-b81d-b909f2551f0c"
+        },
+        {
+          "name": "Inprocess",
+          "color": "#159afb",
+          "id": "d290236c-35aa-4faf-b4dd-3a879bf9f49e"
+        },
+        {
+          "name": "Complete",
+          "color": "#0cf90c",
+          "id": "20125f8e-6d7f-430d-b3bb-c17a5e41d425"
+        }
+      ]
+    },
+    {
+      "id": "6d9e005c-f197-4dbb-85af-666225b3b635",
+      "profile": "https://avatars.githubusercontent.com/u/195805",
+      "name": "candinls",
+      "email": "anirudhapal25@gmail.com",
+      "role": "client",
+      "password": "ankPTly$",
+      "allowFollowUp": {
+        "type": "No"
+      },
+      "status": {
+        "name": "Pending",
+        "color": "yellow",
+        "id": "3840aa3b-323b-415f-b8a5-e36d03d40c0b"
+      },
+      "age": "",
+      "visits": "",
+      "progress": "",
+      "theme": true,
+      "sideBar": true,
+      "date": "2023-12-22T10:18:50.035Z",
       "statusMenu": [
         {
           "name": "Pending",

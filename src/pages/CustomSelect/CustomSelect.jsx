@@ -8,6 +8,7 @@ import { sportsData } from "../../data/source.json";
 import { getContryApi } from "../../Redux/Redux-Country-Api/CountryApi";
 import { getRoleBasedUsers } from "../../Redux/ReduxApi/UserApi";
 import { useTitle } from "../../hooks/useTitle";
+import Dropdown from "./resizeDropDown";
 
 const options = [
   { label: "First", value: 1, color: "red" },
@@ -178,6 +179,7 @@ const CustomSelect = () => {
           <button type="submit">Submit</button>
         </Space>
       </form>
+      <Dropdown />
     </PaddingContainer>
   );
 };

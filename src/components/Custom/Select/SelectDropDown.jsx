@@ -44,7 +44,7 @@ const Select = memo(
       fields ? fields.labelFn(option) : option?.label;
 
     const clearOptions = () => {
-      onChange(multiple ? [] : undefined);
+      onChange(multiple ? [] : "");
     };
 
     const selectOption = (option) => {
