@@ -75,6 +75,7 @@ const UsersAdd = () => {
   });
   const [isSubmited, setIsSubmited] = useState(false);
   const [show, setShow] = useState(false);
+  const [avatarloading, setAvatarloading] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
@@ -121,7 +122,7 @@ const UsersAdd = () => {
 
   const handleFile = async () => {
     try {
-      setLoading(true); // Set loading to true immediately
+      setAvatarloading(true); // Set loading to true immediately
 
       const data = await makeData(1);
       const { profile } = data[0];
@@ -129,34 +130,39 @@ const UsersAdd = () => {
       // Use setTimeout to delay setting the profile in formData
       const time = setTimeout(() => {
         setFormData((prevData) => ({ ...prevData, profile: profile }));
-        setLoading(false); // Set loading to false after the delay
+        setAvatarloading(false); // Set loading to false after the delay
       }, 1500);
 
       return () => clearTimeout(time);
     } catch (error) {
       console.error("Error: ", error);
       setFormData((prevData) => ({ ...prevData, profile: "" }));
-      setLoading(false); // Set loading to false in case of an error
+      setAvatarloading(false); // Set loading to false in case of an error
     }
   };
 
   useEffect(() => {
     if (isSubmited) {
-      dispatch(addUser(formData));
-      setIsSubmited(false);
-      toast.success(`${formData.name} added successfully`);
-      setFormData((p) => ({
-        ...p,
-        name: "",
-        password: "",
-        email: "",
-        status: "",
-        allowFollowUp: { type: "Yes" },
-        date: "",
-        visits: "",
-        progress: "",
-        profile: "",
-      }));
+      setLoading(true);
+      const AddUser = async () => {
+        await dispatch(addUser(formData));
+        setLoading(false);
+        setIsSubmited(false);
+        toast.success(`${formData.name} added successfully`);
+        setFormData((p) => ({
+          ...p,
+          name: "",
+          password: "",
+          email: "",
+          status: "",
+          allowFollowUp: { type: "Yes" },
+          date: "",
+          visits: "",
+          progress: "",
+          profile: "",
+        }));
+      };
+      AddUser();
     }
   }, [isSubmited]);
 
@@ -181,7 +187,7 @@ const UsersAdd = () => {
                 errorMessage={formError.name}
                 {...{
                   placeholder: "Enter a username",
-                  autoFocus: "true",
+                  autoFocus: true,
                 }}
               />
 
@@ -203,7 +209,7 @@ const UsersAdd = () => {
                 <Label>Profile</Label>
                 <AvatarImage
                   image={formData.profile}
-                  loading={loading}
+                  loading={avatarloading}
                   onClick={() => {
                     handleFile();
                   }}
@@ -288,7 +294,12 @@ const UsersAdd = () => {
 
             <PaddingContainer $padding="20px 0px 0px">
               <FlexDiv>
-                <Buttons type="submit" text="Save / Add More" icon={Check} />
+                <Buttons
+                  loading={loading}
+                  type="submit"
+                  text="Save / Add More"
+                  icon={Check}
+                />
               </FlexDiv>
             </PaddingContainer>
           </form>

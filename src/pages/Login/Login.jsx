@@ -28,7 +28,6 @@ import { Tooltip } from "antd";
 const Login = () => {
   const { persist, loading, error, user } = useSelector((state) => state.auth);
   const [show, setShow] = useState(false);
-  const [isSubmited, setIsSubmited] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
@@ -39,7 +38,7 @@ const Login = () => {
     email: "",
     password: "",
   });
-  const [formErrors, setFormErrors] = useState({
+  const [errors, setErrors] = useState({
     email: "",
     password: "",
   });
@@ -50,71 +49,62 @@ const Login = () => {
       ...prevData,
       [name]: value,
     }));
-    setFormErrors((prevErrors) => ({
+    setErrors((prevErrors) => ({
       ...prevErrors,
       [name]: "",
     }));
   };
 
-  const formValiDate = async (data) => {
-    const errors = {};
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-
-    if (data.email.trim() === "") {
-      errors.email = "Enter an email";
-    } else if (!regex.test(data.email)) {
-      errors.email = "This is not a valid email format!";
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Validation before submitting the form
+    if (formData.email.trim() === "") {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        email: "Enter email address",
+      }));
+      return;
     }
 
-    if (data.password.trim() === "") {
-      errors.password = "Enter a password";
-    } else if (data.password.length < 8 || data.password.length > 10) {
-      errors.password = "Password must be between 8 to 10 characters in length";
+    if (formData.password.trim() === "") {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        password: "Enter password",
+      }));
+      return;
     }
 
-    setFormErrors((prevErrors) => ({
-      ...prevErrors,
-      ...errors,
-    }));
+    if (formData.password.length < 8 || formData.password.length > 10) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        password: "Password must be between 8 and 10 characters in length",
+      }));
+      return;
+    }
 
-    const hasErrors = Object.keys(errors).length > 0;
-    setIsSubmited(!hasErrors);
-    if (hasErrors) {
-      setFormErrors((prevErrors) => ({
+    try {
+      dispatch(authenticateUser(formData));
+      setFormData((prevData) => ({
+        ...prevData,
+        email: "",
+        password: "",
+      }));
+    } catch (error) {
+      // Handle authentication error
+      setErrors((prevErrors) => ({
         ...prevErrors,
         email: "Data Invalid",
       }));
-    } else {
-      try {
-        await dispatch(authenticateUser(formData));
-        setFormData((prevData) => ({
-          ...prevData,
-          email: "",
-          password: "",
-        }));
-      } catch (error) {
-        // Handle authentication error
-        setFormErrors((prevErrors) => ({
-          ...prevErrors,
-          email: error,
-        }));
-      }
     }
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    // Validation before submitting the form
-    formValiDate(formData);
   };
 
   useEffect(() => {
     let mounted = true;
-    if (isSubmited && Object.keys(user).length > 0 && mounted) {
+    if (Object.keys(user).length > 0 && mounted) {
       navigate(from, { replace: true });
     }
     return () => (mounted = false);
-  }, [isSubmited, user]);
+  }, [user]);
 
   return (
     <MainWrapper>
@@ -137,13 +127,14 @@ const Login = () => {
               name="email"
               label="Email Address"
               value={formData.email}
-              error={formErrors.email ? true : false}
+              error={error || errors.email ? true : false}
               onChange={handleChange}
               errorMessage={
-                error === "Please Enter valid email" ? error : formErrors?.email
+                error === "Please Enter valid email" ? error : errors?.email
               }
               {...{
-                autoComplete: "false",
+                autoComplete: "true",
+                autoFocus: true,
                 placeholder: "Enter your email address...",
               }}
             />
@@ -155,12 +146,12 @@ const Login = () => {
               name="password"
               label="Password"
               value={formData.password}
-              error={formErrors.password ? true : false}
+              error={error || errors.password ? true : false}
               onChange={handleChange}
               errorMessage={
                 error === "Please Enter valid credentials"
                   ? error
-                  : formErrors?.password
+                  : errors?.password
               }
               {...{
                 autoComplete: "false",

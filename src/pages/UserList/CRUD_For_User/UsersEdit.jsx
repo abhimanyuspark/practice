@@ -58,6 +58,7 @@ const UsersEdit = () => {
   const [theme] = useThemeProvider();
   const [isSubmited, setIsSubmited] = useState(false);
   const [show, setShow] = useState(false);
+  const [avatarloading, setAvatarloading] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
@@ -104,7 +105,7 @@ const UsersEdit = () => {
 
   const handleFile = async () => {
     try {
-      setLoading(true); // Set loading to true immediately
+      setAvatarloading(true); // Set loading to true immediately
 
       const data = await makeData(1);
       const { profile } = data[0];
@@ -112,22 +113,27 @@ const UsersEdit = () => {
       // Use setTimeout to delay setting the profile in formData
       const time = setTimeout(() => {
         setFormData((prevData) => ({ ...prevData, profile: profile }));
-        setLoading(false); // Set loading to false after the delay
+        setAvatarloading(false); // Set loading to false after the delay
       }, 1500);
 
       return () => clearTimeout(time);
     } catch (error) {
       console.error("Error: ", error);
       setFormData((prevData) => ({ ...prevData, profile: "" }));
-      setLoading(false); // Set loading to false in case of an error
+      setAvatarloading(false); // Set loading to false in case of an error
     }
   };
 
   useEffect(() => {
     if (isSubmited) {
-      dispatch(editUser(formData));
-      setIsSubmited(false);
-      toast.success(`${formData.name} updated user details`);
+      setLoading(true);
+      const UpdateUser = async () => {
+        await dispatch(editUser(formData));
+        setLoading(false);
+        setIsSubmited(false);
+        toast.success(`${formData.name} updated user details`);
+      };
+      UpdateUser();
     }
   }, [isSubmited]);
 
@@ -202,7 +208,7 @@ const UsersEdit = () => {
                     <Label>Profile</Label>
                     <AvatarImage
                       image={formData.profile}
-                      loading={loading}
+                      loading={avatarloading}
                       onClick={() => {
                         handleFile();
                       }}
@@ -294,7 +300,7 @@ const UsersEdit = () => {
                       type="submit"
                       text="Save / Update user"
                       icon={Check}
-                      loading={userLoading}
+                      loading={loading}
                     />
                   </FlexDiv>
                 </PaddingContainer>
