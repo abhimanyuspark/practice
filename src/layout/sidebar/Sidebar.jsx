@@ -11,6 +11,7 @@ import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { toggleSidebar } from "../../Redux/LoginApi/reducer";
 import { changeSideBar } from "../../Redux/LoginApi/LoginApi";
 import SideMenu from "./SideMenu";
+import useInternetCheck from "../../hooks/useInternetCheck";
 
 const Sidebar = ({ sideBar }) => {
   const { user } = useSelector((state) => state.auth, shallowEqual);
@@ -39,16 +40,20 @@ const Sidebar = ({ sideBar }) => {
 
   return (
     <SidebarWrapper $expanded={expanded}>
-      <Header user={user} sideBar={sideBar} expanded={expanded} />
-      <SideChild onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
-        <SideMenu sideBar={sideBar} />
-      </SideChild>
+      <div onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
+        <Header user={user} sideBar={sideBar} expanded={expanded} />
+        <SideChild>
+          <SideMenu sideBar={sideBar} />
+        </SideChild>
+      </div>
       <Footer sideBar={sideBar} toogle={handleToogle} />
     </SidebarWrapper>
   );
 };
 
 const Header = memo(({ user, sideBar, expanded }) => {
+  const isOnline = useInternetCheck();
+
   return (
     <SideHeader>
       <div
@@ -57,7 +62,7 @@ const Header = memo(({ user, sideBar, expanded }) => {
         <div className="opa practice">
           <h4>Practice</h4>
           <FlexDiv $gap="0.4">
-            <Shape $circle $color="#0cf90c" />
+            <Shape $circle $color={isOnline ? "#0cf90c" : "red"} />
             <h5>{user?.name}</h5>
           </FlexDiv>
         </div>

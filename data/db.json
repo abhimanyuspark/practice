@@ -39,7 +39,7 @@
         }
       ],
       "theme": false,
-      "sideBar": false,
+      "sideBar": true,
       "allowFollowUp": {
         "type": "No"
       }
