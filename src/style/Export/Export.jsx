@@ -36,7 +36,7 @@ import {
   SelectInput,
   Checkbox,
 } from "../InputField/InputField";
-import { Buttons } from "../buttons/buttons";
+import { Buttons, RemoveButton } from "../buttons/buttons";
 import Loader from "../loader/Loader";
 import Icon from "../Icons/Icon";
 import { TableWrapper, Table1, Td1, Th1, Tr1 } from "../table/table1";
@@ -77,6 +77,7 @@ export {
   SelectInput,
   Checkbox,
   Buttons,
+  RemoveButton,
   Icon,
   Loader,
   TableWrapper,

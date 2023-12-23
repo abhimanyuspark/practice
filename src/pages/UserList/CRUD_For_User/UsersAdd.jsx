@@ -209,6 +209,12 @@ const UsersAdd = () => {
                 <Label>Profile</Label>
                 <AvatarImage
                   image={formData.profile}
+                  setImage={(newProfile) =>
+                    setFormData((prevData) => ({
+                      ...prevData,
+                      profile: newProfile,
+                    }))
+                  }
                   loading={avatarloading}
                   onClick={() => {
                     handleFile();

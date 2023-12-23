@@ -207,6 +207,12 @@ const UsersEdit = () => {
                   <InputWrapper>
                     <Label>Profile</Label>
                     <AvatarImage
+                      setImage={(newProfile) =>
+                        setFormData((prevData) => ({
+                          ...prevData,
+                          profile: newProfile,
+                        }))
+                      }
                       image={formData.profile}
                       loading={avatarloading}
                       onClick={() => {

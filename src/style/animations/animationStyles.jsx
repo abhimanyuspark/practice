@@ -33,11 +33,11 @@ export const FilterContainer = styled.div`
 
 export const BlackBackground = styled.div`
   background-color: black;
-  position: fixed;
+  position: ${({ $position }) => $position || "fixed"};
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: ${({ $width }) => $width || "100vw"};
+  height: ${({ $height }) => $height || "100vh"};
   opacity: 0.3; /* Adjust the opacity as needed */
-  z-index: 8; /* Make sure it's below FilterContainer */
+  z-index: 5; /* Make sure it's below FilterContainer */
 `;

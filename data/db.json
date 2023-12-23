@@ -50,7 +50,7 @@
       "email": "Kianna.Veum@gmail.com",
       "name": "Constance Goodwin",
       "password": "1OMYSq9q",
-      "date": "2023-12-22T12:18:09.723Z",
+      "date": "2023-12-23T11:40:41.168Z",
       "profile": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1027.jpg",
       "age": 41,
       "visits": 629,
@@ -80,7 +80,7 @@
       "theme": true,
       "sideBar": true,
       "allowFollowUp": {
-        "type": "No"
+        "type": "Yes"
       }
     },
     {
@@ -128,7 +128,7 @@
       "email": "Lula_Huel22@yahoo.com",
       "name": "Cora Larson Jr.",
       "password": "VYOZDVsw",
-      "date": "2023-12-23T10:44:58.185Z",
+      "date": "2023-12-23T11:34:54.738Z",
       "profile": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/775.jpg",
       "age": 34,
       "visits": 775,
@@ -158,7 +158,7 @@
       "theme": true,
       "sideBar": true,
       "allowFollowUp": {
-        "type": "Yes"
+        "type": "No"
       }
     },
     {
@@ -206,10 +206,10 @@
       "email": "Corbin_Hoeger86@gmail.com",
       "name": "Joyce White",
       "password": "k4QWbzIp",
-      "date": "2021-04-14T22:28:43.727Z",
+      "date": "2023-12-23T14:04:48.968Z",
       "profile": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1190.jpg",
       "age": 42,
-      "visits": 0,
+      "visits": "",
       "progress": 69,
       "status": {
         "name": "Waitting",
@@ -1914,7 +1914,7 @@
     },
     {
       "id": "ca9f06c1-8c55-469d-9322-86d4af93339f",
-      "profile": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/861.jpg",
+      "profile": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/261.jpg",
       "name": "warlock",
       "email": "abhisml05@gmail.com",
       "role": "client",
@@ -1932,7 +1932,7 @@
       "progress": "",
       "theme": true,
       "sideBar": true,
-      "date": "2023-12-22T10:04:50.283Z",
+      "date": "2023-12-23T18:06:09.754Z",
       "statusMenu": [
         {
           "name": "Pending",
@@ -1987,45 +1987,6 @@
       "status": ""
     },
     {
-      "id": "a75289e7-382d-4409-b3af-b8d564a2ad2f",
-      "profile": "",
-      "name": "Abhimanyu",
-      "email": "abhis6410088@gmail.com",
-      "role": "client",
-      "password": "NotFr56U",
-      "allowFollowUp": {
-        "type": "No"
-      },
-      "status": {
-        "name": "Waitting",
-        "color": "orange",
-        "id": "99373bd6-d3ec-4e76-a04b-5ea7a5e5ff4e"
-      },
-      "age": "",
-      "visits": "",
-      "progress": "",
-      "theme": true,
-      "sideBar": true,
-      "date": "2023-12-20T10:55:35.692Z",
-      "statusMenu": [
-        {
-          "name": "Pending",
-          "color": "yellow",
-          "id": "1c180990-7c1e-46e2-b81d-b909f2551f0c"
-        },
-        {
-          "name": "Inprocess",
-          "color": "#159afb",
-          "id": "d290236c-35aa-4faf-b4dd-3a879bf9f49e"
-        },
-        {
-          "name": "Complete",
-          "color": "#0cf90c",
-          "id": "20125f8e-6d7f-430d-b3bb-c17a5e41d425"
-        }
-      ]
-    },
-    {
       "id": "c936b6c7-021e-4b71-889b-f72350c4f6ee",
       "profile": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/145.jpg",
       "name": "daddy",
@@ -2061,7 +2022,7 @@
     },
     {
       "id": "6d9e005c-f197-4dbb-85af-666225b3b635",
-      "profile": "https://avatars.githubusercontent.com/u/195805",
+      "profile": "",
       "name": "candinls",
       "email": "anirudhapal25@gmail.com",
       "role": "client",
@@ -2079,7 +2040,7 @@
       "progress": "",
       "theme": true,
       "sideBar": true,
-      "date": "2023-12-22T10:18:50.035Z",
+      "date": "2023-12-23T18:07:06.578Z",
       "statusMenu": [
         {
           "name": "Pending",

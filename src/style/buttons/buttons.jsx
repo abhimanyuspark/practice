@@ -110,3 +110,9 @@ export const Buttons = ({ type, width, dir, text, icon, loading, onClick }) => {
     </Button>
   );
 };
+
+export const RemoveButton = styled(Button)`
+  border-radius: 0px;
+  background-color: black;
+  border: 2px solid white;
+`;

@@ -115,6 +115,7 @@ export const BackGroundImage = styled.img`
 export const AbsoluteDiv = styled.div`
   position: absolute;
   width: ${({ $width }) => $width || "auto"};
+  z-index: ${({ $zIndex }) => $zIndex || "1"};
   ${({ $top }) =>
     $top &&
     css`
