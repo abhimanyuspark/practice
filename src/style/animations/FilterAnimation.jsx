@@ -40,14 +40,7 @@ const FilterAnimation = ({ children }) => {
             <Icon onClick={clickOutsideHandler} hover={"grey"} icon={Close} />
           </JustifyWrapper>
         </PaddingContainer>
-        <Overflow $height="160px" $overFlow="auto">
-          {children}
-        </Overflow>
-        <PaddingContainer $padding="15px 10px">
-          <JustifyWrapper $justify="end">
-            <button>Clear</button>
-          </JustifyWrapper>
-        </PaddingContainer>
+        {children}
       </FilterContainer>
     </div>
   );

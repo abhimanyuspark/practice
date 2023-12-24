@@ -1,4 +1,4 @@
-import { Dashboard, List, Setting } from "../../style/Icons/Icons";
+import { Dashboard, List, Setting, Users } from "../../style/Icons/Icons";
 
 export const AdminSidebarData = [
   {
@@ -31,7 +31,7 @@ export const AdminSidebarData = [
   },
   {
     id: 3,
-    icon: List,
+    icon: Users,
     value: "Users",
     link: "/users",
   },

@@ -1,6 +1,7 @@
 const Icons = {
   Dashboard: <span className="material-symbols-outlined">dashboard</span>,
   List: <span className="material-symbols-outlined">lists</span>,
+  Users: <span className="material-symbols-outlined">groups</span>,
   Close: <span className="material-symbols-outlined">close</span>,
   Setting: <span className="material-symbols-outlined">settings</span>,
   LoginIcon: <span className="material-symbols-outlined">login</span>,
@@ -23,6 +24,7 @@ const Icons = {
 export const {
   Dashboard,
   List,
+  Users,
   Close,
   Setting,
   LoginIcon,

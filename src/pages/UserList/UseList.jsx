@@ -161,7 +161,9 @@ const UseList = () => {
           )}
         </FlexWrapper>
         <SubNavbarChild $borderDir>
-          <FilterAnimation children={<Filterform />} />
+          <FilterAnimation>
+            <Filterform />
+          </FilterAnimation>
         </SubNavbarChild>
       </SubNavbar>
 
