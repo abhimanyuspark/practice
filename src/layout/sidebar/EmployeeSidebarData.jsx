@@ -1,4 +1,4 @@
-import { Dashboard, List, Setting, LoginIcon } from "../../style/Icons/Icons";
+import { Dashboard, List, Setting } from "../../style/Icons/Icons";
 
 export const EmployeeSidebarData = [
   {
@@ -11,16 +11,6 @@ export const EmployeeSidebarData = [
         value: "Dashboard",
         link: "/",
       },
-      //   {
-      //     id: 2,
-      //     value: "Select",
-      //     link: "/select",
-      //   },
-      //   {
-      //     id: 3,
-      //     value: "All Buttons",
-      //     link: "/allbuttons",
-      //   },
     ],
   },
   {
@@ -29,12 +19,6 @@ export const EmployeeSidebarData = [
     value: "Accordians",
     link: "/accordians",
   },
-  // {
-  //   id: 3,
-  //   icon: LoginIcon,
-  //   value: "Login",
-  //   link: "/login",
-  // },
   {
     id: 3,
     icon: Setting,

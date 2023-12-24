@@ -49,35 +49,31 @@ const SideMenu = memo(({ sideBar }) => {
     }
   }, [pathname]);
 
-  return (
-    <>
-      {data?.map((d, i) => (
-        <SideChildItem key={i}>
-          <div
-            className={`child ${isChildActive(i, pathname) ? "active" : ""}`}
-            onClick={handleIndex.bind(null, i)}
-          >
-            <MainDiv d={d} i={i} index={activeChildIndex} />
-          </div>
-          {activeChildIndex === i && (
-            <div className="subMenu">
-              {d?.subMenu?.map((s, sub_index) => (
-                <div key={sub_index}>
-                  {s.link ? (
-                    <NavLink className="subMenuLink" to={s.link}>
-                      {s.value}
-                    </NavLink>
-                  ) : (
-                    <div className="subMenuBar">{s.value}</div>
-                  )}
-                </div>
-              ))}
+  return data?.map((d, i) => (
+    <SideChildItem key={i}>
+      <div
+        className={`child ${isChildActive(i, pathname) ? "active" : ""}`}
+        onClick={handleIndex.bind(null, i)}
+      >
+        <MainDiv d={d} i={i} index={activeChildIndex} />
+      </div>
+      {activeChildIndex === i && (
+        <div className="subMenu">
+          {d?.subMenu?.map((s, sub_index) => (
+            <div key={sub_index}>
+              {s.link ? (
+                <NavLink className="subMenuLink" to={s.link}>
+                  {s.value}
+                </NavLink>
+              ) : (
+                <div className="subMenuBar">{s.value}</div>
+              )}
             </div>
-          )}
-        </SideChildItem>
-      ))}
-    </>
-  );
+          ))}
+        </div>
+      )}
+    </SideChildItem>
+  ));
 });
 
 const MainDiv = memo(({ d, i, index }) => {
@@ -88,25 +84,21 @@ const MainDiv = memo(({ d, i, index }) => {
     </div>
   );
 
-  return (
-    <>
-      {d.link ? (
-        <NavLink to={d.link} className="smlink">
-          {DivGap(d)}
-        </NavLink>
-      ) : (
-        <div className="smsimple">
-          {DivGap(d)}
-          <span
-            className={`material-symbols-outlined arrow ${
-              index === i ? "open" : "close"
-            }`}
-          >
-            chevron_right
-          </span>
-        </div>
-      )}
-    </>
+  return d.link ? (
+    <NavLink to={d.link} className="smlink">
+      {DivGap(d)}
+    </NavLink>
+  ) : (
+    <div className="smsimple">
+      {DivGap(d)}
+      <span
+        className={`material-symbols-outlined arrow ${
+          index === i ? "open" : "close"
+        }`}
+      >
+        chevron_right
+      </span>
+    </div>
   );
 });
 

@@ -5,7 +5,7 @@ import {
   NavbarWrapper,
   RNavLink,
 } from "../../style/Export/Export";
-import { LogoutIcon } from "../../style/Icons/Icons";
+import { Power } from "../../style/Icons/Icons";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "../../Redux/LoginApi/reducer";
@@ -49,13 +49,11 @@ const UserProfile = () => {
   };
 
   return (
-    <>
-      <Tooltip title="Logout">
-        <div>
-          <Icon icon={LogoutIcon} color={"grey"} onClick={handleLogout} />
-        </div>
-      </Tooltip>
-    </>
+    <Tooltip title="Logout">
+      <div>
+        <Icon icon={Power} color={"grey"} onClick={handleLogout} />
+      </div>
+    </Tooltip>
   );
 };
 

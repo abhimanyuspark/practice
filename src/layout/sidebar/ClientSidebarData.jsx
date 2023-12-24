@@ -1,4 +1,4 @@
-import { Dashboard, List, Setting, LoginIcon } from "../../style/Icons/Icons";
+import { Dashboard, List, Setting } from "../../style/Icons/Icons";
 
 export const ClientSidebarData = [
   {
@@ -11,13 +11,8 @@ export const ClientSidebarData = [
         value: "Dashboard",
         link: "/",
       },
-      //   {
-      //     id: 2,
-      //     value: "Select",
-      //     link: "/select",
-      //   },
       {
-        id: 3,
+        id: 2,
         value: "All Buttons",
         link: "/allbuttons",
       },
@@ -35,14 +30,8 @@ export const ClientSidebarData = [
     value: "All Inputs",
     link: "/allinput",
   },
-  // {
-  //   id: 3,
-  //   icon: LoginIcon,
-  //   value: "Login",
-  //   link: "/login",
-  // },
   {
-    id: 3,
+    id: 4,
     icon: Setting,
     value: "App setting",
     subMenu: [

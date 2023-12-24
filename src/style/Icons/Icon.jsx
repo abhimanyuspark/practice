@@ -7,9 +7,7 @@ const IconStyle = styled.span`
     font-size: ${({ $fontSize }) => $fontSize || "20px"};
   }
   display: flex;
-  align-items: ${({ $direction }) => ($direction ? "" : "center")};
-  justify-content: ${({ $direction }) => ($direction ? "center" : "")};
-  flex-direction: ${({ $direction }) => ($direction ? "column" : "row")};
+  align-items: center;
   color: ${({ $color, theme }) => $color || theme.cl_dark};
   cursor: pointer;
   &:hover {
