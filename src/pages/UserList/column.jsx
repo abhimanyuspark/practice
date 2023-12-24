@@ -11,8 +11,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { tableMenu } from "../../data/all_menu";
 import { deleteUserReducer } from "../../Redux/ReduxApi/UserAction";
 import { Progress } from "antd";
-import { FlexDiv, Icon, Shape } from "../../style/Export/Export";
-import { AvatarIcon } from "../../style/Icons/Icons";
+import { FlexDiv, Image, Shape } from "../../style/Export/Export";
+import avatarpng from "../../assets/avatar.com.png";
 
 export const Columns = [
   {
@@ -59,9 +59,21 @@ export const Columns = [
     cell: (info) => {
       const value = info.getValue();
       return value ? (
-        <img src={value} alt="profile" className="avatar" />
+        <Image
+          src={value}
+          $size="35px"
+          $circle
+          alt="profile"
+          className="avatar"
+        />
       ) : (
-        <Icon icon={AvatarIcon} fontSize="35px" color="grey" />
+        <Image
+          src={avatarpng}
+          $size="35px"
+          $circle
+          alt="profile"
+          className="avatar"
+        />
       );
     },
   },

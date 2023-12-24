@@ -3,12 +3,19 @@ import Select from "../../components/Custom/Select/SelectDropDown";
 import { Space } from "antd";
 import { useThemeProvider } from "../../hooks/useThemeProvider";
 import { useDispatch, useSelector } from "react-redux";
-import { FlexDiv, P, PaddingContainer } from "../../style/Export/Export";
+import {
+  FlexDiv,
+  Image,
+  P,
+  PaddingContainer,
+  Shape,
+} from "../../style/Export/Export";
 import { sportsData } from "../../data/source.json";
 import { getContryApi } from "../../Redux/Redux-Country-Api/CountryApi";
 import { getRoleBasedUsers } from "../../Redux/ReduxApi/UserApi";
 import { useTitle } from "../../hooks/useTitle";
 import Dropdown from "./resizeDropDown";
+import avatarpng from "../../assets/avatar.com.png";
 
 const options = [
   { label: "First", value: 1, color: "red" },
@@ -23,6 +30,8 @@ const CustomSelect = () => {
   const { country } = useSelector((state) => state.country);
   const { user } = useSelector((state) => state.auth);
   useTitle("Select");
+  const [theme] = useThemeProvider();
+  const dispatch = useDispatch();
 
   const [array, setArray] = useState([options[0]]);
   const [object, setObject] = useState(roleBasedUsers[0]);
@@ -30,9 +39,6 @@ const CustomSelect = () => {
   const [object3, setObject3] = useState("");
 
   const [count, setCount] = useState("");
-
-  const [theme] = useThemeProvider();
-  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getRoleBasedUsers(["client", "employee"]));
@@ -47,22 +53,14 @@ const CustomSelect = () => {
     console.log(count);
   };
 
-  const style = {
-    width: "20px",
-    height: "20px",
-    borderRadius: "50%",
-  };
-
-  const styles = {
-    display: "flex",
-    alignItems: "center",
-    gap: "0.5rem",
-  };
-
   const optionTemplate = (o) => {
     return (
-      <div style={styles}>
-        <img style={style} src={o.profile} alt="p" />
+      <FlexDiv>
+        {o.profile ? (
+          <Image src={o.profile} alt="profile" $size="20px" />
+        ) : (
+          <Image src={avatarpng} alt="profile" $size="20px" />
+        )}
         {user?.name === o.name ? (
           <FlexDiv>
             <span>{o.name}</span>
@@ -71,43 +69,57 @@ const CustomSelect = () => {
         ) : (
           <span>{o.name}</span>
         )}
-      </div>
+      </FlexDiv>
     );
   };
 
   const selectTemplate = (v) => {
     return (
-      <div style={styles}>
-        <img style={style} src={v.profile} alt="p" />
+      <FlexDiv>
+        <Image src={v.profile} alt="profile" $size="20px" />
         <span>{v.name}</span>
-      </div>
+      </FlexDiv>
     );
   };
 
-  const multiTemplate = (v) => {
+  const multiSelectTemplate = (v) => {
     return (
-      <>
-        {v && (
-          <div style={styles}>
-            <span
-              className="span-circle"
-              style={{ backgroundColor: v.color }}
-            ></span>
-            {v.label}
-          </div>
-        )}
-      </>
+      <FlexDiv $gap="0.4">
+        <Shape $color={v?.color} $circle />
+        {v?.label}
+      </FlexDiv>
     );
   };
 
-  // const obj = {
-  //   ob1: () => {
-  //     console.log("proto");
-  //   },
-  // };
+  const multiOptionTemplate = (v) => {
+    return (
+      <FlexDiv>
+        <Shape $color={v?.color} $circle />
+        {v?.label}
+      </FlexDiv>
+    );
+  };
 
-  // object3.__proto__ = obj;
-  // object3.ob1();
+  const selectCountryTemplete = (v) => {
+    return (
+      <FlexDiv>
+        <Image src={v?.flags?.svg} $size="18px" lazy="loading" />
+        {v?.name?.common}
+      </FlexDiv>
+    );
+  };
+
+  const selectCountryIddTemplete = (d) => {
+    const root = d.idd.root ? String(d.idd.root) : "+0";
+    const suffixes = d.idd.suffixes ? String(d.idd.suffixes) : "";
+    const combined = root + suffixes.slice(0, 2);
+    return (
+      <FlexDiv>
+        <Image $size="15px" src={d.flags.svg} loading="lazy" alt="images" />
+        <span>{combined}</span>
+      </FlexDiv>
+    );
+  };
 
   return (
     <PaddingContainer>
@@ -117,8 +129,8 @@ const CustomSelect = () => {
             value={array}
             options={options}
             multiple
-            multiTemplate={multiTemplate}
-            optionTemplate={multiTemplate}
+            multiTemplate={multiSelectTemplate}
+            optionTemplate={multiOptionTemplate}
             onChange={(o) => setArray(o)}
             selectWidth="20em"
             optionsWidth="25em"
@@ -132,9 +144,34 @@ const CustomSelect = () => {
             enableSearch
             options={country}
             onChange={(e) => setCount(e)}
+            singleTemplate={selectCountryTemplete}
+            optionTemplate={selectCountryTemplete}
+            enableNoDataList
             theme={theme}
             selectWidth="20em"
             optionsWidth="25em"
+          />
+
+          <Select
+            fields={{
+              labelFn: (l) => {
+                const root = l?.idd?.root ? String(l?.idd?.root) : "+0";
+                const suffixes = l?.idd?.suffixes
+                  ? String(l?.idd?.suffixes)
+                  : "";
+                const combined = root + suffixes.slice(0, 2);
+                return combined;
+              },
+            }}
+            value={count}
+            enableSearch
+            options={country}
+            onChange={(e) => setCount(e)}
+            singleTemplate={selectCountryIddTemplete}
+            optionTemplate={selectCountryIddTemplete}
+            enableNoDataList
+            theme={theme}
+            selectWidth="8em"
           />
 
           <Space>

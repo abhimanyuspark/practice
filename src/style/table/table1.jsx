@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const TableWrapper = styled.div`
-  overflow-x: auto;
+  overflow: auto;
   width: 100%;
   height: 100%;
   border: 1px solid grey;

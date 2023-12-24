@@ -11,10 +11,10 @@ import {
 } from "../../../style/Export/Export";
 import { BlackBackground } from "../../../style/animations/animationStyles";
 import { Add } from "../../../style/Icons/Icons";
-import { Progress } from "antd";
+// import { Progress } from "antd";
 
 const AvatarImage = ({ loading, image, circle, onClick, setImage }) => {
-  const [progress, setProgress] = useState(0);
+  // const [progress, setProgress] = useState(0);
   const [hover, setHover] = useState(false);
 
   // useEffect(() => {

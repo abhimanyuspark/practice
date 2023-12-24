@@ -39,7 +39,7 @@
         }
       ],
       "theme": false,
-      "sideBar": true,
+      "sideBar": false,
       "allowFollowUp": {
         "type": "No"
       }
@@ -50,15 +50,15 @@
       "email": "Kianna.Veum@gmail.com",
       "name": "Constance Goodwin",
       "password": "1OMYSq9q",
-      "date": "2023-12-23T11:40:41.168Z",
-      "profile": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1027.jpg",
+      "date": "2023-12-24T18:50:19.590Z",
+      "profile": "https://avatars.githubusercontent.com/u/26579419",
       "age": 41,
       "visits": 629,
       "progress": 64,
       "status": {
-        "name": "Inprocess",
-        "color": "#159afb",
-        "id": "59e278fa-5dc9-4d06-baf7-0dee06380ef4"
+        "name": "Pending",
+        "color": "yellow",
+        "id": "3840aa3b-323b-415f-b8a5-e36d03d40c0b"
       },
       "statusMenu": [
         {
