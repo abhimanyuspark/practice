@@ -23,7 +23,7 @@ export const FlexWrapper = styled.div`
   gap: ${({ $gap }) => ($gap ? `${$gap}rem` : "1rem")};
   flex-wrap: ${({ $wrap }) => $wrap || "wrap"};
   & > * {
-    flex: ${({ $grow }) => $grow || "315px"} 0 1;
+    flex: ${({ $grow }) => $grow || "32%"} 0 1;
   }
 
   @media screen and (max-width: 1024px) {

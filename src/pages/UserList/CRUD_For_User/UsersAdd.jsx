@@ -223,7 +223,7 @@ const UsersAdd = () => {
               </InputWrapper>
             </FlexWrapper>
 
-            <FlexWrapper $grow="315px">
+            <FlexWrapper>
               <InputWrapper>
                 <Label>Status</Label>
                 <Select
